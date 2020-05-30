@@ -128,6 +128,7 @@ public class SaleProductSearchTableModel extends AbstractTableModel implements I
         for (int i = 0; i < 10; i++) {
             if (!filters[i].isEmpty()) {
                 tableRowSorter.setRowFilter(RowFilter.regexFilter(filters[i].toLowerCase(), filterColumnsIndexs[i]));
+                tableRowSorter.setRowFilter(RowFilter.regexFilter(filters[1].toLowerCase(), filterColumnsIndexs[3]));
             }
         }
         filterJtable.setRowSorter(tableRowSorter);
