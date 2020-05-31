@@ -10,7 +10,7 @@ public interface ITables<T> {
 
     public void updateObjectRow(T oldT, T newT);
 
-    public void filter(JTable filterJtable, String[] filters);
+    public void filter(JTable filterJtable, String[] viewfilters);
 
     public T getObjectByRow(int rowIndex);
 

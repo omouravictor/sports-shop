@@ -24,143 +24,158 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
-              <Component id="btAddClient" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="labClientSearchTable" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="248" max="-2" attributes="0"/>
+                              <Component id="btAddClient" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="597" pref="597" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                                      <Component id="btRemoveClient" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane3" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="labDate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtDate" min="-2" pref="77" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" min="-2" pref="586" max="-2" attributes="0"/>
+                              <Component id="txtID" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="btProductSearch" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labSelectedClient" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labTitle" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Component id="labClient" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtClient" min="-2" pref="258" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btClientSearch" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="labDate" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="txtDate" min="-2" pref="77" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="labTitle" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="labName" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              <Component id="txtName" min="-2" pref="258" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="labCPF" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txtCPF" min="-2" pref="258" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btClientSearch" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="495" max="-2" attributes="0"/>
+                                      <Component id="btCancelSale" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jScrollPane4" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                                              <Component id="labSelectedProducts" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="btFinishSale" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="495" max="-2" attributes="0"/>
-                              <Component id="btCancelSale" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane4" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
+                                  <Component id="labProductSearchTable" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="labQuantity" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="spQuantity" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="labCostByProduct" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="txtCostByProduct" min="-2" pref="85" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="btAddProduct" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="btRemoveClient" min="-2" max="-2" attributes="0"/>
-                                          <Component id="labSelectedProducts" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Component id="jScrollPane3" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
-                                  <Component id="btFinishSale" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane1" alignment="1" min="-2" pref="586" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="labProductSearchTable" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="labQuantity" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="spQuantity" min="-2" pref="63" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labCostByProduct" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                  <Component id="txtCostByProduct" min="-2" pref="85" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btAddProduct" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labTeam" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtTeam" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labCategory" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtCategory" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="labBrand" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtBrand" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labSize" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtSize" min="-2" pref="67" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labPlayer" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="txtPlayer" min="-2" pref="67" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labNumber" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace pref="15" max="32767" attributes="0"/>
-                                          <Component id="txtNumber" min="-2" pref="67" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labShirtName" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labSleeves" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labColor" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtSleeves" min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtColor" min="-2" pref="67" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="labTeam" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="btProductSearch" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtTeam" min="-2" pref="106" max="-2" attributes="0"/>
                                           </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="labCategory" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtCategory" min="-2" pref="106" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="labBrand" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="txtBrand" min="-2" pref="106" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labPlayer" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labNumber" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtSize" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="txtNumber" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <Component id="txtPlayer" min="-2" pref="94" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="labSleeves" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labShirtName" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labColor" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtColor" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtShirtName" min="-2" pref="67" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtSleeves" min="-2" pref="73" max="-2" attributes="0"/>
+                                                  <Component id="txtShirtName" min="-2" pref="73" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="labID" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtID" min="-2" pref="67" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <Component id="jScrollPane5" min="-2" pref="585" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane5" min="-2" pref="585" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btRemoveClient1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="labTotalCost" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtTotalCost" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="labClientSearchTable" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btRemoveClient1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="labTotalCost" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtTotalCost" min="-2" pref="93" max="-2" attributes="0"/>
+                      <Component id="labSelectedClient" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -169,19 +184,25 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="labTitle" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labClient" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtClient" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btClientSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btClientSearch" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtDate" min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDate" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -192,7 +213,7 @@
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="132" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane3" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btRemoveClient" min="-2" max="-2" attributes="0"/>
@@ -200,7 +221,7 @@
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Component id="btAddClient" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="labCategory" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -215,38 +236,41 @@
                       <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="txtTeam" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="txtSleeves" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                      <Component id="btProductSearch" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="btProductSearch" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labProductSearchTable" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labSelectedProducts" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -279,7 +303,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -293,17 +317,17 @@
         <Property name="text" type="java.lang.String" value="Sale"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labClient">
+    <Component class="javax.swing.JLabel" name="labName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Client"/>
+        <Property name="text" type="java.lang.String" value="Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtClient">
+    <Component class="javax.swing.JTextField" name="txtName">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClientActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNameActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btClientSearch">
@@ -323,6 +347,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCategory">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCategoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btProductSearch">
       <Properties>
@@ -349,6 +376,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCostByProduct">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="R$ 0.0"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labTotalCost">
       <Properties>
@@ -359,6 +389,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTotalCost">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="R$ 0.0"/>
+      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -369,8 +402,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tbClientSearch">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="4"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="this.clientSearchTableModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -431,8 +464,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tbSelectedClient">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="4"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="this.selectedClientTableModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -477,8 +510,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tbSelectedProduct">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="4"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="this.selectedProductTableModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -535,8 +568,8 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tbProductSearch">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="0" rowCount="0"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="this.productSearchTableModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -568,8 +601,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBrand">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBrandActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTeam">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTeamActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labPlayer">
       <Properties>
@@ -580,6 +619,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPlayer">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPlayerActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labSize">
       <Properties>
@@ -590,6 +632,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSize">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSizeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labNumber">
       <Properties>
@@ -600,6 +645,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNumber">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labColor">
       <Properties>
@@ -610,10 +658,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtShirtName">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtShirtNameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSleeves">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSleevesActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtColor">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtColorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labShirtName">
       <Properties>
@@ -640,6 +697,22 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtID">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIDActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labCPF">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CPF"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCPF">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCPFActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

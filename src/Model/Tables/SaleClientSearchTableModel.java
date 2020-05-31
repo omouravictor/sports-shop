@@ -102,12 +102,13 @@ public class SaleClientSearchTableModel extends AbstractTableModel implements IT
     }
 
     @Override
-    public void filter(JTable filterJtable, String[] filters) {
+    public void filter(JTable filterJtable, String[] viewfilters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
         tableRowSorter.setStringConverter(new TableStringConverter() {
             @Override
             public String toString(TableModel model, int rowIndex, int columnIndex) {
-                // This function parse all elements of the clientList to lower case
+                /* This function make all elements of the productList starts to lower case,
+                doing so is possible filter the rows ignoring cases. */
                 try {
                     return model.getValueAt(rowIndex, columnIndex).toString().toLowerCase();
                 } catch (NullPointerException e) {
@@ -115,12 +116,12 @@ public class SaleClientSearchTableModel extends AbstractTableModel implements IT
                 }
             }
         });
-        for (int i = 0; i < 6; i++) {
-            tableRowSorter.setRowFilter(RowFilter.regexFilter(filters[i].toLowerCase()));
-        }
+        List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
+        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 1)); // filter name column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 2)); // filter CPF column
+        RowFilter<Object, Object> columnFilters = RowFilter.andFilter(filterTypes);
+        tableRowSorter.setRowFilter(columnFilters);
         filterJtable.setRowSorter(tableRowSorter);
-        /* Parameters setRowFilter(RowFilter.regexFilter(stringFilter, (ColumnIndexToBeFilter))).
-        Case none column, all the columns are filtered */
     }
 
     @Override

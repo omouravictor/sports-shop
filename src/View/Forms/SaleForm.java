@@ -57,8 +57,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private void initComponents() {
 
         labTitle = new javax.swing.JLabel();
-        labClient = new javax.swing.JLabel();
-        txtClient = new javax.swing.JTextField();
+        labName = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
         btClientSearch = new javax.swing.JButton();
         labCategory = new javax.swing.JLabel();
         txtCategory = new javax.swing.JTextField();
@@ -107,6 +107,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labSleeves = new javax.swing.JLabel();
         labID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
+        labCPF = new javax.swing.JLabel();
+        txtCPF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -114,12 +116,12 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labTitle.setText("Sale");
 
-        labClient.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labClient.setText("Client");
+        labName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labName.setText("Name");
 
-        txtClient.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtClientActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
 
@@ -132,6 +134,12 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
         labCategory.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCategory.setText("Category");
+
+        txtCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoryActionPerformed(evt);
+            }
+        });
 
         btProductSearch.setText("Search");
         btProductSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -146,20 +154,14 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labCostByProduct.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCostByProduct.setText("Cost by Product");
 
+        txtCostByProduct.setText("R$ 0.0");
+
         labTotalCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labTotalCost.setText("Total Cost");
 
-        tbClientSearch.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        txtTotalCost.setText("R$ 0.0");
 
-            }
-        ));
+        tbClientSearch.setModel(this.clientSearchTableModel);
         jScrollPane1.setViewportView(tbClientSearch);
 
         labClientSearchTable.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -189,17 +191,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedClient.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        tbSelectedClient.setModel(this.selectedClientTableModel);
         jScrollPane3.setViewportView(tbSelectedClient);
 
         labSelectedClient.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -219,17 +211,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedProduct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
+        tbSelectedProduct.setModel(this.selectedProductTableModel);
         jScrollPane4.setViewportView(tbSelectedProduct);
 
         labSelectedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -257,14 +239,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbProductSearch.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
+        tbProductSearch.setModel(this.productSearchTableModel);
         tbProductSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbProductSearchMouseClicked(evt);
@@ -278,17 +253,65 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labTeam.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labTeam.setText("Team");
 
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrandActionPerformed(evt);
+            }
+        });
+
+        txtTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeamActionPerformed(evt);
+            }
+        });
+
         labPlayer.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labPlayer.setText("Player");
+
+        txtPlayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPlayerActionPerformed(evt);
+            }
+        });
 
         labSize.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labSize.setText("Size");
 
+        txtSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSizeActionPerformed(evt);
+            }
+        });
+
         labNumber.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labNumber.setText("Number");
 
+        txtNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumberActionPerformed(evt);
+            }
+        });
+
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color");
+
+        txtShirtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtShirtNameActionPerformed(evt);
+            }
+        });
+
+        txtSleeves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSleevesActionPerformed(evt);
+            }
+        });
+
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtColorActionPerformed(evt);
+            }
+        });
 
         labShirtName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labShirtName.setText("ShirtName");
@@ -299,135 +322,162 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labID.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labID.setText("ID");
 
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+
+        labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCPF.setText("CPF");
+
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(274, 274, 274)
-                .addComponent(btAddClient)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(248, 248, 248)
+                                .addComponent(btAddClient))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(597, 597, 597)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(230, 230, 230)
+                                        .addComponent(btRemoveClient))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labDate)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btProductSearch)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labTitle)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labName)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labCPF)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btClientSearch))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(495, 495, 495)
+                                        .addComponent(btCancelSale)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(230, 230, 230)
+                                                .addComponent(labSelectedProducts))
+                                            .addComponent(btFinishSale))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labProductSearchTable)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labQuantity)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(labCostByProduct)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btAddProduct))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labTeam)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labCategory)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labBrand)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labPlayer)
+                                            .addComponent(labNumber)
+                                            .addComponent(labSize))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labSleeves)
+                                            .addComponent(labShirtName)
+                                            .addComponent(labColor))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(labID))))
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btRemoveClient1)
+                                .addGap(44, 44, 44)
+                                .addComponent(labTotalCost)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labClientSearchTable)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(labSelectedClient)
-                        .addGap(226, 226, 226))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labTitle)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labClient)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btClientSearch)
-                                .addGap(18, 18, 18)
-                                .addComponent(labDate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(495, 495, 495)
-                                .addComponent(btCancelSale)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(230, 230, 230)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btRemoveClient)
-                                            .addComponent(labSelectedProducts)))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btFinishSale))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(labProductSearchTable)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labQuantity)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(labCostByProduct)
-                                    .addGap(4, 4, 4)
-                                    .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btAddProduct))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labTeam)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labCategory)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labBrand)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labSize)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labPlayer)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labNumber)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(labShirtName)
-                                        .addComponent(labSleeves, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(labColor, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(btProductSearch))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(labID)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btRemoveClient1)
-                        .addGap(44, 44, 44)
-                        .addComponent(labTotalCost)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24))
+                        .addGap(255, 255, 255))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(labTitle)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labClient)
-                            .addComponent(txtClient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btClientSearch)
-                            .addComponent(labDate)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btClientSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labName)
+                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(12, 12, 12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labCPF)
+                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labDate)
                         .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -442,7 +492,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                         .addComponent(btRemoveClient)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btAddClient)
-                .addGap(27, 27, 27)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labCategory)
@@ -454,31 +504,33 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                         .addComponent(labShirtName)
                         .addComponent(labID)
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labNumber)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labBrand)
-                    .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labSleeves))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labSize)
-                                .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labTeam))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labColor)))
-                        .addGap(18, 18, 18))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labNumber)
+                                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labBrand)
+                                    .addComponent(labSleeves))
+                                .addGap(0, 1, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labSize)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labTeam)
+                            .addComponent(labColor)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(btProductSearch)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(14, 14, 14)
+                        .addComponent(btProductSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labProductSearchTable)
                     .addComponent(labSelectedProducts))
@@ -504,16 +556,16 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btFinishSale)
                             .addComponent(btCancelSale))))
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinishSaleActionPerformed
-        if (checkAll()) {
+        /*if (checkAll()) {
             this.dispose();
-        }
+        }*/
     }//GEN-LAST:event_btFinishSaleActionPerformed
 
     private void btCancelSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelSaleActionPerformed
@@ -544,21 +596,61 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         updateCostByProductValue();
     }//GEN-LAST:event_tbProductSearchMouseClicked
 
-    private void btClientSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClientSearchActionPerformed
-        //clientSearchTableModel.filter(tbClientSearch, txtClient.getText());
-    }//GEN-LAST:event_btClientSearchActionPerformed
-
     private void btProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductSearchActionPerformed
-        String[] filters = {txtCategory.getText(), txtBrand.getText(), txtTeam.getText(),
-            txtPlayer.getText(), txtNumber.getText(), txtSize.getText(), txtShirtName.getText(),
-            txtSleeves.getText(), txtColor.getText(), txtID.getText()
-        };
-        productSearchTableModel.filter(tbProductSearch, filters);
+        filterTbProductSearch();
     }//GEN-LAST:event_btProductSearchActionPerformed
 
-    private void txtClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClientActionPerformed
-        //clientSearchTableModel.filter(tbClientSearch, txtClient.getText());
-    }//GEN-LAST:event_txtClientActionPerformed
+    private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtCategoryActionPerformed
+
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtBrandActionPerformed
+
+    private void txtTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtTeamActionPerformed
+
+    private void txtPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayerActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtPlayerActionPerformed
+
+    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtNumberActionPerformed
+
+    private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtSizeActionPerformed
+
+    private void txtShirtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShirtNameActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtShirtNameActionPerformed
+
+    private void txtSleevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSleevesActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtSleevesActionPerformed
+
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtColorActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        filterTbProductSearch();
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btClientSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClientSearchActionPerformed
+        filterTbClientSearch();
+    }//GEN-LAST:event_btClientSearchActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        filterTbClientSearch();
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        filterTbClientSearch();
+    }//GEN-LAST:event_txtCPFActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -584,11 +676,17 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         });
     }
 
-    public void setTablesModel() {
-        tbClientSearch.setModel(clientSearchTableModel);
-        tbSelectedClient.setModel(selectedClientTableModel);
-        tbProductSearch.setModel(productSearchTableModel);
-        tbSelectedProduct.setModel(selectedProductTableModel);
+    public void filterTbProductSearch() {
+        String[] filters = {txtCategory.getText(), txtBrand.getText(), txtTeam.getText(),
+            txtPlayer.getText(), txtNumber.getText(), txtSize.getText(), txtShirtName.getText(),
+            txtSleeves.getText(), txtColor.getText(), txtID.getText()
+        };
+        productSearchTableModel.filter(tbProductSearch, filters);
+    }
+
+    public void filterTbClientSearch() {
+        String[] filters = {txtName.getText(), txtCPF.getText()};
+        clientSearchTableModel.filter(tbClientSearch, filters);
     }
 
     public void setTableModelListenerInTbSelectedProduct() {
@@ -668,20 +766,9 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1)); // null = infinite
     }
 
-    public void setInitCostByProductValue() {
-        txtCostByProduct.setText("R$ 0.0");
-    }
-
-    public void setInitTotalCostValue() {
-        txtTotalCost.setText("R$ 0.0");
-    }
-
     public void initSetup() {
-        setTablesModel();
         setTablesColumnSize();
-        setInitTotalCostValue();
         setJSpinnerQuantityModel();
-        setInitCostByProductValue();
         setTableModelListenerInTbSelectedProduct();
     }
 
@@ -794,13 +881,14 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel labBrand;
+    private javax.swing.JLabel labCPF;
     private javax.swing.JLabel labCategory;
-    private javax.swing.JLabel labClient;
     private javax.swing.JLabel labClientSearchTable;
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCostByProduct;
     private javax.swing.JLabel labDate;
     private javax.swing.JLabel labID;
+    private javax.swing.JLabel labName;
     private javax.swing.JLabel labNumber;
     private javax.swing.JLabel labPlayer;
     private javax.swing.JLabel labProductSearchTable;
@@ -819,12 +907,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JTable tbSelectedClient;
     private javax.swing.JTable tbSelectedProduct;
     private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCategory;
-    private javax.swing.JTextField txtClient;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtCostByProduct;
     private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNumber;
     private javax.swing.JTextField txtPlayer;
     private javax.swing.JTextField txtShirtName;
