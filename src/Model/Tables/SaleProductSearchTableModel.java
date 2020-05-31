@@ -110,12 +110,13 @@ public class SaleProductSearchTableModel extends AbstractTableModel implements I
     }
 
     @Override
-    public void filter(JTable filterJtable, String[] filters) {
+    public void filter(JTable filterJtable, String[] viewfilters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
         tableRowSorter.setStringConverter(new TableStringConverter() {
             @Override
             public String toString(TableModel model, int rowIndex, int columnIndex) {
-                // This function parse all elements of the productList to lower case
+                /* This function make all elements of the productList starts to lower case,
+                doing so is possible filter the rows ignoring cases. */
                 try {
                     return model.getValueAt(rowIndex, columnIndex).toString().toLowerCase();
                 } catch (NullPointerException e) {
@@ -123,14 +124,19 @@ public class SaleProductSearchTableModel extends AbstractTableModel implements I
                 }
             }
         });
-        int[] filterColumnsIndexs = {2, 3, 4, 5, 8, 10, 6, 7, 9, 11};
-        // The filterColumnsIndexs needs to have column indexes matching []filters
-        for (int i = 0; i < 10; i++) {
-            if (!filters[i].isEmpty()) {
-                tableRowSorter.setRowFilter(RowFilter.regexFilter(filters[i].toLowerCase(), filterColumnsIndexs[i]));
-                tableRowSorter.setRowFilter(RowFilter.regexFilter(filters[1].toLowerCase(), filterColumnsIndexs[3]));
-            }
-        }
+        List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
+        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 2)); // filter category column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 3)); // filter brand column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[2].toLowerCase(), 4)); // filter team column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[3].toLowerCase(), 5)); // filter player column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[4].toLowerCase(), 8)); // filter number column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[5].toLowerCase(), 10)); // filter size column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[6].toLowerCase(), 6)); // filter shirtName column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[7].toLowerCase(), 7)); // filter sleeves column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[8].toLowerCase(), 9)); // filter color column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[9].toLowerCase(), 11)); // filter id column
+        RowFilter<Object, Object> columnFilters = RowFilter.andFilter(filterTypes);
+        tableRowSorter.setRowFilter(columnFilters);
         filterJtable.setRowSorter(tableRowSorter);
     }
 
