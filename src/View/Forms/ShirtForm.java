@@ -5,6 +5,7 @@ import Model.ComboBoxs.BrandComboBoxModel;
 import Interfaces.IForms;
 import Model.Classes.Brand;
 import Model.Classes.TxtIntegerNumbersModel;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
@@ -282,14 +283,20 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
         cbBrand.setModel(brandComboBoxModel);
     }
 
-    public void setTxtIntegerNumbersModel() {
-        // When the txt already has a Mask, it doesn't needs a IntegerNumberModel
-        txtNumStock.setDocument(new TxtIntegerNumbersModel());
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel());
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtSize.setDocument(new TxtMaxCharactersModel(255));
+        txtColor.setDocument(new TxtMaxCharactersModel(255));
+        txtTeam.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerNameOnShirt.setDocument(new TxtMaxCharactersModel(255));
+        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
+        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
     }
 
     public void initSetup() {
-        setTxtIntegerNumbersModel();
+        setTxtModels();
         setBrandComboBoxModel();
     }
 
@@ -327,37 +334,6 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
         return true;
     }
 
-    @Override
-    public boolean checkFieldsSize() {
-        // When the txt already has a Mask, it doesn't needs to be checked
-        if (txtSize.getText().length() > 255) {
-            showErrorMessage("The field 'Size' can not has more than 255 characters.");
-            return false;
-        } else if (txtTeam.getText().length() > 255) {
-            showErrorMessage("The field 'Team' can not has more than 255 characters.");
-            return false;
-        } else if (txtPlayerPresent.getText().length() > 255) {
-            showErrorMessage("The field 'Player Present' can not has more than 255 characters.");
-            return false;
-        } else if (txtPlayerNameOnShirt.getText().length() > 255) {
-            showErrorMessage("The field 'PlayerNameOnShirt' can not has more than 255 characters.");
-            return false;
-        } else if (txtNumStock.getText().length() > 10) {
-            // A int supports 10 numbers
-            showErrorMessage("The field 'NumStock' can not has more than 10 numbers.");
-            return false;
-        } else if (txtNumberPresent.getText().length() > 10) {
-            // A int supports 10 numbers
-            showErrorMessage("The field 'Number Present' can not has more than 10 numbers.");
-            return false;
-        } else if (txtColor.getText().length() > 255) {
-            // A int supports 10 numbers
-            showErrorMessage("The field 'Color' can not has more than 255 numbers.");
-            return false;
-        }
-        return true;
-    }
-
     public boolean checkPlayerPresentAndPlayerNameOnShirt() {
         if (txtPlayerPresent.getText().isEmpty() && !txtPlayerNameOnShirt.getText().isEmpty()) {
             showErrorMessage("The field 'PlayerPresent' can not be empty when the field 'PlayerNameOnShirt' is"
@@ -369,7 +345,7 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkFieldsSize() && checkPlayerPresentAndPlayerNameOnShirt();
+        return checkEmptyFields() && checkPlayerPresentAndPlayerNameOnShirt();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

@@ -7,6 +7,7 @@ import Interfaces.IForms;
 import Model.Classes.Brand;
 import Model.Classes.Category;
 import Model.Classes.TxtIntegerNumbersModel;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class ProductForm extends jFrameFather implements IForms<Product> {
 
@@ -257,15 +258,20 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
         cbBrand.setModel(brandComboBoxModel);
     }
 
-    public void setTxtIntegerNumbersModel() {
-        // When the txt already has a Mask, it doesn't needs a IntegerNumberModel
-        txtNumStock.setDocument(new TxtIntegerNumbersModel());
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel());
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtSize.setDocument(new TxtMaxCharactersModel(255));
+        txtColor.setDocument(new TxtMaxCharactersModel(255));
+        txtTeam.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
+        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
+        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
     }
 
     public void initSetup() {
-        setTxtIntegerNumbersModel();
         setCombosModel();
+        setTxtModels();
     }
 
     public double parseTxtCostTextToDouble() {
@@ -302,34 +308,8 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     }
 
     @Override
-    public boolean checkFieldsSize() {
-        // When the txt already has a Mask, it doesn't needs to be checked
-        if (txtSize.getText().length() > 255) {
-            showErrorMessage("The field 'Size' can not has more than 255 characters.");
-            return false;
-        } else if (txtTeam.getText().length() > 255) {
-            showErrorMessage("The field 'Team' can not has more than 255 characters.");
-            return false;
-        } else if (txtNumStock.getText().length() > 10) {
-            // A int supports 10 numbers
-            showErrorMessage("The field 'NumStock' can not has more than 10 numbers.");
-            return false;
-        } else if (txtPlayerPresent.getText().length() > 255) {
-            showErrorMessage("The field 'Player Present' can not has more than 255 characters.");
-            return false;
-        } else if (txtNumberPresent.getText().length() > 10) {
-            showErrorMessage("The field 'Number Present' can not has more than 10 numbers.");
-            return false;
-        } else if (txtColor.getText().length() > 255) {
-            showErrorMessage("The field 'Color' can not has more than 255 characters.");
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkFieldsSize();
+        return checkEmptyFields();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

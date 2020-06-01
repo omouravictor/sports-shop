@@ -4,9 +4,7 @@ import static Model.Classes.CPFValidator.isValidCPF;
 import Model.Classes.Client;
 import Interfaces.IForms;
 import Model.Classes.TxtIntegerNumbersModel;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class ClientForm extends jFrameFather implements IForms<Client> {
 
@@ -29,13 +27,13 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         labNeighborhoodAddress = new javax.swing.JLabel();
         labNumberAddress = new javax.swing.JLabel();
         labCityAddress = new javax.swing.JLabel();
-        labState = new javax.swing.JLabel();
+        labStateAddress = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtStreetAddress = new javax.swing.JTextField();
-        txtNeighborhood = new javax.swing.JTextField();
+        txtNeighborhoodAddress = new javax.swing.JTextField();
         txtCityAddress = new javax.swing.JTextField();
-        txtState = new javax.swing.JTextField();
+        txtStateAddress = new javax.swing.JTextField();
         btOk = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
         txtZipCodeAddress = new javax.swing.JFormattedTextField();
@@ -76,8 +74,8 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         labCityAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCityAddress.setText("City*");
 
-        labState.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labState.setText("State* (Abbreviation)");
+        labStateAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labStateAddress.setText("State* (Abbreviation)");
 
         btOk.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btOk.setText("Ok");
@@ -111,7 +109,7 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         }
 
         try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###########")));
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -149,37 +147,40 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
                                     .addComponent(txtZipCodeAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                                     .addComponent(txtNumberAddress))))
                         .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labStreetAddress)
-                                        .addGap(8, 8, 8)
-                                        .addComponent(txtStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(labState)
-                                            .addGap(0, 125, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(labNeighborhoodAddress)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labStreetAddress)
+                                                .addGap(8, 8, 8)
+                                                .addComponent(txtStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(labStateAddress))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(labNeighborhoodAddress)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtNeighborhoodAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(labEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                                        .addGap(16, 16, 16)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addComponent(btCancel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labCPF)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPF))))
+                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,14 +209,14 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labNeighborhoodAddress)
                     .addComponent(labNumberAddress)
-                    .addComponent(txtNeighborhood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNeighborhoodAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNumberAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labCityAddress)
-                    .addComponent(labState)
+                    .addComponent(labStateAddress)
                     .addComponent(txtCityAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,13 +261,20 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         });
     }
 
-    public void setTxtIntegerNumbersModel() {
-        // When the txt already has a Mask, it doesn't needs a IntegerNumberModel
-        txtNumberAddress.setDocument(new TxtIntegerNumbersModel());
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtName.setDocument(new TxtMaxCharactersModel(255));
+        txtEmail.setDocument(new TxtMaxCharactersModel(255));
+        txtStreetAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtNeighborhoodAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtStateAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtCityAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtNumberAddress.setDocument(new TxtIntegerNumbersModel(10));
     }
 
     public void initSetup() {
-        setTxtIntegerNumbersModel();
+        setTxtModels();
     }
 
     @Override
@@ -289,8 +297,8 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         //Email is not required. That's why it's not here
         //CPF has other verification type (checkCPF). That's why it's not here
         if (txtName.getText().isEmpty() || txtStreetAddress.getText().isEmpty()
-                || txtNumberAddress.getText().isEmpty() || txtNeighborhood.getText().isEmpty()
-                || txtCityAddress.getText().isEmpty() || txtState.getText().isEmpty()
+                || txtNumberAddress.getText().isEmpty() || txtNeighborhoodAddress.getText().isEmpty()
+                || txtCityAddress.getText().isEmpty() || txtStateAddress.getText().isEmpty()
                 || "(  )     -    ".equals(txtCellPhone.getText()) || "     -   ".equals(txtZipCodeAddress.getText())) {
             showErrorMessage("Fill all the required fields.");
             return false;
@@ -298,37 +306,8 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         return true;
     }
 
-    @Override
-    public boolean checkFieldsSize() {
-        // When the txt already has a Mask, it doesn't needs to be checked
-        if (txtName.getText().length() > 255) {
-            showErrorMessage("The field 'Name' can not has more than 255 characters.");
-            return false;
-        } else if (txtEmail.getText().length() > 255) {
-            showErrorMessage("The field 'Email' can not has more than 255 characters.");
-            return false;
-        } else if (txtStreetAddress.getText().length() > 255) {
-            showErrorMessage("The field 'Street' can not has more than 255 characters.");
-            return false;
-        } else if (txtNeighborhood.getText().length() > 255) {
-            showErrorMessage("The field 'Neighborhood' can not has more than 255 characters.");
-            return false;
-        } else if (txtCityAddress.getText().length() > 255) {
-            showErrorMessage("The field 'City' can not has more than 255 characters.");
-            return false;
-        } else if (txtNumberAddress.getText().length() > 10) {
-            // A int supports 10 numbers
-            showErrorMessage("The field 'Number' can not has more than 10 numbers.");
-            return false;
-        } else if (txtState.getText().length() != 2) {
-            showErrorMessage("Fill in the 'State' field with the state abbreviation.");
-            return false;
-        }
-        return true;
-    }
-
     public boolean checkCPF() {
-        if (!isValidCPF(txtCPF.getText())) {
+        if (!isValidCPF(txtCPF.getText().replaceAll("\\.", "").replace("-", ""))) {
             showErrorMessage("Invalid CPF.");
             return false;
         }
@@ -337,7 +316,7 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkFieldsSize() && checkCPF();
+        return checkEmptyFields() && checkCPF();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
@@ -349,7 +328,7 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     private javax.swing.JLabel labName;
     private javax.swing.JLabel labNeighborhoodAddress;
     private javax.swing.JLabel labNumberAddress;
-    private javax.swing.JLabel labState;
+    private javax.swing.JLabel labStateAddress;
     private javax.swing.JLabel labStreetAddress;
     private javax.swing.JLabel labTitle;
     private javax.swing.JLabel labZipCodeAddress;
@@ -358,9 +337,9 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     private javax.swing.JTextField txtCityAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtNeighborhood;
+    private javax.swing.JTextField txtNeighborhoodAddress;
     private javax.swing.JTextField txtNumberAddress;
-    private javax.swing.JTextField txtState;
+    private javax.swing.JTextField txtStateAddress;
     private javax.swing.JTextField txtStreetAddress;
     private javax.swing.JFormattedTextField txtZipCodeAddress;
     // End of variables declaration//GEN-END:variables

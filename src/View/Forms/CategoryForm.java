@@ -2,6 +2,7 @@ package View.Forms;
 
 import Model.Classes.Category;
 import Interfaces.IForms;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class CategoryForm extends jFrameFather implements IForms<Category> {
 
@@ -136,6 +137,11 @@ public class CategoryForm extends jFrameFather implements IForms<Category> {
     public Category update(Category t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    @Override
+    public void setTxtModels() {
+        txtName.setDocument(new TxtMaxCharactersModel(255));
+    }
 
     @Override
     public boolean checkEmptyFields() {
@@ -147,17 +153,8 @@ public class CategoryForm extends jFrameFather implements IForms<Category> {
     }
 
     @Override
-    public boolean checkFieldsSize() {
-        if (txtName.getText().length() > 255) {
-            showErrorMessage("The field 'Name' can not has more than 255 characters.");
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkFieldsSize();
+        return checkEmptyFields();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

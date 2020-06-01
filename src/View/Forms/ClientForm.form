@@ -63,34 +63,39 @@
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labEmail" min="-2" pref="34" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtEmail" min="-2" pref="203" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="labStreetAddress" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                      <Component id="txtStreetAddress" min="-2" pref="131" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="labState" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="125" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="labStreetAddress" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                              <Component id="txtStreetAddress" min="-2" pref="131" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="labStateAddress" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="labNeighborhoodAddress" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNeighborhood" min="-2" pref="141" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="labNeighborhoodAddress" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtNeighborhoodAddress" min="-2" pref="136" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="labEmail" min="-2" pref="34" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtEmail" pref="187" max="32767" attributes="0"/>
+                                          </Group>
                                       </Group>
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="txtState" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="txtStateAddress" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
                                       <Component id="btOk" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -100,13 +105,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labCPF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtCPF" max="32767" attributes="0"/>
+                              <Component id="txtCPF" min="-2" pref="107" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Component id="labTitle" min="-2" pref="59" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,15 +145,15 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labNeighborhoodAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labNumberAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNeighborhood" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNeighborhoodAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNumberAddress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labCityAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labState" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labStateAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCityAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtState" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtStateAddress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="53" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -241,7 +246,7 @@
         <Property name="text" type="java.lang.String" value="City*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labState">
+    <Component class="javax.swing.JLabel" name="labStateAddress">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
@@ -255,11 +260,11 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtStreetAddress">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNeighborhood">
+    <Component class="javax.swing.JTextField" name="txtNeighborhoodAddress">
     </Component>
     <Component class="javax.swing.JTextField" name="txtCityAddress">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtState">
+    <Component class="javax.swing.JTextField" name="txtStateAddress">
     </Component>
     <Component class="javax.swing.JButton" name="btOk">
       <Properties>
@@ -311,7 +316,7 @@
     <Component class="javax.swing.JFormattedTextField" name="txtCPF">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-          <Format format="###########" subtype="-1" type="5"/>
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
         </Property>
       </Properties>
     </Component>

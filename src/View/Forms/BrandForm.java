@@ -2,6 +2,7 @@ package View.Forms;
 
 import Model.Classes.Brand;
 import Interfaces.IForms;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class BrandForm extends jFrameFather implements IForms<Brand> {
 
@@ -135,6 +136,11 @@ public class BrandForm extends jFrameFather implements IForms<Brand> {
     public Brand update(Brand t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    @Override
+    public void setTxtModels() {
+        txtName.setDocument(new TxtMaxCharactersModel(255));
+    }
 
     @Override
     public boolean checkEmptyFields() {
@@ -146,17 +152,8 @@ public class BrandForm extends jFrameFather implements IForms<Brand> {
     }
 
     @Override
-    public boolean checkFieldsSize() {
-        if (txtName.getText().length() > 255) {
-            showErrorMessage("The field 'Name' can not has more than 255 characters.");
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkFieldsSize();
+        return checkEmptyFields();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

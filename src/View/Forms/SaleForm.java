@@ -16,6 +16,8 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import Interfaces.IForms;
+import Model.Classes.TxtIntegerNumbersModel;
+import Model.Classes.TxtMaxCharactersModel;
 
 public class SaleForm extends jFrameFather implements IForms<Sale> {
 
@@ -32,7 +34,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         Category c3 = new Category("T-Shirt");
         Brand b1 = new Brand("Nike");
         Brand b2 = new Brand("Adidas");
-        Product p1 = new Product(c1, b1, "Juventos", "Dyballa", null, "White", "300ml", 20, 0, 10);
+        Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
         p1.setId(Long.parseLong("100"));
         Shirt p2 = new Shirt(c2, b1, "Barcelona", "Leonel Messi", "Messi", "10", Sleeves.Short, "Azul", "M", 15, 0, 50);
         p2.setId(Long.parseLong("200"));
@@ -399,8 +401,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                                     .addComponent(labProductSearchTable)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(labQuantity)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(3, 3, 3)
+                                        .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(labCostByProduct)
                                         .addGap(4, 4, 4)
@@ -566,6 +568,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         /*if (checkAll()) {
             this.dispose();
         }*/
+        System.out.println(txtCPF.getText());
     }//GEN-LAST:event_btFinishSaleActionPerformed
 
     private void btCancelSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelSaleActionPerformed
@@ -699,6 +702,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         };
         tbSelectedProduct.getModel().addTableModelListener(selectedProductTableListener);
     }
+    
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtNumber.setDocument(new TxtIntegerNumbersModel(10));
+        txtCPF.setDocument(new TxtMaxCharactersModel(11));
+    }
 
     public void setTablesColumnSize() {
         // tbClientSearch
@@ -767,6 +777,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }
 
     public void initSetup() {
+        setTxtModels();
         setTablesColumnSize();
         setJSpinnerQuantityModel();
         setTableModelListenerInTbSelectedProduct();
@@ -774,7 +785,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void clientAddButtonAction() {
         if (!selectedClientTableModel.getClientList().isEmpty()) {
-            showErrorMessage("There is already a selected client. Remove it first.");
+            showErrorMessage("There is already a selected client.");
         } else {
             Client selectedClient = clientSearchTableModel.getObjectByRow(tbClientSearch.getSelectedRow());
             selectedClientTableModel.addObjectRow(selectedClient);
@@ -855,12 +866,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public boolean checkFieldsSize() {
-        // This function is not necessary here
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
