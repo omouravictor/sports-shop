@@ -8,6 +8,7 @@ public class BrandForm extends jFrameFather implements IForms<Brand> {
 
     public BrandForm() {
         initComponents();
+        initSetup();
     }
 
     @SuppressWarnings("unchecked")
@@ -120,6 +121,10 @@ public class BrandForm extends jFrameFather implements IForms<Brand> {
                 new BrandForm().setVisible(true);
             }
         });
+    }
+    
+    public void initSetup(){
+        setTxtModels();
     }
 
     @Override

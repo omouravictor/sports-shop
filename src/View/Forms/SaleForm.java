@@ -679,6 +679,50 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         });
     }
 
+    @Override
+    public Sale create() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void read(Sale t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Sale update(Sale t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtCPF.setDocument(new TxtMaxCharactersModel(11));
+        txtNumber.setDocument(new TxtIntegerNumbersModel(10));
+    }
+
+    @Override
+    public boolean checkEmptyFields() {
+        if ("  /  /    ".equals(txtDate.getText()) || tbSelectedClient.getRowCount() == 0
+                || tbSelectedProduct.getRowCount() == 0) {
+            showErrorMessage("Fill all the required fields.");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean checkAll() {
+        return checkEmptyFields();
+    }
+
+    public void initSetup() {
+        setTxtModels();
+        setTablesColumnSize();
+        setJSpinnerQuantityModel();
+        setTableModelListenerInTbSelectedProduct();
+    }
+
     public void filterTbProductSearch() {
         String[] filters = {txtCategory.getText(), txtBrand.getText(), txtTeam.getText(),
             txtPlayer.getText(), txtNumber.getText(), txtSize.getText(), txtShirtName.getText(),
@@ -701,13 +745,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         };
         tbSelectedProduct.getModel().addTableModelListener(selectedProductTableListener);
-    }
-    
-    @Override
-    public void setTxtModels() {
-        // When the txt already has a Mask, it doesn't needs a txtModel
-        txtNumber.setDocument(new TxtIntegerNumbersModel(10));
-        txtCPF.setDocument(new TxtMaxCharactersModel(11));
     }
 
     public void setTablesColumnSize() {
@@ -776,13 +813,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1)); // null = infinite
     }
 
-    public void initSetup() {
-        setTxtModels();
-        setTablesColumnSize();
-        setJSpinnerQuantityModel();
-        setTableModelListenerInTbSelectedProduct();
-    }
-
     public void clientAddButtonAction() {
         if (!selectedClientTableModel.getClientList().isEmpty()) {
             showErrorMessage("There is already a selected client.");
@@ -841,36 +871,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         if (tbSelectedProduct.getSelectedRow() != -1) {
             selectedProductTableModel.removeObjectRow(tbSelectedProduct.getSelectedRow());
         }
-    }
-
-    @Override
-    public Sale create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void read(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Sale update(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean checkEmptyFields() {
-        if ("  /  /    ".equals(txtDate.getText()) || tbSelectedClient.getRowCount() == 0
-                || tbSelectedProduct.getRowCount() == 0) {
-            showErrorMessage("Fill all the required fields.");
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean checkAll() {
-        return checkEmptyFields();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddClient;

@@ -261,18 +261,6 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         });
     }
 
-    @Override
-    public void setTxtModels() {
-        // When the txt already has a Mask, it doesn't needs a txtModel
-        txtName.setDocument(new TxtMaxCharactersModel(255));
-        txtEmail.setDocument(new TxtMaxCharactersModel(255));
-        txtStreetAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtNeighborhoodAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtStateAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtCityAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtNumberAddress.setDocument(new TxtIntegerNumbersModel(10));
-    }
-
     public void initSetup() {
         setTxtModels();
     }
@@ -290,6 +278,18 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     @Override
     public Client update(Client t) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtName.setDocument(new TxtMaxCharactersModel(255));
+        txtEmail.setDocument(new TxtMaxCharactersModel(255));
+        txtStreetAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtNeighborhoodAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtStateAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtCityAddress.setDocument(new TxtMaxCharactersModel(255));
+        txtNumberAddress.setDocument(new TxtIntegerNumbersModel(10));
     }
 
     @Override

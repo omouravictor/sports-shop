@@ -253,34 +253,6 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
         });
     }
 
-    public void setCombosModel() {
-        cbCategory.setModel(categoryComboBoxModel);
-        cbBrand.setModel(brandComboBoxModel);
-    }
-
-    @Override
-    public void setTxtModels() {
-        // When the txt already has a Mask, it doesn't needs a txtModel
-        txtSize.setDocument(new TxtMaxCharactersModel(255));
-        txtColor.setDocument(new TxtMaxCharactersModel(255));
-        txtTeam.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
-        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
-    }
-
-    public void initSetup() {
-        setCombosModel();
-        setTxtModels();
-    }
-
-    public double parseTxtCostTextToDouble() {
-        if (!txtCost.getText().isEmpty()) {
-            return Double.parseDouble(txtCost.getText().replace(".", "").replace(",", "."));
-        }
-        return -1;
-    }
-
     @Override
     public Product create() {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -297,6 +269,17 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     }
 
     @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtSize.setDocument(new TxtMaxCharactersModel(255));
+        txtColor.setDocument(new TxtMaxCharactersModel(255));
+        txtTeam.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
+        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
+        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
+    }
+
+    @Override
     public boolean checkEmptyFields() {
         if (categoryComboBoxModel.getSelectedItem() == null || brandComboBoxModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty() || txtSize.getText().isEmpty() || "".equals(txtCost.getText())
@@ -310,6 +293,23 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     @Override
     public boolean checkAll() {
         return checkEmptyFields();
+    }
+
+    public void initSetup() {
+        setCombosModel();
+        setTxtModels();
+    }
+
+    public void setCombosModel() {
+        cbCategory.setModel(categoryComboBoxModel);
+        cbBrand.setModel(brandComboBoxModel);
+    }
+
+    public double parseTxtCostTextToDouble() {
+        if (!txtCost.getText().isEmpty()) {
+            return Double.parseDouble(txtCost.getText().replace(".", "").replace(",", "."));
+        }
+        return -1;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

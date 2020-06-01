@@ -283,18 +283,6 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
         cbBrand.setModel(brandComboBoxModel);
     }
 
-    @Override
-    public void setTxtModels() {
-        // When the txt already has a Mask, it doesn't needs a txtModel
-        txtSize.setDocument(new TxtMaxCharactersModel(255));
-        txtColor.setDocument(new TxtMaxCharactersModel(255));
-        txtTeam.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerNameOnShirt.setDocument(new TxtMaxCharactersModel(255));
-        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
-    }
-
     public void initSetup() {
         setTxtModels();
         setBrandComboBoxModel();
@@ -320,6 +308,18 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
     @Override
     public Shirt update(Shirt t) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setTxtModels() {
+        // When the txt already has a Mask, it doesn't needs a txtModel
+        txtSize.setDocument(new TxtMaxCharactersModel(255));
+        txtColor.setDocument(new TxtMaxCharactersModel(255));
+        txtTeam.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
+        txtPlayerNameOnShirt.setDocument(new TxtMaxCharactersModel(255));
+        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
+        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
     }
 
     @Override

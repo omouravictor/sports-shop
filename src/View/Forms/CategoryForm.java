@@ -8,6 +8,7 @@ public class CategoryForm extends jFrameFather implements IForms<Category> {
 
     public CategoryForm() {
         initComponents();
+        initSetup();
     }
 
     @SuppressWarnings("unchecked")
@@ -123,6 +124,10 @@ public class CategoryForm extends jFrameFather implements IForms<Category> {
         });
     }
 
+    public void initSetup(){
+        setTxtModels();
+    }
+    
     @Override
     public Category create() {
         throw new UnsupportedOperationException("Not supported yet.");
