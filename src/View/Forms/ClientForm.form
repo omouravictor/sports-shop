@@ -187,7 +187,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="CPF* (Just Numbers)"/>
+        <Property name="text" type="java.lang.String" value="CPF*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labCellPhone">

@@ -16,8 +16,8 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import Interfaces.IForms;
-import Model.Classes.TxtIntegerNumbersModel;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class SaleForm extends jFrameFather implements IForms<Sale> {
 
@@ -331,7 +331,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         });
 
         labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCPF.setText("CPF");
+        labCPF.setText("CPF (Just Numbers)");
 
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -373,15 +373,15 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labTitle)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(labName)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(labCPF)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btClientSearch))
                                     .addGroup(layout.createSequentialGroup()
@@ -565,10 +565,9 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinishSaleActionPerformed
-        /*if (checkAll()) {
+        if (checkAll()) {
             this.dispose();
-        }*/
-        System.out.println(txtCPF.getText());
+        }
     }//GEN-LAST:event_btFinishSaleActionPerformed
 
     private void btCancelSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelSaleActionPerformed
@@ -697,8 +696,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtCPF.setDocument(new TxtMaxCharactersModel(11));
-        txtNumber.setDocument(new TxtIntegerNumbersModel(10));
+        txtCPF.setDocument(new TxtModelsTypes(TxtTypes.CPF));
+        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override
@@ -718,9 +717,15 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void initSetup() {
         setTxtModels();
+        setEditableFields();
         setTablesColumnSize();
         setJSpinnerQuantityModel();
         setTableModelListenerInTbSelectedProduct();
+    }
+    
+    public void setEditableFields(){
+        txtTotalCost.setEditable(false);
+        txtCostByProduct.setEditable(false);
     }
 
     public void filterTbProductSearch() {

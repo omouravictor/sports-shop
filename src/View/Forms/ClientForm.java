@@ -3,8 +3,8 @@ package View.Forms;
 import static Model.Classes.CPFValidator.isValidCPF;
 import Model.Classes.Client;
 import Interfaces.IForms;
-import Model.Classes.TxtIntegerNumbersModel;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class ClientForm extends jFrameFather implements IForms<Client> {
 
@@ -51,7 +51,7 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
         labName.setText("Name*");
 
         labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCPF.setText("CPF* (Just Numbers)");
+        labCPF.setText("CPF*");
 
         labCellPhone.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCellPhone.setText("CellPhone*");
@@ -283,13 +283,13 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtName.setDocument(new TxtMaxCharactersModel(255));
-        txtEmail.setDocument(new TxtMaxCharactersModel(255));
-        txtStreetAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtNeighborhoodAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtStateAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtCityAddress.setDocument(new TxtMaxCharactersModel(255));
-        txtNumberAddress.setDocument(new TxtIntegerNumbersModel(10));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtEmail.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtStreetAddress.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtNeighborhoodAddress.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtStateAddress.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtCityAddress.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtNumberAddress.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override

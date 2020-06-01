@@ -2,7 +2,8 @@ package View.Forms;
 
 import Model.Classes.Brand;
 import Interfaces.IForms;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class BrandForm extends jFrameFather implements IForms<Brand> {
 
@@ -144,7 +145,7 @@ public class BrandForm extends jFrameFather implements IForms<Brand> {
     
     @Override
     public void setTxtModels() {
-        txtName.setDocument(new TxtMaxCharactersModel(255));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
     }
 
     @Override

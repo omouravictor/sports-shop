@@ -4,8 +4,8 @@ import Model.Classes.Shirt;
 import Model.ComboBoxs.BrandComboBoxModel;
 import Interfaces.IForms;
 import Model.Classes.Brand;
-import Model.Classes.TxtIntegerNumbersModel;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
@@ -290,7 +290,7 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
     public double parseTxtCostTextToDouble() {
         if (!txtCost.getText().isEmpty()) {
-            return Double.parseDouble(txtCost.getText().replace(".", "").replace(",", "."));
+            return Double.parseDouble(txtCost.getText().replaceAll("\\.", "").replace(",", "."));
         }
         return -1;
     }
@@ -313,13 +313,13 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtSize.setDocument(new TxtMaxCharactersModel(255));
-        txtColor.setDocument(new TxtMaxCharactersModel(255));
-        txtTeam.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerNameOnShirt.setDocument(new TxtMaxCharactersModel(255));
-        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
+        txtSize.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtColor.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtPlayerNameOnShirt.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtNumStock.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtNumberPresent.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override

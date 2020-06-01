@@ -2,7 +2,8 @@ package View.Forms;
 
 import Model.Classes.Category;
 import Interfaces.IForms;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class CategoryForm extends jFrameFather implements IForms<Category> {
 
@@ -145,7 +146,7 @@ public class CategoryForm extends jFrameFather implements IForms<Category> {
     
     @Override
     public void setTxtModels() {
-        txtName.setDocument(new TxtMaxCharactersModel(255));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
     }
 
     @Override

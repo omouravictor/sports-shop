@@ -6,8 +6,8 @@ import Model.ComboBoxs.CategoryComboBoxModel;
 import Interfaces.IForms;
 import Model.Classes.Brand;
 import Model.Classes.Category;
-import Model.Classes.TxtIntegerNumbersModel;
-import Model.Classes.TxtMaxCharactersModel;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 
 public class ProductForm extends jFrameFather implements IForms<Product> {
 
@@ -271,12 +271,12 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtSize.setDocument(new TxtMaxCharactersModel(255));
-        txtColor.setDocument(new TxtMaxCharactersModel(255));
-        txtTeam.setDocument(new TxtMaxCharactersModel(255));
-        txtPlayerPresent.setDocument(new TxtMaxCharactersModel(255));
-        txtNumStock.setDocument(new TxtIntegerNumbersModel(10));
-        txtNumberPresent.setDocument(new TxtIntegerNumbersModel(10));
+        txtSize.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtColor.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtNumStock.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtNumberPresent.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override
@@ -307,7 +307,7 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
 
     public double parseTxtCostTextToDouble() {
         if (!txtCost.getText().isEmpty()) {
-            return Double.parseDouble(txtCost.getText().replace(".", "").replace(",", "."));
+            return Double.parseDouble(txtCost.getText().replaceAll("\\.", "").replace(",", "."));
         }
         return -1;
     }
