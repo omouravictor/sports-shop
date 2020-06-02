@@ -220,9 +220,10 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
-        if (checkAll()) {
+        /*if (checkAll()) {
             this.dispose();
-        }
+        }*/
+        txtColor.setText("WW");
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed

@@ -18,6 +18,10 @@ import javax.swing.event.TableModelListener;
 import Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.NumberFormatter;
 
 public class SaleForm extends jFrameFather implements IForms<Sale> {
 
@@ -67,9 +71,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         btProductSearch = new javax.swing.JButton();
         labQuantity = new javax.swing.JLabel();
         labCostByProduct = new javax.swing.JLabel();
-        txtCostByProduct = new javax.swing.JTextField();
         labTotalCost = new javax.swing.JLabel();
-        txtTotalCost = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbClientSearch = new javax.swing.JTable();
         labClientSearchTable = new javax.swing.JLabel();
@@ -111,6 +113,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         txtID = new javax.swing.JTextField();
         labCPF = new javax.swing.JLabel();
         txtCPF = new javax.swing.JTextField();
+        txtTotalCost = new javax.swing.JFormattedTextField();
+        txtCostByProduct = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -156,12 +160,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labCostByProduct.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCostByProduct.setText("Cost by Product");
 
-        txtCostByProduct.setText("R$ 0.0");
-
         labTotalCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labTotalCost.setText("Total Cost");
-
-        txtTotalCost.setText("R$ 0.0");
 
         tbClientSearch.setModel(this.clientSearchTableModel);
         jScrollPane1.setViewportView(tbClientSearch);
@@ -339,6 +339,10 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
+        txtTotalCost.setText("R$ 0,00");
+
+        txtCostByProduct.setText("R$ 0,00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -369,92 +373,90 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labTitle)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labTitle)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labName)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(labCPF)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btClientSearch))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(495, 495, 495)
-                                        .addComponent(btCancelSale)
+                                        .addComponent(labName)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(230, 230, 230)
-                                                .addComponent(labSelectedProducts))
-                                            .addComponent(btFinishSale))))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labProductSearchTable)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labQuantity)
-                                        .addGap(3, 3, 3)
-                                        .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(labCostByProduct)
-                                        .addGap(4, 4, 4)
-                                        .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btAddProduct))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labTeam)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labCategory)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labBrand)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(labCPF)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labPlayer)
-                                            .addComponent(labNumber)
-                                            .addComponent(labSize))
-                                        .addGap(8, 8, 8)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(labSleeves)
-                                            .addComponent(labShirtName)
-                                            .addComponent(labColor))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(labID))))
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btRemoveClient1)
-                                .addGap(44, 44, 44)
-                                .addComponent(labTotalCost)
+                                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(24, 24, 24))
+                                .addComponent(btClientSearch))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(1, 1, 1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labProductSearchTable)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(labTeam)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(labCategory)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(labBrand)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(labPlayer)
+                                                .addComponent(labNumber)
+                                                .addComponent(labSize))
+                                            .addGap(8, 8, 8)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(labSleeves)
+                                                .addComponent(labShirtName)
+                                                .addComponent(labColor))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(labID))))
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(labQuantity)
+                                            .addGap(3, 3, 3)
+                                            .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(labCostByProduct)
+                                            .addGap(10, 10, 10)
+                                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btAddProduct)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btRemoveClient1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(labTotalCost)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(495, 495, 495)
+                                    .addComponent(btCancelSale)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(230, 230, 230)
+                                            .addComponent(labSelectedProducts))
+                                        .addComponent(btFinishSale)))))
+                        .addGap(0, 24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labClientSearchTable)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -545,8 +547,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                             .addComponent(labQuantity)
                             .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labCostByProduct)
-                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btAddProduct)))
+                            .addComponent(btAddProduct)
+                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7)
@@ -591,11 +593,19 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }//GEN-LAST:event_btRemoveClient1ActionPerformed
 
     private void spQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spQuantityStateChanged
-        updateCostByProductValue();
+        try {
+            updateCostByProductValue();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_spQuantityStateChanged
 
     private void tbProductSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductSearchMouseClicked
-        updateCostByProductValue();
+        try {
+            updateCostByProductValue();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_tbProductSearchMouseClicked
 
     private void btProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductSearchActionPerformed
@@ -680,17 +690,17 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     @Override
     public Sale create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void read(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Sale update(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -722,8 +732,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         setJSpinnerQuantityModel();
         setTableModelListenerInTbSelectedProduct();
     }
-    
-    public void setEditableFields(){
+
+    public void setEditableFields() {
         txtTotalCost.setEditable(false);
         txtCostByProduct.setEditable(false);
     }
@@ -746,7 +756,11 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             if (event.getType() == TableModelEvent.INSERT
                     || event.getType() == TableModelEvent.DELETE
                     || event.getType() == TableModelEvent.UPDATE) {
-                updateTotalCostValue();
+                try {
+                    updateTotalCostValue();
+                } catch (ParseException ex) {
+                    Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         };
         tbSelectedProduct.getModel().addTableModelListener(selectedProductTableListener);
@@ -831,7 +845,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         selectedClientTableModel.removeObjectRow(0); // There is just one client in a sale
     }
 
-    public void updateCostByProductValue() {
+    public void updateCostByProductValue() throws ParseException {
         if (tbProductSearch.getSelectedRow() == -1) {
             // JTable.getSelectedRow() returns -1 when there is no row selected.
             setJSpinnerQuantityModel(); // Return the JSpinnerQuantity value back to 0
@@ -840,21 +854,26 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             Product selectedProduct = productSearchTableModel.getObjectByRow(tbProductSearch.getSelectedRow());
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
             double costByProduct = qtd * selectedProduct.getCost();
-            txtCostByProduct.setText("R$ " + costByProduct);
+            txtCostByProduct.setText(costFormatters(costByProduct));
         }
     }
 
-    public void updateTotalCostValue() {
+    public void updateTotalCostValue() throws ParseException {
         if (selectedProductTableModel.getProductList().isEmpty()) {
-            txtTotalCost.setText("R$ 0.0");
+            txtTotalCost.setText("R$ 0,00");
         } else {
             List<Product> selectedProducts = selectedProductTableModel.getProductList();
             double totalCost = 0;
             for (int i = 0; i < selectedProducts.size(); i++) {
                 totalCost += selectedProducts.get(i).getCost() * selectedProducts.get(i).getQuantity();
             }
-            txtTotalCost.setText("R$ " + totalCost);
+            txtTotalCost.setText(costFormatters(totalCost));
         }
+    }
+
+    public String costFormatters(double totalCost) throws ParseException {
+        NumberFormatter numFormatter = new NumberFormatter(new java.text.DecimalFormat("R$ #,###.00"));
+        return numFormatter.valueToString(totalCost);
     }
 
     public void productAddButtonAction() {
@@ -920,7 +939,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextField txtColor;
-    private javax.swing.JTextField txtCostByProduct;
+    private javax.swing.JFormattedTextField txtCostByProduct;
     private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
@@ -930,6 +949,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtSleeves;
     private javax.swing.JTextField txtTeam;
-    private javax.swing.JTextField txtTotalCost;
+    private javax.swing.JFormattedTextField txtTotalCost;
     // End of variables declaration//GEN-END:variables
 }
