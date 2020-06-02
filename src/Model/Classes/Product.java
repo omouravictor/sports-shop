@@ -32,10 +32,10 @@ public class Product {
     private String teamName;
 
     //@Column
-    private String playerPresent = "------"; // When playerPresent is not Seted it has the value "------"
+    private String playerPresent = "------";
 
     //@Column
-    private String numberPresent = "------"; // When numberPresent is not Seted it has the value "------"
+    private String numberPresent = "------";
 
     //@Column
     private String sizeProduct;
@@ -55,8 +55,9 @@ public class Product {
     public Product() {
     }
 
-    public Product(Category category, Brand brand, String teamName, String playerPresentName,
-            String numberPresent, String color, String sizeProduct, double cost, int quantity, int numInStock) {
+    public Product(Category category, Brand brand, String teamName,
+            String playerPresentName, String numberPresent, String color,
+            String sizeProduct, double cost, int quantity, int numInStock) {
         this.category = category;
         this.brand = brand;
         this.teamName = teamName;

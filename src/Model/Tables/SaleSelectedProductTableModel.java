@@ -11,8 +11,8 @@ import javax.swing.table.AbstractTableModel;
 public class SaleSelectedProductTableModel extends AbstractTableModel implements ITables<Product> {
 
     private List<Product> productList = new ArrayList<>();
-    private final String[] columns = {"QTD", "Stock", "Cost", "Category", "Brand", "Team",
-        "Player", "ShirtName", "Sleeves", "Number", "Color", "Size", "Id"};
+    private final String[] columns = {"QTD", "Stock", "Cost", "Category", "Brand",
+        "Team", "Player", "ShirtName", "Sleeves", "Number", "Color", "Size", "Id"};
 
     public SaleSelectedProductTableModel() {
     }
@@ -81,7 +81,7 @@ public class SaleSelectedProductTableModel extends AbstractTableModel implements
     public void addObjectRow(Product product) {
         if (product != null) {
             productList.add(product);
-            this.fireTableRowsInserted(0, productList.size()); // Finishes the add
+            this.fireTableRowsInserted(0, productList.size());//Finishes the add
             /* fireTableRowsInserted() is used in the function
             setTableModelListenerInTbSelectedProduct() on the SaleForm */
         }
@@ -92,7 +92,7 @@ public class SaleSelectedProductTableModel extends AbstractTableModel implements
         // The rowIndex starts with 0 and goes up until the productList size -1
         if (rowIndex > -1 && rowIndex < productList.size()) {
             productList.remove(rowIndex);
-            this.fireTableRowsDeleted(rowIndex, rowIndex); // Finishes the remove
+            this.fireTableRowsDeleted(rowIndex, rowIndex); //Finishes the remove
             /* fireTableRowsDeleted() is used in the function
             setTableModelListenerInTbSelectedProduct() on the SaleForm */
         }
@@ -101,10 +101,13 @@ public class SaleSelectedProductTableModel extends AbstractTableModel implements
     @Override
     public void updateObjectRow(Product oldProduct, Product newProduct) {
         if (oldProduct != null && newProduct != null) {
-            int productLineToUpdate = getRowByObject(oldProduct);
-            if (productLineToUpdate != -1) {
-                productList.set(productLineToUpdate, newProduct);
-                this.fireTableRowsUpdated(productLineToUpdate, productLineToUpdate); // Finishes the update
+            int lineToUpdate = getRowByObject(oldProduct);
+            if (lineToUpdate != -1) {
+                productList.set(lineToUpdate, newProduct);
+                this.fireTableRowsUpdated(lineToUpdate, lineToUpdate);
+                // Finishes the update
+                /* fireTableRowsUpdated() is used in the function
+                setTableModelListenerInTbSelectedProduct() on the SaleForm */
             }
         }
     }

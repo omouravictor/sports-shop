@@ -10,7 +10,7 @@ import javax.persistence.Enumerated;*/
 public class Shirt extends Product {
 
     //@Column
-    private String playerNameOnShirt = "------"; // When playerNameOnShirt is not Seted it has the value "------"
+    private String playerNameOnShirt = "------";
 
     //@Enumerated(EnumType.STRING)
     private Sleeves sleeves;
@@ -18,8 +18,9 @@ public class Shirt extends Product {
     public Shirt() {
     }
 
-    public Shirt(Category category, Brand brand, String teamName, String playerPresentName,
-            String playerNameOnShirt, String numberPresent, Sleeves sleeves, String color,
+    public Shirt(Category category, Brand brand, String teamName,
+            String playerPresentName, String playerNameOnShirt,
+            String numberPresent, Sleeves sleeves, String color,
             String sizeProduct, double cost, int quantity, int numInStock) {
         this.setCategory(category);
         this.setBrand(brand);

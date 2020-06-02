@@ -77,7 +77,7 @@ public class SaleSelectedClientTableModel extends AbstractTableModel implements 
         // The rowIndex starts with 0 and goes up until the clientList size -1
         if (rowIndex > -1 && rowIndex < clientList.size()) {
             clientList.remove(rowIndex);
-            this.fireTableRowsDeleted(rowIndex, rowIndex); // Finishes the remove
+            this.fireTableRowsDeleted(rowIndex, rowIndex);// Finishes the remove
         }
     }
 

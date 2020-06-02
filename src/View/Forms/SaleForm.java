@@ -609,47 +609,91 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }//GEN-LAST:event_tbProductSearchMouseClicked
 
     private void btProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductSearchActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btProductSearchActionPerformed
 
     private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtCategoryActionPerformed
 
     private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtBrandActionPerformed
 
     private void txtTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtTeamActionPerformed
 
     private void txtPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayerActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtPlayerActionPerformed
 
     private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtNumberActionPerformed
 
     private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtSizeActionPerformed
 
     private void txtShirtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShirtNameActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtShirtNameActionPerformed
 
     private void txtSleevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSleevesActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtSleevesActionPerformed
 
     private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtColorActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        filterTbProductSearch();
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btClientSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClientSearchActionPerformed
@@ -712,7 +756,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     @Override
     public boolean checkEmptyFields() {
-        if ("  /  /    ".equals(txtDate.getText()) || tbSelectedClient.getRowCount() == 0
+        if ("  /  /    ".equals(txtDate.getText())
+                || tbSelectedClient.getRowCount() == 0
                 || tbSelectedProduct.getRowCount() == 0) {
             showErrorMessage("Fill all the required fields.");
             return false;
@@ -738,12 +783,14 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         txtCostByProduct.setEditable(false);
     }
 
-    public void filterTbProductSearch() {
-        String[] filters = {txtCategory.getText(), txtBrand.getText(), txtTeam.getText(),
-            txtPlayer.getText(), txtNumber.getText(), txtSize.getText(), txtShirtName.getText(),
-            txtSleeves.getText(), txtColor.getText(), txtID.getText()
+    public void filterTbProductSearch() throws ParseException {
+        String[] filters = {txtCategory.getText(), txtBrand.getText(),
+            txtTeam.getText(), txtPlayer.getText(), txtNumber.getText(),
+            txtSize.getText(), txtShirtName.getText(), txtSleeves.getText(),
+            txtColor.getText(), txtID.getText()
         };
         productSearchTableModel.filter(tbProductSearch, filters);
+        updateCostByProductValue();
     }
 
     public void filterTbClientSearch() {
@@ -829,29 +876,32 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void setJSpinnerQuantityModel() {
         // Parameters (InitialValue, Minimumn, Máximumn, StepSize)
-        spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1)); // null = infinite
+        spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
     }
 
     public void clientAddButtonAction() {
         if (!selectedClientTableModel.getClientList().isEmpty()) {
             showErrorMessage("There is already a selected client.");
         } else {
-            Client selectedClient = clientSearchTableModel.getObjectByRow(tbClientSearch.getSelectedRow());
+            int row = tbClientSearch.getSelectedRow();
+            Client selectedClient = clientSearchTableModel.getObjectByRow(row);
             selectedClientTableModel.addObjectRow(selectedClient);
         }
     }
 
     public void clientRemoveButtonAction() {
-        selectedClientTableModel.removeObjectRow(0); // There is just one client in a sale
+        selectedClientTableModel.removeObjectRow(0);
+        // There is just one client in a sale
     }
 
     public void updateCostByProductValue() throws ParseException {
         if (tbProductSearch.getSelectedRow() == -1) {
             // JTable.getSelectedRow() returns -1 when there is no row selected.
-            setJSpinnerQuantityModel(); // Return the JSpinnerQuantity value back to 0
-            showErrorMessage("Select a product first.");
+            txtCostByProduct.setText("R$ 0,00");
+            setJSpinnerQuantityModel();//Return the JSpinnerQuantity value back to 1
         } else {
-            Product selectedProduct = productSearchTableModel.getObjectByRow(tbProductSearch.getSelectedRow());
+            int row = tbProductSearch.getSelectedRow();
+            Product selectedProduct = productSearchTableModel.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
             double costByProduct = qtd * selectedProduct.getCost();
             txtCostByProduct.setText(costFormatters(costByProduct));
@@ -865,7 +915,9 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             List<Product> selectedProducts = selectedProductTableModel.getProductList();
             double totalCost = 0;
             for (int i = 0; i < selectedProducts.size(); i++) {
-                totalCost += selectedProducts.get(i).getCost() * selectedProducts.get(i).getQuantity();
+                double productCost = selectedProducts.get(i).getCost();
+                int productQtd = selectedProducts.get(i).getQuantity();
+                totalCost += productCost * productQtd;
             }
             txtTotalCost.setText(costFormatters(totalCost));
         }
@@ -878,7 +930,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void productAddButtonAction() {
         if (tbProductSearch.getSelectedRow() != -1) {
-            Product selectedProduct = productSearchTableModel.getObjectByRow(tbProductSearch.getSelectedRow());
+            int row = tbProductSearch.getSelectedRow();
+            Product selectedProduct = productSearchTableModel.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
             if (selectedProductTableModel.getProductList().contains(selectedProduct)) {
                 Product newProduct = selectedProduct;
@@ -893,7 +946,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void productRemoveButtonAction() {
         if (tbSelectedProduct.getSelectedRow() != -1) {
-            selectedProductTableModel.removeObjectRow(tbSelectedProduct.getSelectedRow());
+            int row = tbSelectedProduct.getSelectedRow();
+            selectedProductTableModel.removeObjectRow(row);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

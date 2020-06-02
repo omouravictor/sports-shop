@@ -24,7 +24,7 @@ public class Client {
     private String cellPhone;
 
     //@Column
-    private String email = "------"; // When email is not Seted it has the value "------"
+    private String email = "------";
 
     //@Column(length = 9) // 9 because of the mask
     private String zipCodeAddress;
@@ -47,7 +47,9 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, String CPF, String cellPhone, String email, String zipCodeAddress, String streetAddress, String numberAddress, String neighborhoodAddress, String cityAddress, String stateAddress) {
+    public Client(String name, String CPF, String cellPhone, String email,
+            String zipCodeAddress, String streetAddress, String numberAddress,
+            String neighborhoodAddress, String cityAddress, String stateAddress) {
         this.name = name;
         this.CPF = CPF;
         this.cellPhone = cellPhone;

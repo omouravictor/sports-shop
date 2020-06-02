@@ -296,10 +296,14 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     public boolean checkEmptyFields() {
         //Email is not required. That's why it's not here
         //CPF has other verification type (checkCPF). That's why it's not here
-        if (txtName.getText().isEmpty() || txtStreetAddress.getText().isEmpty()
-                || txtNumberAddress.getText().isEmpty() || txtNeighborhoodAddress.getText().isEmpty()
-                || txtCityAddress.getText().isEmpty() || txtStateAddress.getText().isEmpty()
-                || "(  )     -    ".equals(txtCellPhone.getText()) || "     -   ".equals(txtZipCodeAddress.getText())) {
+        if (txtName.getText().isEmpty()
+                || txtStreetAddress.getText().isEmpty()
+                || txtNumberAddress.getText().isEmpty()
+                || txtNeighborhoodAddress.getText().isEmpty()
+                || txtCityAddress.getText().isEmpty()
+                || txtStateAddress.getText().isEmpty()
+                || "(  )     -    ".equals(txtCellPhone.getText())
+                || "     -   ".equals(txtZipCodeAddress.getText())) {
             showErrorMessage("Fill all the required fields.");
             return false;
         }

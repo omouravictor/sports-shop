@@ -14,15 +14,18 @@ public class TxtModelsTypes extends PlainDocument {
             switch (txtType) {
                 case Integer:
                     this.txtType = txtType;
-                    this.maxCharacters = 10; // A integer number supports 10 algarisms
+                    this.maxCharacters = 10;
+                    // A integer number supports 10 algarisms
                     break;
                 case String:
                     this.txtType = txtType;
-                    this.maxCharacters = 255; // A Bank has a String length 255 by default
+                    this.maxCharacters = 255;
+                    // A Bank has a String length 255 by default
                     break;
                 case CPF:
                     this.txtType = txtType;
-                    this.maxCharacters = 11; // A CPF has 11 numbers
+                    this.maxCharacters = 11;
+                    // A CPF has 11 numbers
                     break;
             }
         }
@@ -36,7 +39,8 @@ public class TxtModelsTypes extends PlainDocument {
             switch (txtType) {
                 case Integer:
                     if (txtTextQtd <= maxCharacters) {
-                        super.insertString(i, txtText.replaceAll("[^0-9]", ""), as); // [^0-9 |^a-z | ^A-Z] sintaxe
+                        super.insertString(i, txtText.replaceAll("[^0-9]", ""), as);
+                        // [^0-9 |^a-z | ^A-Z] sintaxe
                     }
                     break;
                 case String:

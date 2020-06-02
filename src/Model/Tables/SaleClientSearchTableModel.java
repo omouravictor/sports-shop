@@ -88,7 +88,7 @@ public class SaleClientSearchTableModel extends AbstractTableModel implements IT
         // The rowIndex starts with 0 and goes up until the clientList size -1
         if (rowIndex > -1 && rowIndex < clientList.size()) {
             clientList.remove(rowIndex);
-            this.fireTableRowsDeleted(rowIndex, rowIndex); // Finishes the remove
+            this.fireTableRowsDeleted(rowIndex, rowIndex);// Finishes the remove
         }
     }
 
@@ -107,8 +107,8 @@ public class SaleClientSearchTableModel extends AbstractTableModel implements IT
         tableRowSorter.setStringConverter(new TableStringConverter() {
             @Override
             public String toString(TableModel model, int rowIndex, int columnIndex) {
-                /* This function make all elements of the productList starts to lower case,
-                doing so is possible filter the rows ignoring cases. */
+                /* This function make all elements of the productList starts to
+                lower case, doing so is possible filter the rows ignoring cases.*/
                 try {
                     return model.getValueAt(rowIndex, columnIndex).toString().toLowerCase();
                 } catch (NullPointerException e) {
@@ -117,8 +117,10 @@ public class SaleClientSearchTableModel extends AbstractTableModel implements IT
             }
         });
         List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
-        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 1)); // filter name column
-        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 2)); // filter CPF column
+        // viewfilters[0] filter of name column
+        // viewfilters[1] filter of CPF column
+        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 1));
+        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 2));
         RowFilter<Object, Object> columnFilters = RowFilter.andFilter(filterTypes);
         tableRowSorter.setRowFilter(columnFilters);
         filterJtable.setRowSorter(tableRowSorter);

@@ -26,8 +26,9 @@ public class Sale {
     private Client client;
 
     //@ManyToMany
-    /*@JoinTable(name = "Requests_Products", joinColumns = @JoinColumn(name = "Request_id"), inverseJoinColumns =
-    @JoinColumn(name = "Product_id"))*/
+    /*@JoinTable(name = "Requests_Products",
+    joinColumns = @JoinColumn(name = "Request_id"),
+    inverseJoinColumns = @JoinColumn(name = "Product_id"))*/
     private List<Product> productList = new ArrayList<>();
 
     //@Column(length = 10) // 10 because of the mask

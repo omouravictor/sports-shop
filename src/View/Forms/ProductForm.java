@@ -220,10 +220,9 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
-        /*if (checkAll()) {
+        if (checkAll()) {
             this.dispose();
-        }*/
-        txtColor.setText("WW");
+        }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
@@ -282,9 +281,13 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
 
     @Override
     public boolean checkEmptyFields() {
-        if (categoryComboBoxModel.getSelectedItem() == null || brandComboBoxModel.getSelectedItem() == null
-                || txtNumStock.getText().isEmpty() || txtSize.getText().isEmpty() || "".equals(txtCost.getText())
-                || txtTeam.getText().isEmpty() || txtColor.getText().isEmpty()) {
+        if (categoryComboBoxModel.getSelectedItem() == null
+                || brandComboBoxModel.getSelectedItem() == null
+                || txtNumStock.getText().isEmpty()
+                || txtSize.getText().isEmpty()
+                || "".equals(txtCost.getText())
+                || txtTeam.getText().isEmpty()
+                || txtColor.getText().isEmpty()) {
             showErrorMessage("Fill all the required fields.");
             return false;
         }
