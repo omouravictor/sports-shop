@@ -25,6 +25,7 @@ public class SaleFormTbProductSearchModel extends AbstractTbModel<Product> {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        
         switch (columnIndex) {
             case 0:
                 return list.get(rowIndex).getNumInStock();
@@ -79,25 +80,15 @@ public class SaleFormTbProductSearchModel extends AbstractTbModel<Product> {
         });
         List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
         filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 2));
-        // viewfilters[0] filter of category column
         filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 3));
-        // viewfilters[1] filter of brand column
         filterTypes.add(RowFilter.regexFilter(viewfilters[2].toLowerCase(), 4));
-        // viewfilters[2] filter of team column
         filterTypes.add(RowFilter.regexFilter(viewfilters[3].toLowerCase(), 5));
-        // viewfilters[3] filter of player column
         filterTypes.add(RowFilter.regexFilter(viewfilters[4].toLowerCase(), 8));
-        // viewfilters[4] filter of number column
         filterTypes.add(RowFilter.regexFilter(viewfilters[5].toLowerCase(), 10));
-        // viewfilters[5] filter of size column
         filterTypes.add(RowFilter.regexFilter(viewfilters[6].toLowerCase(), 6));
-        // viewfilters[6] filter of nameShirt column
         filterTypes.add(RowFilter.regexFilter(viewfilters[7].toLowerCase(), 7));
-        // viewfilters[7] filter of sleeves column
         filterTypes.add(RowFilter.regexFilter(viewfilters[8].toLowerCase(), 9));
-        // viewfilters[8] filter of color column
         filterTypes.add(RowFilter.regexFilter(viewfilters[9].toLowerCase(), 11));
-        // viewfilters[9] filter of ID column
         RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
         tableRowSorter.setRowFilter(rowFilters);
         filterJtable.setRowSorter(tableRowSorter);

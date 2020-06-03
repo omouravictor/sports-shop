@@ -757,8 +757,8 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     @Override
     public boolean checkEmptyFields() {
         if ("  /  /    ".equals(txtDate.getText())
-                || !checkIfClientIsAdded()
-                || !checkIfProductsAreAdded()) {
+                || !clientIsAdded()
+                || !productsAreAdded()) {
             showErrorMessage("Fill all the required fields.");
             return false;
         }
@@ -773,9 +773,12 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     public void initSetup() {
         setTxtModels();
         setEditableFields();
-        setTablesColumnSize();
-        setJSpinnerQuantityModel();
-        setTableModelListenerInTbSelectedProduct();
+        setSpQuantityModel();
+        setTbAddedClientColumnSizes();
+        setTbClientSearchColumnSizes();
+        setTbAddedProductsColumnSizes();
+        setTbProductSearchColumnSizes();
+        setListenerInTbAddedProducts();
     }
 
     public void setEditableFields() {
@@ -798,101 +801,42 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         tbClientSearchModel.filter(tbClientSearch, filters);
     }
 
-    public void setTableModelListenerInTbSelectedProduct() {
-        TableModelListener selectedProductTableListener = (TableModelEvent event) -> {
+    public void setListenerInTbAddedProducts() {
+        TableModelListener listener = (TableModelEvent event) -> {
             if (event.getType() == TableModelEvent.INSERT
                     || event.getType() == TableModelEvent.DELETE
                     || event.getType() == TableModelEvent.UPDATE) {
                 try {
                     updateTotalCostValue();
                 } catch (ParseException ex) {
-                    Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(
+                            SaleForm.class.getName()).log(Level.SEVERE, null, ex
+                    );
                 }
             }
         };
-        tbAddedProducts.getModel().addTableModelListener(selectedProductTableListener);
+        tbAddedProducts.getModel().addTableModelListener(listener);
     }
 
-    public void setTablesColumnSize() {
-        // tbClientSearch
-        tbClientSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbClientSearch.getColumnModel().getColumn(0).setPreferredWidth(60); // Id Column
-        tbClientSearch.getColumnModel().getColumn(1).setPreferredWidth(200); // Name Column   
-        tbClientSearch.getColumnModel().getColumn(2).setPreferredWidth(90); // CPF Column
-        tbClientSearch.getColumnModel().getColumn(3).setPreferredWidth(100); // Phone Column
-        tbClientSearch.getColumnModel().getColumn(4).setPreferredWidth(220); // Email Column
-        tbClientSearch.getColumnModel().getColumn(5).setPreferredWidth(75); // ZipCode Column
-        tbClientSearch.getColumnModel().getColumn(6).setPreferredWidth(100); // Street Column
-        tbClientSearch.getColumnModel().getColumn(7).setPreferredWidth(55); // Number Column
-        tbClientSearch.getColumnModel().getColumn(8).setPreferredWidth(95); // Neyghborhood Column
-        tbClientSearch.getColumnModel().getColumn(9).setPreferredWidth(80); // City Column
-        tbClientSearch.getColumnModel().getColumn(10).setPreferredWidth(40); // State Column
-
-        // tbSelectedClient
-        tbAddedClient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbAddedClient.getColumnModel().getColumn(0).setPreferredWidth(60); // Id Column
-        tbAddedClient.getColumnModel().getColumn(1).setPreferredWidth(200); // Name Column   
-        tbAddedClient.getColumnModel().getColumn(2).setPreferredWidth(90); // CPF Column
-        tbAddedClient.getColumnModel().getColumn(3).setPreferredWidth(100); // Phone Column
-        tbAddedClient.getColumnModel().getColumn(4).setPreferredWidth(220); // Email Column
-        tbAddedClient.getColumnModel().getColumn(5).setPreferredWidth(75); // ZipCode Column
-        tbAddedClient.getColumnModel().getColumn(6).setPreferredWidth(100); // Street Column
-        tbAddedClient.getColumnModel().getColumn(7).setPreferredWidth(55); // Number Column
-        tbAddedClient.getColumnModel().getColumn(8).setPreferredWidth(95); // Neyghborhood Column
-        tbAddedClient.getColumnModel().getColumn(9).setPreferredWidth(80); // City Column
-        tbAddedClient.getColumnModel().getColumn(10).setPreferredWidth(40); // State Column
-
-        // tbProductSearch
-        tbProductSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbProductSearch.getColumnModel().getColumn(0).setPreferredWidth(45); // Stock Column
-        tbProductSearch.getColumnModel().getColumn(1).setPreferredWidth(75); // Cost Column   
-        tbProductSearch.getColumnModel().getColumn(2).setPreferredWidth(65); // Category Column   
-        tbProductSearch.getColumnModel().getColumn(3).setPreferredWidth(70); // Brand Column
-        tbProductSearch.getColumnModel().getColumn(4).setPreferredWidth(80); // Team Column
-        tbProductSearch.getColumnModel().getColumn(5).setPreferredWidth(100); // Player Column
-        tbProductSearch.getColumnModel().getColumn(6).setPreferredWidth(75); // NameShirt Column
-        tbProductSearch.getColumnModel().getColumn(7).setPreferredWidth(70); // Sleeves Column
-        tbProductSearch.getColumnModel().getColumn(8).setPreferredWidth(55); // Number Column
-        tbProductSearch.getColumnModel().getColumn(9).setPreferredWidth(70); // Color Column
-        tbProductSearch.getColumnModel().getColumn(10).setPreferredWidth(60); // Size Column
-        tbProductSearch.getColumnModel().getColumn(11).setPreferredWidth(60); // Id Column
-
-        // tbSelectedProducts
-        tbAddedProducts.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbAddedProducts.getColumnModel().getColumn(0).setPreferredWidth(45); // QTD Column
-        tbAddedProducts.getColumnModel().getColumn(1).setPreferredWidth(45); // Stock Column
-        tbAddedProducts.getColumnModel().getColumn(2).setPreferredWidth(75); // Cost Column   
-        tbAddedProducts.getColumnModel().getColumn(3).setPreferredWidth(65); // Category Column   
-        tbAddedProducts.getColumnModel().getColumn(4).setPreferredWidth(70); // Brand Column
-        tbAddedProducts.getColumnModel().getColumn(5).setPreferredWidth(80); // Team Column
-        tbAddedProducts.getColumnModel().getColumn(6).setPreferredWidth(100); // Player Column
-        tbAddedProducts.getColumnModel().getColumn(7).setPreferredWidth(75); // NameShirt Column
-        tbAddedProducts.getColumnModel().getColumn(8).setPreferredWidth(70); // Sleeves Column
-        tbAddedProducts.getColumnModel().getColumn(9).setPreferredWidth(55); // Number Column
-        tbAddedProducts.getColumnModel().getColumn(10).setPreferredWidth(70); // Color Column
-        tbAddedProducts.getColumnModel().getColumn(11).setPreferredWidth(60); // Size Column
-        tbAddedProducts.getColumnModel().getColumn(12).setPreferredWidth(60); // Id Column
-    }
-
-    public void setJSpinnerQuantityModel() {
+    public void setSpQuantityModel() {
         // Parameters (InitialValue, Minimumn, Máximumn, StepSize)
         spQuantity.setModel(new SpinnerNumberModel(1, 1, 1000000, 1));
     }
 
-    public boolean checkIfClientIsAdded() {
+    public boolean clientIsAdded() {
         return tbAddedClient.getRowCount() != 0;
     }
 
-    public boolean checkIfTbProductSearchIsSelected() {
+    public boolean tbProductSearchIsSelected() {
         return tbProductSearch.getSelectedRow() != -1;
     }
 
-    public boolean checkIfProductsAreAdded() {
+    public boolean productsAreAdded() {
         return tbAddedProducts.getRowCount() != 0;
     }
 
     public void clientAddButtonAction() {
-        if (!checkIfClientIsAdded()) {
+        if (!clientIsAdded()) {
             int row = tbClientSearch.getSelectedRow();
             Client addedClient = tbClientSearchModel.getObjectByRow(row);
             tbAddedClientModel.addObjectRow(addedClient);
@@ -903,28 +847,40 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         tbAddedClientModel.removeObjectRow(0);
     }
 
-    public void updateCostByProductValue() throws ParseException {
-        if (checkIfTbProductSearchIsSelected()) {
+    public Product getProductSelectedInTbSearchProduct() {
+        if (tbProductSearchIsSelected()) {
             int row = tbProductSearch.getSelectedRow();
             Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
-            int qtd = Integer.parseInt(spQuantity.getValue().toString());
+            return selectedProduct;
+        }
+        return null;
+    }
+
+    public int getSpQuantity() {
+        int qtd = Integer.parseInt(spQuantity.getValue().toString());
+        return qtd;
+    }
+
+    public void updateCostByProductValue() throws ParseException {
+        if (tbProductSearchIsSelected()) {
+            Product selectedProduct = getProductSelectedInTbSearchProduct();
+            int qtd = getSpQuantity();
             double costByProduct = qtd * selectedProduct.getCost();
             String costFormatted = this.costFormatters(costByProduct);
             txtCostByProduct.setText(costFormatted);
         } else {
-            // JTable.getSelectedRow() returns -1 when there is no row selected.
             txtCostByProduct.setText("R$ 0,00");
-            setJSpinnerQuantityModel();//Make JSpinnerQuantity value back to 1
+            setSpQuantityModel();
         }
     }
 
     public void updateTotalCostValue() throws ParseException {
-        if (checkIfProductsAreAdded()) {
-            List<Product> selectedProducts = tbAddedProductModel.getList();
+        if (productsAreAdded()) {
+            List<Product> addedProducts = tbAddedProductModel.getList();
             double totalCost = 0;
-            for (int i = 0; i < selectedProducts.size(); i++) {
-                double productCost = selectedProducts.get(i).getCost();
-                int productQtd = selectedProducts.get(i).getQuantity();
+            for (int i = 0; i < addedProducts.size(); i++) {
+                double productCost = addedProducts.get(i).getCost();
+                int productQtd = addedProducts.get(i).getQuantity();
                 totalCost += productCost * productQtd;
             }
             txtTotalCost.setText(this.costFormatters(totalCost));
@@ -934,10 +890,9 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     public void productAddButtonAction() {
-        if (checkIfTbProductSearchIsSelected()) {
-            int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
-            int qtd = Integer.parseInt(spQuantity.getValue().toString());
+        if (tbProductSearchIsSelected()) {
+            Product selectedProduct = getProductSelectedInTbSearchProduct();
+            int qtd = getSpQuantity();
             if (tbAddedProductModel.getList().contains(selectedProduct)) {
                 Product newProduct = selectedProduct;
                 newProduct.setQuantity(qtd + selectedProduct.getQuantity());
@@ -950,10 +905,77 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     public void productRemoveButtonAction() {
-        if (checkIfProductsAreAdded()) {
+        if (productsAreAdded()) {
             int row = tbAddedProducts.getSelectedRow();
             tbAddedProductModel.removeObjectRow(row);
         }
+    }
+
+    public void setTbClientSearchColumnSizes() {
+        tbClientSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        // Enable the horizontal ScrollBar
+        tbClientSearch.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tbClientSearch.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tbClientSearch.getColumnModel().getColumn(2).setPreferredWidth(90);
+        tbClientSearch.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tbClientSearch.getColumnModel().getColumn(4).setPreferredWidth(220);
+        tbClientSearch.getColumnModel().getColumn(5).setPreferredWidth(75);
+        tbClientSearch.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tbClientSearch.getColumnModel().getColumn(7).setPreferredWidth(55);
+        tbClientSearch.getColumnModel().getColumn(8).setPreferredWidth(95);
+        tbClientSearch.getColumnModel().getColumn(9).setPreferredWidth(80);
+        tbClientSearch.getColumnModel().getColumn(10).setPreferredWidth(40);
+    }
+
+    public void setTbAddedClientColumnSizes() {
+        tbAddedClient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        // Enable the horizontal ScrollBar
+        tbAddedClient.getColumnModel().getColumn(0).setPreferredWidth(60);
+        tbAddedClient.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tbAddedClient.getColumnModel().getColumn(2).setPreferredWidth(90);
+        tbAddedClient.getColumnModel().getColumn(3).setPreferredWidth(100);
+        tbAddedClient.getColumnModel().getColumn(4).setPreferredWidth(220);
+        tbAddedClient.getColumnModel().getColumn(5).setPreferredWidth(75);
+        tbAddedClient.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tbAddedClient.getColumnModel().getColumn(7).setPreferredWidth(55);
+        tbAddedClient.getColumnModel().getColumn(8).setPreferredWidth(95);
+        tbAddedClient.getColumnModel().getColumn(9).setPreferredWidth(80);
+        tbAddedClient.getColumnModel().getColumn(10).setPreferredWidth(40);
+    }
+
+    public void setTbProductSearchColumnSizes() {
+        tbProductSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        // Enable the horizontal ScrollBar
+        tbProductSearch.getColumnModel().getColumn(0).setPreferredWidth(45);
+        tbProductSearch.getColumnModel().getColumn(1).setPreferredWidth(75);
+        tbProductSearch.getColumnModel().getColumn(2).setPreferredWidth(65);
+        tbProductSearch.getColumnModel().getColumn(3).setPreferredWidth(70);
+        tbProductSearch.getColumnModel().getColumn(4).setPreferredWidth(80);
+        tbProductSearch.getColumnModel().getColumn(5).setPreferredWidth(100);
+        tbProductSearch.getColumnModel().getColumn(6).setPreferredWidth(75);
+        tbProductSearch.getColumnModel().getColumn(7).setPreferredWidth(70);
+        tbProductSearch.getColumnModel().getColumn(8).setPreferredWidth(55);
+        tbProductSearch.getColumnModel().getColumn(9).setPreferredWidth(70);
+        tbProductSearch.getColumnModel().getColumn(10).setPreferredWidth(60);
+        tbProductSearch.getColumnModel().getColumn(11).setPreferredWidth(60);
+    }
+
+    public void setTbAddedProductsColumnSizes() {
+        tbAddedProducts.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        // Enable the horizontal ScrollBar
+        tbAddedProducts.getColumnModel().getColumn(0).setPreferredWidth(45);
+        tbAddedProducts.getColumnModel().getColumn(1).setPreferredWidth(45);
+        tbAddedProducts.getColumnModel().getColumn(2).setPreferredWidth(75);
+        tbAddedProducts.getColumnModel().getColumn(3).setPreferredWidth(65);
+        tbAddedProducts.getColumnModel().getColumn(4).setPreferredWidth(70);
+        tbAddedProducts.getColumnModel().getColumn(5).setPreferredWidth(80);
+        tbAddedProducts.getColumnModel().getColumn(6).setPreferredWidth(100);
+        tbAddedProducts.getColumnModel().getColumn(7).setPreferredWidth(75);
+        tbAddedProducts.getColumnModel().getColumn(8).setPreferredWidth(70);
+        tbAddedProducts.getColumnModel().getColumn(9).setPreferredWidth(55);
+        tbAddedProducts.getColumnModel().getColumn(10).setPreferredWidth(70);
+        tbAddedProducts.getColumnModel().getColumn(11).setPreferredWidth(60);
+        tbAddedProducts.getColumnModel().getColumn(12).setPreferredWidth(60);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddClient;
