@@ -25,10 +25,10 @@ import javax.swing.text.NumberFormatter;
 
 public class SaleForm extends jFrameFather implements IForms<Sale> {
 
-    SaleClientSearchTableM clientSearchTableModel = new SaleClientSearchTableM();
-    SaleSelectedClientTableM selectedClientTableModel = new SaleSelectedClientTableM();
-    SaleProductSearchTableM productSearchTableModel = new SaleProductSearchTableM();
-    SaleSelectedProductTableM selectedProductTableModel = new SaleSelectedProductTableM();
+    SaleClientSearchTableM clientSearchTableM = new SaleClientSearchTableM();
+    SaleSelectedClientTableM selectedClientTableM = new SaleSelectedClientTableM();
+    SaleProductSearchTableM productSearchTableM = new SaleProductSearchTableM();
+    SaleSelectedProductTableM selectedProductTableM = new SaleSelectedProductTableM();
 
     public SaleForm() {
         initComponents();
@@ -46,16 +46,16 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         p3.setId(Long.parseLong("300"));
         Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, Sleeves.NoSleeves, "Blue", "P", 5, 0, 50);
         p4.setId(Long.parseLong("400"));
-        productSearchTableModel.addObjectRow(p1);
-        productSearchTableModel.addObjectRow(p2);
-        productSearchTableModel.addObjectRow(p3);
-        productSearchTableModel.addObjectRow(p4);
+        productSearchTableM.addObjectRow(p1);
+        productSearchTableM.addObjectRow(p2);
+        productSearchTableM.addObjectRow(p3);
+        productSearchTableM.addObjectRow(p4);
         Client cli1 = new Client("Victor Gabriel Siqueira Moura", "12733863614", "(31)98591-6080", "victorgabriel.moura@hotmail.com", "35182-278", "Dinamarca", "238", "Ana rita", "Timóteo", "MG");
         Client cli2 = new Client("Maria de Lourdes Marcelino", "sdvsvsvds", "(31)98727-3572", "victorgabriel.moura@hotmail.com", "35182-278", "Honduras", "238", "Ana rita", "Timóteo", "SP");
         Client cli3 = new Client("Gleison Francis Siqueira Moura", "dsvsvds", "(31)98503-9135", "victorgabriel.moura@hotmail.com", "35182-278", "Portugal", "238", "Ana rita", "Timóteo", "RJ");
-        clientSearchTableModel.addObjectRow(cli1);
-        clientSearchTableModel.addObjectRow(cli2);
-        clientSearchTableModel.addObjectRow(cli3);
+        clientSearchTableM.addObjectRow(cli1);
+        clientSearchTableM.addObjectRow(cli2);
+        clientSearchTableM.addObjectRow(cli3);
     }
 
     @SuppressWarnings("unchecked")
@@ -163,7 +163,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labTotalCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labTotalCost.setText("Total Cost");
 
-        tbClientSearch.setModel(this.clientSearchTableModel);
+        tbClientSearch.setModel(this.clientSearchTableM);
         jScrollPane1.setViewportView(tbClientSearch);
 
         labClientSearchTable.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -193,7 +193,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedClient.setModel(this.selectedClientTableModel);
+        tbSelectedClient.setModel(this.selectedClientTableM);
         jScrollPane3.setViewportView(tbSelectedClient);
 
         labSelectedClient.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -213,7 +213,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedProduct.setModel(this.selectedProductTableModel);
+        tbSelectedProduct.setModel(this.selectedProductTableM);
         jScrollPane4.setViewportView(tbSelectedProduct);
 
         labSelectedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -241,7 +241,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbProductSearch.setModel(this.productSearchTableModel);
+        tbProductSearch.setModel(this.productSearchTableM);
         tbProductSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbProductSearchMouseClicked(evt);
@@ -789,13 +789,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             txtSize.getText(), txtShirtName.getText(), txtSleeves.getText(),
             txtColor.getText(), txtID.getText()
         };
-        productSearchTableModel.filter(tbProductSearch, filters);
+        productSearchTableM.filter(tbProductSearch, filters);
         updateCostByProductValue();
     }
 
     public void filterTbClientSearch() {
         String[] filters = {txtName.getText(), txtCPF.getText()};
-        clientSearchTableModel.filter(tbClientSearch, filters);
+        clientSearchTableM.filter(tbClientSearch, filters);
     }
 
     public void setTableModelListenerInTbSelectedProduct() {
@@ -880,15 +880,15 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }
 
     public void clientAddButtonAction() {
-        if (selectedClientTableModel.getList().isEmpty()) {
+        if (selectedClientTableM.getList().isEmpty()) {
             int row = tbClientSearch.getSelectedRow();
-            Client selectedClient = clientSearchTableModel.getObjectByRow(row);
-            selectedClientTableModel.addObjectRow(selectedClient);
+            Client selectedClient = clientSearchTableM.getObjectByRow(row);
+            selectedClientTableM.addObjectRow(selectedClient);
         }
     }
 
     public void clientRemoveButtonAction() {
-        selectedClientTableModel.removeObjectRow(0);
+        selectedClientTableM.removeObjectRow(0);
         // There is just one client in a sale
     }
 
@@ -899,7 +899,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             setJSpinnerQuantityModel();//Return the JSpinnerQuantity value back to 1
         } else {
             int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = productSearchTableModel.getObjectByRow(row);
+            Product selectedProduct = productSearchTableM.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
             double costByProduct = qtd * selectedProduct.getCost();
             txtCostByProduct.setText(costFormatters(costByProduct));
@@ -907,10 +907,10 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }
 
     public void updateTotalCostValue() throws ParseException {
-        if (selectedProductTableModel.getList().isEmpty()) {
+        if (selectedProductTableM.getList().isEmpty()) {
             txtTotalCost.setText("R$ 0,00");
         } else {
-            List<Product> selectedProducts = selectedProductTableModel.getList();
+            List<Product> selectedProducts = selectedProductTableM.getList();
             double totalCost = 0;
             for (int i = 0; i < selectedProducts.size(); i++) {
                 double productCost = selectedProducts.get(i).getCost();
@@ -929,15 +929,15 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     public void productAddButtonAction() {
         if (tbProductSearch.getSelectedRow() != -1) {
             int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = productSearchTableModel.getObjectByRow(row);
+            Product selectedProduct = productSearchTableM.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
-            if (selectedProductTableModel.getList().contains(selectedProduct)) {
+            if (selectedProductTableM.getList().contains(selectedProduct)) {
                 Product newProduct = selectedProduct;
                 newProduct.setQuantity(qtd + selectedProduct.getQuantity());
-                selectedProductTableModel.updateObjectRow(selectedProduct, newProduct);
+                selectedProductTableM.updateObjectRow(selectedProduct, newProduct);
             } else {
                 selectedProduct.setQuantity(qtd);
-                selectedProductTableModel.addObjectRow(selectedProduct);
+                selectedProductTableM.addObjectRow(selectedProduct);
             }
         }
     }
@@ -945,7 +945,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     public void productRemoveButtonAction() {
         if (tbSelectedProduct.getSelectedRow() != -1) {
             int row = tbSelectedProduct.getSelectedRow();
-            selectedProductTableModel.removeObjectRow(row);
+            selectedProductTableM.removeObjectRow(row);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
