@@ -290,7 +290,9 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
     public double parseTxtCostTextToDouble() {
         if (!txtCost.getText().isEmpty()) {
-            return Double.parseDouble(txtCost.getText().replaceAll("\\.", "").replace(",", "."));
+            String text = txtCost.getText();
+            text.replaceAll("\\.", "").replace(",", ".");
+            return Double.parseDouble(text);
         }
         return -1;
     }
@@ -324,9 +326,12 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
 
     @Override
     public boolean checkEmptyFields() {
-        if (brandComboBoxModel.getSelectedItem() == null || txtTeam.getText().isEmpty()
-                || txtSize.getText().isEmpty() || txtNumStock.getText().isEmpty()
-                || "".equals(txtCost.getText()) || txtColor.getText().isEmpty()
+        if (brandComboBoxModel.getSelectedItem() == null
+                || txtTeam.getText().isEmpty()
+                || txtSize.getText().isEmpty()
+                || txtNumStock.getText().isEmpty()
+                || txtColor.getText().isEmpty()
+                || "".equals(txtCost.getText())
                 || (!rbLong.isSelected() && !rbShort.isSelected())) {
             showErrorMessage("Fill all the required fields.");
             return false;
@@ -335,9 +340,11 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
     }
 
     public boolean checkPlayerPresentAndPlayerNameOnShirt() {
-        if (txtPlayerPresent.getText().isEmpty() && !txtPlayerNameOnShirt.getText().isEmpty()) {
-            showErrorMessage("The field 'PlayerPresent' can not be empty when the field 'PlayerNameOnShirt' is"
-                    + " filled, fill the field 'PlayerPresent' first.");
+        if (txtPlayerPresent.getText().isEmpty()
+                && !txtPlayerNameOnShirt.getText().isEmpty()) {
+            showErrorMessage("The field 'PlayerPresent' can not be empty when "
+                    + "the field 'PlayerNameOnShirt' is filled, fill the field "
+                    + "'PlayerPresent' first.");
             return false;
         }
         return true;

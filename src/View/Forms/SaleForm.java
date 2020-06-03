@@ -7,10 +7,10 @@ import Model.Classes.Product;
 import Model.Classes.Sale;
 import Model.Classes.Shirt;
 import Model.Classes.Sleeves;
-import Model.Tables.SaleClientSearchTableModel;
-import Model.Tables.SaleProductSearchTableModel;
-import Model.Tables.SaleSelectedClientTableModel;
-import Model.Tables.SaleSelectedProductTableModel;
+import Model.Tables.SaleClientSearchTableM;
+import Model.Tables.SaleProductSearchTableM;
+import Model.Tables.SaleSelectedClientTableM;
+import Model.Tables.SaleSelectedProductTableM;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -25,10 +25,10 @@ import javax.swing.text.NumberFormatter;
 
 public class SaleForm extends jFrameFather implements IForms<Sale> {
 
-    SaleClientSearchTableModel clientSearchTableModel = new SaleClientSearchTableModel();
-    SaleSelectedClientTableModel selectedClientTableModel = new SaleSelectedClientTableModel();
-    SaleProductSearchTableModel productSearchTableModel = new SaleProductSearchTableModel();
-    SaleSelectedProductTableModel selectedProductTableModel = new SaleSelectedProductTableModel();
+    SaleClientSearchTableM clientSearchTableModel = new SaleClientSearchTableM();
+    SaleSelectedClientTableM selectedClientTableModel = new SaleSelectedClientTableM();
+    SaleProductSearchTableM productSearchTableModel = new SaleProductSearchTableM();
+    SaleSelectedProductTableM selectedProductTableModel = new SaleSelectedProductTableM();
 
     public SaleForm() {
         initComponents();
@@ -433,12 +433,12 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(labQuantity)
                                             .addGap(3, 3, 3)
-                                            .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(labCostByProduct)
-                                            .addGap(10, 10, 10)
-                                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(btAddProduct)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btRemoveClient1)
@@ -876,13 +876,11 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
 
     public void setJSpinnerQuantityModel() {
         // Parameters (InitialValue, Minimumn, Máximumn, StepSize)
-        spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, 1000000, 1));
     }
 
     public void clientAddButtonAction() {
-        if (!selectedClientTableModel.getClientList().isEmpty()) {
-            showErrorMessage("There is already a selected client.");
-        } else {
+        if (selectedClientTableModel.getList().isEmpty()) {
             int row = tbClientSearch.getSelectedRow();
             Client selectedClient = clientSearchTableModel.getObjectByRow(row);
             selectedClientTableModel.addObjectRow(selectedClient);
@@ -909,10 +907,10 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     }
 
     public void updateTotalCostValue() throws ParseException {
-        if (selectedProductTableModel.getProductList().isEmpty()) {
+        if (selectedProductTableModel.getList().isEmpty()) {
             txtTotalCost.setText("R$ 0,00");
         } else {
-            List<Product> selectedProducts = selectedProductTableModel.getProductList();
+            List<Product> selectedProducts = selectedProductTableModel.getList();
             double totalCost = 0;
             for (int i = 0; i < selectedProducts.size(); i++) {
                 double productCost = selectedProducts.get(i).getCost();
@@ -933,7 +931,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             int row = tbProductSearch.getSelectedRow();
             Product selectedProduct = productSearchTableModel.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
-            if (selectedProductTableModel.getProductList().contains(selectedProduct)) {
+            if (selectedProductTableModel.getList().contains(selectedProduct)) {
                 Product newProduct = selectedProduct;
                 newProduct.setQuantity(qtd + selectedProduct.getQuantity());
                 selectedProductTableModel.updateObjectRow(selectedProduct, newProduct);

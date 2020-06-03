@@ -311,11 +311,14 @@ public class ClientForm extends jFrameFather implements IForms<Client> {
     }
 
     public boolean checkCPF() {
-        if (!isValidCPF(txtCPF.getText().replaceAll("\\.", "").replace("-", ""))) {
-            showErrorMessage("Invalid CPF.");
-            return false;
+        if (!"   .   .   -  ".equals(txtCPF.getText())) {
+            String cpf = txtCPF.getText().replaceAll("\\.", "").replace("-", "");
+            if (isValidCPF(cpf)) {
+                return true;
+            }
         }
-        return true;
+        showErrorMessage("Invalid CPF.");
+        return false;
     }
 
     @Override

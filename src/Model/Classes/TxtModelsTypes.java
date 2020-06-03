@@ -14,7 +14,7 @@ public class TxtModelsTypes extends PlainDocument {
             switch (txtType) {
                 case Integer:
                     this.txtType = txtType;
-                    this.maxCharacters = 10;
+                    this.maxCharacters = 9;
                     // A integer number supports 10 algarisms
                     break;
                 case String:

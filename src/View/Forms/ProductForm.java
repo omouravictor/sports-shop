@@ -311,7 +311,8 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
 
     public double parseTxtCostTextToDouble() {
         if (!txtCost.getText().isEmpty()) {
-            return Double.parseDouble(txtCost.getText().replaceAll("\\.", "").replace(",", "."));
+            String cost = txtCost.getText().replaceAll("\\.", "").replace(",", ".");
+            return Double.parseDouble(cost);
         }
         return -1;
     }
