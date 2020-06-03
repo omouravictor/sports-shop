@@ -157,7 +157,7 @@
                                       <Component id="jScrollPane4" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                                          <Component id="labSelectedProducts" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labAddedProducts" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="btFinishSale" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -169,7 +169,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="labClientSearchTable" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="labSelectedClient" min="-2" max="-2" attributes="0"/>
+                      <Component id="labAddedClient" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -205,7 +205,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labClientSearchTable" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labSelectedClient" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labAddedClient" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -270,7 +270,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labProductSearchTable" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labSelectedProducts" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labAddedProducts" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -390,7 +390,7 @@
         <Component class="javax.swing.JTable" name="tbClientSearch">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="this.clientSearchTableM" type="code"/>
+              <Connection code="this.tbClientSearchModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -449,10 +449,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbSelectedClient">
+        <Component class="javax.swing.JTable" name="tbAddedClient">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="this.selectedClientTableM" type="code"/>
+              <Connection code="this.tbAddedClientModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -464,12 +464,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labSelectedClient">
+    <Component class="javax.swing.JLabel" name="labAddedClient">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Selected Client*"/>
+        <Property name="text" type="java.lang.String" value="Added Client*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btRemoveClient">
@@ -495,10 +495,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbSelectedProduct">
+        <Component class="javax.swing.JTable" name="tbAddedProducts">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="this.selectedProductTableM" type="code"/>
+              <Connection code="this.tbAddedProductModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>
@@ -510,12 +510,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labSelectedProducts">
+    <Component class="javax.swing.JLabel" name="labAddedProducts">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Selected Products*"/>
+        <Property name="text" type="java.lang.String" value="Added Products*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btRemoveClient1">
@@ -556,7 +556,7 @@
         <Component class="javax.swing.JTable" name="tbProductSearch">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="this.productSearchTableM" type="code"/>
+              <Connection code="this.tbProductSearchModel" type="code"/>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0"/>

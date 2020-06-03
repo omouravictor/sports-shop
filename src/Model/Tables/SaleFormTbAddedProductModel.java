@@ -5,15 +5,15 @@ import Model.Classes.Shirt;
 import java.util.List;
 import javax.swing.JTable;
 
-public class SaleSelectedProductTableM extends AbstractModel<Product> {
+public class SaleFormTbAddedProductModel extends AbstractTbModel<Product> {
 
-    public SaleSelectedProductTableM() {
+    public SaleFormTbAddedProductModel() {
         this.columnNames = new String[]{"QTD", "Stock", "Cost", "Category",
             "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
             "Color", "Size", "Id"};
     }
 
-    public SaleSelectedProductTableM(List<Product> productList, String[] columnNames) {
+    public SaleFormTbAddedProductModel(List<Product> productList, String[] columnNames) {
         this.list = productList;
         this.columnNames = columnNames;
     }

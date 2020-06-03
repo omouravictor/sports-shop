@@ -1,12 +1,11 @@
 package View.Forms;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
 
-public class jFrameFather extends javax.swing.JFrame {
-
-    public jFrameFather() {
-        initComponents();
-    }
+public abstract class AbstractForm extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -30,7 +29,7 @@ public class jFrameFather extends javax.swing.JFrame {
 
     public boolean checkIfIsAIntengerNumber(String txtText) {
         try {
-            Long num = Long.parseLong(txtText); // Long just accept intenger numbers
+            Long num = Long.parseLong(txtText);//Long just accept intenger numbers
             return true;
         } catch (NumberFormatException e) {
             showErrorMessage("'" + txtText + "'" + " is not a intenger number.");
@@ -50,6 +49,11 @@ public class jFrameFather extends javax.swing.JFrame {
 
     public void showErrorMessage(String erroMsg) {
         JOptionPane.showMessageDialog(null, erroMsg, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    public String costFormatters(double totalCost) throws ParseException {
+        NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
+        return numFormatter.valueToString(totalCost);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

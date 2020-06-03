@@ -5,7 +5,7 @@ import Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class CategoryForm extends jFrameFather implements IForms<Category> {
+public class CategoryForm extends AbstractForm implements IForms<Category> {
 
     public CategoryForm() {
         initComponents();

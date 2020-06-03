@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public abstract class AbstractModel<T> extends AbstractTableModel implements ITables<T> {
+public abstract class AbstractTbModel<T> extends AbstractTableModel implements ITables<T> {
 
     protected List<T> list = new ArrayList<>();
     protected String[] columnNames = new String[]{};

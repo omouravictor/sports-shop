@@ -7,10 +7,10 @@ import Model.Classes.Product;
 import Model.Classes.Sale;
 import Model.Classes.Shirt;
 import Model.Classes.Sleeves;
-import Model.Tables.SaleClientSearchTableM;
-import Model.Tables.SaleProductSearchTableM;
-import Model.Tables.SaleSelectedClientTableM;
-import Model.Tables.SaleSelectedProductTableM;
+import Model.Tables.SaleFormTbClientSearchModel;
+import Model.Tables.SaleFormTbProductSearchModel;
+import Model.Tables.SaleFormTbAddedClientModel;
+import Model.Tables.SaleFormTbAddedProductModel;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
@@ -21,14 +21,14 @@ import Model.Classes.TxtTypes;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.text.NumberFormatter;
+import javax.swing.SpinnerNumberModel;
 
-public class SaleForm extends jFrameFather implements IForms<Sale> {
+public class SaleForm extends AbstractForm implements IForms<Sale> {
 
-    SaleClientSearchTableM clientSearchTableM = new SaleClientSearchTableM();
-    SaleSelectedClientTableM selectedClientTableM = new SaleSelectedClientTableM();
-    SaleProductSearchTableM productSearchTableM = new SaleProductSearchTableM();
-    SaleSelectedProductTableM selectedProductTableM = new SaleSelectedProductTableM();
+    SaleFormTbClientSearchModel tbClientSearchModel = new SaleFormTbClientSearchModel();
+    SaleFormTbProductSearchModel tbProductSearchModel = new SaleFormTbProductSearchModel();
+    SaleFormTbAddedClientModel tbAddedClientModel = new SaleFormTbAddedClientModel();
+    SaleFormTbAddedProductModel tbAddedProductModel = new SaleFormTbAddedProductModel();
 
     public SaleForm() {
         initComponents();
@@ -46,16 +46,16 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         p3.setId(Long.parseLong("300"));
         Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, Sleeves.NoSleeves, "Blue", "P", 5, 0, 50);
         p4.setId(Long.parseLong("400"));
-        productSearchTableM.addObjectRow(p1);
-        productSearchTableM.addObjectRow(p2);
-        productSearchTableM.addObjectRow(p3);
-        productSearchTableM.addObjectRow(p4);
+        tbProductSearchModel.addObjectRow(p1);
+        tbProductSearchModel.addObjectRow(p2);
+        tbProductSearchModel.addObjectRow(p3);
+        tbProductSearchModel.addObjectRow(p4);
         Client cli1 = new Client("Victor Gabriel Siqueira Moura", "12733863614", "(31)98591-6080", "victorgabriel.moura@hotmail.com", "35182-278", "Dinamarca", "238", "Ana rita", "Timóteo", "MG");
         Client cli2 = new Client("Maria de Lourdes Marcelino", "sdvsvsvds", "(31)98727-3572", "victorgabriel.moura@hotmail.com", "35182-278", "Honduras", "238", "Ana rita", "Timóteo", "SP");
         Client cli3 = new Client("Gleison Francis Siqueira Moura", "dsvsvds", "(31)98503-9135", "victorgabriel.moura@hotmail.com", "35182-278", "Portugal", "238", "Ana rita", "Timóteo", "RJ");
-        clientSearchTableM.addObjectRow(cli1);
-        clientSearchTableM.addObjectRow(cli2);
-        clientSearchTableM.addObjectRow(cli3);
+        tbClientSearchModel.addObjectRow(cli1);
+        tbClientSearchModel.addObjectRow(cli2);
+        tbClientSearchModel.addObjectRow(cli3);
     }
 
     @SuppressWarnings("unchecked")
@@ -80,13 +80,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         btCancelSale = new javax.swing.JButton();
         btAddProduct = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tbSelectedClient = new javax.swing.JTable();
-        labSelectedClient = new javax.swing.JLabel();
+        tbAddedClient = new javax.swing.JTable();
+        labAddedClient = new javax.swing.JLabel();
         btRemoveClient = new javax.swing.JButton();
         btAddClient = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tbSelectedProduct = new javax.swing.JTable();
-        labSelectedProducts = new javax.swing.JLabel();
+        tbAddedProducts = new javax.swing.JTable();
+        labAddedProducts = new javax.swing.JLabel();
         btRemoveClient1 = new javax.swing.JButton();
         labDate = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
@@ -163,7 +163,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         labTotalCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labTotalCost.setText("Total Cost");
 
-        tbClientSearch.setModel(this.clientSearchTableM);
+        tbClientSearch.setModel(this.tbClientSearchModel);
         jScrollPane1.setViewportView(tbClientSearch);
 
         labClientSearchTable.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -193,11 +193,11 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedClient.setModel(this.selectedClientTableM);
-        jScrollPane3.setViewportView(tbSelectedClient);
+        tbAddedClient.setModel(this.tbAddedClientModel);
+        jScrollPane3.setViewportView(tbAddedClient);
 
-        labSelectedClient.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labSelectedClient.setText("Selected Client*");
+        labAddedClient.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labAddedClient.setText("Added Client*");
 
         btRemoveClient.setText("Remove Client");
         btRemoveClient.addActionListener(new java.awt.event.ActionListener() {
@@ -213,11 +213,11 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbSelectedProduct.setModel(this.selectedProductTableM);
-        jScrollPane4.setViewportView(tbSelectedProduct);
+        tbAddedProducts.setModel(this.tbAddedProductModel);
+        jScrollPane4.setViewportView(tbAddedProducts);
 
-        labSelectedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labSelectedProducts.setText("Selected Products*");
+        labAddedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labAddedProducts.setText("Added Products*");
 
         btRemoveClient1.setText("Remove Product");
         btRemoveClient1.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +241,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             }
         });
 
-        tbProductSearch.setModel(this.productSearchTableM);
+        tbProductSearch.setModel(this.tbProductSearchModel);
         tbProductSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbProductSearchMouseClicked(evt);
@@ -454,13 +454,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(230, 230, 230)
-                                            .addComponent(labSelectedProducts))
+                                            .addComponent(labAddedProducts))
                                         .addComponent(btFinishSale)))))
                         .addGap(0, 24, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labClientSearchTable)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labSelectedClient)
+                        .addComponent(labAddedClient)
                         .addGap(255, 255, 255))))
         );
         layout.setVerticalGroup(
@@ -486,7 +486,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labClientSearchTable)
-                    .addComponent(labSelectedClient))
+                    .addComponent(labAddedClient))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -537,7 +537,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labProductSearchTable)
-                    .addComponent(labSelectedProducts))
+                    .addComponent(labAddedProducts))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -757,8 +757,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     @Override
     public boolean checkEmptyFields() {
         if ("  /  /    ".equals(txtDate.getText())
-                || tbSelectedClient.getRowCount() == 0
-                || tbSelectedProduct.getRowCount() == 0) {
+                || !checkIfClientIsAdded()
+                || !checkIfProductsAreAdded()) {
             showErrorMessage("Fill all the required fields.");
             return false;
         }
@@ -789,13 +789,13 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
             txtSize.getText(), txtShirtName.getText(), txtSleeves.getText(),
             txtColor.getText(), txtID.getText()
         };
-        productSearchTableM.filter(tbProductSearch, filters);
+        tbProductSearchModel.filter(tbProductSearch, filters);
         updateCostByProductValue();
     }
 
     public void filterTbClientSearch() {
         String[] filters = {txtName.getText(), txtCPF.getText()};
-        clientSearchTableM.filter(tbClientSearch, filters);
+        tbClientSearchModel.filter(tbClientSearch, filters);
     }
 
     public void setTableModelListenerInTbSelectedProduct() {
@@ -810,7 +810,7 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
                 }
             }
         };
-        tbSelectedProduct.getModel().addTableModelListener(selectedProductTableListener);
+        tbAddedProducts.getModel().addTableModelListener(selectedProductTableListener);
     }
 
     public void setTablesColumnSize() {
@@ -829,18 +829,18 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         tbClientSearch.getColumnModel().getColumn(10).setPreferredWidth(40); // State Column
 
         // tbSelectedClient
-        tbSelectedClient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbSelectedClient.getColumnModel().getColumn(0).setPreferredWidth(60); // Id Column
-        tbSelectedClient.getColumnModel().getColumn(1).setPreferredWidth(200); // Name Column   
-        tbSelectedClient.getColumnModel().getColumn(2).setPreferredWidth(90); // CPF Column
-        tbSelectedClient.getColumnModel().getColumn(3).setPreferredWidth(100); // Phone Column
-        tbSelectedClient.getColumnModel().getColumn(4).setPreferredWidth(220); // Email Column
-        tbSelectedClient.getColumnModel().getColumn(5).setPreferredWidth(75); // ZipCode Column
-        tbSelectedClient.getColumnModel().getColumn(6).setPreferredWidth(100); // Street Column
-        tbSelectedClient.getColumnModel().getColumn(7).setPreferredWidth(55); // Number Column
-        tbSelectedClient.getColumnModel().getColumn(8).setPreferredWidth(95); // Neyghborhood Column
-        tbSelectedClient.getColumnModel().getColumn(9).setPreferredWidth(80); // City Column
-        tbSelectedClient.getColumnModel().getColumn(10).setPreferredWidth(40); // State Column
+        tbAddedClient.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
+        tbAddedClient.getColumnModel().getColumn(0).setPreferredWidth(60); // Id Column
+        tbAddedClient.getColumnModel().getColumn(1).setPreferredWidth(200); // Name Column   
+        tbAddedClient.getColumnModel().getColumn(2).setPreferredWidth(90); // CPF Column
+        tbAddedClient.getColumnModel().getColumn(3).setPreferredWidth(100); // Phone Column
+        tbAddedClient.getColumnModel().getColumn(4).setPreferredWidth(220); // Email Column
+        tbAddedClient.getColumnModel().getColumn(5).setPreferredWidth(75); // ZipCode Column
+        tbAddedClient.getColumnModel().getColumn(6).setPreferredWidth(100); // Street Column
+        tbAddedClient.getColumnModel().getColumn(7).setPreferredWidth(55); // Number Column
+        tbAddedClient.getColumnModel().getColumn(8).setPreferredWidth(95); // Neyghborhood Column
+        tbAddedClient.getColumnModel().getColumn(9).setPreferredWidth(80); // City Column
+        tbAddedClient.getColumnModel().getColumn(10).setPreferredWidth(40); // State Column
 
         // tbProductSearch
         tbProductSearch.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
@@ -858,94 +858,101 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
         tbProductSearch.getColumnModel().getColumn(11).setPreferredWidth(60); // Id Column
 
         // tbSelectedProducts
-        tbSelectedProduct.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
-        tbSelectedProduct.getColumnModel().getColumn(0).setPreferredWidth(45); // QTD Column
-        tbSelectedProduct.getColumnModel().getColumn(1).setPreferredWidth(45); // Stock Column
-        tbSelectedProduct.getColumnModel().getColumn(2).setPreferredWidth(75); // Cost Column   
-        tbSelectedProduct.getColumnModel().getColumn(3).setPreferredWidth(65); // Category Column   
-        tbSelectedProduct.getColumnModel().getColumn(4).setPreferredWidth(70); // Brand Column
-        tbSelectedProduct.getColumnModel().getColumn(5).setPreferredWidth(80); // Team Column
-        tbSelectedProduct.getColumnModel().getColumn(6).setPreferredWidth(100); // Player Column
-        tbSelectedProduct.getColumnModel().getColumn(7).setPreferredWidth(75); // NameShirt Column
-        tbSelectedProduct.getColumnModel().getColumn(8).setPreferredWidth(70); // Sleeves Column
-        tbSelectedProduct.getColumnModel().getColumn(9).setPreferredWidth(55); // Number Column
-        tbSelectedProduct.getColumnModel().getColumn(10).setPreferredWidth(70); // Color Column
-        tbSelectedProduct.getColumnModel().getColumn(11).setPreferredWidth(60); // Size Column
-        tbSelectedProduct.getColumnModel().getColumn(12).setPreferredWidth(60); // Id Column
+        tbAddedProducts.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Enable the horizontal ScrollBar
+        tbAddedProducts.getColumnModel().getColumn(0).setPreferredWidth(45); // QTD Column
+        tbAddedProducts.getColumnModel().getColumn(1).setPreferredWidth(45); // Stock Column
+        tbAddedProducts.getColumnModel().getColumn(2).setPreferredWidth(75); // Cost Column   
+        tbAddedProducts.getColumnModel().getColumn(3).setPreferredWidth(65); // Category Column   
+        tbAddedProducts.getColumnModel().getColumn(4).setPreferredWidth(70); // Brand Column
+        tbAddedProducts.getColumnModel().getColumn(5).setPreferredWidth(80); // Team Column
+        tbAddedProducts.getColumnModel().getColumn(6).setPreferredWidth(100); // Player Column
+        tbAddedProducts.getColumnModel().getColumn(7).setPreferredWidth(75); // NameShirt Column
+        tbAddedProducts.getColumnModel().getColumn(8).setPreferredWidth(70); // Sleeves Column
+        tbAddedProducts.getColumnModel().getColumn(9).setPreferredWidth(55); // Number Column
+        tbAddedProducts.getColumnModel().getColumn(10).setPreferredWidth(70); // Color Column
+        tbAddedProducts.getColumnModel().getColumn(11).setPreferredWidth(60); // Size Column
+        tbAddedProducts.getColumnModel().getColumn(12).setPreferredWidth(60); // Id Column
     }
 
     public void setJSpinnerQuantityModel() {
         // Parameters (InitialValue, Minimumn, Máximumn, StepSize)
-        spQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, 1000000, 1));
+        spQuantity.setModel(new SpinnerNumberModel(1, 1, 1000000, 1));
+    }
+
+    public boolean checkIfClientIsAdded() {
+        return tbAddedClient.getRowCount() != 0;
+    }
+
+    public boolean checkIfTbProductSearchIsSelected() {
+        return tbProductSearch.getSelectedRow() != -1;
+    }
+
+    public boolean checkIfProductsAreAdded() {
+        return tbAddedProducts.getRowCount() != 0;
     }
 
     public void clientAddButtonAction() {
-        if (selectedClientTableM.getList().isEmpty()) {
+        if (!checkIfClientIsAdded()) {
             int row = tbClientSearch.getSelectedRow();
-            Client selectedClient = clientSearchTableM.getObjectByRow(row);
-            selectedClientTableM.addObjectRow(selectedClient);
+            Client addedClient = tbClientSearchModel.getObjectByRow(row);
+            tbAddedClientModel.addObjectRow(addedClient);
         }
     }
 
     public void clientRemoveButtonAction() {
-        selectedClientTableM.removeObjectRow(0);
-        // There is just one client in a sale
+        tbAddedClientModel.removeObjectRow(0);
     }
 
     public void updateCostByProductValue() throws ParseException {
-        if (tbProductSearch.getSelectedRow() == -1) {
-            // JTable.getSelectedRow() returns -1 when there is no row selected.
-            txtCostByProduct.setText("R$ 0,00");
-            setJSpinnerQuantityModel();//Return the JSpinnerQuantity value back to 1
-        } else {
+        if (checkIfTbProductSearchIsSelected()) {
             int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = productSearchTableM.getObjectByRow(row);
+            Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
             double costByProduct = qtd * selectedProduct.getCost();
-            txtCostByProduct.setText(costFormatters(costByProduct));
+            String costFormatted = this.costFormatters(costByProduct);
+            txtCostByProduct.setText(costFormatted);
+        } else {
+            // JTable.getSelectedRow() returns -1 when there is no row selected.
+            txtCostByProduct.setText("R$ 0,00");
+            setJSpinnerQuantityModel();//Make JSpinnerQuantity value back to 1
         }
     }
 
     public void updateTotalCostValue() throws ParseException {
-        if (selectedProductTableM.getList().isEmpty()) {
-            txtTotalCost.setText("R$ 0,00");
-        } else {
-            List<Product> selectedProducts = selectedProductTableM.getList();
+        if (checkIfProductsAreAdded()) {
+            List<Product> selectedProducts = tbAddedProductModel.getList();
             double totalCost = 0;
             for (int i = 0; i < selectedProducts.size(); i++) {
                 double productCost = selectedProducts.get(i).getCost();
                 int productQtd = selectedProducts.get(i).getQuantity();
                 totalCost += productCost * productQtd;
             }
-            txtTotalCost.setText(costFormatters(totalCost));
+            txtTotalCost.setText(this.costFormatters(totalCost));
+        } else {
+            txtTotalCost.setText("R$ 0,00");
         }
     }
 
-    public String costFormatters(double totalCost) throws ParseException {
-        NumberFormatter numFormatter = new NumberFormatter(new java.text.DecimalFormat("R$ #,###.00"));
-        return numFormatter.valueToString(totalCost);
-    }
-
     public void productAddButtonAction() {
-        if (tbProductSearch.getSelectedRow() != -1) {
+        if (checkIfTbProductSearchIsSelected()) {
             int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = productSearchTableM.getObjectByRow(row);
+            Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
             int qtd = Integer.parseInt(spQuantity.getValue().toString());
-            if (selectedProductTableM.getList().contains(selectedProduct)) {
+            if (tbAddedProductModel.getList().contains(selectedProduct)) {
                 Product newProduct = selectedProduct;
                 newProduct.setQuantity(qtd + selectedProduct.getQuantity());
-                selectedProductTableM.updateObjectRow(selectedProduct, newProduct);
+                tbAddedProductModel.updateObjectRow(selectedProduct, newProduct);
             } else {
                 selectedProduct.setQuantity(qtd);
-                selectedProductTableM.addObjectRow(selectedProduct);
+                tbAddedProductModel.addObjectRow(selectedProduct);
             }
         }
     }
 
     public void productRemoveButtonAction() {
-        if (tbSelectedProduct.getSelectedRow() != -1) {
-            int row = tbSelectedProduct.getSelectedRow();
-            selectedProductTableM.removeObjectRow(row);
+        if (checkIfProductsAreAdded()) {
+            int row = tbAddedProducts.getSelectedRow();
+            tbAddedProductModel.removeObjectRow(row);
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -961,6 +968,8 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel labAddedClient;
+    private javax.swing.JLabel labAddedProducts;
     private javax.swing.JLabel labBrand;
     private javax.swing.JLabel labCPF;
     private javax.swing.JLabel labCategory;
@@ -974,8 +983,6 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JLabel labPlayer;
     private javax.swing.JLabel labProductSearchTable;
     private javax.swing.JLabel labQuantity;
-    private javax.swing.JLabel labSelectedClient;
-    private javax.swing.JLabel labSelectedProducts;
     private javax.swing.JLabel labShirtName;
     private javax.swing.JLabel labSize;
     private javax.swing.JLabel labSleeves;
@@ -983,10 +990,10 @@ public class SaleForm extends jFrameFather implements IForms<Sale> {
     private javax.swing.JLabel labTitle;
     private javax.swing.JLabel labTotalCost;
     private javax.swing.JSpinner spQuantity;
+    private javax.swing.JTable tbAddedClient;
+    private javax.swing.JTable tbAddedProducts;
     private javax.swing.JTable tbClientSearch;
     private javax.swing.JTable tbProductSearch;
-    private javax.swing.JTable tbSelectedClient;
-    private javax.swing.JTable tbSelectedProduct;
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCategory;

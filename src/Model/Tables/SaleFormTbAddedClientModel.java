@@ -4,14 +4,14 @@ import Model.Classes.Client;
 import java.util.List;
 import javax.swing.JTable;
 
-public class SaleSelectedClientTableM extends AbstractModel<Client> {
+public class SaleFormTbAddedClientModel extends AbstractTbModel<Client> {
 
-    public SaleSelectedClientTableM() {
+    public SaleFormTbAddedClientModel() {
         this.columnNames = new String[]{"Id", "Name", "CPF", "Phone", "Email",
             "ZipCode", "Street", "Number", "Neyghborhood", "City", "State"};
     }
 
-    public SaleSelectedClientTableM(List<Client> clientList, String[] columnNames) {
+    public SaleFormTbAddedClientModel(List<Client> clientList, String[] columnNames) {
         this.list = clientList;
         this.columnNames = columnNames;
     }

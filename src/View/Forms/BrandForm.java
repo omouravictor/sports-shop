@@ -5,7 +5,7 @@ import Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class BrandForm extends jFrameFather implements IForms<Brand> {
+public class BrandForm extends AbstractForm implements IForms<Brand> {
 
     public BrandForm() {
         initComponents();

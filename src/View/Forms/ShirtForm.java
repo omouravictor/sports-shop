@@ -7,7 +7,7 @@ import Model.Classes.Brand;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class ShirtForm extends jFrameFather implements IForms<Shirt> {
+public class ShirtForm extends AbstractForm implements IForms<Shirt> {
 
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
 
@@ -15,7 +15,7 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
         initComponents();
         initSetup();
         Brand a = new Brand("Nike");
-        brandComboBoxModel.addBrandInCombo(a);
+        brandComboBoxModel.addObjectInCombo(a);
     }
 
     @SuppressWarnings("unchecked")
@@ -327,10 +327,10 @@ public class ShirtForm extends jFrameFather implements IForms<Shirt> {
     @Override
     public boolean checkEmptyFields() {
         if (brandComboBoxModel.getSelectedItem() == null
-                || txtTeam.getText().isEmpty()
-                || txtSize.getText().isEmpty()
                 || txtNumStock.getText().isEmpty()
                 || txtColor.getText().isEmpty()
+                || txtTeam.getText().isEmpty()
+                || txtSize.getText().isEmpty()
                 || "".equals(txtCost.getText())
                 || (!rbLong.isSelected() && !rbShort.isSelected())) {
             showErrorMessage("Fill all the required fields.");

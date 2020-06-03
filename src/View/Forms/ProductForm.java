@@ -9,7 +9,7 @@ import Model.Classes.Category;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class ProductForm extends jFrameFather implements IForms<Product> {
+public class ProductForm extends AbstractForm implements IForms<Product> {
 
     private final CategoryComboBoxModel categoryComboBoxModel = new CategoryComboBoxModel();
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
@@ -21,10 +21,10 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
         Category c2 = new Category("Mug");
         Brand b1 = new Brand("Nike");
         Brand b2 = new Brand("Adidas");
-        categoryComboBoxModel.addCategoryInCombo(c1);
-        categoryComboBoxModel.addCategoryInCombo(c2);
-        brandComboBoxModel.addBrandInCombo(b1);
-        brandComboBoxModel.addBrandInCombo(b2);
+        categoryComboBoxModel.addObjectInCombo(c1);
+        categoryComboBoxModel.addObjectInCombo(c2);
+        brandComboBoxModel.addObjectInCombo(b1);
+        brandComboBoxModel.addObjectInCombo(b2);
     }
 
     @SuppressWarnings("unchecked")
@@ -284,10 +284,10 @@ public class ProductForm extends jFrameFather implements IForms<Product> {
         if (categoryComboBoxModel.getSelectedItem() == null
                 || brandComboBoxModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty()
+                || txtColor.getText().isEmpty()
                 || txtSize.getText().isEmpty()
-                || "".equals(txtCost.getText())
                 || txtTeam.getText().isEmpty()
-                || txtColor.getText().isEmpty()) {
+                || "".equals(txtCost.getText())) {
             showErrorMessage("Fill all the required fields.");
             return false;
         }
