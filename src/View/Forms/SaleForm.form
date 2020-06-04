@@ -101,28 +101,28 @@
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="labPlayer" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labNumber" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labShirtName" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labSleeves" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtSize" min="-2" pref="94" max="-2" attributes="0"/>
-                                              <Component id="txtNumber" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="txtSleeves" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="txtShirtName" min="-2" pref="94" max="-2" attributes="0"/>
                                               <Component id="txtPlayer" min="-2" pref="94" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labSleeves" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labShirtName" min="-2" max="-2" attributes="0"/>
                                               <Component id="labColor" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labNumber" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labSize" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="txtColor" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                                              <Component id="txtSize" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="txtSleeves" min="-2" pref="73" max="-2" attributes="0"/>
-                                                      <Component id="txtShirtName" min="-2" pref="73" max="-2" attributes="0"/>
+                                                      <Component id="txtColor" min="-2" pref="73" max="-2" attributes="0"/>
+                                                      <Component id="txtNumber" min="-2" pref="73" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="labID" min="-2" max="-2" attributes="0"/>
@@ -227,8 +227,8 @@
                   </Group>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="txtPlayer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -240,26 +240,26 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labNumber" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNumber" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="txtSleeves" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtColor" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labSize" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -610,6 +610,32 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPlayerActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="labSleeves">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sleeves"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtSleeves">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSleevesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labShirtName">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ShirtName"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtShirtName">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtShirtNameActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JLabel" name="labSize">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -617,6 +643,16 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Size"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumber">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtColor">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtColorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtSize">
       <Events>
@@ -631,48 +667,12 @@
         <Property name="text" type="java.lang.String" value="Number"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNumber">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="labColor">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Color"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtShirtName">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtShirtNameActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtSleeves">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSleevesActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtColor">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtColorActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labShirtName">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="11" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="ShirtName"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labSleeves">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="11" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Sleeves"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labID">

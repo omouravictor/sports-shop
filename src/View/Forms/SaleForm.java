@@ -99,16 +99,16 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         txtTeam = new javax.swing.JTextField();
         labPlayer = new javax.swing.JLabel();
         txtPlayer = new javax.swing.JTextField();
+        labSleeves = new javax.swing.JLabel();
+        txtSleeves = new javax.swing.JTextField();
+        labShirtName = new javax.swing.JLabel();
+        txtShirtName = new javax.swing.JTextField();
         labSize = new javax.swing.JLabel();
+        txtNumber = new javax.swing.JTextField();
+        txtColor = new javax.swing.JTextField();
         txtSize = new javax.swing.JTextField();
         labNumber = new javax.swing.JLabel();
-        txtNumber = new javax.swing.JTextField();
         labColor = new javax.swing.JLabel();
-        txtShirtName = new javax.swing.JTextField();
-        txtSleeves = new javax.swing.JTextField();
-        txtColor = new javax.swing.JTextField();
-        labShirtName = new javax.swing.JLabel();
-        labSleeves = new javax.swing.JLabel();
         labID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         labCPF = new javax.swing.JLabel();
@@ -276,8 +276,38 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
             }
         });
 
+        labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labSleeves.setText("Sleeves");
+
+        txtSleeves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSleevesActionPerformed(evt);
+            }
+        });
+
+        labShirtName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labShirtName.setText("ShirtName");
+
+        txtShirtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtShirtNameActionPerformed(evt);
+            }
+        });
+
         labSize.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labSize.setText("Size");
+
+        txtNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumberActionPerformed(evt);
+            }
+        });
+
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtColorActionPerformed(evt);
+            }
+        });
 
         txtSize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -288,38 +318,8 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         labNumber.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labNumber.setText("Number");
 
-        txtNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumberActionPerformed(evt);
-            }
-        });
-
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color");
-
-        txtShirtName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtShirtNameActionPerformed(evt);
-            }
-        });
-
-        txtSleeves.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSleevesActionPerformed(evt);
-            }
-        });
-
-        txtColor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtColorActionPerformed(evt);
-            }
-        });
-
-        labShirtName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labShirtName.setText("ShirtName");
-
-        labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labSleeves.setText("Sleeves");
 
         labID.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labID.setText("ID");
@@ -408,25 +408,25 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(labPlayer)
-                                                .addComponent(labNumber)
-                                                .addComponent(labSize))
+                                                .addComponent(labShirtName)
+                                                .addComponent(labSleeves))
                                             .addGap(8, 8, 8)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labSleeves)
-                                                .addComponent(labShirtName)
-                                                .addComponent(labColor))
+                                                .addComponent(labColor)
+                                                .addComponent(labNumber)
+                                                .addComponent(labSize))
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                     .addComponent(labID))))
                                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -504,8 +504,8 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
                         .addComponent(labPlayer))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labShirtName)
+                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labNumber)
                         .addComponent(labID)
                         .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,22 +515,22 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labNumber)
-                                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labShirtName)
+                                    .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labBrand)
-                                    .addComponent(labSleeves))
+                                    .addComponent(labColor))
                                 .addGap(0, 1, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labSize)
-                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labSleeves)
+                            .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labTeam)
-                            .addComponent(labColor)
-                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labSize)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(btProductSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -648,22 +648,6 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         }
     }//GEN-LAST:event_txtPlayerActionPerformed
 
-    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtNumberActionPerformed
-
-    private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_txtSizeActionPerformed
-
     private void txtShirtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShirtNameActionPerformed
         try {
             filterTbProductSearch();
@@ -680,6 +664,14 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         }
     }//GEN-LAST:event_txtSleevesActionPerformed
 
+    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtNumberActionPerformed
+
     private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
         try {
             filterTbProductSearch();
@@ -687,6 +679,14 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
             Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txtColorActionPerformed
+
+    private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
+        try {
+            filterTbProductSearch();
+        } catch (ParseException ex) {
+            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtSizeActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         try {
@@ -751,7 +751,7 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
         txtCPF.setDocument(new TxtModelsTypes(TxtTypes.CPF));
-        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtShirtName.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override
@@ -786,19 +786,47 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         txtCostByProduct.setEditable(false);
     }
 
+    public boolean productFiltersAreEmpty() {
+        return txtCategory.getText().isEmpty() && txtBrand.getText().isEmpty()
+                && txtTeam.getText().isEmpty() && txtPlayer.getText().isEmpty()
+                && txtShirtName.getText().isEmpty() && txtSleeves.getText().isEmpty()
+                && txtNumber.getText().isEmpty() && txtColor.getText().isEmpty()
+                && txtSize.getText().isEmpty() && txtID.getText().isEmpty();
+    }
+
+    public boolean clientFiltersAreEmpty() {
+        return txtName.getText().isEmpty() && txtCPF.getText().isEmpty();
+    }
+
     public void filterTbProductSearch() throws ParseException {
-        String[] filters = {txtCategory.getText(), txtBrand.getText(),
-            txtTeam.getText(), txtPlayer.getText(), txtNumber.getText(),
-            txtSize.getText(), txtShirtName.getText(), txtSleeves.getText(),
-            txtColor.getText(), txtID.getText()
-        };
-        tbProductSearchModel.filter(tbProductSearch, filters);
-        updateCostByProductValue();
+        if (!productFiltersAreEmpty()) {
+            String[] filters = {txtCategory.getText(), txtBrand.getText(),
+                txtTeam.getText(), txtPlayer.getText(), txtShirtName.getText(),
+                txtSleeves.getText(), txtNumber.getText(), txtColor.getText(),
+                txtSize.getText(), txtID.getText()
+            };
+            tbProductSearchModel.filter(tbProductSearch, filters);
+            resetCostAndQtdByProduct();
+        } else {
+            String[] noFilter = {};
+            tbProductSearchModel.filter(tbProductSearch, noFilter);
+            resetCostAndQtdByProduct();
+        }
+    }
+
+    public void resetCostAndQtdByProduct() {
+        txtCostByProduct.setText("R$ 0,00");
+        spQuantity.setModel(new SpinnerNumberModel(1, 1, 1000000, 1));
     }
 
     public void filterTbClientSearch() {
-        String[] filters = {txtName.getText(), txtCPF.getText()};
-        tbClientSearchModel.filter(tbClientSearch, filters);
+        if (!clientFiltersAreEmpty()) {
+            String[] filters = {txtName.getText(), txtCPF.getText()};
+            tbClientSearchModel.filter(tbClientSearch, filters);
+        } else {
+            String[] noFilter = {};
+            tbClientSearchModel.filter(tbClientSearch, noFilter);
+        }
     }
 
     public void setListenerInTbAddedProducts() {
@@ -869,8 +897,7 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
             String costFormatted = this.costFormatters(costByProduct);
             txtCostByProduct.setText(costFormatted);
         } else {
-            txtCostByProduct.setText("R$ 0,00");
-            setSpQuantityModel();
+            resetCostAndQtdByProduct();
         }
     }
 

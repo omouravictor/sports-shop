@@ -51,27 +51,36 @@ public class SaleFormTbClientSearchModel extends AbstractTbModel<Client> {
     }
 
     @Override
-    public void filter(JTable filterJtable, String[] viewfilters) {
+    public void filter(JTable filterJtable, String[] viewFilters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
-        tableRowSorter.setStringConverter(new TableStringConverter() {
-            @Override
-            public String toString(TableModel model, int rowIndex, int columnIndex) {
-                /* This function make all elements of the productList starts to
-                lower case, doing so is possible filter the rows ignoring cases.*/
-                try {
-                    return model.getValueAt(rowIndex, columnIndex).toString().toLowerCase();
-                } catch (NullPointerException e) {
-                    return null;
+        if (viewFilters.length != 0) {
+            tableRowSorter.setStringConverter(new TableStringConverter() {
+                @Override
+                /* This function change all elements of the list to lower case,
+                doing so is possible filter the rows ignoring cases.*/
+                public String toString(TableModel model, int row, int column) {
+                    try {
+                        return model.getValueAt(row, column).toString().toLowerCase();
+                    } catch (NullPointerException e) {
+                        return null;
+                    }
                 }
+            });
+            //viewFilters must to be on the same sequence of this model columns
+            int column = 1;
+            List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
+            for (String viewFilter : viewFilters) {
+                if (!viewFilter.isEmpty()) {
+                    filterTypes.add(RowFilter.regexFilter(viewFilter.toLowerCase(), column));
+                }
+                column++;
             }
-        });
-        List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
-        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 1));
-        // viewfilters[0] filter of name column
-        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 2));
-        // viewfilters[1] filter of CPF column
-        RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
-        tableRowSorter.setRowFilter(rowFilters);
-        filterJtable.setRowSorter(tableRowSorter);
+            RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
+            tableRowSorter.setRowFilter(rowFilters);
+            filterJtable.setRowSorter(tableRowSorter);
+        } else {
+            tableRowSorter.setRowFilter(RowFilter.regexFilter("", 2));
+            filterJtable.setRowSorter(tableRowSorter);
+        }
     }
 }

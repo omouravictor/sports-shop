@@ -25,7 +25,7 @@ public class SaleFormTbProductSearchModel extends AbstractTbModel<Product> {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        
+
         switch (columnIndex) {
             case 0:
                 return list.get(rowIndex).getNumInStock();
@@ -64,33 +64,36 @@ public class SaleFormTbProductSearchModel extends AbstractTbModel<Product> {
     }
 
     @Override
-    public void filter(JTable filterJtable, String[] viewfilters) {
+    public void filter(JTable filterJtable, String[] viewFilters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
-        tableRowSorter.setStringConverter(new TableStringConverter() {
-            @Override
-            public String toString(TableModel model, int rowIndex, int columnIndex) {
-                /* This function make all elements of the list starts to
-                lower case, doing so is possible filter the rows ignoring cases.*/
-                try {
-                    return model.getValueAt(rowIndex, columnIndex).toString().toLowerCase();
-                } catch (NullPointerException e) {
-                    return null;
+        if (viewFilters.length != 0) {
+            tableRowSorter.setStringConverter(new TableStringConverter() {
+                @Override
+                /* This function change all elements of the list to lower case,
+                doing so is possible filter the rows ignoring cases.*/
+                public String toString(TableModel model, int row, int column) {
+                    try {
+                        return model.getValueAt(row, column).toString().toLowerCase();
+                    } catch (NullPointerException e) {
+                        return null;
+                    }
                 }
+            });
+            //viewFilters must to be on the same sequence of this model columns
+            int column = 2;
+            List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
+            for (String viewFilter : viewFilters) {
+                if (!viewFilter.isEmpty()) {
+                    filterTypes.add(RowFilter.regexFilter(viewFilter.toLowerCase(), column));
+                }
+                column++;
             }
-        });
-        List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
-        filterTypes.add(RowFilter.regexFilter(viewfilters[0].toLowerCase(), 2));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[1].toLowerCase(), 3));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[2].toLowerCase(), 4));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[3].toLowerCase(), 5));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[4].toLowerCase(), 8));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[5].toLowerCase(), 10));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[6].toLowerCase(), 6));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[7].toLowerCase(), 7));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[8].toLowerCase(), 9));
-        filterTypes.add(RowFilter.regexFilter(viewfilters[9].toLowerCase(), 11));
-        RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
-        tableRowSorter.setRowFilter(rowFilters);
-        filterJtable.setRowSorter(tableRowSorter);
+            RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
+            tableRowSorter.setRowFilter(rowFilters);
+            filterJtable.setRowSorter(tableRowSorter);
+        } else {
+            tableRowSorter.setRowFilter(RowFilter.regexFilter("", 2));
+            filterJtable.setRowSorter(tableRowSorter);
+        }
     }
 }
