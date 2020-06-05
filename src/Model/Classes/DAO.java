@@ -1,6 +1,6 @@
 package Model.Classes;
 
-import Interfaces.IDAO;
+import Model.Interfaces.IDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

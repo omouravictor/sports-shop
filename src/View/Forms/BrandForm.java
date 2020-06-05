@@ -1,7 +1,7 @@
 package View.Forms;
 
 import Model.Classes.Brand;
-import Interfaces.IForms;
+import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 

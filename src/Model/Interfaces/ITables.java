@@ -1,4 +1,4 @@
-package Interfaces;
+package Model.Interfaces;
 
 import javax.swing.JTable;
 

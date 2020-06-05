@@ -15,7 +15,7 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
-import Interfaces.IForms;
+import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import java.text.ParseException;

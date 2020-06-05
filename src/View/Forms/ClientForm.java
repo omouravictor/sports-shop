@@ -2,7 +2,7 @@ package View.Forms;
 
 import static Model.Classes.CPFValidator.isValidCPF;
 import Model.Classes.Client;
-import Interfaces.IForms;
+import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 

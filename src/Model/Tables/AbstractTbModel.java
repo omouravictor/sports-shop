@@ -1,6 +1,6 @@
 package Model.Tables;
 
-import Interfaces.ITables;
+import Model.Interfaces.ITables;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

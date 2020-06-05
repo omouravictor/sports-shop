@@ -2,7 +2,7 @@ package View.Forms;
 
 import Model.Classes.Shirt;
 import Model.ComboBoxs.BrandComboBoxModel;
-import Interfaces.IForms;
+import Model.Interfaces.IForms;
 import Model.Classes.Brand;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;

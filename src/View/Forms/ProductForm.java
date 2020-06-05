@@ -3,7 +3,7 @@ package View.Forms;
 import Model.Classes.Product;
 import Model.ComboBoxs.BrandComboBoxModel;
 import Model.ComboBoxs.CategoryComboBoxModel;
-import Interfaces.IForms;
+import Model.Interfaces.IForms;
 import Model.Classes.Brand;
 import Model.Classes.Category;
 import Model.Classes.TxtModelsTypes;

@@ -1,4 +1,4 @@
-package Interfaces;
+package Model.Interfaces;
 
 public interface IForms<T> {
 
