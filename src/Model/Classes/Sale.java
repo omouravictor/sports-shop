@@ -2,8 +2,8 @@ package Model.Classes;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/*import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,28 +13,29 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;*/
-//@Entity
-//Table(name = "tbRequest")
+
+@Entity
+@Table(name = "tbRequest")
+
 public class Sale {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //@ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     private Client client;
 
-    //@ManyToMany
-    /*@JoinTable(name = "Requests_Products",
-    joinColumns = @JoinColumn(name = "Request_id"),
-    inverseJoinColumns = @JoinColumn(name = "Product_id"))*/
+    @ManyToMany
+    @JoinTable(name = "Requests_Products",
+            joinColumns = @JoinColumn(name = "Request_id"),
+            inverseJoinColumns = @JoinColumn(name = "Product_id"))
     private List<Product> productList = new ArrayList<>();
 
-    //@Column(length = 10) // 10 because of the mask
+    @Column(length = 10)
     private String requestDate;
 
-    //@Column(precision = 2)
+    @Column(precision = 2)
     private double requestCost;
 
     public Sale() {

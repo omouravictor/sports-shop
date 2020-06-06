@@ -19,8 +19,8 @@ public class TxtModelsTypes extends PlainDocument {
                     break;
                 case String:
                     this.txtType = txtType;
-                    this.maxCharacters = 255;
-                    // A Bank has a String length 255 by default
+                    this.maxCharacters = 100;
+                    // The Bank has a String length 100
                     break;
                 case CPF:
                     this.txtType = txtType;

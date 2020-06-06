@@ -1,18 +1,20 @@
 package Model.Classes;
 
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
-import javax.persistence.Enumerated;*/
-//@Entity
-//@DiscriminatorValue("Shirt")
+import javax.persistence.Enumerated;
+
+@Entity
+@DiscriminatorValue("Shirt")
+
 public class Shirt extends Product {
 
-    //@Column
+    @Column(length = 100, nullable = true)
     private String playerNameOnShirt = "------";
 
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Sleeves sleeves;
 
     public Shirt() {

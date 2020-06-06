@@ -1,6 +1,7 @@
 package Model.Classes;
 
-/*import javax.persistence.Column;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -10,46 +11,47 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;*/
+import javax.persistence.Table;
 
- /*@Entity
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "Type_Product", discriminatorType = DiscriminatorType.STRING)
-@Table(name = "tbProduct")*/
+@DiscriminatorColumn(name = "Product_Inheritance", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "tbProduct")
+
 public class Product {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //@ManyToOne
+    @ManyToOne(optional = false)
     private Category category;
 
-    //@ManyToOne
+    @ManyToOne(optional = false)
     private Brand brand;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String teamName;
 
-    //@Column
+    @Column(length = 100, nullable = true)
     private String playerPresent = "------";
 
-    //@Column
+    @Column(length = 100, nullable = true)
     private String numberPresent = "------";
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String sizeProduct;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String color;
 
-    //@Column(precision = 2)
+    @Column(nullable = false)
     private double cost = 0;
 
-    //@Column
+    @Column(nullable = false)
     private int quantity = 0;
 
-    //@Column
+    @Column(nullable = false)
     private int numInStock = 0;
 
     public Product() {

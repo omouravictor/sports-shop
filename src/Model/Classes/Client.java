@@ -1,47 +1,49 @@
 package Model.Classes;
 
-/*import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;*/
-//@Entity
-//@Table(name = "tbClient")
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbClient")
+
 public class Client {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String name;
 
-    //@Column(length = 11)
+    @Column(length = 11, nullable = false, unique = true)
     private String CPF;
 
-    //@Column(length = 14) // 14 because of the mask
+    @Column(length = 14, nullable = false)
     private String cellPhone;
 
-    //@Column
+    @Column(length = 100, nullable = true, unique = true)
     private String email = "------";
 
-    //@Column(length = 9) // 9 because of the mask
+    @Column(length = 9, nullable = false)
     private String zipCodeAddress;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String streetAddress;
 
-    //@Column
+    @Column(length = 9, nullable = false)
     private String numberAddress;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String neighborhoodAddress;
 
-    //@Column
+    @Column(length = 100, nullable = false)
     private String cityAddress;
 
-    //@Column
+    @Column(length = 2, nullable = false)
     private String stateAddress;
 
     public Client() {

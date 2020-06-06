@@ -12,32 +12,25 @@ public class DAO implements IDAO {
     protected EntityManager em;
 
     public DAO() {
-        factory = Persistence.createEntityManagerFactory("LojaPU");
-        em = getEntityManager();
-    }
-
-    public EntityManager getEntityManager() {
-        if (em == null) {
-            em = factory.createEntityManager();
-        }
-        return em;
+        factory = Persistence.createEntityManagerFactory("LojaEsportivaPU");
+        em = factory.createEntityManager();
     }
 
     @Override
-    public Object create(Object cli) {
+    public Object create(Object ob) {
         em.getTransaction().begin();
-        em.persist(cli);
+        em.persist(ob);
         em.getTransaction().commit();
-        em.refresh(cli);
-        return cli;
+        em.refresh(ob);
+        return ob;
     }
 
     @Override
-    public Object addUpdate(Object edited) {
+    public Object addUpdate(Object ob) {
         em.getTransaction().begin();
-        edited = (Object) this.getEntityManager().merge(edited);
+        ob = (Object) em.merge(ob);
         em.getTransaction().commit();
-        return edited;
+        return ob;
     }
 
     @Override
@@ -75,5 +68,13 @@ public class DAO implements IDAO {
         cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(Object.class));
         return em.createQuery(cq).getResultList();
+    }
+
+    public EntityManagerFactory getFactory() {
+        return factory;
+    }
+
+    public EntityManager getEm() {
+        return em;
     }
 }
