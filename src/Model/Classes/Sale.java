@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbRequest")
+@Table(name = "tbSale")
 
 public class Sale {
 
@@ -27,28 +27,28 @@ public class Sale {
     private Client client;
 
     @ManyToMany
-    @JoinTable(name = "Requests_Products",
-            joinColumns = @JoinColumn(name = "Request_id"),
+    @JoinTable(name = "Sales_Products",
+            joinColumns = @JoinColumn(name = "Sale_id"),
             inverseJoinColumns = @JoinColumn(name = "Product_id"))
     private List<Product> productList = new ArrayList<>();
 
     @Column(length = 10)
-    private String requestDate;
+    private String saleDate;
 
     @Column(precision = 2)
-    private double requestCost;
+    private double saleCost;
 
     public Sale() {
     }
 
-    public Sale(Client client, List<Product> productList, String requestDate) {
+    public Sale(Client client, List<Product> productList, String saleDate) {
         this.client = client;
         this.productList = productList;
-        this.requestDate = requestDate;
-        this.setRequestCost(calcRequestCost());
+        this.saleDate = saleDate;
+        this.setSaleCost(calcSaleCost());
     }
 
-    public double calcRequestCost() {
+    public double calcSaleCost() {
         if (!productList.isEmpty()) {
             double total = 0;
             for (int i = 0; i < productList.size(); i++) {
@@ -71,8 +71,8 @@ public class Sale {
         return client;
     }
 
-    public void setClient(Client requestClient) {
-        this.client = requestClient;
+    public void setClient(Client saleClient) {
+        this.client = saleClient;
     }
 
     public List<Product> getProductList() {
@@ -87,19 +87,19 @@ public class Sale {
         this.productList.add(product);
     }
 
-    public String getRequestDate() {
-        return requestDate;
+    public String getSaleDate() {
+        return saleDate;
     }
 
-    public void setRequestCost(double requestCost) {
-        this.requestCost = requestCost;
+    public void setSaleCost(double saleCost) {
+        this.saleCost = saleCost;
     }
 
-    public void setRequestDate(String requestDate) {
-        this.requestDate = requestDate;
+    public void setSaleDate(String saleDate) {
+        this.saleDate = saleDate;
     }
 
-    public double getRequestCost() {
-        return requestCost;
+    public double getSaleCost() {
+        return saleCost;
     }
 }

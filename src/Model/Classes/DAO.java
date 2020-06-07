@@ -17,20 +17,27 @@ public class DAO implements IDAO {
     }
 
     @Override
-    public Object create(Object ob) {
-        em.getTransaction().begin();
-        em.persist(ob);
-        em.getTransaction().commit();
-        em.refresh(ob);
-        return ob;
+    public boolean create(Object toCreate) {
+        try {
+            em.getTransaction().begin();
+            em.persist(toCreate);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
-    public Object addUpdate(Object ob) {
-        em.getTransaction().begin();
-        ob = (Object) em.merge(ob);
-        em.getTransaction().commit();
-        return ob;
+    public boolean update(Object ob) {
+        try {
+            em.getTransaction().begin();
+            em.merge(ob);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -40,33 +47,22 @@ public class DAO implements IDAO {
             em.remove(toDelete);
             em.getTransaction().commit();
             return true;
-        } catch (Error | Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     @Override
-    public Object findById(int id) {
-        Object item = em.find(Object.class, id);
-        return item;
+    public Object getObjectById(Class classToLookFor, long id) {
+        Object obFinded = em.find(classToLookFor, id);
+        return obFinded;
     }
 
     @Override
-    public Object findById(long id) {
-        Object item = em.find(Object.class, id);
-        return item;
-    }
-
-    @Override
-    public List<Object> find(List<Object> t) {
-        return null;
-    }
-
-    @Override
-    public List<Object> findAll() {
+    public List<Object> getAllObjects(Class classToLookFor) {
         javax.persistence.criteria.CriteriaQuery cq;
         cq = em.getCriteriaBuilder().createQuery();
-        cq.select(cq.from(Object.class));
+        cq.select(cq.from(classToLookFor));
         return em.createQuery(cq).getResultList();
     }
 
