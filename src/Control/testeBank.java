@@ -1,12 +1,12 @@
 package Control;
 
-import Model.Classes.DAO;
+import Model.DAO.ShopDAO;
 
 public class testeBank {
 
     public static void main(String[] args) {
 
-        DAO dao = new DAO();
+        ShopDAO dao = new ShopDAO();
 
     }
 }

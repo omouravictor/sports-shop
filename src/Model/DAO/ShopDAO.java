@@ -1,4 +1,4 @@
-package Model.Classes;
+package Model.DAO;
 
 import Model.Interfaces.IDAO;
 import java.util.List;
@@ -6,12 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DAO implements IDAO {
+public class ShopDAO implements IDAO {
 
     protected EntityManagerFactory factory;
     protected EntityManager em;
 
-    public DAO() {
+    public ShopDAO() {
         factory = Persistence.createEntityManagerFactory("LojaEsportivaPU");
         em = factory.createEntityManager();
     }
