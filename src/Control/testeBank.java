@@ -6,7 +6,7 @@ public class testeBank {
 
     public static void main(String[] args) {
 
-        ShopDAO dao = new ShopDAO();
+        //ShopDAO dao = new ShopDAO();
 
     }
 }
