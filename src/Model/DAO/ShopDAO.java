@@ -17,7 +17,7 @@ public class ShopDAO implements IDAO {
     }
 
     @Override
-    public boolean create(Object toCreate) {
+    public boolean createInBank(Object toCreate) {
         try {
             em.getTransaction().begin();
             em.persist(toCreate);
@@ -29,7 +29,7 @@ public class ShopDAO implements IDAO {
     }
 
     @Override
-    public boolean update(Object ob) {
+    public boolean updateInBank(Object ob) {
         try {
             em.getTransaction().begin();
             em.merge(ob);
@@ -41,7 +41,7 @@ public class ShopDAO implements IDAO {
     }
 
     @Override
-    public boolean delete(Object toDelete) {
+    public boolean deleteInBank(Object toDelete) {
         try {
             em.getTransaction().begin();
             em.remove(toDelete);
@@ -53,13 +53,13 @@ public class ShopDAO implements IDAO {
     }
 
     @Override
-    public Object getObjectById(Class classToLookFor, long id) {
+    public Object getFromBankById(Class classToLookFor, long id) {
         Object obFinded = em.find(classToLookFor, id);
         return obFinded;
     }
 
     @Override
-    public List<Object> getAllObjects(Class classToLookFor) {
+    public List<Object> getAllFromBank(Class classToLookFor) {
         javax.persistence.criteria.CriteriaQuery cq;
         cq = em.getCriteriaBuilder().createQuery();
         cq.select(cq.from(classToLookFor));

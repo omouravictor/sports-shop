@@ -1,13 +1,14 @@
 package View.Forms;
 
-import Model.Classes.Shirt;
+import Model.Classes.AbstractJFrame;
+import Model.Entities.Shirt;
 import Model.ComboBoxs.BrandComboBoxModel;
 import Model.Interfaces.IForms;
-import Model.Classes.Brand;
+import Model.Entities.Brand;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class ShirtForm extends AbstractForm implements IForms<Shirt> {
+public class ShirtForm extends AbstractJFrame implements IForms<Shirt> {
 
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
 
@@ -325,7 +326,7 @@ public class ShirtForm extends AbstractForm implements IForms<Shirt> {
     }
 
     @Override
-    public boolean checkEmptyFields() {
+    public boolean fieldsAreEmpty() {
         if (brandComboBoxModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty()
                 || txtColor.getText().isEmpty()
@@ -334,9 +335,9 @@ public class ShirtForm extends AbstractForm implements IForms<Shirt> {
                 || "".equals(txtCost.getText())
                 || (!rbLong.isSelected() && !rbShort.isSelected())) {
             showErrorMessage("Fill all the required fields.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean checkPlayerPresentAndPlayerNameOnShirt() {
@@ -352,7 +353,7 @@ public class ShirtForm extends AbstractForm implements IForms<Shirt> {
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkPlayerPresentAndPlayerNameOnShirt();
+        return !fieldsAreEmpty() && checkPlayerPresentAndPlayerNameOnShirt();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
@@ -382,4 +383,14 @@ public class ShirtForm extends AbstractForm implements IForms<Shirt> {
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Shirt getObjectCreated() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Shirt getObjectUpdated(Shirt oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -1,15 +1,16 @@
 package View.Forms;
 
-import Model.Classes.Product;
+import Model.Classes.AbstractJFrame;
+import Model.Entities.Product;
 import Model.ComboBoxs.BrandComboBoxModel;
 import Model.ComboBoxs.CategoryComboBoxModel;
 import Model.Interfaces.IForms;
-import Model.Classes.Brand;
-import Model.Classes.Category;
+import Model.Entities.Brand;
+import Model.Entities.Category;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class ProductForm extends AbstractForm implements IForms<Product> {
+public class ProductForm extends AbstractJFrame implements IForms<Product> {
 
     private final CategoryComboBoxModel categoryComboBoxModel = new CategoryComboBoxModel();
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
@@ -280,7 +281,7 @@ public class ProductForm extends AbstractForm implements IForms<Product> {
     }
 
     @Override
-    public boolean checkEmptyFields() {
+    public boolean fieldsAreEmpty() {
         if (categoryComboBoxModel.getSelectedItem() == null
                 || brandComboBoxModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty()
@@ -289,14 +290,14 @@ public class ProductForm extends AbstractForm implements IForms<Product> {
                 || txtTeam.getText().isEmpty()
                 || "".equals(txtCost.getText())) {
             showErrorMessage("Fill all the required fields.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields();
+        return !fieldsAreEmpty();
     }
 
     public void initSetup() {
@@ -340,4 +341,15 @@ public class ProductForm extends AbstractForm implements IForms<Product> {
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
+
+
+    @Override
+    public Product getObjectCreated() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Product getObjectUpdated(Product oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

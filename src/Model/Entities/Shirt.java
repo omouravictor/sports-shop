@@ -1,5 +1,6 @@
-package Model.Classes;
+package Model.Entities;
 
+import Model.Classes.Sleeves;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

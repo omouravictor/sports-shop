@@ -1,12 +1,15 @@
 package View.Forms;
 
-import Model.Classes.Category;
+import Model.Classes.AbstractJFrame;
+import Model.Entities.Category;
 import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class CategoryForm extends AbstractForm implements IForms<Category> {
+public class CategoryForm extends AbstractJFrame implements IForms<Category> {
 
+    private boolean confirm;
+    
     public CategoryForm() {
         initComponents();
         initSetup();
@@ -93,6 +96,7 @@ public class CategoryForm extends AbstractForm implements IForms<Category> {
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
+            confirm = true;
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
@@ -129,9 +133,31 @@ public class CategoryForm extends AbstractForm implements IForms<Category> {
         setTxtModels();
     }
     
+    public void prepareCreate() {
+        btOk.setVisible(true);
+        btOk.setText("Create");
+        btCancel.setVisible(true);
+        btCancel.setText("Cancel");
+        txtName.setEditable(true);
+        txtName.setText("");
+    }
+
     @Override
     public Category create() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareCreate();
+        
+        this.setVisible(true);
+        
+        if (confirm == true) {
+            return getObjectCreated();
+        }
+        return null;
+    }
+
+    @Override
+    public Category getObjectCreated() {
+        Category cate = new Category(txtName.getText());
+        return cate;
     }
 
     @Override
@@ -150,17 +176,17 @@ public class CategoryForm extends AbstractForm implements IForms<Category> {
     }
 
     @Override
-    public boolean checkEmptyFields() {
+    public boolean fieldsAreEmpty() {
         if (txtName.getText().isEmpty()) {
             showErrorMessage("Fill the field 'Name'.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields();
+        return !fieldsAreEmpty();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
@@ -169,4 +195,9 @@ public class CategoryForm extends AbstractForm implements IForms<Category> {
     private javax.swing.JLabel labTitle;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Category getObjectUpdated(Category oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -1,11 +1,12 @@
 package View.Forms;
 
-import Model.Classes.Brand;
-import Model.Classes.Category;
-import Model.Classes.Client;
-import Model.Classes.Product;
-import Model.Classes.Sale;
-import Model.Classes.Shirt;
+import Model.Classes.AbstractJFrame;
+import Model.Entities.Brand;
+import Model.Entities.Category;
+import Model.Entities.Client;
+import Model.Entities.Product;
+import Model.Entities.Sale;
+import Model.Entities.Shirt;
 import Model.Classes.Sleeves;
 import Model.Tables.SaleFormTbClientSearchModel;
 import Model.Tables.SaleFormTbProductSearchModel;
@@ -23,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SpinnerNumberModel;
 
-public class SaleForm extends AbstractForm implements IForms<Sale> {
+public class SaleForm extends AbstractJFrame implements IForms<Sale> {
 
     SaleFormTbClientSearchModel tbClientSearchModel = new SaleFormTbClientSearchModel();
     SaleFormTbProductSearchModel tbProductSearchModel = new SaleFormTbProductSearchModel();
@@ -755,19 +756,19 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     @Override
-    public boolean checkEmptyFields() {
+    public boolean fieldsAreEmpty() {
         if ("  /  /    ".equals(txtDate.getText())
                 || !clientIsAdded()
                 || !productsAreAdded()) {
             showErrorMessage("Fill all the required fields.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields();
+        return !fieldsAreEmpty();
     }
 
     public void initSetup() {
@@ -855,10 +856,6 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
         return tbAddedClient.getRowCount() != 0;
     }
 
-    public boolean tbProductSearchIsSelected() {
-        return tbProductSearch.getSelectedRow() != -1;
-    }
-
     public boolean productsAreAdded() {
         return tbAddedProducts.getRowCount() != 0;
     }
@@ -876,12 +873,9 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     public Product getProductSelectedInTbSearchProduct() {
-        if (tbProductSearchIsSelected()) {
-            int row = tbProductSearch.getSelectedRow();
-            Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
-            return selectedProduct;
-        }
-        return null;
+        int row = tbProductSearch.getSelectedRow();
+        Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
+        return selectedProduct;
     }
 
     public int getSpQuantity() {
@@ -890,7 +884,7 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     public void updateCostByProductValue() throws ParseException {
-        if (tbProductSearchIsSelected()) {
+        if (rowIsSelected(tbProductSearch)) {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             double costByProduct = qtd * selectedProduct.getCost();
@@ -917,7 +911,7 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     }
 
     public void productAddButtonAction() {
-        if (tbProductSearchIsSelected()) {
+        if (rowIsSelected(tbProductSearch)) {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             if (tbAddedProductModel.getList().contains(selectedProduct)) {
@@ -1059,4 +1053,14 @@ public class SaleForm extends AbstractForm implements IForms<Sale> {
     private javax.swing.JTextField txtTeam;
     private javax.swing.JFormattedTextField txtTotalCost;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Sale getObjectCreated() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Sale getObjectUpdated(Sale oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

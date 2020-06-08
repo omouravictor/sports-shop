@@ -1,6 +1,6 @@
 package Model.Tables;
 
-import Model.Classes.Client;
+import Model.Entities.Client;
 import java.util.List;
 import javax.swing.JTable;
 

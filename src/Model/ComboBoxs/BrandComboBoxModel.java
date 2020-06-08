@@ -1,6 +1,6 @@
 package Model.ComboBoxs;
 
-import Model.Classes.Brand;
+import Model.Entities.Brand;
 
 public class BrandComboBoxModel extends AbstractComboBoxModel<Brand> {
 

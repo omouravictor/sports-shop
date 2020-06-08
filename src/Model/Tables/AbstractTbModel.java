@@ -26,9 +26,9 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
     }
 
     @Override
-    public void addObjectRow(T product) {
-        if (product != null) {
-            list.add(product);
+    public void addObjectRow(T t) {
+        if (t != null) {
+            list.add(t);
             this.fireTableRowsInserted(0, list.size());
         }
     }

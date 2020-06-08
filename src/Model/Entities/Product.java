@@ -1,4 +1,4 @@
-package Model.Classes;
+package Model.Entities;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;

@@ -10,7 +10,11 @@ public interface IForms<T> {
     
     public void setTxtModels();
 
-    public boolean checkEmptyFields();
+    public boolean fieldsAreEmpty();
 
     public boolean checkAll();
+    
+    public T getObjectCreated();
+    
+    public T getObjectUpdated(T oldT);
 }

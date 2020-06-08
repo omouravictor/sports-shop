@@ -2,12 +2,12 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="LojaEsportivaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>Model.Classes.Brand</class>
-    <class>Model.Classes.Category</class>
-    <class>Model.Classes.Client</class>
-    <class>Model.Classes.Product</class>
-    <class>Model.Classes.Sale</class>
-    <class>Model.Classes.Shirt</class>
+    <class>Model.Entities.Brand</class>
+    <class>Model.Entities.Sale</class>
+    <class>Model.Entities.Client</class>
+    <class>Model.Entities.Product</class>
+    <class>Model.Entities.Category</class>
+    <class>Model.Entities.Shirt</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lojaesportivabank?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

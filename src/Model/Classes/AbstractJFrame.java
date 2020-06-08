@@ -1,11 +1,12 @@
-package View.Forms;
+package Model.Classes;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.text.NumberFormatter;
 
-public abstract class AbstractForm extends javax.swing.JFrame {
+public abstract class AbstractJFrame extends javax.swing.JFrame {
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -55,6 +56,11 @@ public abstract class AbstractForm extends javax.swing.JFrame {
         NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
         return numFormatter.valueToString(totalCost);
     }
+    
+    public boolean rowIsSelected(JTable tbToVerifyFor) {
+        return tbToVerifyFor.getSelectedRow() != -1;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

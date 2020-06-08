@@ -1,12 +1,13 @@
 package View.Forms;
 
+import Model.Classes.AbstractJFrame;
 import static Model.Classes.CPFValidator.isValidCPF;
-import Model.Classes.Client;
+import Model.Entities.Client;
 import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 
-public class ClientForm extends AbstractForm implements IForms<Client> {
+public class ClientForm extends AbstractJFrame implements IForms<Client> {
 
     public ClientForm() {
         initComponents();
@@ -293,7 +294,7 @@ public class ClientForm extends AbstractForm implements IForms<Client> {
     }
 
     @Override
-    public boolean checkEmptyFields() {
+    public boolean fieldsAreEmpty() {
         //Email is not required. That's why it's not here
         //CPF has other verification type (checkCPF). That's why it's not here
         if (txtName.getText().isEmpty()
@@ -305,9 +306,9 @@ public class ClientForm extends AbstractForm implements IForms<Client> {
                 || "(  )     -    ".equals(txtCellPhone.getText())
                 || "     -   ".equals(txtZipCodeAddress.getText())) {
             showErrorMessage("Fill all the required fields.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public boolean checkCPF() {
@@ -323,7 +324,7 @@ public class ClientForm extends AbstractForm implements IForms<Client> {
 
     @Override
     public boolean checkAll() {
-        return checkEmptyFields() && checkCPF();
+        return !fieldsAreEmpty() && checkCPF();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
@@ -350,4 +351,14 @@ public class ClientForm extends AbstractForm implements IForms<Client> {
     private javax.swing.JTextField txtStreetAddress;
     private javax.swing.JFormattedTextField txtZipCodeAddress;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Client getObjectCreated() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Client getObjectUpdated(Client oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
