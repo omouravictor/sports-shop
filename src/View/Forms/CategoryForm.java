@@ -1,12 +1,11 @@
 package View.Forms;
 
-import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.Entities.Category;
 import Model.Interfaces.IForms;
 
-public class CategoryForm extends AbstractJDialog<Category> implements IForms<Category> {
+public class CategoryForm extends AbstractForm<Category> implements IForms<Category> {
 
     private boolean isConfirmed = false;
 
@@ -151,10 +150,14 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
         setTxtModels();
     }
 
-    public void prepareCreate() {
+    public void setVisibleAll() {
         btOk.setVisible(true);
-        btOk.setText("Create");
         btCancel.setVisible(true);
+    }
+
+    public void prepareCreate() {
+        setVisibleAll();
+        btOk.setText("Create");
         btCancel.setText("Cancel");
         txtName.setEditable(true);
         txtName.setText("");
@@ -191,9 +194,8 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
     }
 
     public void prepareUpdate(Category oldCategory) {
-        btOk.setVisible(true);
+        setVisibleAll();
         btOk.setText("Update");
-        btCancel.setVisible(true);
         btCancel.setText("Cancel");
         txtName.setEditable(true);
         txtName.setText(oldCategory.getName());

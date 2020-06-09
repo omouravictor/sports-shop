@@ -1,12 +1,11 @@
 package View.Forms;
 
-import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.Entities.Brand;
 import Model.Interfaces.IForms;
 
-public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
+public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
 
     private boolean isConfirmed = false;
 
@@ -145,11 +144,15 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     public void initSetup() {
         setTxtModels();
     }
+    
+    public void setVisibleAll(){
+        btOk.setVisible(true);
+        btCancel.setVisible(true);
+    }
 
     public void prepareCreate() {
-        btOk.setVisible(true);
+        setVisibleAll();
         btOk.setText("Create");
-        btCancel.setVisible(true);
         btCancel.setText("Cancel");
         txtName.setEditable(true);
         txtName.setText("");
@@ -186,9 +189,8 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     }
 
     public void prepareUpdate(Brand oldBrand) {
-        btOk.setVisible(true);
+        setVisibleAll();
         btOk.setText("Update");
-        btCancel.setVisible(true);
         btCancel.setText("Cancel");
         txtName.setEditable(true);
         txtName.setText(oldBrand.getName());

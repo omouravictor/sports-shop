@@ -42,6 +42,15 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
     }
 
     @Override
+    public void removeObjectRow(T t) {
+        if (t != null) {
+            list.remove(t);
+            int rowToDelete = list.indexOf(t);
+            this.fireTableRowsDeleted(rowToDelete, rowToDelete);
+        }
+    }
+
+    @Override
     public void updateObjectRow(T oldT, T updatedT) {
         if (oldT != null && updatedT != null) {
             int rowToUpdate = list.indexOf(oldT);

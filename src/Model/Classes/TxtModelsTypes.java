@@ -20,12 +20,10 @@ public class TxtModelsTypes extends PlainDocument {
                 case String:
                     this.txtType = txtType;
                     this.maxCharacters = 100;
-                    // The Bank has a String length 100
                     break;
                 case CPF:
                     this.txtType = txtType;
                     this.maxCharacters = 11;
-                    // A CPF has 11 numbers
                     break;
             }
         }

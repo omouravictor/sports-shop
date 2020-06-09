@@ -1,6 +1,5 @@
 package View.Forms;
 
-import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.BrandComboBoxModel;
@@ -10,7 +9,7 @@ import Model.Entities.Category;
 import Model.Entities.Product;
 import Model.Interfaces.IForms;
 
-public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
+public class ProductForm extends AbstractForm<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
     private final CategoryComboBoxModel categoryComboBoxModel = new CategoryComboBoxModel();

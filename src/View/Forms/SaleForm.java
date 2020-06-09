@@ -1,6 +1,5 @@
 package View.Forms;
 
-import Model.Classes.AbstractJDialog;
 import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
@@ -24,7 +23,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
+public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
 
     private boolean isConfirmed = false;
     SaleFormTbClientSearchModel tbClientSearchModel = new SaleFormTbClientSearchModel();
@@ -1922,7 +1921,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             double costByProduct = qtd * selectedProduct.getCost();
-            String costFormatted = this.costFormatters(costByProduct);
+            String costFormatted = this.formatCost(costByProduct);
             txtCostByProduct.setText(costFormatted);
         } else {
             resetCostAndQtdByProduct();
@@ -1938,7 +1937,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 int productQtd = addedProducts.get(i).getQuantity();
                 totalCost += productCost * productQtd;
             }
-            txtTotalCost.setText(this.costFormatters(totalCost));
+            txtTotalCost.setText(this.formatCost(totalCost));
         } else {
             txtTotalCost.setText("R$ 0,00");
         }

@@ -1,13 +1,12 @@
 package View.Forms;
 
-import Model.Classes.AbstractJDialog;
 import static Model.Classes.CPFValidator.isValidCPF;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.Entities.Client;
 import Model.Interfaces.IForms;
 
-public class ClientForm extends AbstractJDialog<Client> implements IForms<Client> {
+public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
 
     private boolean isConfirmed = false;
 
@@ -233,11 +232,13 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
+            isConfirmed = true;
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 

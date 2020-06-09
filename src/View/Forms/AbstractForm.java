@@ -1,4 +1,4 @@
-package Model.Classes;
+package View.Forms;
 
 import Model.Tables.AbstractTbModel;
 import java.text.DecimalFormat;
@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.text.NumberFormatter;
 
-public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
+public abstract class AbstractForm<T> extends javax.swing.JDialog {
 
-    public AbstractJDialog(java.awt.Frame parent, boolean modal) {
+    public AbstractForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -34,49 +34,28 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public boolean checkIfIsAIntengerNumber(String txtText) {
-        try {
-            Long num = Long.parseLong(txtText);//Long just accept intenger numbers
-            return true;
-        } catch (NumberFormatException e) {
-            showErrorMessage("'" + txtText + "'" + " is not a intenger number.");
-            return false;
-        }
-    }
-
-    public boolean checkIfIsADoubleNumber(String txtText) {
-        try {
-            double num = Double.parseDouble(txtText);
-            return true;
-        } catch (NumberFormatException e) {
-            showErrorMessage("'" + txtText + "'" + " is not a double number.");
-            return false;
-        }
-    }
-
     public void showErrorMessage(String erroMsg) {
         JOptionPane.showMessageDialog(null, erroMsg, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-    public String costFormatters(double totalCost) throws ParseException {
+    public String formatCost(double totalCost) throws ParseException {
         NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
         return numFormatter.valueToString(totalCost);
     }
 
-    public boolean rowIsSelected(JTable tbToVerifyFor) {
-        return tbToVerifyFor.getSelectedRow() != -1;
+    public boolean rowIsSelected(JTable tbToLookFor) {
+        return tbToLookFor.getSelectedRow() != -1;
     }
 
-    public void clearSelectedRows(JTable tbToVerifyFor) {
-        tbToVerifyFor.getSelectionModel().clearSelection();
+    public void clearSelectedRows(JTable tbToLookFor) {
+        tbToLookFor.getSelectionModel().clearSelection();
     }
 
-    public T getObjectSelectedInTb(JTable tbToVerifyFor, AbstractTbModel tbModelToVerify) {
-        int row = tbToVerifyFor.getSelectedRow();
-        T selectedObject = (T) tbModelToVerify.getObjectByRow(row);
+    public T getObjectSelectedInTb(JTable tbToLookFor, AbstractTbModel tbModelToLookFor) {
+        int row = tbToLookFor.getSelectedRow();
+        T selectedObject = (T) tbModelToLookFor.getObjectByRow(row);
         return selectedObject;
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
