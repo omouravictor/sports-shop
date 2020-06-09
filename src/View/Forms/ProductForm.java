@@ -1,21 +1,23 @@
 package View.Forms;
 
-import Model.Classes.AbstractJFrame;
-import Model.Entities.Product;
-import Model.ComboBoxs.BrandComboBoxModel;
-import Model.ComboBoxs.CategoryComboBoxModel;
-import Model.Interfaces.IForms;
-import Model.Entities.Brand;
-import Model.Entities.Category;
+import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import Model.ComboBoxs.BrandComboBoxModel;
+import Model.ComboBoxs.CategoryComboBoxModel;
+import Model.Entities.Brand;
+import Model.Entities.Category;
+import Model.Entities.Product;
+import Model.Interfaces.IForms;
 
-public class ProductForm extends AbstractJFrame implements IForms<Product> {
+public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
+    private boolean isConfirmed = false;
     private final CategoryComboBoxModel categoryComboBoxModel = new CategoryComboBoxModel();
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
 
-    public ProductForm() {
+    public ProductForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         initSetup();
         Category c1 = new Category("Shirt");
@@ -55,7 +57,7 @@ public class ProductForm extends AbstractJFrame implements IForms<Product> {
         txtColor = new javax.swing.JTextField();
         labColor = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -121,7 +123,7 @@ public class ProductForm extends AbstractJFrame implements IForms<Product> {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(384, 408, Short.MAX_VALUE))
+                        .addGap(384, 452, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -247,9 +249,145 @@ public class ProductForm extends AbstractJFrame implements IForms<Product> {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ProductForm().setVisible(true);
+                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -341,7 +479,6 @@ public class ProductForm extends AbstractJFrame implements IForms<Product> {
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
-
 
     @Override
     public Product getObjectCreated() {

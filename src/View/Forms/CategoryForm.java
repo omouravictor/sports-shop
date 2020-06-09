@@ -1,16 +1,17 @@
 package View.Forms;
 
-import Model.Classes.AbstractJFrame;
-import Model.Entities.Category;
-import Model.Interfaces.IForms;
+import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import Model.Entities.Category;
+import Model.Interfaces.IForms;
 
-public class CategoryForm extends AbstractJFrame implements IForms<Category> {
+public class CategoryForm extends AbstractJDialog<Category> implements IForms<Category> {
 
-    private boolean confirm;
-    
-    public CategoryForm() {
+    private boolean isConfirmed = false;
+
+    public CategoryForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         initSetup();
     }
@@ -25,7 +26,7 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
         btOk = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -58,19 +59,19 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btCancel)
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(labTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labTitle)))
+                .addGap(18, 18, 18)
+                .addComponent(btCancel)
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87))
@@ -80,11 +81,11 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(labTitle)
-                .addGap(52, 52, 52)
+                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -96,12 +97,13 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
-            confirm = true;
+            isConfirmed = true;
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -122,17 +124,33 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CategoryForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryForm().setVisible(true);
+                CategoryForm dialog = new CategoryForm(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
-    public void initSetup(){
+    public void initSetup() {
         setTxtModels();
     }
-    
+
     public void prepareCreate() {
         btOk.setVisible(true);
         btOk.setText("Create");
@@ -143,33 +161,61 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
     }
 
     @Override
+    public Category getObjectCreated() {
+        Category category = new Category(txtName.getText());
+        return category;
+    }
+
+    @Override
     public Category create() {
         prepareCreate();
-        
         this.setVisible(true);
-        
-        if (confirm == true) {
+        if (isConfirmed) {
             return getObjectCreated();
         }
         return null;
     }
 
-    @Override
-    public Category getObjectCreated() {
-        Category cate = new Category(txtName.getText());
-        return cate;
+    public void prepareRead() {
+        btOk.setVisible(false);
+        btCancel.setVisible(true);
+        btCancel.setText("Close");
+        txtName.setEditable(false);
     }
 
     @Override
-    public void read(Category t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void read(Category category) {
+        prepareRead();
+        txtName.setText(category.getName());
+        this.setVisible(true);
+    }
+
+    public void prepareUpdate(Category oldCategory) {
+        btOk.setVisible(true);
+        btOk.setText("Update");
+        btCancel.setVisible(true);
+        btCancel.setText("Cancel");
+        txtName.setEditable(true);
+        txtName.setText(oldCategory.getName());
     }
 
     @Override
-    public Category update(Category t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Category update(Category oldCategory) {
+        prepareUpdate(oldCategory);
+        this.setVisible(true);
+        if (isConfirmed) {
+            return getObjectUpdated(oldCategory);
+        }
+        return null;
     }
-    
+
+    @Override
+    public Category getObjectUpdated(Category oldCategory) {
+        Category updatedCategory = oldCategory;
+        updatedCategory.setName(txtName.getText());
+        return updatedCategory;
+    }
+
     @Override
     public void setTxtModels() {
         txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
@@ -195,9 +241,4 @@ public class CategoryForm extends AbstractJFrame implements IForms<Category> {
     private javax.swing.JLabel labTitle;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Category getObjectUpdated(Category oldT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

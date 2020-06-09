@@ -42,11 +42,11 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
     }
 
     @Override
-    public void updateObjectRow(T oldT, T newT) {
-        if (oldT != null && newT != null) {
+    public void updateObjectRow(T oldT, T updatedT) {
+        if (oldT != null && updatedT != null) {
             int rowToUpdate = list.indexOf(oldT);
             if (rowToUpdate != -1) {
-                list.set(rowToUpdate, newT);
+                list.set(rowToUpdate, updatedT);
                 this.fireTableRowsUpdated(rowToUpdate, rowToUpdate);
             }
         }

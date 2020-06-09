@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="rbSleevesGroup">
-    </Component>
-  </NonVisualComponents>
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -47,19 +43,19 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="labCost1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labNumStock" min="-2" max="-2" attributes="0"/>
+                          <Component id="labNumStock" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="txtNumStock" min="-2" pref="51" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtSize" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="txtCost" min="-2" pref="80" max="-2" attributes="0"/>
-                                  <Component id="cbBrand" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Component id="txtSize" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="txtCost" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                  <Component id="cbBrand" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           </Group>
@@ -67,13 +63,13 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="labTitle" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Component id="labTitle" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="labSleeves" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="rbShort" min="-2" max="-2" attributes="0"/>
-                                  <Component id="rbLong" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbShort" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbLong" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -81,17 +77,17 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labPlayerNameOnShirt" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labNumberPresent" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labPlayerNameOnShirt" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labNumberPresent" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPlayerNameOnShirt" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <Component id="txtNumberPresent" min="-2" pref="51" max="-2" attributes="0"/>
+                                  <Component id="txtPlayerNameOnShirt" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="txtNumberPresent" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                                   <Component id="txtColor" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -102,14 +98,14 @@
                               </Group>
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtTeam" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="txtPlayerPresent" min="-2" pref="105" max="-2" attributes="0"/>
+                                  <Component id="txtTeam" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Component id="txtPlayerPresent" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="labColor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -119,7 +115,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="labTitle" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -160,11 +156,11 @@
                                   <Component id="labNumberPresent" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtNumberPresent" alignment="3" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="15" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="rbShort" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -314,17 +310,11 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbShort">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="rbSleevesGroup"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Short"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbLong">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="rbSleevesGroup"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Long"/>
       </Properties>
     </Component>

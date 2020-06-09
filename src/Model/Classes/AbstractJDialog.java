@@ -1,12 +1,13 @@
 package Model.Classes;
 
+import Model.Tables.AbstractTbModel;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.text.NumberFormatter;
 
-public abstract class AbstractJDialog extends javax.swing.JDialog {
+public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
 
     public AbstractJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -56,16 +57,26 @@ public abstract class AbstractJDialog extends javax.swing.JDialog {
     public void showErrorMessage(String erroMsg) {
         JOptionPane.showMessageDialog(null, erroMsg, "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     public String costFormatters(double totalCost) throws ParseException {
         NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
         return numFormatter.valueToString(totalCost);
     }
-    
+
     public boolean rowIsSelected(JTable tbToVerifyFor) {
         return tbToVerifyFor.getSelectedRow() != -1;
     }
-    
+
+    public void clearSelectedRows(JTable tbToVerifyFor) {
+        tbToVerifyFor.getSelectionModel().clearSelection();
+    }
+
+    public T getObjectSelectedInTb(JTable tbToVerifyFor, AbstractTbModel tbModelToVerify) {
+        int row = tbToVerifyFor.getSelectedRow();
+        T selectedObject = (T) tbModelToVerify.getObjectByRow(row);
+        return selectedObject;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

@@ -12,24 +12,20 @@ public class BrandControl {
 
     public Brand create() {
         Brand newBrand = brandForm.create();
-        if (newBrand != null) {
-            return newBrand;
-        }
-        return null;
+        return newBrand;
     }
 
     public void read(Brand brand) {
-        if (brand != null) {
-            brandForm.read(brand);
-        }
+        brandForm.read(brand);
     }
 
-    public Brand update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Brand update(Brand brand) {
+        Brand updatedBrand = brandForm.update(brand);
+        return updatedBrand;
     }
 
-    public Brand delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean delete(Brand brand) {
+        return brand != null;
     }
 
 }

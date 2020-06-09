@@ -1,11 +1,7 @@
 package View.MainScreen;
 
-import View.Forms.CategoryForm;
-
 public class MainScreen extends javax.swing.JFrame {
 
-    CategoryForm a = new CategoryForm();
-    
     public MainScreen() {
         initComponents();
     }
@@ -51,7 +47,6 @@ public class MainScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDActionPerformed
-        a.setVisible(true);
     }//GEN-LAST:event_menuItemCRUDActionPerformed
 
     public static void main(String args[]) {

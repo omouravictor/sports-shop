@@ -6,7 +6,7 @@ import Model.Classes.TxtTypes;
 import Model.Entities.Brand;
 import Model.Interfaces.IForms;
 
-public class BrandForm extends AbstractJDialog implements IForms<Brand> {
+public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
 
     private boolean isConfirmed = false;
 
@@ -27,6 +27,7 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
         btCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labTitle.setText("Brand");
@@ -79,11 +80,11 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(labTitle)
-                .addGap(52, 52, 52)
+                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -101,6 +102,7 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -174,7 +176,6 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
         btCancel.setVisible(true);
         btCancel.setText("Close");
         txtName.setEditable(false);
-        txtName.setText("");
     }
 
     @Override
@@ -185,7 +186,6 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
     }
 
     public void prepareUpdate(Brand oldBrand) {
-        this.setVisible(true);
         btOk.setVisible(true);
         btOk.setText("Update");
         btCancel.setVisible(true);
@@ -197,7 +197,18 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
     @Override
     public Brand update(Brand oldBrand) {
         prepareUpdate(oldBrand);
-        return getObjectUpdated(oldBrand);
+        this.setVisible(true);
+        if (isConfirmed) {
+            return getObjectUpdated(oldBrand);
+        }
+        return null;
+    }
+
+    @Override
+    public Brand getObjectUpdated(Brand oldBrand) {
+        Brand updatedBrand = oldBrand;
+        updatedBrand.setName(txtName.getText());
+        return updatedBrand;
     }
 
     @Override
@@ -218,14 +229,6 @@ public class BrandForm extends AbstractJDialog implements IForms<Brand> {
     public boolean checkAll() {
         return !fieldsAreEmpty();
     }
-
-    @Override
-    public Brand getObjectUpdated(Brand oldBrand) {
-        Brand newBrand = oldBrand;
-        newBrand.setName(txtName.getText());
-        return newBrand;
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btOk;

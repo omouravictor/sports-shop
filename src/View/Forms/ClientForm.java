@@ -1,15 +1,18 @@
 package View.Forms;
 
-import Model.Classes.AbstractJFrame;
+import Model.Classes.AbstractJDialog;
 import static Model.Classes.CPFValidator.isValidCPF;
-import Model.Entities.Client;
-import Model.Interfaces.IForms;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import Model.Entities.Client;
+import Model.Interfaces.IForms;
 
-public class ClientForm extends AbstractJFrame implements IForms<Client> {
+public class ClientForm extends AbstractJDialog<Client> implements IForms<Client> {
 
-    public ClientForm() {
+    private boolean isConfirmed = false;
+
+    public ClientForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         initSetup();
     }
@@ -18,65 +21,44 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labTitle = new javax.swing.JLabel();
-        labName = new javax.swing.JLabel();
-        labCPF = new javax.swing.JLabel();
-        labCellPhone = new javax.swing.JLabel();
-        labEmail = new javax.swing.JLabel();
-        labStreetAddress = new javax.swing.JLabel();
-        labZipCodeAddress = new javax.swing.JLabel();
-        labNeighborhoodAddress = new javax.swing.JLabel();
-        labNumberAddress = new javax.swing.JLabel();
-        labCityAddress = new javax.swing.JLabel();
-        labStateAddress = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        txtEmail = new javax.swing.JTextField();
-        txtStreetAddress = new javax.swing.JTextField();
-        txtNeighborhoodAddress = new javax.swing.JTextField();
-        txtCityAddress = new javax.swing.JTextField();
-        txtStateAddress = new javax.swing.JTextField();
-        btOk = new javax.swing.JButton();
-        btCancel = new javax.swing.JButton();
-        txtZipCodeAddress = new javax.swing.JFormattedTextField();
-        txtNumberAddress = new javax.swing.JTextField();
-        txtCellPhone = new javax.swing.JFormattedTextField();
         txtCPF = new javax.swing.JFormattedTextField();
+        labName = new javax.swing.JLabel();
+        txtNumberAddress = new javax.swing.JTextField();
+        txtStateAddress = new javax.swing.JTextField();
+        labNumberAddress = new javax.swing.JLabel();
+        btOk = new javax.swing.JButton();
+        labZipCodeAddress = new javax.swing.JLabel();
+        labStateAddress = new javax.swing.JLabel();
+        labEmail = new javax.swing.JLabel();
+        labCellPhone = new javax.swing.JLabel();
+        txtCityAddress = new javax.swing.JTextField();
+        labCityAddress = new javax.swing.JLabel();
+        labNeighborhoodAddress = new javax.swing.JLabel();
+        txtStreetAddress = new javax.swing.JTextField();
+        labCPF = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtNeighborhoodAddress = new javax.swing.JTextField();
+        labTitle = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        btCancel = new javax.swing.JButton();
+        txtCellPhone = new javax.swing.JFormattedTextField();
+        labStreetAddress = new javax.swing.JLabel();
+        txtZipCodeAddress = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        labTitle.setText("Client");
+        try {
+            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         labName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labName.setText("Name*");
 
-        labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCPF.setText("CPF*");
-
-        labCellPhone.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCellPhone.setText("CellPhone*");
-
-        labEmail.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labEmail.setText("Email");
-
-        labStreetAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labStreetAddress.setText("Street*");
-
-        labZipCodeAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labZipCodeAddress.setText("ZipCode*");
-
-        labNeighborhoodAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labNeighborhoodAddress.setText("Neighborhood*");
-
         labNumberAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labNumberAddress.setText("Number*");
-
-        labCityAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCityAddress.setText("City*");
-
-        labStateAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labStateAddress.setText("State* (Abbreviation)");
 
         btOk.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btOk.setText("Ok");
@@ -89,6 +71,30 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
             }
         });
 
+        labZipCodeAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labZipCodeAddress.setText("ZipCode*");
+
+        labStateAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labStateAddress.setText("State* (Abbreviation)");
+
+        labEmail.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labEmail.setText("Email");
+
+        labCellPhone.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCellPhone.setText("CellPhone*");
+
+        labCityAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCityAddress.setText("City*");
+
+        labNeighborhoodAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labNeighborhoodAddress.setText("Neighborhood*");
+
+        labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCPF.setText("CPF*");
+
+        labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labTitle.setText("Client");
+
         btCancel.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btCancel.setText("Cancel");
         btCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -98,19 +104,16 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
         });
 
         try {
-            txtZipCodeAddress.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
             txtCellPhone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
+        labStreetAddress.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labStreetAddress.setText("Street*");
+
         try {
-            txtCPF.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtZipCodeAddress.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -168,7 +171,7 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(labEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                                                .addComponent(txtEmail)))
                                         .addGap(16, 16, 16)))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -181,7 +184,7 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +221,7 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
                     .addComponent(labStateAddress)
                     .addComponent(txtCityAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -255,9 +258,49 @@ public class ClientForm extends AbstractJFrame implements IForms<Client> {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClientForm().setVisible(true);
+                ClientForm dialog = new ClientForm(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

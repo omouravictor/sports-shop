@@ -5,7 +5,7 @@ import Model.Classes.AbstractJDialog;
 import Model.Entities.Brand;
 import Model.Tables.BrandCRUDscreenTbModel;
 
-public class BrandCRUDscreen extends AbstractJDialog {
+public class BrandCRUDscreen extends AbstractJDialog<Brand> {
 
     private BrandControl brandControl = new BrandControl();
     private BrandCRUDscreenTbModel tbBrandModel = new BrandCRUDscreenTbModel();
@@ -180,18 +180,29 @@ public class BrandCRUDscreen extends AbstractJDialog {
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
         tbBrandModel.addObjectRow(brandControl.create());
+        clearSelectedRows(tbBrand);
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        brandControl.read(getBrandSelectedInTbBrand());
+        if (rowIsSelected(tbBrand)) {
+            brandControl.read(getObjectSelectedInTb(tbBrand, tbBrandModel));
+            clearSelectedRows(tbBrand);
+        }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        brandControl.update();
+        if (rowIsSelected(tbBrand)) {
+            Brand oldBrand = (getObjectSelectedInTb(tbBrand, tbBrandModel));
+            Brand updatedBrand = brandControl.update(oldBrand);
+            tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
+            clearSelectedRows(tbBrand);
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        brandControl.delete();
+        brandControl.delete(getObjectSelectedInTb(tbBrand, tbBrandModel));
+        tbBrandModel.removeObjectRow(tbBrand.getSelectedRow());
+        clearSelectedRows(tbBrand);
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
@@ -227,12 +238,6 @@ public class BrandCRUDscreen extends AbstractJDialog {
                 dialog.setVisible(true);
             }
         });
-    }
-
-    public Brand getBrandSelectedInTbBrand() {
-        int row = tbBrand.getSelectedRow();
-        Brand selectedBrand = tbBrandModel.getObjectByRow(row);
-        return selectedBrand;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
