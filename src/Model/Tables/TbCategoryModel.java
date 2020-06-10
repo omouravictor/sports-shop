@@ -1,17 +1,17 @@
 package Model.Tables;
 
-import Model.Entities.Brand;
+import Model.Entities.Category;
 import java.util.List;
 import javax.swing.JTable;
 
-public class BrandCRUDscreenTbModel extends AbstractTbModel<Brand> {
+public class TbCategoryModel extends AbstractTbModel<Category> {
 
-    public BrandCRUDscreenTbModel() {
+    public TbCategoryModel() {
         this.columnNames = new String[]{"Id", "Name"};
     }
 
-    public BrandCRUDscreenTbModel(List<Brand> brandList, String[] columnNames) {
-        this.list = brandList;
+    public TbCategoryModel(List<Category> categoryList, String[] columnNames) {
+        this.list = categoryList;
         this.columnNames = columnNames;
     }
 

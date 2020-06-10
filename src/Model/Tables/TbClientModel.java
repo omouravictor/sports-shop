@@ -9,14 +9,14 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
-public class SaleFormTbClientSearchModel extends AbstractTbModel<Client> {
+public class TbClientModel extends AbstractTbModel<Client> {
 
-    public SaleFormTbClientSearchModel() {
+    public TbClientModel() {
         this.columnNames = new String[]{"Id", "Name", "CPF", "Phone", "Email",
             "ZipCode", "Street", "Number", "Neyghborhood", "City", "State"};
     }
 
-    public SaleFormTbClientSearchModel(List<Client> clientList, String[] columnNames) {
+    public TbClientModel(List<Client> clientList, String[] columnNames) {
         this.list = clientList;
         this.columnNames = columnNames;
     }

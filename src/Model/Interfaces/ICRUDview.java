@@ -1,6 +1,6 @@
 package Model.Interfaces;
 
-public interface ICRUDscreens<T> {
+public interface ICRUDview<T> {
 
     public void create();
 

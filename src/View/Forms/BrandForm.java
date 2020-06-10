@@ -91,6 +91,7 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
@@ -122,11 +123,6 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BrandForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 BrandForm dialog = new BrandForm(new javax.swing.JFrame(), true);
@@ -167,7 +163,7 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
     @Override
     public Brand create() {
         prepareCreate();
-        this.setVisible(true);
+        showForm();
         if (isConfirmed) {
             return getObjectCreated();
         }
@@ -185,7 +181,7 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
     public void read(Brand brand) {
         prepareRead();
         txtName.setText(brand.getName());
-        this.setVisible(true);
+        showForm();
     }
 
     public void prepareUpdate(Brand oldBrand) {
@@ -199,7 +195,7 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
     @Override
     public Brand update(Brand oldBrand) {
         prepareUpdate(oldBrand);
-        this.setVisible(true);
+        showForm();
         if (isConfirmed) {
             return getObjectUpdated(oldBrand);
         }
@@ -230,6 +226,11 @@ public class BrandForm extends AbstractForm<Brand> implements IForms<Brand> {
     @Override
     public boolean checkAll() {
         return !fieldsAreEmpty();
+    }
+    
+    @Override
+    public void showForm() {
+        this.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

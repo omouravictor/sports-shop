@@ -92,6 +92,7 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
@@ -123,15 +124,6 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CategoryForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 CategoryForm dialog = new CategoryForm(new javax.swing.JFrame(), true);
@@ -172,7 +164,7 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
     @Override
     public Category create() {
         prepareCreate();
-        this.setVisible(true);
+        showForm();
         if (isConfirmed) {
             return getObjectCreated();
         }
@@ -190,7 +182,7 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
     public void read(Category category) {
         prepareRead();
         txtName.setText(category.getName());
-        this.setVisible(true);
+        showForm();
     }
 
     public void prepareUpdate(Category oldCategory) {
@@ -204,7 +196,7 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
     @Override
     public Category update(Category oldCategory) {
         prepareUpdate(oldCategory);
-        this.setVisible(true);
+        showForm();
         if (isConfirmed) {
             return getObjectUpdated(oldCategory);
         }
@@ -235,6 +227,11 @@ public class CategoryForm extends AbstractForm<Category> implements IForms<Categ
     @Override
     public boolean checkAll() {
         return !fieldsAreEmpty();
+    }
+    
+    @Override
+    public void showForm() {
+        this.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

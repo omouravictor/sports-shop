@@ -1,23 +1,23 @@
 package View.CRUD;
 
-import Control.BrandControl;
+import Control.CategoryControl;
 import View.Forms.AbstractForm;
-import Model.Entities.Brand;
-import Model.Interfaces.ICRUDscreens;
-import Model.Tables.BrandCRUDscreenTbModel;
+import Model.Entities.Category;
+import Model.Tables.TbCategoryModel;
+import Model.Interfaces.ICRUDview;
 
-public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens<Brand> {
+public class CategoryCRUD extends AbstractForm<Category> implements ICRUDview<Category> {
 
-    private BrandControl brandControl = new BrandControl();
-    private BrandCRUDscreenTbModel tbBrandModel = new BrandCRUDscreenTbModel();
+    private CategoryControl categoryControl = new CategoryControl();
+    private TbCategoryModel tbCategoryModel = new TbCategoryModel();
 
-    public BrandCRUDscreen(java.awt.Frame parent, boolean modal) {
+    public CategoryCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Brand a = new Brand("Nike");
-        Brand b = new Brand("Adidas");
-        tbBrandModel.addObjectRow(a);
-        tbBrandModel.addObjectRow(b);
+        Category a = new Category("Camisa");
+        Category b = new Category("Bermuda");
+        tbCategoryModel.addObjectRow(a);
+        tbCategoryModel.addObjectRow(b);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens
         labName = new javax.swing.JLabel();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
-        tbBrand = new javax.swing.JTable();
+        tbCategory = new javax.swing.JTable();
         panFooter = new javax.swing.JPanel();
         btCreate = new javax.swing.JButton();
         btRead = new javax.swing.JButton();
@@ -72,8 +72,8 @@ public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens
 
         panTbSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Table"));
 
-        tbBrand.setModel(this.tbBrandModel);
-        panGrid.setViewportView(tbBrand);
+        tbCategory.setModel(this.tbCategoryModel);
+        panGrid.setViewportView(tbCategory);
 
         javax.swing.GroupLayout panTbSearchLayout = new javax.swing.GroupLayout(panTbSearch);
         panTbSearch.setLayout(panTbSearchLayout);
@@ -177,6 +177,7 @@ public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
@@ -208,17 +209,17 @@ public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BrandCRUDscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CategoryCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                BrandCRUDscreen dialog = new BrandCRUDscreen(new javax.swing.JFrame(), true);
+                CategoryCRUD dialog = new CategoryCRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -242,43 +243,43 @@ public class BrandCRUDscreen extends AbstractForm<Brand> implements ICRUDscreens
     private javax.swing.JPanel panFooter;
     private javax.swing.JScrollPane panGrid;
     private javax.swing.JPanel panTbSearch;
-    private javax.swing.JTable tbBrand;
+    private javax.swing.JTable tbCategory;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void create() {
-        Brand newBrand = brandControl.create();
-        tbBrandModel.addObjectRow(newBrand);
-        clearSelectedRows(tbBrand);
+        Category newCategory = categoryControl.create();
+        tbCategoryModel.addObjectRow(newCategory);
+        clearSelectedRows(tbCategory);
     }
 
     @Override
     public void read() {
-        if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.read(brandSelected);
-            clearSelectedRows(tbBrand);
+        if (rowIsSelected(tbCategory)) {
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryControl.read(categorySelected);
+            clearSelectedRows(tbCategory);
         }
     }
 
     @Override
     public void update() {
-        if (rowIsSelected(tbBrand)) {
-            Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            Brand updatedBrand = brandControl.update(oldBrand);
-            tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
-            clearSelectedRows(tbBrand);
+        if (rowIsSelected(tbCategory)) {
+            Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            Category updatedCategory = categoryControl.update(oldCategory);
+            tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
+            clearSelectedRows(tbCategory);
         }
     }
 
     @Override
     public void delete() {
-        if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.delete(brandSelected);
-            tbBrandModel.removeObjectRow(brandSelected);
-            clearSelectedRows(tbBrand);
+        if (rowIsSelected(tbCategory)) {
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryControl.delete(categorySelected);
+            tbCategoryModel.removeObjectRow(categorySelected);
+            clearSelectedRows(tbCategory);
         }
     }
 }

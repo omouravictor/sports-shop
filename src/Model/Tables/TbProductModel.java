@@ -10,15 +10,15 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
-public class SaleFormTbProductSearchModel extends AbstractTbModel<Product> {
+public class TbProductModel extends AbstractTbModel<Product> {
 
-    public SaleFormTbProductSearchModel() {
-        this.columnNames = new String[]{"QTD", "Stock", "Cost", "Category",
+    public TbProductModel() {
+        this.columnNames = new String[]{"Stock", "Cost", "Category",
             "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
             "Color", "Size", "Id"};
     }
 
-    public SaleFormTbProductSearchModel(List<Product> productList, String[] columnNames) {
+    public TbProductModel(List<Product> productList, String[] columnNames) {
         this.list = productList;
         this.columnNames = columnNames;
     }

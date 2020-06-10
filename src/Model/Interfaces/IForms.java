@@ -14,6 +14,8 @@ public interface IForms<T> {
 
     public boolean checkAll();
     
+    public void showForm();
+    
     public T getObjectCreated();
     
     public T getObjectUpdated(T oldT);

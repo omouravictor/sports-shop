@@ -32,6 +32,7 @@ public abstract class AbstractForm<T> extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     public void showErrorMessage(String erroMsg) {

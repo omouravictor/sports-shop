@@ -151,33 +151,32 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
                                     .addComponent(txtNumberAddress))))
                         .addGap(13, 13, 13)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labStreetAddress)
-                                                .addGap(8, 8, 8)
-                                                .addComponent(txtStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(labStateAddress))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(labNeighborhoodAddress)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtNeighborhoodAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(labEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtEmail)))
-                                        .addGap(16, 16, 16)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(labStreetAddress)
+                                            .addGap(8, 8, 8)
+                                            .addComponent(txtStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(labStateAddress))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btCancel)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(labNeighborhoodAddress)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtNeighborhoodAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(labEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtEmail)))
+                                    .addGap(16, 16, 16)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btCancel))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labCPF)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,7 +219,7 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
                     .addComponent(labStateAddress)
                     .addComponent(txtCityAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtStateAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -228,6 +227,7 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
@@ -259,39 +259,6 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClientForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ClientForm dialog = new ClientForm(new javax.swing.JFrame(), true);
@@ -310,19 +277,148 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
         setTxtModels();
     }
 
+    public void setVisibleAll() {
+        btOk.setVisible(true);
+        btCancel.setVisible(true);
+    }
+
+    public void setEditableAll() {
+        txtName.setEditable(true);
+        txtCPF.setEditable(true);
+        txtCellPhone.setEditable(true);
+        txtEmail.setEditable(true);
+        txtZipCodeAddress.setEditable(true);
+        txtStreetAddress.setEditable(true);
+        txtNumberAddress.setEditable(true);
+        txtNeighborhoodAddress.setEditable(true);
+        txtCityAddress.setEditable(true);
+        txtStateAddress.setEditable(true);
+    }
+
+    public void setEmptyTextAll() {
+        txtName.setText("");
+        txtCPF.setText("");
+        txtCellPhone.setText("");
+        txtEmail.setText("");
+        txtZipCodeAddress.setText("");
+        txtStreetAddress.setText("");
+        txtNumberAddress.setText("");
+        txtNeighborhoodAddress.setText("");
+        txtCityAddress.setText("");
+        txtStateAddress.setText("");
+    }
+
+    public void prepareCreate() {
+        setVisibleAll();
+        setEditableAll();
+        setEmptyTextAll();
+        btOk.setText("Create");
+        btCancel.setText("Cancel");
+    }
+
+    @Override
+    public Client getObjectCreated() {
+        Client newClient = new Client();
+        newClient.setName(txtName.getText());
+        newClient.setCpf(txtCPF.getText());
+        newClient.setCellPhone(txtCellPhone.getText());
+        newClient.setEmail(txtEmail.getText());
+        newClient.setZipCodeAddress(txtZipCodeAddress.getText());
+        newClient.setStreetAddress(txtStreetAddress.getText());
+        newClient.setNumberAddress(txtNumberAddress.getText());
+        newClient.setNeighborhoodAddress(txtNeighborhoodAddress.getText());
+        newClient.setCityAddress(txtCityAddress.getText());
+        newClient.setStateAddress(txtStateAddress.getText());
+        return newClient;
+    }
+
     @Override
     public Client create() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareCreate();
+        showForm();
+        if (isConfirmed) {
+            return getObjectCreated();
+        }
+        return null;
+    }
+
+    public void setNoEditableAll() {
+        txtName.setEditable(false);
+        txtCPF.setEditable(false);
+        txtCellPhone.setEditable(false);
+        txtEmail.setEditable(false);
+        txtZipCodeAddress.setEditable(false);
+        txtStreetAddress.setEditable(false);
+        txtNumberAddress.setEditable(false);
+        txtNeighborhoodAddress.setEditable(false);
+        txtCityAddress.setEditable(false);
+        txtStateAddress.setEditable(false);
+    }
+
+    public void prepareRead() {
+        btOk.setVisible(false);
+        btCancel.setVisible(true);
+        btCancel.setText("Close");
+        setNoEditableAll();
     }
 
     @Override
     public void read(Client t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareRead();
+        txtName.setText(t.getName());
+        txtCPF.setText(t.getCpf());
+        txtCellPhone.setText(t.getCellPhone());
+        txtEmail.setText(t.getEmail());
+        txtZipCodeAddress.setText(t.getZipCodeAddress());
+        txtStreetAddress.setText(t.getStreetAddress());
+        txtNumberAddress.setText(t.getNumberAddress());
+        txtNeighborhoodAddress.setText(t.getNeighborhoodAddress());
+        txtCityAddress.setText(t.getCityAddress());
+        txtStateAddress.setText(t.getStateAddress());
+        showForm();
+    }
+
+    public void prepareUpdate(Client t) {
+        setVisibleAll();
+        setEditableAll();
+        txtName.setText(t.getName());
+        txtCPF.setText(t.getCpf());
+        txtCellPhone.setText(t.getCellPhone());
+        txtEmail.setText(t.getEmail());
+        txtZipCodeAddress.setText(t.getZipCodeAddress());
+        txtStreetAddress.setText(t.getStreetAddress());
+        txtNumberAddress.setText(t.getNumberAddress());
+        txtNeighborhoodAddress.setText(t.getNeighborhoodAddress());
+        txtCityAddress.setText(t.getCityAddress());
+        txtStateAddress.setText(t.getStateAddress());
+        btOk.setText("Update");
+        btCancel.setText("Cancel");
+    }
+    
+    @Override
+    public Client getObjectUpdated(Client oldT) {
+        Client updatedClient = oldT;
+        updatedClient.setName(txtName.getText());
+        updatedClient.setCpf(txtCPF.getText());
+        updatedClient.setCellPhone(txtCellPhone.getText());
+        updatedClient.setEmail(txtEmail.getText());
+        updatedClient.setZipCodeAddress(txtZipCodeAddress.getText());
+        updatedClient.setStreetAddress(txtStreetAddress.getText());
+        updatedClient.setNumberAddress(txtNumberAddress.getText());
+        updatedClient.setNeighborhoodAddress(txtNeighborhoodAddress.getText());
+        updatedClient.setCityAddress(txtCityAddress.getText());
+        updatedClient.setStateAddress(txtStateAddress.getText());
+        return updatedClient;
     }
 
     @Override
     public Client update(Client t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareUpdate(t);
+        showForm();
+        if (isConfirmed) {
+            return getObjectUpdated(t);
+        }
+        return null;
     }
 
     @Override
@@ -370,6 +466,11 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
     public boolean checkAll() {
         return !fieldsAreEmpty() && checkCPF();
     }
+
+    @Override
+    public void showForm() {
+        this.setVisible(true);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btOk;
@@ -395,14 +496,4 @@ public class ClientForm extends AbstractForm<Client> implements IForms<Client> {
     private javax.swing.JTextField txtStreetAddress;
     private javax.swing.JFormattedTextField txtZipCodeAddress;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Client getObjectCreated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Client getObjectUpdated(Client oldT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
