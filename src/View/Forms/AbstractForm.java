@@ -1,11 +1,10 @@
 package View.Forms;
 
+import Model.Classes.CostFormatter;
 import Model.Tables.AbstractTbModel;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.text.NumberFormatter;
 
 public abstract class AbstractForm<T> extends javax.swing.JDialog {
 
@@ -37,11 +36,6 @@ public abstract class AbstractForm<T> extends javax.swing.JDialog {
 
     public void showErrorMessage(String erroMsg) {
         JOptionPane.showMessageDialog(null, erroMsg, "Erro", JOptionPane.ERROR_MESSAGE);
-    }
-
-    public String formatCost(double totalCost) throws ParseException {
-        NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
-        return numFormatter.valueToString(totalCost);
     }
 
     public boolean rowIsSelected(JTable tbToLookFor) {

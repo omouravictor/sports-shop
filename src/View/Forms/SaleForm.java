@@ -1,5 +1,6 @@
 package View.Forms;
 
+import Model.Classes.CostFormatter;
 import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
@@ -896,7 +897,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             double costByProduct = qtd * selectedProduct.getCost();
-            String costFormatted = this.formatCost(costByProduct);
+            String costFormatted = new CostFormatter().formatCost(costByProduct);
             txtCostByProduct.setText(costFormatted);
         } else {
             resetCostAndQtdByProduct();
@@ -912,7 +913,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                 int productQtd = addedProducts.get(i).getQuantity();
                 totalCost += productCost * productQtd;
             }
-            txtTotalCost.setText(this.formatCost(totalCost));
+            txtTotalCost.setText(new CostFormatter().formatCost(totalCost));
         } else {
             txtTotalCost.setText("R$ 0,00");
         }

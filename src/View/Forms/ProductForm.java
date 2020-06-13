@@ -1,5 +1,6 @@
 package View.Forms;
 
+import Model.Classes.CostFormatter;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.BrandComboBoxModel;
@@ -8,12 +9,15 @@ import Model.Entities.Brand;
 import Model.Entities.Category;
 import Model.Entities.Product;
 import Model.Interfaces.IForms;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductForm extends AbstractForm<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    private final CategoryComboBoxModel categoryComboBoxModel = new CategoryComboBoxModel();
-    private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
+    private final CategoryComboBoxModel cbCategoryModel = new CategoryComboBoxModel();
+    private final BrandComboBoxModel cbBrandModel = new BrandComboBoxModel();
 
     public ProductForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -23,10 +27,10 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         Category c2 = new Category("Mug");
         Brand b1 = new Brand("Nike");
         Brand b2 = new Brand("Adidas");
-        categoryComboBoxModel.addObjectInCombo(c1);
-        categoryComboBoxModel.addObjectInCombo(c2);
-        brandComboBoxModel.addObjectInCombo(b1);
-        brandComboBoxModel.addObjectInCombo(b2);
+        cbCategoryModel.addObjectInCombo(c1);
+        cbCategoryModel.addObjectInCombo(c2);
+        cbBrandModel.addObjectInCombo(b1);
+        cbBrandModel.addObjectInCombo(b2);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,7 +56,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         txtTeam = new javax.swing.JTextField();
         cbCategory = new javax.swing.JComboBox<>();
         txtCost = new javax.swing.JFormattedTextField();
-        labCost1 = new javax.swing.JLabel();
+        labR$ = new javax.swing.JLabel();
         txtColor = new javax.swing.JTextField();
         labColor = new javax.swing.JLabel();
 
@@ -105,10 +109,14 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
             }
         });
 
+        cbBrand.setModel(this.cbBrandModel);
+
+        cbCategory.setModel(this.cbCategoryModel);
+
         txtCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
 
-        labCost1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        labCost1.setText("R$");
+        labR$.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        labR$.setText("R$");
 
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color*");
@@ -128,7 +136,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labCost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labCost1)
+                                .addComponent(labR$)
                                 .addGap(2, 2, 2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,44 +146,40 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
                                     .addComponent(labSize, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labColor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbBrand, 0, 104, Short.MAX_VALUE)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbCategory, 0, 104, Short.MAX_VALUE)
+                            .addComponent(txtCost)
+                            .addComponent(txtColor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btCancel))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(labPlayerPresent)
+                                        .addComponent(labNumberPresent))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(24, 24, 24)
+                                            .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(btCancel))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labPlayerPresent)
-                                                .addComponent(labNumberPresent))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGap(24, 24, 24)
-                                                    .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                    .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(labNumStock)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(txtNumStock))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(46, 46, 46))))))
+                                            .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(labNumStock)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtNumStock))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +210,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
                     .addComponent(labNumberPresent)
                     .addComponent(txtNumberPresent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labCost1))
+                    .addComponent(labR$))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,11 +228,13 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
+            isConfirmed = true;
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -263,19 +269,160 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         });
     }
 
+    public void setVisibleAll() {
+        btOk.setVisible(true);
+        btCancel.setVisible(true);
+        labR$.setVisible(true);
+    }
+
+    public void setEnabledAll() {
+        cbBrand.setEnabled(true);
+        cbCategory.setEnabled(true);
+        txtCost.setEnabled(true);
+    }
+
+    public void setEditableAll() {
+        txtSize.setEditable(true);
+        txtColor.setEditable(true);
+        txtNumStock.setEditable(true);
+        txtTeam.setEditable(true);
+        txtPlayerPresent.setEditable(true);
+        txtNumberPresent.setEditable(true);
+    }
+
+    public void setEmptyTextAll() {
+        cbBrand.setSelectedItem(null);
+        cbCategory.setSelectedItem(null);
+        txtSize.setText("");
+        txtCost.setText("");
+        txtColor.setText("");
+        txtNumStock.setText("");
+        txtTeam.setText("");
+        txtPlayerPresent.setText("");
+        txtNumberPresent.setText("");
+    }
+
+    public void prepareCreate() {
+        setVisibleAll();
+        setEnabledAll();
+        setEditableAll();
+        setEmptyTextAll();
+        btOk.setText("Create");
+        btCancel.setText("Cancel");
+    }
+
+    @Override
+    public Product getObjectCreated() {
+        Product newProduct = new Product();
+        newProduct.setBrand((Brand) cbBrand.getSelectedItem());
+        newProduct.setCategory((Category) cbCategory.getSelectedItem());
+        newProduct.setSizeProduct(txtSize.getText());
+        newProduct.setColor(txtColor.getText());
+        newProduct.setCost(parseTxtCostTextToDouble());
+        newProduct.setNumInStock(parseTxtNumStockTextToInt());
+        newProduct.setNumberPresent(txtNumberPresent.getText());
+        newProduct.setPlayerPresent(txtPlayerPresent.getText());
+        newProduct.setTeamName(txtTeam.getText());
+        return newProduct;
+    }
+
     @Override
     public Product create() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareCreate();
+        showForm();
+        if (isConfirmed) {
+            return getObjectCreated();
+        }
+        return null;
+    }
+
+    public void setNoEnabledAll() {
+        cbBrand.setEnabled(false);
+        cbCategory.setEnabled(false);
+        txtCost.setEnabled(false);
+    }
+
+    public void setNoEditableAll() {
+        txtSize.setEditable(false);
+        txtColor.setEditable(false);
+        txtNumStock.setEditable(false);
+        txtTeam.setEditable(false);
+        txtPlayerPresent.setEditable(false);
+        txtNumberPresent.setEditable(false);
+    }
+
+    public void prepareRead() {
+        btOk.setVisible(false);
+        labR$.setVisible(false);
+        btCancel.setText("Close");
+        setNoEditableAll();
+        setNoEnabledAll();
     }
 
     @Override
     public void read(Product t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareRead();
+        cbBrandModel.setSelectedItem(t.getBrand());
+        cbCategoryModel.setSelectedItem(t.getCategory());
+        txtSize.setText(t.getSizeProduct());
+        try {
+            txtCost.setText(new CostFormatter().formatCost(t.getCost()));
+        } catch (ParseException ex) {
+            txtCost.setText("ERRO");
+        }
+        txtColor.setText(t.getColor());
+        txtNumStock.setText("" + t.getNumInStock());
+        txtTeam.setText(t.getTeamName());
+        txtPlayerPresent.setText(t.getPlayerPresent());
+        txtNumberPresent.setText(t.getNumberPresent());
+        showForm();
+    }
+
+    public void prepareUpdate(Product t) throws ParseException {
+        setVisibleAll();
+        setEnabledAll();
+        setEditableAll();
+        setEmptyTextAll();
+        btOk.setText("Update");
+        btCancel.setText("Cancel");
+        cbBrandModel.setSelectedItem(t.getBrand());
+        cbCategoryModel.setSelectedItem(t.getCategory());
+        txtSize.setText(t.getSizeProduct());
+        txtCost.setText(new CostFormatter().formatNumber(t.getCost()));
+        txtColor.setText(t.getColor());
+        txtNumStock.setText("" + t.getNumInStock());
+        txtTeam.setText(t.getTeamName());
+        txtPlayerPresent.setText(t.getPlayerPresent());
+        txtNumberPresent.setText(t.getNumberPresent());
+    }
+
+    @Override
+    public Product getObjectUpdated(Product oldT) {
+        Product updatedProduct = oldT;
+        updatedProduct.setBrand((Brand) cbBrand.getSelectedItem());
+        updatedProduct.setCategory((Category) cbCategory.getSelectedItem());
+        updatedProduct.setSizeProduct(txtSize.getText());
+        updatedProduct.setColor(txtColor.getText());
+        updatedProduct.setCost(parseTxtCostTextToDouble());
+        updatedProduct.setNumInStock(parseTxtNumStockTextToInt());
+        updatedProduct.setNumberPresent(txtNumberPresent.getText());
+        updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
+        updatedProduct.setTeamName(txtTeam.getText());
+        return updatedProduct;
     }
 
     @Override
     public Product update(Product t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            prepareUpdate(t);
+        } catch (ParseException ex) {
+            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        showForm();
+        if (isConfirmed) {
+            return getObjectUpdated(t);
+        }
+        return null;
     }
 
     @Override
@@ -291,8 +438,8 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
 
     @Override
     public boolean fieldsAreEmpty() {
-        if (categoryComboBoxModel.getSelectedItem() == null
-                || brandComboBoxModel.getSelectedItem() == null
+        if (cbCategoryModel.getSelectedItem() == null
+                || cbBrandModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty()
                 || txtColor.getText().isEmpty()
                 || txtSize.getText().isEmpty()
@@ -310,13 +457,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
     }
 
     public void initSetup() {
-        setCombosModel();
         setTxtModels();
-    }
-
-    public void setCombosModel() {
-        cbCategory.setModel(categoryComboBoxModel);
-        cbBrand.setModel(brandComboBoxModel);
     }
 
     public double parseTxtCostTextToDouble() {
@@ -326,7 +467,15 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         }
         return -1;
     }
-    
+
+    public int parseTxtNumStockTextToInt() {
+        if (!txtNumStock.getText().isEmpty()) {
+            int numStock = Integer.parseInt(txtNumStock.getText());
+            return numStock;
+        }
+        return -1;
+    }
+
     @Override
     public void showForm() {
         this.setVisible(true);
@@ -340,10 +489,10 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
     private javax.swing.JLabel labCategory;
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCost;
-    private javax.swing.JLabel labCost1;
     private javax.swing.JLabel labNumStock;
     private javax.swing.JLabel labNumberPresent;
     private javax.swing.JLabel labPlayerPresent;
+    private javax.swing.JLabel labR$;
     private javax.swing.JLabel labSize;
     private javax.swing.JLabel labTeam;
     private javax.swing.JLabel labTitle;
@@ -355,14 +504,4 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Product getObjectCreated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Product getObjectUpdated(Product oldT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

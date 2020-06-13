@@ -1,22 +1,40 @@
 package View.CRUD;
 
-import Control.ClientControl;
+import Control.ProductControl;
+import Model.Classes.Sleeves;
+import Model.Entities.Brand;
+import Model.Entities.Category;
 import View.Forms.AbstractForm;
-import Model.Entities.Client;
-import Model.Tables.TbClientModel;
+import Model.Entities.Product;
+import Model.Entities.Shirt;
+import Model.Tables.TbProductModel;
 import Model.Interfaces.ICRUDview;
 
-public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client> {
+public class ProductCRUD extends AbstractForm<Product> implements ICRUDview<Product> {
 
-    private ClientControl clientControl = new ClientControl();
-    private TbClientModel tbClientModel = new TbClientModel();
+    private ProductControl productControl = new ProductControl();
+    private TbProductModel tbProductModel = new TbProductModel();
 
-    public ClientCRUD(java.awt.Frame parent, boolean modal) {
+    public ProductCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Client c = new Client("Victor", "127.338.636-14", "(31)98591-6080", "",
-                "35182-278", "Dinamarca", "238", "Ana Rita", "Timóteo", "MG");
-        tbClientModel.addObjectRow(c);
+        Category c1 = new Category("Mug");
+        Category c2 = new Category("Shirt");
+        Category c3 = new Category("T-Shirt");
+        Brand b1 = new Brand("Nike");
+        Brand b2 = new Brand("Adidas");
+        Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
+        p1.setId(Long.parseLong("100"));
+        Shirt p2 = new Shirt(c2, b1, "Barcelona", "Leonel Messi", "Messi", "10", Sleeves.Short, "Azul", "M", 15, 0, 50);
+        p2.setId(Long.parseLong("200"));
+        Shirt p3 = new Shirt(c2, b2, "Real Madrid", "Cristiano Ronaldo", "C. Ronaldo", "7", Sleeves.Long, "White", "G", 10, 0, 50);
+        p3.setId(Long.parseLong("300"));
+        Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, Sleeves.NoSleeves, "Blue", "P", 5, 0, 50);
+        p4.setId(Long.parseLong("400"));
+        tbProductModel.addObjectRow(p1);
+        tbProductModel.addObjectRow(p2);
+        tbProductModel.addObjectRow(p3);
+        tbProductModel.addObjectRow(p4);
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +47,7 @@ public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client
         labName = new javax.swing.JLabel();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
-        tbClient = new javax.swing.JTable();
+        tbProduct = new javax.swing.JTable();
         panFooter = new javax.swing.JPanel();
         btCreate = new javax.swing.JButton();
         btRead = new javax.swing.JButton();
@@ -71,8 +89,8 @@ public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client
 
         panTbSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Table"));
 
-        tbClient.setModel(this.tbClientModel);
-        panGrid.setViewportView(tbClient);
+        tbProduct.setModel(this.tbProductModel);
+        panGrid.setViewportView(tbProduct);
 
         javax.swing.GroupLayout panTbSearchLayout = new javax.swing.GroupLayout(panTbSearch);
         panTbSearch.setLayout(panTbSearchLayout);
@@ -208,17 +226,17 @@ public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ClientCRUD dialog = new ClientCRUD(new javax.swing.JFrame(), true);
+                ProductCRUD dialog = new ProductCRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -242,43 +260,43 @@ public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client
     private javax.swing.JPanel panFooter;
     private javax.swing.JScrollPane panGrid;
     private javax.swing.JPanel panTbSearch;
-    private javax.swing.JTable tbClient;
+    private javax.swing.JTable tbProduct;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void create() {
-        Client newClient = clientControl.create();
-        tbClientModel.addObjectRow(newClient);
-        clearSelectedRows(tbClient);
+        Product newProduct = productControl.create();
+        tbProductModel.addObjectRow(newProduct);
+        clearSelectedRows(tbProduct);
     }
 
     @Override
     public void read() {
-        if (rowIsSelected(tbClient)) {
-            Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
-            clientControl.read(clientSelected);
-            clearSelectedRows(tbClient);
+        if (rowIsSelected(tbProduct)) {
+            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+            productControl.read(productSelected);
+            clearSelectedRows(tbProduct);
         }
     }
 
     @Override
     public void update() {
-        if (rowIsSelected(tbClient)) {
-            Client oldClient = getObjectSelectedInTb(tbClient, tbClientModel);
-            Client updatedClient = clientControl.update(oldClient);
-            tbClientModel.updateObjectRow(oldClient, updatedClient);
-            clearSelectedRows(tbClient);
+        if (rowIsSelected(tbProduct)) {
+            Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
+            Product updatedProduct = productControl.update(oldProduct);
+            tbProductModel.updateObjectRow(oldProduct, updatedProduct);
+            clearSelectedRows(tbProduct);
         }
     }
 
     @Override
     public void delete() {
-        if (rowIsSelected(tbClient)) {
-            Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
-            clientControl.delete(clientSelected);
-            tbClientModel.removeObjectRow(clientSelected);
-            clearSelectedRows(tbClient);
+        if (rowIsSelected(tbProduct)) {
+            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+            productControl.delete(productSelected);
+            tbProductModel.removeObjectRow(productSelected);
+            clearSelectedRows(tbProduct);
         }
     }
 }

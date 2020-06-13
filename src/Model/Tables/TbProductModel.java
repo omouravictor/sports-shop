@@ -1,7 +1,9 @@
 package Model.Tables;
 
+import Model.Classes.CostFormatter;
 import Model.Entities.Product;
 import Model.Entities.Shirt;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -29,8 +31,13 @@ public class TbProductModel extends AbstractTbModel<Product> {
         switch (columnIndex) {
             case 0:
                 return list.get(rowIndex).getNumInStock();
-            case 1:
-                return "R$ " + list.get(rowIndex).getCost();
+            case 1: {
+                try {
+                    return new CostFormatter().formatCost(list.get(rowIndex).getCost());
+                } catch (ParseException ex) {
+                    return null;
+                }
+            }
             case 2:
                 return list.get(rowIndex).getCategory().getName();
             case 3:
@@ -64,7 +71,8 @@ public class TbProductModel extends AbstractTbModel<Product> {
     }
 
     @Override
-    public void filter(JTable filterJtable, String[] viewFilters) {
+    public void filter(JTable filterJtable, String[] viewFilters
+    ) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
         if (viewFilters.length != 0) {
             tableRowSorter.setStringConverter(new TableStringConverter() {
