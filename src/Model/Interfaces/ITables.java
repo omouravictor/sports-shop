@@ -13,6 +13,8 @@ public interface ITables<T> {
     public void updateObjectRow(T oldT, T newT);
 
     public T getObjectByRow(int rowIndex);
+    
+    public void clearList();
 
     public void filter(JTable filterJtable, String[] viewfilters);
 }

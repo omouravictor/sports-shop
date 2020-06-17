@@ -75,9 +75,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btClientSearch" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="btOk" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="labProductSearchTable" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
@@ -142,25 +143,22 @@
                                           <Component id="btAddProduct" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btRemoveClient1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labTotalCost" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtTotalCost" min="-2" pref="133" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="495" max="-2" attributes="0"/>
-                                  <Component id="btCancelSale" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane4" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
-                                          <Component id="labAddedProducts" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btFinishSale" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btRemoveProduct" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="labTotalCost" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtTotalCost" min="-2" pref="133" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="jScrollPane4" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
+                                      <Component id="labAddedProducts" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="btCancel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -273,7 +271,17 @@
                   <Component id="labAddedProducts" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane4" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labTotalCost" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btRemoveProduct" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTotalCost" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane5" min="-2" pref="132" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -284,23 +292,14 @@
                           <Component id="btAddProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCostByProduct" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane4" min="-2" pref="132" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labTotalCost" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btRemoveClient1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTotalCost" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btFinishSale" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btCancelSale" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -415,20 +414,20 @@
         <Property name="text" type="java.lang.String" value="Product Search Table"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btFinishSale">
+    <Component class="javax.swing.JButton" name="btOk">
       <Properties>
         <Property name="text" type="java.lang.String" value="Finish Sale"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFinishSaleActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btOkActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btCancelSale">
+    <Component class="javax.swing.JButton" name="btCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancel Sale"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelSaleActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btAddProduct">
@@ -509,12 +508,12 @@
         <Property name="text" type="java.lang.String" value="Added Products*"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btRemoveClient1">
+    <Component class="javax.swing.JButton" name="btRemoveProduct">
       <Properties>
         <Property name="text" type="java.lang.String" value="Remove Product"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoveClient1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoveProductActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labDate">

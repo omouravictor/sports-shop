@@ -78,8 +78,8 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         tbClientSearch = new javax.swing.JTable();
         labClientSearchTable = new javax.swing.JLabel();
         labProductSearchTable = new javax.swing.JLabel();
-        btFinishSale = new javax.swing.JButton();
-        btCancelSale = new javax.swing.JButton();
+        btOk = new javax.swing.JButton();
+        btCancel = new javax.swing.JButton();
         btAddProduct = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbAddedClient = new javax.swing.JTable();
@@ -89,7 +89,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         jScrollPane4 = new javax.swing.JScrollPane();
         tbAddedProducts = new javax.swing.JTable();
         labAddedProducts = new javax.swing.JLabel();
-        btRemoveClient1 = new javax.swing.JButton();
+        btRemoveProduct = new javax.swing.JButton();
         labDate = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
         spQuantity = new javax.swing.JSpinner();
@@ -174,17 +174,17 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         labProductSearchTable.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labProductSearchTable.setText("Product Search Table");
 
-        btFinishSale.setText("Finish Sale");
-        btFinishSale.addActionListener(new java.awt.event.ActionListener() {
+        btOk.setText("Finish Sale");
+        btOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btFinishSaleActionPerformed(evt);
+                btOkActionPerformed(evt);
             }
         });
 
-        btCancelSale.setText("Cancel Sale");
-        btCancelSale.addActionListener(new java.awt.event.ActionListener() {
+        btCancel.setText("Cancel Sale");
+        btCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelSaleActionPerformed(evt);
+                btCancelActionPerformed(evt);
             }
         });
 
@@ -221,10 +221,10 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         labAddedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labAddedProducts.setText("Added Products*");
 
-        btRemoveClient1.setText("Remove Product");
-        btRemoveClient1.addActionListener(new java.awt.event.ActionListener() {
+        btRemoveProduct.setText("Remove Product");
+        btRemoveProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRemoveClient1ActionPerformed(evt);
+                btRemoveProductActionPerformed(evt);
             }
         });
 
@@ -388,9 +388,10 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                                         .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btClientSearch))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(1, 1, 1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btOk)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(labProductSearchTable)
                                         .addGroup(layout.createSequentialGroup()
@@ -441,23 +442,20 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(btAddProduct)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btRemoveClient1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labTotalCost)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(495, 495, 495)
-                                    .addComponent(btCancelSale)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(230, 230, 230)
-                                            .addComponent(labAddedProducts))
-                                        .addComponent(btFinishSale)))))
+                                            .addComponent(btAddProduct))))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(btRemoveProduct)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labTotalCost)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(230, 230, 230)
+                                        .addComponent(labAddedProducts))
+                                    .addComponent(btCancel))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labClientSearchTable)
@@ -541,7 +539,15 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                     .addComponent(labProductSearchTable)
                     .addComponent(labAddedProducts))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labTotalCost)
+                            .addComponent(btRemoveProduct)
+                            .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -550,19 +556,12 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                             .addComponent(spQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labCostByProduct)
                             .addComponent(btAddProduct)
-                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
+                            .addComponent(txtCostByProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labTotalCost)
-                            .addComponent(btRemoveClient1)
-                            .addComponent(txtTotalCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btFinishSale)
-                            .addComponent(btCancelSale))))
-                .addContainerGap())
+                            .addComponent(btOk)
+                            .addComponent(btCancel))
+                        .addContainerGap())))
         );
 
         pack();
@@ -593,15 +592,17 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         }
     }//GEN-LAST:event_btProductSearchActionPerformed
 
-    private void btFinishSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinishSaleActionPerformed
+    private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
+            isConfirmed = true;
             this.dispose();
         }
-    }//GEN-LAST:event_btFinishSaleActionPerformed
+    }//GEN-LAST:event_btOkActionPerformed
 
-    private void btCancelSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelSaleActionPerformed
+    private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
-    }//GEN-LAST:event_btCancelSaleActionPerformed
+    }//GEN-LAST:event_btCancelActionPerformed
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
         productAddButtonAction();
@@ -615,9 +616,9 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         clientAddButtonAction();
     }//GEN-LAST:event_btAddClientActionPerformed
 
-    private void btRemoveClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveClient1ActionPerformed
+    private void btRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveProductActionPerformed
         productRemoveButtonAction();
-    }//GEN-LAST:event_btRemoveClient1ActionPerformed
+    }//GEN-LAST:event_btRemoveProductActionPerformed
 
     private void spQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spQuantityStateChanged
         try {
@@ -742,14 +743,135 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         });
     }
 
+    public void setVisibleAll() {
+        btOk.setVisible(true);
+        btCancel.setVisible(true);
+    }
+
+    public void setEnabledAll() {
+        spQuantity.setEnabled(true);
+        btAddClient.setEnabled(true);
+        btAddProduct.setEnabled(true);
+        btProductSearch.setEnabled(true);
+        btClientSearch.setEnabled(true);
+        btRemoveClient.setEnabled(true);
+        btRemoveProduct.setEnabled(true);
+    }
+
+    public void setEditableAll() {
+        txtName.setEditable(true);
+        txtCPF.setEditable(true);
+        txtDate.setEditable(true);
+        txtCategory.setEditable(true);
+        txtBrand.setEditable(true);
+        txtTeam.setEditable(true);
+        txtPlayer.setEditable(true);
+        txtShirtName.setEditable(true);
+        txtSleeves.setEditable(true);
+        txtNumber.setEditable(true);
+        txtColor.setEditable(true);
+        txtSize.setEditable(true);
+        txtID.setEditable(true);
+        txtCostByProduct.setEditable(true);
+        txtTotalCost.setEditable(true);
+    }
+
+    public void emptyAll() {
+        tbAddedClientModel.clearList();
+        tbAddedProductModel.clearList();
+        txtName.setText("");
+        txtCPF.setText("");
+        txtCategory.setText("");
+        txtBrand.setText("");
+        txtTeam.setText("");
+        txtPlayer.setText("");
+        txtShirtName.setText("");
+        txtSleeves.setText("");
+        txtNumber.setText("");
+        txtColor.setText("");
+        txtSize.setText("");
+        txtID.setText("");
+    }
+
+    public void prepareCreate() {
+        setVisibleAll();
+        setEnabledAll();
+        setEditableAll();
+        emptyAll();
+        btOk.setText("Create");
+        btCancel.setText("Cancel");
+    }
+
+    @Override
+    public Sale getObjectCreated() {
+        Sale newSale = new Sale();
+        newSale.setClient(getClientAdded());
+        newSale.setSaleCost(parseTxtCostValueToDouble(txtTotalCost));
+        newSale.setSaleDate(txtDate.getText());
+        return newSale;
+    }
+
     @Override
     public Sale create() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareCreate();
+        showForm();
+        if (isConfirmed) {
+            return getObjectCreated();
+        }
+        return null;
+    }
+    
+    public void setNoEnabledAll() {
+        spQuantity.setEnabled(false);
+        btAddClient.setEnabled(false);
+        btAddProduct.setEnabled(false);
+        btProductSearch.setEnabled(false);
+        btClientSearch.setEnabled(false);
+        btRemoveClient.setEnabled(false);
+        btRemoveProduct.setEnabled(false);
+    }
+
+    public void setNoEditableAll() {
+        txtName.setEditable(false);
+        txtCPF.setEditable(false);
+        txtDate.setEditable(false);
+        txtCategory.setEditable(false);
+        txtBrand.setEditable(false);
+        txtTeam.setEditable(false);
+        txtPlayer.setEditable(false);
+        txtShirtName.setEditable(false);
+        txtSleeves.setEditable(false);
+        txtNumber.setEditable(false);
+        txtColor.setEditable(false);
+        txtSize.setEditable(false);
+        txtID.setEditable(false);
+        txtCostByProduct.setEditable(false);
+        txtTotalCost.setEditable(false);
+    }
+
+    public void prepareRead() {
+        btOk.setVisible(false);
+        btCancel.setText("Close");
+        tbClientSearchModel.clearList();
+        tbAddedClientModel.clearList();
+        tbProductSearchModel.clearList();
+        tbAddedProductModel.clearList();
+        setNoEditableAll();
+        setNoEnabledAll();
     }
 
     @Override
     public void read(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareRead();
+        txtDate.setText(t.getSaleDate());
+        tbAddedClientModel.addObjectRow(t.getClient());
+        tbAddedProductModel.setList(t.getProductList());
+        try {
+            txtTotalCost.setText(new CostFormatter().formatCost(t.getSaleCost()));
+        } catch (ParseException ex) {
+            showErrorMessage("Erro in read.");
+        }
+        showForm();
     }
 
     @Override
@@ -887,6 +1009,11 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         return selectedProduct;
     }
 
+    public Client getClientAdded() {
+        Client addedClient = tbAddedClientModel.getObjectByRow(0);
+        return addedClient;
+    }
+
     public int getSpQuantity() {
         int qtd = Integer.parseInt(spQuantity.getValue().toString());
         return qtd;
@@ -940,7 +1067,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
             tbAddedProductModel.removeObjectRow(row);
         }
     }
-    
+
     @Override
     public void showForm() {
         this.setVisible(true);
@@ -1015,12 +1142,12 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddClient;
     private javax.swing.JButton btAddProduct;
-    private javax.swing.JButton btCancelSale;
+    private javax.swing.JButton btCancel;
     private javax.swing.JButton btClientSearch;
-    private javax.swing.JButton btFinishSale;
+    private javax.swing.JButton btOk;
     private javax.swing.JButton btProductSearch;
     private javax.swing.JButton btRemoveClient;
-    private javax.swing.JButton btRemoveClient1;
+    private javax.swing.JButton btRemoveProduct;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1067,11 +1194,6 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
     private javax.swing.JTextField txtTeam;
     private javax.swing.JFormattedTextField txtTotalCost;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Sale getObjectCreated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public Sale getObjectUpdated(Sale oldT) {

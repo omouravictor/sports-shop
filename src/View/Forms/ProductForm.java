@@ -10,8 +10,6 @@ import Model.Entities.Category;
 import Model.Entities.Product;
 import Model.Interfaces.IForms;
 import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ProductForm extends AbstractForm<Product> implements IForms<Product> {
 
@@ -318,8 +316,8 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         newProduct.setCategory((Category) cbCategory.getSelectedItem());
         newProduct.setSizeProduct(txtSize.getText());
         newProduct.setColor(txtColor.getText());
-        newProduct.setCost(parseTxtCostTextToDouble());
-        newProduct.setNumInStock(parseTxtNumStockTextToInt());
+        newProduct.setCost(parseTxtCostToDouble(txtCost));
+        newProduct.setNumInStock(parseTxtTextToInt(txtNumStock));
         newProduct.setNumberPresent(txtNumberPresent.getText());
         newProduct.setPlayerPresent(txtPlayerPresent.getText());
         newProduct.setTeamName(txtTeam.getText());
@@ -368,7 +366,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         try {
             txtCost.setText(new CostFormatter().formatCost(t.getCost()));
         } catch (ParseException ex) {
-            txtCost.setText("ERRO");
+            showErrorMessage("Erro in read.");
         }
         txtColor.setText(t.getColor());
         txtNumStock.setText("" + t.getNumInStock());
@@ -403,8 +401,8 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         updatedProduct.setCategory((Category) cbCategory.getSelectedItem());
         updatedProduct.setSizeProduct(txtSize.getText());
         updatedProduct.setColor(txtColor.getText());
-        updatedProduct.setCost(parseTxtCostTextToDouble());
-        updatedProduct.setNumInStock(parseTxtNumStockTextToInt());
+        updatedProduct.setCost(parseTxtCostToDouble(txtCost));
+        updatedProduct.setNumInStock(parseTxtTextToInt(txtNumStock));
         updatedProduct.setNumberPresent(txtNumberPresent.getText());
         updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
         updatedProduct.setTeamName(txtTeam.getText());
@@ -416,7 +414,7 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
         try {
             prepareUpdate(t);
         } catch (ParseException ex) {
-            Logger.getLogger(ProductForm.class.getName()).log(Level.SEVERE, null, ex);
+            showErrorMessage("Erro in update.");
         }
         showForm();
         if (isConfirmed) {
@@ -458,22 +456,6 @@ public class ProductForm extends AbstractForm<Product> implements IForms<Product
 
     public void initSetup() {
         setTxtModels();
-    }
-
-    public double parseTxtCostTextToDouble() {
-        if (!txtCost.getText().isEmpty()) {
-            String cost = txtCost.getText().replaceAll("\\.", "").replace(",", ".");
-            return Double.parseDouble(cost);
-        }
-        return -1;
-    }
-
-    public int parseTxtNumStockTextToInt() {
-        if (!txtNumStock.getText().isEmpty()) {
-            int numStock = Integer.parseInt(txtNumStock.getText());
-            return numStock;
-        }
-        return -1;
     }
 
     @Override

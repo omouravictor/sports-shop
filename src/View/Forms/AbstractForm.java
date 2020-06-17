@@ -1,10 +1,10 @@
 package View.Forms;
 
-import Model.Classes.CostFormatter;
 import Model.Tables.AbstractTbModel;
-import java.text.ParseException;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public abstract class AbstractForm<T> extends javax.swing.JDialog {
 
@@ -50,6 +50,30 @@ public abstract class AbstractForm<T> extends javax.swing.JDialog {
         int row = tbToLookFor.getSelectedRow();
         T selectedObject = (T) tbModelToLookFor.getObjectByRow(row);
         return selectedObject;
+    }
+    
+    public double parseTxtCostToDouble(JFormattedTextField txt) {
+        if (!txt.getText().isEmpty()) {
+            String cost = txt.getText().replaceAll("\\.", "").replace(",", ".");
+            return Double.parseDouble(cost);
+        }
+        return -1;
+    }
+
+    public double parseTxtCostValueToDouble(JFormattedTextField txt) {
+        if (!txt.getText().isEmpty()) {
+            String cost = txt.getText().replace("R$ ", "").replaceAll("\\.", "").replace(",", ".");
+            return Double.parseDouble(cost);
+        }
+        return -1;
+    }
+    
+    public int parseTxtTextToInt(JTextField txt) {
+        if (!txt.getText().isEmpty()) {
+            int numStock = Integer.parseInt(txt.getText());
+            return numStock;
+        }
+        return -1;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

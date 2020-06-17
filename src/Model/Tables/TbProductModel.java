@@ -35,7 +35,7 @@ public class TbProductModel extends AbstractTbModel<Product> {
                 try {
                     return new CostFormatter().formatCost(list.get(rowIndex).getCost());
                 } catch (ParseException ex) {
-                    return null;
+                    return "ERRO";
                 }
             }
             case 2:

@@ -69,6 +69,12 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         return null;
     }
 
+    @Override
+    public void clearList() {
+        list.clear();
+        this.fireTableDataChanged();
+    }
+
     public List<T> getList() {
         return list;
     }

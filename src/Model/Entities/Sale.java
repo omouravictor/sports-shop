@@ -52,7 +52,7 @@ public class Sale {
         if (!productList.isEmpty()) {
             double total = 0;
             for (int i = 0; i < productList.size(); i++) {
-                total += productList.get(i).getCost();
+                total += productList.get(i).getQuantity() * productList.get(i).getCost();
             }
             return total;
         }
