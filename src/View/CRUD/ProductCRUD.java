@@ -4,13 +4,13 @@ import Control.ProductControl;
 import Model.Classes.Sleeves;
 import Model.Entities.Brand;
 import Model.Entities.Category;
-import View.Forms.AbstractForm;
+import Model.Classes.AbstractJDialog;
 import Model.Entities.Product;
 import Model.Entities.Shirt;
 import Model.Tables.TbProductModel;
 import Model.Interfaces.ICRUDview;
 
-public class ProductCRUD extends AbstractForm<Product> implements ICRUDview<Product> {
+public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<Product> {
 
     private ProductControl productControl = new ProductControl();
     private TbProductModel tbProductModel = new TbProductModel();

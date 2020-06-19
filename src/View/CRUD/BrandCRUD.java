@@ -1,12 +1,12 @@
 package View.CRUD;
 
 import Control.BrandControl;
-import View.Forms.AbstractForm;
+import Model.Classes.AbstractJDialog;
 import Model.Entities.Brand;
 import Model.Tables.TbBrandModel;
 import Model.Interfaces.ICRUDview;
 
-public class BrandCRUD extends AbstractForm<Brand> implements ICRUDview<Brand> {
+public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand> {
 
     private BrandControl brandControl = new BrandControl();
     private TbBrandModel tbBrandModel = new TbBrandModel();

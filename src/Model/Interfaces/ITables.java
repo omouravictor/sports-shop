@@ -1,10 +1,13 @@
 package Model.Interfaces;
 
+import java.util.List;
 import javax.swing.JTable;
 
 public interface ITables<T> {
 
     public void addObjectRow(T t);
+    
+    public void addObjectRowS(List<T> t);
 
     public void removeObjectRow(int rowIndex);
     

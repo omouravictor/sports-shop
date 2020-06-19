@@ -79,12 +79,8 @@ public class Sale {
         return productList;
     }
 
-    public void addProductList(List<Product> productList) {
+    public void setProductList(List<Product> productList) {
         this.productList.addAll(productList);
-    }
-
-    public void addProduct(Product product) {
-        this.productList.add(product);
     }
 
     public String getSaleDate() {

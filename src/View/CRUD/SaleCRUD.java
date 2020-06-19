@@ -5,14 +5,14 @@ import Model.Entities.Brand;
 import Model.Entities.Category;
 import Model.Entities.Client;
 import Model.Entities.Product;
-import View.Forms.AbstractForm;
+import Model.Classes.AbstractJDialog;
 import Model.Entities.Sale;
 import Model.Tables.TbSaleModel;
 import Model.Interfaces.ICRUDview;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaleCRUD extends AbstractForm<Sale> implements ICRUDview<Sale> {
+public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
 
     private SaleControl saleControl = new SaleControl();
     private TbSaleModel tbSaleModel = new TbSaleModel();
@@ -26,9 +26,9 @@ public class SaleCRUD extends AbstractForm<Sale> implements ICRUDview<Sale> {
                 "35182-278", "Dinamarca", "238", "Ana Rita", "Timóteo", "MG");
         Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 5, 10);
         p1.setId(Long.parseLong("100"));
-        List<Product> list = new ArrayList<>();
-        list.add(p1);
-        Sale s1 = new Sale(c, list, "16/06/2020");
+        List<Product> l = new ArrayList<>();
+        l.add(p1);
+        Sale s1 = new Sale(c, l, "16/06/2020");
         s1.setId(Long.parseLong("100"));
         tbSaleModel.addObjectRow(s1);
     }

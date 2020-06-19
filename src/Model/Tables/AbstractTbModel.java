@@ -32,6 +32,14 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
             this.fireTableRowsInserted(0, list.size());
         }
     }
+    
+    @Override
+    public void addObjectRowS(List<T> tList) {
+        if (tList != null) {
+            list.addAll(tList);
+            this.fireTableRowsInserted(0, list.size());
+        }
+    }
 
     @Override
     public void removeObjectRow(int rowIndex) {
@@ -72,15 +80,15 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
     @Override
     public void clearList() {
         list.clear();
-        this.fireTableDataChanged();
+        this.fireTableRowsDeleted(0, 0);
     }
 
     public List<T> getList() {
         return list;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setList(List<T> tlist) {
+        this.list = tlist;
     }
 
     public String[] getColumnNames() {

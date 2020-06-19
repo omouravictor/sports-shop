@@ -1,4 +1,4 @@
-package View.Forms;
+package Model.Classes;
 
 import Model.Tables.AbstractTbModel;
 import javax.swing.JFormattedTextField;
@@ -6,9 +6,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public abstract class AbstractForm<T> extends javax.swing.JDialog {
+public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
 
-    public AbstractForm(java.awt.Frame parent, boolean modal) {
+    public AbstractJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }

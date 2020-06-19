@@ -1,5 +1,6 @@
 package View.Forms;
 
+import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
@@ -11,7 +12,7 @@ import Model.Entities.Product;
 import Model.Interfaces.IForms;
 import java.text.ParseException;
 
-public class ProductForm extends AbstractForm<Product> implements IForms<Product> {
+public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
     private final CategoryComboBoxModel cbCategoryModel = new CategoryComboBoxModel();

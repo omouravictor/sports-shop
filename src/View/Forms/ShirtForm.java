@@ -1,5 +1,6 @@
 package View.Forms;
 
+import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.BrandComboBoxModel;
@@ -7,7 +8,7 @@ import Model.Entities.Brand;
 import Model.Entities.Shirt;
 import Model.Interfaces.IForms;
 
-public class ShirtForm extends AbstractForm<Shirt> implements IForms<Shirt> {
+public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
     private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();

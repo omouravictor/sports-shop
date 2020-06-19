@@ -1,5 +1,6 @@
 package View.Forms;
 
+import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
 import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
@@ -23,7 +24,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
+public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private boolean isConfirmed = false;
     TbClientModel tbClientSearchModel = new TbClientModel();
@@ -595,12 +596,16 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
             isConfirmed = true;
+            clearAllSelectedRows();
+            resetCostAndQtdByProduct();
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         isConfirmed = false;
+        clearAllSelectedRows();
+        resetCostAndQtdByProduct();
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -752,28 +757,60 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         spQuantity.setEnabled(true);
         btAddClient.setEnabled(true);
         btAddProduct.setEnabled(true);
-        btProductSearch.setEnabled(true);
         btClientSearch.setEnabled(true);
         btRemoveClient.setEnabled(true);
         btRemoveProduct.setEnabled(true);
+        btProductSearch.setEnabled(true);
+        txtCostByProduct.setEnabled(true);
+        txtName.setEnabled(true);
+        txtCPF.setEnabled(true);
+        txtCategory.setEnabled(true);
+        txtBrand.setEnabled(true);
+        txtTeam.setEnabled(true);
+        txtPlayer.setEnabled(true);
+        txtShirtName.setEnabled(true);
+        txtSleeves.setEnabled(true);
+        txtNumber.setEnabled(true);
+        txtColor.setEnabled(true);
+        txtSize.setEnabled(true);
+        txtID.setEnabled(true);
+        tbClientSearch.setEnabled(true);
+        tbProductSearch.setEnabled(true);
+    }
+
+    public void setNoEnabledAll() {
+        spQuantity.setEnabled(false);
+        btAddClient.setEnabled(false);
+        btAddProduct.setEnabled(false);
+        btClientSearch.setEnabled(false);
+        btRemoveClient.setEnabled(false);
+        btRemoveProduct.setEnabled(false);
+        btProductSearch.setEnabled(false);
+        txtCostByProduct.setEnabled(false);
+        txtName.setEnabled(false);
+        txtCPF.setEnabled(false);
+        txtCategory.setEnabled(false);
+        txtBrand.setEnabled(false);
+        txtTeam.setEnabled(false);
+        txtPlayer.setEnabled(false);
+        txtShirtName.setEnabled(false);
+        txtSleeves.setEnabled(false);
+        txtNumber.setEnabled(false);
+        txtColor.setEnabled(false);
+        txtSize.setEnabled(false);
+        txtID.setEnabled(false);
+        tbClientSearch.setEnabled(false);
+        tbProductSearch.setEnabled(false);
     }
 
     public void setEditableAll() {
-        txtName.setEditable(true);
-        txtCPF.setEditable(true);
         txtDate.setEditable(true);
-        txtCategory.setEditable(true);
-        txtBrand.setEditable(true);
-        txtTeam.setEditable(true);
-        txtPlayer.setEditable(true);
-        txtShirtName.setEditable(true);
-        txtSleeves.setEditable(true);
-        txtNumber.setEditable(true);
-        txtColor.setEditable(true);
-        txtSize.setEditable(true);
-        txtID.setEditable(true);
-        txtCostByProduct.setEditable(true);
         txtTotalCost.setEditable(true);
+    }
+
+    public void setNoEditableAll() {
+        txtDate.setEditable(false);
+        txtTotalCost.setEditable(false);
     }
 
     public void emptyAll() {
@@ -781,6 +818,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         tbAddedProductModel.clearList();
         txtName.setText("");
         txtCPF.setText("");
+        txtDate.setText("");
         txtCategory.setText("");
         txtBrand.setText("");
         txtTeam.setText("");
@@ -805,9 +843,10 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
     @Override
     public Sale getObjectCreated() {
         Sale newSale = new Sale();
-        newSale.setClient(getClientAdded());
-        newSale.setSaleCost(parseTxtCostValueToDouble(txtTotalCost));
+        newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
+        newSale.setProductList(tbAddedProductModel.getList());
+        newSale.setSaleCost(parseTxtCostValueToDouble(txtTotalCost));
         return newSale;
     }
 
@@ -820,41 +859,11 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         }
         return null;
     }
-    
-    public void setNoEnabledAll() {
-        spQuantity.setEnabled(false);
-        btAddClient.setEnabled(false);
-        btAddProduct.setEnabled(false);
-        btProductSearch.setEnabled(false);
-        btClientSearch.setEnabled(false);
-        btRemoveClient.setEnabled(false);
-        btRemoveProduct.setEnabled(false);
-    }
-
-    public void setNoEditableAll() {
-        txtName.setEditable(false);
-        txtCPF.setEditable(false);
-        txtDate.setEditable(false);
-        txtCategory.setEditable(false);
-        txtBrand.setEditable(false);
-        txtTeam.setEditable(false);
-        txtPlayer.setEditable(false);
-        txtShirtName.setEditable(false);
-        txtSleeves.setEditable(false);
-        txtNumber.setEditable(false);
-        txtColor.setEditable(false);
-        txtSize.setEditable(false);
-        txtID.setEditable(false);
-        txtCostByProduct.setEditable(false);
-        txtTotalCost.setEditable(false);
-    }
 
     public void prepareRead() {
         btOk.setVisible(false);
         btCancel.setText("Close");
-        tbClientSearchModel.clearList();
         tbAddedClientModel.clearList();
-        tbProductSearchModel.clearList();
         tbAddedProductModel.clearList();
         setNoEditableAll();
         setNoEnabledAll();
@@ -865,7 +874,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         prepareRead();
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
-        tbAddedProductModel.setList(t.getProductList());
+        tbAddedProductModel.addObjectRowS(t.getProductList());
         try {
             txtTotalCost.setText(new CostFormatter().formatCost(t.getSaleCost()));
         } catch (ParseException ex) {
@@ -904,18 +913,12 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
 
     public void initSetup() {
         setTxtModels();
-        setEditableFields();
         setSpQuantityModel();
         setTbAddedClientColumnSizes();
         setTbClientSearchColumnSizes();
         setTbAddedProductsColumnSizes();
         setTbProductSearchColumnSizes();
         setListenerInTbAddedProducts();
-    }
-
-    public void setEditableFields() {
-        txtTotalCost.setEditable(false);
-        txtCostByProduct.setEditable(false);
     }
 
     public boolean productFiltersAreEmpty() {
@@ -948,7 +951,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
 
     public void resetCostAndQtdByProduct() {
         txtCostByProduct.setText("R$ 0,00");
-        spQuantity.setModel(new SpinnerNumberModel(1, 1, 1000000, 1));
+        setSpQuantityModel();
     }
 
     public void filterTbClientSearch() {
@@ -975,7 +978,7 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
                 }
             }
         };
-        tbAddedProducts.getModel().addTableModelListener(listener);
+        tbAddedProductModel.addTableModelListener(listener);
     }
 
     public void setSpQuantityModel() {
@@ -1009,11 +1012,6 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         return selectedProduct;
     }
 
-    public Client getClientAdded() {
-        Client addedClient = tbAddedClientModel.getObjectByRow(0);
-        return addedClient;
-    }
-
     public int getSpQuantity() {
         int qtd = Integer.parseInt(spQuantity.getValue().toString());
         return qtd;
@@ -1044,6 +1042,13 @@ public class SaleForm extends AbstractForm<Sale> implements IForms<Sale> {
         } else {
             txtTotalCost.setText("R$ 0,00");
         }
+    }
+
+    public void clearAllSelectedRows() {
+        tbAddedClient.getSelectionModel().clearSelection();
+        tbClientSearch.getSelectionModel().clearSelection();
+        tbAddedProducts.getSelectionModel().clearSelection();
+        tbProductSearch.getSelectionModel().clearSelection();
     }
 
     public void productAddButtonAction() {

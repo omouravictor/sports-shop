@@ -1,12 +1,12 @@
 package View.CRUD;
 
 import Control.CategoryControl;
-import View.Forms.AbstractForm;
+import Model.Classes.AbstractJDialog;
 import Model.Entities.Category;
 import Model.Tables.TbCategoryModel;
 import Model.Interfaces.ICRUDview;
 
-public class CategoryCRUD extends AbstractForm<Category> implements ICRUDview<Category> {
+public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview<Category> {
 
     private CategoryControl categoryControl = new CategoryControl();
     private TbCategoryModel tbCategoryModel = new TbCategoryModel();

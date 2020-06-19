@@ -1,11 +1,12 @@
 package View.Forms;
 
+import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.Entities.Category;
 import Model.Interfaces.IForms;
 
-public class CategoryForm extends AbstractForm<Category> implements IForms<Category> {
+public class CategoryForm extends AbstractJDialog<Category> implements IForms<Category> {
 
     private boolean isConfirmed = false;
 

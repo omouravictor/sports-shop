@@ -1,12 +1,12 @@
 package View.CRUD;
 
 import Control.ClientControl;
-import View.Forms.AbstractForm;
+import Model.Classes.AbstractJDialog;
 import Model.Entities.Client;
 import Model.Tables.TbClientModel;
 import Model.Interfaces.ICRUDview;
 
-public class ClientCRUD extends AbstractForm<Client> implements ICRUDview<Client> {
+public class ClientCRUD extends AbstractJDialog<Client> implements ICRUDview<Client> {
 
     private ClientControl clientControl = new ClientControl();
     private TbClientModel tbClientModel = new TbClientModel();
