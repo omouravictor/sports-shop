@@ -42,10 +42,6 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
         return tbToLookFor.getSelectedRow() != -1;
     }
 
-    public void clearSelectedRows(JTable tbToLookFor) {
-        tbToLookFor.getSelectionModel().clearSelection();
-    }
-
     public T getObjectSelectedInTb(JTable tbToLookFor, AbstractTbModel tbModelToLookFor) {
         int row = tbToLookFor.getSelectedRow();
         T selectedObject = (T) tbModelToLookFor.getObjectByRow(row);

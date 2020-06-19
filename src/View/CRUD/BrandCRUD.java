@@ -251,7 +251,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
     public void create() {
         Brand newBrand = brandControl.create();
         tbBrandModel.addObjectRow(newBrand);
-        clearSelectedRows(tbBrand);
+        tbBrand.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -259,7 +259,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
         if (rowIsSelected(tbBrand)) {
             Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
             brandControl.read(brandSelected);
-            clearSelectedRows(tbBrand);
+            tbBrand.getSelectionModel().clearSelection();
         }
     }
 
@@ -269,7 +269,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
             Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
             Brand updatedBrand = brandControl.update(oldBrand);
             tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
-            clearSelectedRows(tbBrand);
+            tbBrand.getSelectionModel().clearSelection();
         }
     }
 
@@ -279,7 +279,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
             Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
             brandControl.delete(brandSelected);
             tbBrandModel.removeObjectRow(brandSelected);
-            clearSelectedRows(tbBrand);
+            tbBrand.getSelectionModel().clearSelection();
         }
     }
 }

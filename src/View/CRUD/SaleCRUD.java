@@ -264,7 +264,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
     public void create() {
         Sale newSale = saleControl.create();
         tbSaleModel.addObjectRow(newSale);
-        clearSelectedRows(tbSale);
+        tbSale.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -272,7 +272,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
         if (rowIsSelected(tbSale)) {
             Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
             saleControl.read(saleSelected);
-            clearSelectedRows(tbSale);
+            tbSale.getSelectionModel().clearSelection();
         }
     }
 
@@ -282,7 +282,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
             Sale oldSale = getObjectSelectedInTb(tbSale, tbSaleModel);
             Sale updatedSale = saleControl.update(oldSale);
             tbSaleModel.updateObjectRow(oldSale, updatedSale);
-            clearSelectedRows(tbSale);
+            tbSale.getSelectionModel().clearSelection();
         }
     }
 
@@ -292,7 +292,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
             Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
             saleControl.delete(saleSelected);
             tbSaleModel.removeObjectRow(saleSelected);
-            clearSelectedRows(tbSale);
+            tbSale.getSelectionModel().clearSelection();
         }
     }
 }

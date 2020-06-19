@@ -250,7 +250,7 @@ public class ClientCRUD extends AbstractJDialog<Client> implements ICRUDview<Cli
     public void create() {
         Client newClient = clientControl.create();
         tbClientModel.addObjectRow(newClient);
-        clearSelectedRows(tbClient);
+        tbClient.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -258,7 +258,7 @@ public class ClientCRUD extends AbstractJDialog<Client> implements ICRUDview<Cli
         if (rowIsSelected(tbClient)) {
             Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
             clientControl.read(clientSelected);
-            clearSelectedRows(tbClient);
+            tbClient.getSelectionModel().clearSelection();
         }
     }
 
@@ -268,7 +268,7 @@ public class ClientCRUD extends AbstractJDialog<Client> implements ICRUDview<Cli
             Client oldClient = getObjectSelectedInTb(tbClient, tbClientModel);
             Client updatedClient = clientControl.update(oldClient);
             tbClientModel.updateObjectRow(oldClient, updatedClient);
-            clearSelectedRows(tbClient);
+            tbClient.getSelectionModel().clearSelection();
         }
     }
 
@@ -278,7 +278,7 @@ public class ClientCRUD extends AbstractJDialog<Client> implements ICRUDview<Cli
             Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
             clientControl.delete(clientSelected);
             tbClientModel.removeObjectRow(clientSelected);
-            clearSelectedRows(tbClient);
+            tbClient.getSelectionModel().clearSelection();
         }
     }
 }

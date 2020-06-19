@@ -251,7 +251,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
     public void create() {
         Category newCategory = categoryControl.create();
         tbCategoryModel.addObjectRow(newCategory);
-        clearSelectedRows(tbCategory);
+        tbCategory.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -259,7 +259,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
         if (rowIsSelected(tbCategory)) {
             Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
             categoryControl.read(categorySelected);
-            clearSelectedRows(tbCategory);
+            tbCategory.getSelectionModel().clearSelection();
         }
     }
 
@@ -269,7 +269,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
             Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
             Category updatedCategory = categoryControl.update(oldCategory);
             tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
-            clearSelectedRows(tbCategory);
+            tbCategory.getSelectionModel().clearSelection();
         }
     }
 
@@ -279,7 +279,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
             Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
             categoryControl.delete(categorySelected);
             tbCategoryModel.removeObjectRow(categorySelected);
-            clearSelectedRows(tbCategory);
+            tbCategory.getSelectionModel().clearSelection();
         }
     }
 }

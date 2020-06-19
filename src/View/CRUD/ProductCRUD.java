@@ -268,7 +268,7 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
     public void create() {
         Product newProduct = productControl.create();
         tbProductModel.addObjectRow(newProduct);
-        clearSelectedRows(tbProduct);
+        tbProduct.getSelectionModel().clearSelection();
     }
 
     @Override
@@ -276,7 +276,7 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
         if (rowIsSelected(tbProduct)) {
             Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
             productControl.read(productSelected);
-            clearSelectedRows(tbProduct);
+            tbProduct.getSelectionModel().clearSelection();
         }
     }
 
@@ -286,7 +286,7 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
             Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
             Product updatedProduct = productControl.update(oldProduct);
             tbProductModel.updateObjectRow(oldProduct, updatedProduct);
-            clearSelectedRows(tbProduct);
+            tbProduct.getSelectionModel().clearSelection();
         }
     }
 
@@ -296,7 +296,7 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
             Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
             productControl.delete(productSelected);
             tbProductModel.removeObjectRow(productSelected);
-            clearSelectedRows(tbProduct);
+            tbProduct.getSelectionModel().clearSelection();
         }
     }
 }

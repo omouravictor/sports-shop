@@ -598,6 +598,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             isConfirmed = true;
             clearAllSelectedRows();
             resetCostAndQtdByProduct();
+            clearAllFilters();
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
@@ -606,6 +607,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         isConfirmed = false;
         clearAllSelectedRows();
         resetCostAndQtdByProduct();
+        clearAllFilters();
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -943,9 +945,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             tbProductSearchModel.filter(tbProductSearch, filters);
             resetCostAndQtdByProduct();
         } else {
-            String[] noFilter = {};
-            tbProductSearchModel.filter(tbProductSearch, noFilter);
-            resetCostAndQtdByProduct();
+            tbProductSearch.setRowSorter(null);
         }
     }
 
@@ -959,8 +959,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             String[] filters = {txtName.getText(), txtCPF.getText()};
             tbClientSearchModel.filter(tbClientSearch, filters);
         } else {
-            String[] noFilter = {};
-            tbClientSearchModel.filter(tbClientSearch, noFilter);
+            tbClientSearch.setRowSorter(null);
         }
     }
 
@@ -1076,6 +1075,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public void showForm() {
         this.setVisible(true);
+    }
+
+    public void clearAllFilters() {
+        tbClientSearch.setRowSorter(null);
+        tbProductSearch.setRowSorter(null);
     }
 
     public void setTbClientSearchColumnSizes() {
