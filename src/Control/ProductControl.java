@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Entities.Product;
+import Model.EntitiesClasses.Product;
 import View.Forms.ProductForm;
 
 public class ProductControl {

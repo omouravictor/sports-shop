@@ -4,7 +4,7 @@ import Model.Classes.AbstractJDialog;
 import static Model.Classes.CPFValidator.isValidCPF;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.Entities.Client;
+import Model.EntitiesClasses.Client;
 import Model.Interfaces.IForms;
 
 public class ClientForm extends AbstractJDialog<Client> implements IForms<Client> {

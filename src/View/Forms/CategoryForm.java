@@ -3,7 +3,7 @@ package View.Forms;
 import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.Entities.Category;
+import Model.EntitiesClasses.Category;
 import Model.Interfaces.IForms;
 
 public class CategoryForm extends AbstractJDialog<Category> implements IForms<Category> {

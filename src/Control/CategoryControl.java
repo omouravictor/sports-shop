@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Entities.Category;
+import Model.EntitiesClasses.Category;
 import View.Forms.CategoryForm;
 
 public class CategoryControl {

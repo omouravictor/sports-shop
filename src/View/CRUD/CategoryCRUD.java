@@ -2,7 +2,7 @@ package View.CRUD;
 
 import Control.CategoryControl;
 import Model.Classes.AbstractJDialog;
-import Model.Entities.Category;
+import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
 import Model.Interfaces.ICRUDview;
 

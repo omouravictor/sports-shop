@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Entities.Brand;
+import Model.EntitiesClasses.Brand;
 import View.Forms.BrandForm;
 
 public class BrandControl {

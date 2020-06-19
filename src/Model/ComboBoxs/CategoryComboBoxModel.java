@@ -1,6 +1,6 @@
 package Model.ComboBoxs;
 
-import Model.Entities.Category;
+import Model.EntitiesClasses.Category;
 
 public class CategoryComboBoxModel extends AbstractComboBoxModel<Category> {
 

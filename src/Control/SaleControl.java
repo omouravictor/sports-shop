@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Entities.Sale;
+import Model.EntitiesClasses.Sale;
 import View.Forms.SaleForm;
 
 public class SaleControl {

@@ -1,7 +1,7 @@
 package Model.Tables;
 
-import Model.Entities.Product;
-import Model.Entities.Shirt;
+import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import java.util.List;
 import javax.swing.JTable;
 

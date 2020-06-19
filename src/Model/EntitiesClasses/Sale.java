@@ -1,4 +1,4 @@
-package Model.Entities;
+package Model.EntitiesClasses;
 
 import java.util.ArrayList;
 import java.util.List;

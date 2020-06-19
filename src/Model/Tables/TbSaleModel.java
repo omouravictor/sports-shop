@@ -1,7 +1,7 @@
 package Model.Tables;
 
 import Model.Classes.CostFormatter;
-import Model.Entities.Sale;
+import Model.EntitiesClasses.Sale;
 import java.text.ParseException;
 import java.util.List;
 import javax.swing.JTable;

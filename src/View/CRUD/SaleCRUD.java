@@ -1,12 +1,12 @@
 package View.CRUD;
 
 import Control.SaleControl;
-import Model.Entities.Brand;
-import Model.Entities.Category;
-import Model.Entities.Client;
-import Model.Entities.Product;
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
+import Model.EntitiesClasses.Client;
+import Model.EntitiesClasses.Product;
 import Model.Classes.AbstractJDialog;
-import Model.Entities.Sale;
+import Model.EntitiesClasses.Sale;
 import Model.Tables.TbSaleModel;
 import Model.Interfaces.ICRUDview;
 import java.util.ArrayList;

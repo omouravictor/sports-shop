@@ -1,4 +1,4 @@
-package Model.Entities;
+package Model.EntitiesClasses;
 
 import Model.Classes.Sleeves;
 import javax.persistence.Column;

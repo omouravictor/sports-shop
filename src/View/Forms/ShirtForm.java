@@ -4,8 +4,8 @@ import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.BrandComboBoxModel;
-import Model.Entities.Brand;
-import Model.Entities.Shirt;
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 
 public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {

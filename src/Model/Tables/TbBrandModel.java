@@ -1,6 +1,6 @@
 package Model.Tables;
 
-import Model.Entities.Brand;
+import Model.EntitiesClasses.Brand;
 import java.util.List;
 import javax.swing.JTable;
 

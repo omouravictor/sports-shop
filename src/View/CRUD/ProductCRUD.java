@@ -2,11 +2,11 @@ package View.CRUD;
 
 import Control.ProductControl;
 import Model.Classes.Sleeves;
-import Model.Entities.Brand;
-import Model.Entities.Category;
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;
-import Model.Entities.Product;
-import Model.Entities.Shirt;
+import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbProductModel;
 import Model.Interfaces.ICRUDview;
 

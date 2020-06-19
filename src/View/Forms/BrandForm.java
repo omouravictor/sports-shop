@@ -3,7 +3,7 @@ package View.Forms;
 import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.Entities.Brand;
+import Model.EntitiesClasses.Brand;
 import Model.Interfaces.IForms;
 
 public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {

@@ -1,8 +1,8 @@
 package Model.Tables;
 
 import Model.Classes.CostFormatter;
-import Model.Entities.Product;
-import Model.Entities.Shirt;
+import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;

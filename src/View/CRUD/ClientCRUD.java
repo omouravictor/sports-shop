@@ -2,7 +2,7 @@ package View.CRUD;
 
 import Control.ClientControl;
 import Model.Classes.AbstractJDialog;
-import Model.Entities.Client;
+import Model.EntitiesClasses.Client;
 import Model.Tables.TbClientModel;
 import Model.Interfaces.ICRUDview;
 

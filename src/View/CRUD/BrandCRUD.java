@@ -2,7 +2,7 @@ package View.CRUD;
 
 import Control.BrandControl;
 import Model.Classes.AbstractJDialog;
-import Model.Entities.Brand;
+import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
 import Model.Interfaces.ICRUDview;
 

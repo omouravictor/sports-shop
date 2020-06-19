@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Entities.Client;
+import Model.EntitiesClasses.Client;
 import View.Forms.ClientForm;
 
 public class ClientControl {

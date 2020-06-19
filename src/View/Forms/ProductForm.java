@@ -6,9 +6,9 @@ import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.BrandComboBoxModel;
 import Model.ComboBoxs.CategoryComboBoxModel;
-import Model.Entities.Brand;
-import Model.Entities.Category;
-import Model.Entities.Product;
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
+import Model.EntitiesClasses.Product;
 import Model.Interfaces.IForms;
 import java.text.ParseException;
 
