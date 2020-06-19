@@ -79,7 +79,7 @@ public class Sale {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
+    public void addAllProducts(List<Product> productList) {
         this.productList.addAll(productList);
     }
 

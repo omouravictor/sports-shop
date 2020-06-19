@@ -1,5 +1,6 @@
 package Model.Tables;
 
+import Model.Classes.CostFormatter;
 import Model.Interfaces.ITables;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
 
     protected List<T> list = new ArrayList<>();
     protected String[] columnNames = new String[]{};
+    protected CostFormatter costFormatter = new CostFormatter();
 
     @Override
     public String getColumnName(int columnIndex) {
@@ -32,7 +34,7 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
             this.fireTableRowsInserted(0, list.size());
         }
     }
-    
+
     @Override
     public void addObjectRowS(List<T> tList) {
         if (tList != null) {

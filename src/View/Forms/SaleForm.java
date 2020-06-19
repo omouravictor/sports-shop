@@ -15,10 +15,7 @@ import Model.Interfaces.IForms;
 import Model.Tables.TbAddedProductModel;
 import Model.Tables.TbClientModel;
 import Model.Tables.TbProductModel;
-import java.text.ParseException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.TableModelEvent;
@@ -27,10 +24,11 @@ import javax.swing.event.TableModelListener;
 public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private boolean isConfirmed = false;
-    TbClientModel tbClientSearchModel = new TbClientModel();
-    TbClientModel tbAddedClientModel = new TbClientModel();
-    TbProductModel tbProductSearchModel = new TbProductModel();
-    TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
+    private TbClientModel tbClientSearchModel = new TbClientModel();
+    private TbClientModel tbAddedClientModel = new TbClientModel();
+    private TbProductModel tbProductSearchModel = new TbProductModel();
+    private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
+    private CostFormatter costFormatter = new CostFormatter();
 
     public SaleForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -578,19 +576,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }//GEN-LAST:event_btClientSearchActionPerformed
 
     private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtCategoryActionPerformed
 
     private void btProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductSearchActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_btProductSearchActionPerformed
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
@@ -612,107 +602,81 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddProductActionPerformed
-        productAddButtonAction();
+        if (rowIsSelected(tbProductSearch)) {
+            Product selectedProduct = getProductSelectedInTbSearchProduct();
+            int qtd = getSpQuantity();
+            if (tbAddedProductModel.getList().contains(selectedProduct)) {
+                Product newProduct = selectedProduct;
+                newProduct.setQuantity(qtd + selectedProduct.getQuantity());
+                tbAddedProductModel.updateObjectRow(selectedProduct, newProduct);
+            } else {
+                selectedProduct.setQuantity(qtd);
+                tbAddedProductModel.addObjectRow(selectedProduct);
+            }
+        }
     }//GEN-LAST:event_btAddProductActionPerformed
 
     private void btRemoveClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveClientActionPerformed
-        clientRemoveButtonAction();
+        tbAddedClientModel.removeObjectRow(0);
     }//GEN-LAST:event_btRemoveClientActionPerformed
 
     private void btAddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddClientActionPerformed
-        clientAddButtonAction();
+        if (!clientIsAdded()) {
+            int row = tbClientSearch.getSelectedRow();
+            Client addedClient = tbClientSearchModel.getObjectByRow(row);
+            tbAddedClientModel.addObjectRow(addedClient);
+        }
     }//GEN-LAST:event_btAddClientActionPerformed
 
     private void btRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveProductActionPerformed
-        productRemoveButtonAction();
+        if (productsAreAdded()) {
+            int row = tbAddedProducts.getSelectedRow();
+            tbAddedProductModel.removeObjectRow(row);
+        }
     }//GEN-LAST:event_btRemoveProductActionPerformed
 
     private void spQuantityStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spQuantityStateChanged
-        try {
-            updateCostByProductValue();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        updateCostByProductValue();
     }//GEN-LAST:event_spQuantityStateChanged
 
     private void tbProductSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductSearchMouseClicked
-        try {
-            updateCostByProductValue();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        updateCostByProductValue();
     }//GEN-LAST:event_tbProductSearchMouseClicked
 
     private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtBrandActionPerformed
 
     private void txtTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtTeamActionPerformed
 
     private void txtPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayerActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtPlayerActionPerformed
 
     private void txtSleevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSleevesActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtSleevesActionPerformed
 
     private void txtShirtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShirtNameActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtShirtNameActionPerformed
 
     private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtNumberActionPerformed
 
     private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtColorActionPerformed
 
     private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtSizeActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        try {
-            filterTbProductSearch();
-        } catch (ParseException ex) {
-            Logger.getLogger(SaleForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        filterTbProductSearch();
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
@@ -750,11 +714,13 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         });
     }
 
+    @Override
     public void setVisibleAll() {
         btOk.setVisible(true);
         btCancel.setVisible(true);
     }
 
+    @Override
     public void setEnabledAll() {
         spQuantity.setEnabled(true);
         btAddClient.setEnabled(true);
@@ -780,6 +746,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         tbProductSearch.setEnabled(true);
     }
 
+    @Override
     public void setNoEnabledAll() {
         spQuantity.setEnabled(false);
         btAddClient.setEnabled(false);
@@ -805,17 +772,20 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         tbProductSearch.setEnabled(false);
     }
 
+    @Override
     public void setEditableAll() {
         txtDate.setEditable(true);
         txtTotalCost.setEditable(true);
     }
 
+    @Override
     public void setNoEditableAll() {
         txtDate.setEditable(false);
         txtTotalCost.setEditable(false);
     }
 
-    public void emptyAll() {
+    @Override
+    public void setEmptyAll() {
         tbAddedClientModel.clearList();
         tbAddedProductModel.clearList();
         txtName.setText("");
@@ -833,11 +803,12 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtID.setText("");
     }
 
+    @Override
     public void prepareCreate() {
         setVisibleAll();
         setEnabledAll();
         setEditableAll();
-        emptyAll();
+        setEmptyAll();
         btOk.setText("Create");
         btCancel.setText("Cancel");
     }
@@ -847,8 +818,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        newSale.setProductList(tbAddedProductModel.getList());
-        newSale.setSaleCost(parseTxtCostValueToDouble(txtTotalCost));
+        newSale.addAllProducts(tbAddedProductModel.getList());
+        newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }
 
@@ -862,6 +833,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return null;
     }
 
+    @Override
     public void prepareRead() {
         btOk.setVisible(false);
         btCancel.setText("Close");
@@ -877,17 +849,43 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
         tbAddedProductModel.addObjectRowS(t.getProductList());
-        try {
-            txtTotalCost.setText(new CostFormatter().formatCost(t.getSaleCost()));
-        } catch (ParseException ex) {
-            showErrorMessage("Erro in read.");
-        }
+        txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
         showForm();
     }
 
     @Override
+    public void prepareUpdate(Sale t) {
+        setVisibleAll();
+        setEnabledAll();
+        setEditableAll();
+        setEmptyAll();
+        btOk.setText("Update");
+        btCancel.setText("Cancel");
+        txtDate.setText(t.getSaleDate());
+        tbAddedClientModel.addObjectRow(t.getClient());
+        tbAddedProductModel.addObjectRowS(t.getProductList());
+        txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
+    }
+
+    @Override
+    public Sale getObjectUpdated(Sale oldT) {
+        Sale updatedSale = oldT;
+        updatedSale.setClient(tbAddedClientModel.getObjectByRow(0));
+        updatedSale.setSaleDate(txtDate.getText());
+        updatedSale.getProductList().clear();
+        updatedSale.addAllProducts(tbAddedProductModel.getList());
+        updatedSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
+        return updatedSale;
+    }
+
+    @Override
     public Sale update(Sale t) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareUpdate(t);
+        showForm();
+        if (isConfirmed) {
+            return getObjectUpdated(t);
+        }
+        return null;
     }
 
     @Override
@@ -913,6 +911,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return !fieldsAreEmpty();
     }
 
+    @Override
     public void initSetup() {
         setTxtModels();
         setSpQuantityModel();
@@ -935,7 +934,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return txtName.getText().isEmpty() && txtCPF.getText().isEmpty();
     }
 
-    public void filterTbProductSearch() throws ParseException {
+    public void filterTbProductSearch() {
         if (!productFiltersAreEmpty()) {
             String[] filters = {txtCategory.getText(), txtBrand.getText(),
                 txtTeam.getText(), txtPlayer.getText(), txtShirtName.getText(),
@@ -968,13 +967,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             if (event.getType() == TableModelEvent.INSERT
                     || event.getType() == TableModelEvent.DELETE
                     || event.getType() == TableModelEvent.UPDATE) {
-                try {
-                    updateTotalCostValue();
-                } catch (ParseException ex) {
-                    Logger.getLogger(
-                            SaleForm.class.getName()).log(Level.SEVERE, null, ex
-                    );
-                }
+                updateTotalCostValue();
             }
         };
         tbAddedProductModel.addTableModelListener(listener);
@@ -993,18 +986,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return tbAddedProducts.getRowCount() != 0;
     }
 
-    public void clientAddButtonAction() {
-        if (!clientIsAdded()) {
-            int row = tbClientSearch.getSelectedRow();
-            Client addedClient = tbClientSearchModel.getObjectByRow(row);
-            tbAddedClientModel.addObjectRow(addedClient);
-        }
-    }
-
-    public void clientRemoveButtonAction() {
-        tbAddedClientModel.removeObjectRow(0);
-    }
-
     public Product getProductSelectedInTbSearchProduct() {
         int row = tbProductSearch.getSelectedRow();
         Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
@@ -1016,19 +997,20 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return qtd;
     }
 
-    public void updateCostByProductValue() throws ParseException {
+    public void updateCostByProductValue() {
         if (rowIsSelected(tbProductSearch)) {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             double costByProduct = qtd * selectedProduct.getCost();
-            String costFormatted = new CostFormatter().formatCost(costByProduct);
+            String costFormatted;
+            costFormatted = costFormatter.formatCost(costByProduct);
             txtCostByProduct.setText(costFormatted);
         } else {
             resetCostAndQtdByProduct();
         }
     }
 
-    public void updateTotalCostValue() throws ParseException {
+    public void updateTotalCostValue() {
         if (productsAreAdded()) {
             List<Product> addedProducts = tbAddedProductModel.getList();
             double totalCost = 0;
@@ -1037,7 +1019,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 int productQtd = addedProducts.get(i).getQuantity();
                 totalCost += productCost * productQtd;
             }
-            txtTotalCost.setText(new CostFormatter().formatCost(totalCost));
+            txtTotalCost.setText(costFormatter.formatCost(totalCost));
         } else {
             txtTotalCost.setText("R$ 0,00");
         }
@@ -1048,28 +1030,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         tbClientSearch.getSelectionModel().clearSelection();
         tbAddedProducts.getSelectionModel().clearSelection();
         tbProductSearch.getSelectionModel().clearSelection();
-    }
-
-    public void productAddButtonAction() {
-        if (rowIsSelected(tbProductSearch)) {
-            Product selectedProduct = getProductSelectedInTbSearchProduct();
-            int qtd = getSpQuantity();
-            if (tbAddedProductModel.getList().contains(selectedProduct)) {
-                Product newProduct = selectedProduct;
-                newProduct.setQuantity(qtd + selectedProduct.getQuantity());
-                tbAddedProductModel.updateObjectRow(selectedProduct, newProduct);
-            } else {
-                selectedProduct.setQuantity(qtd);
-                tbAddedProductModel.addObjectRow(selectedProduct);
-            }
-        }
-    }
-
-    public void productRemoveButtonAction() {
-        if (productsAreAdded()) {
-            int row = tbAddedProducts.getSelectedRow();
-            tbAddedProductModel.removeObjectRow(row);
-        }
     }
 
     @Override
@@ -1203,9 +1163,4 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private javax.swing.JTextField txtTeam;
     private javax.swing.JFormattedTextField txtTotalCost;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public Sale getObjectUpdated(Sale oldT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

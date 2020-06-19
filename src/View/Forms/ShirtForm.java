@@ -3,7 +3,7 @@ package View.Forms;
 import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.ComboBoxs.BrandComboBoxModel;
+import Model.ComboBoxs.SimpleComboBoxModel;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
@@ -11,7 +11,7 @@ import Model.Interfaces.IForms;
 public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
-    private final BrandComboBoxModel brandComboBoxModel = new BrandComboBoxModel();
+    private final SimpleComboBoxModel<Brand> brandComboBoxModel = new SimpleComboBoxModel();
 
     public ShirtForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -288,6 +288,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         cbBrand.setModel(brandComboBoxModel);
     }
 
+    @Override
     public void initSetup() {
         setTxtModels();
         setBrandComboBoxModel();
@@ -399,6 +400,51 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public Shirt getObjectUpdated(Shirt oldT) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void prepareCreate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void prepareRead() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void prepareUpdate(Shirt t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setVisibleAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setNoEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEditableAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setNoEditableAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setEmptyAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

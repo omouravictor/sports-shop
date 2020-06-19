@@ -1,9 +1,7 @@
 package Model.Tables;
 
-import Model.Classes.CostFormatter;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -32,11 +30,7 @@ public class TbProductModel extends AbstractTbModel<Product> {
             case 0:
                 return list.get(rowIndex).getNumInStock();
             case 1: {
-                try {
-                    return new CostFormatter().formatCost(list.get(rowIndex).getCost());
-                } catch (ParseException ex) {
-                    return "ERRO";
-                }
+                return costFormatter.formatCost(list.get(rowIndex).getCost());
             }
             case 2:
                 return list.get(rowIndex).getCategory().getName();
@@ -83,7 +77,7 @@ public class TbProductModel extends AbstractTbModel<Product> {
                     try {
                         return model.getValueAt(row, column).toString().toLowerCase();
                     } catch (NullPointerException e) {
-                        return null;
+                        return "ERRO";
                     }
                 }
             });

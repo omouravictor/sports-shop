@@ -8,9 +8,8 @@ import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbProductModel;
-import Model.Interfaces.ICRUDview;
 
-public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<Product> {
+public class ProductCRUD extends AbstractJDialog<Product> {
 
     private ProductControl productControl = new ProductControl();
     private TbProductModel tbProductModel = new TbProductModel();
@@ -198,19 +197,35 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        create();
+        Product newProduct = productControl.create();
+        tbProductModel.addObjectRow(newProduct);
+        tbProduct.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        read();
+        if (rowIsSelected(tbProduct)) {
+            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+            productControl.read(productSelected);
+            tbProduct.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        update();
+        if (rowIsSelected(tbProduct)) {
+            Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
+            Product updatedProduct = productControl.update(oldProduct);
+            tbProductModel.updateObjectRow(oldProduct, updatedProduct);
+            tbProduct.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        delete();
+        if (rowIsSelected(tbProduct)) {
+            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+            productControl.delete(productSelected);
+            tbProductModel.removeObjectRow(productSelected);
+            tbProduct.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
@@ -263,40 +278,4 @@ public class ProductCRUD extends AbstractJDialog<Product> implements ICRUDview<P
     private javax.swing.JTable tbProduct;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void create() {
-        Product newProduct = productControl.create();
-        tbProductModel.addObjectRow(newProduct);
-        tbProduct.getSelectionModel().clearSelection();
-    }
-
-    @Override
-    public void read() {
-        if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.read(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void update() {
-        if (rowIsSelected(tbProduct)) {
-            Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
-            Product updatedProduct = productControl.update(oldProduct);
-            tbProductModel.updateObjectRow(oldProduct, updatedProduct);
-            tbProduct.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void delete() {
-        if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.delete(productSelected);
-            tbProductModel.removeObjectRow(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
-        }
-    }
 }

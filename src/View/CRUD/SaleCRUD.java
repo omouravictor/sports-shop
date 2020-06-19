@@ -8,11 +8,10 @@ import Model.EntitiesClasses.Product;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Sale;
 import Model.Tables.TbSaleModel;
-import Model.Interfaces.ICRUDview;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
+public class SaleCRUD extends AbstractJDialog<Sale> {
 
     private SaleControl saleControl = new SaleControl();
     private TbSaleModel tbSaleModel = new TbSaleModel();
@@ -194,19 +193,35 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        create();
+        Sale newSale = saleControl.create();
+        tbSaleModel.addObjectRow(newSale);
+        tbSale.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        read();
+        if (rowIsSelected(tbSale)) {
+            Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
+            saleControl.read(saleSelected);
+            tbSale.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        update();
+        if (rowIsSelected(tbSale)) {
+            Sale oldSale = getObjectSelectedInTb(tbSale, tbSaleModel);
+            Sale updatedSale = saleControl.update(oldSale);
+            tbSaleModel.updateObjectRow(oldSale, updatedSale);
+            tbSale.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        delete();
+        if (rowIsSelected(tbSale)) {
+            Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
+            saleControl.delete(saleSelected);
+            tbSaleModel.removeObjectRow(saleSelected);
+            tbSale.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
@@ -259,40 +274,4 @@ public class SaleCRUD extends AbstractJDialog<Sale> implements ICRUDview<Sale> {
     private javax.swing.JTable tbSale;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void create() {
-        Sale newSale = saleControl.create();
-        tbSaleModel.addObjectRow(newSale);
-        tbSale.getSelectionModel().clearSelection();
-    }
-
-    @Override
-    public void read() {
-        if (rowIsSelected(tbSale)) {
-            Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
-            saleControl.read(saleSelected);
-            tbSale.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void update() {
-        if (rowIsSelected(tbSale)) {
-            Sale oldSale = getObjectSelectedInTb(tbSale, tbSaleModel);
-            Sale updatedSale = saleControl.update(oldSale);
-            tbSaleModel.updateObjectRow(oldSale, updatedSale);
-            tbSale.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void delete() {
-        if (rowIsSelected(tbSale)) {
-            Sale saleSelected = getObjectSelectedInTb(tbSale, tbSaleModel);
-            saleControl.delete(saleSelected);
-            tbSaleModel.removeObjectRow(saleSelected);
-            tbSale.getSelectionModel().clearSelection();
-        }
-    }
 }

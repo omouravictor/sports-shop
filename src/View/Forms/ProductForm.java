@@ -4,19 +4,18 @@ import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.ComboBoxs.BrandComboBoxModel;
-import Model.ComboBoxs.CategoryComboBoxModel;
+import Model.ComboBoxs.SimpleComboBoxModel;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Product;
 import Model.Interfaces.IForms;
-import java.text.ParseException;
 
 public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    private final CategoryComboBoxModel cbCategoryModel = new CategoryComboBoxModel();
-    private final BrandComboBoxModel cbBrandModel = new BrandComboBoxModel();
+    private final SimpleComboBoxModel<Category> cbCategoryModel = new SimpleComboBoxModel();
+    private final SimpleComboBoxModel<Brand> cbBrandModel = new SimpleComboBoxModel();
+    private CostFormatter costFormatter = new CostFormatter();
 
     public ProductForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -268,18 +267,21 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         });
     }
 
+    @Override
     public void setVisibleAll() {
         btOk.setVisible(true);
         btCancel.setVisible(true);
         labR$.setVisible(true);
     }
 
+    @Override
     public void setEnabledAll() {
         cbBrand.setEnabled(true);
         cbCategory.setEnabled(true);
         txtCost.setEnabled(true);
     }
 
+    @Override
     public void setEditableAll() {
         txtSize.setEditable(true);
         txtColor.setEditable(true);
@@ -289,7 +291,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtNumberPresent.setEditable(true);
     }
 
-    public void setEmptyTextAll() {
+    @Override
+    public void setEmptyAll() {
         cbBrand.setSelectedItem(null);
         cbCategory.setSelectedItem(null);
         txtSize.setText("");
@@ -301,11 +304,12 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtNumberPresent.setText("");
     }
 
+    @Override
     public void prepareCreate() {
         setVisibleAll();
         setEnabledAll();
         setEditableAll();
-        setEmptyTextAll();
+        setEmptyAll();
         btOk.setText("Create");
         btCancel.setText("Cancel");
     }
@@ -335,12 +339,14 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         return null;
     }
 
+    @Override
     public void setNoEnabledAll() {
         cbBrand.setEnabled(false);
         cbCategory.setEnabled(false);
         txtCost.setEnabled(false);
     }
 
+    @Override
     public void setNoEditableAll() {
         txtSize.setEditable(false);
         txtColor.setEditable(false);
@@ -350,6 +356,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtNumberPresent.setEditable(false);
     }
 
+    @Override
     public void prepareRead() {
         btOk.setVisible(false);
         labR$.setVisible(false);
@@ -364,11 +371,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         cbBrandModel.setSelectedItem(t.getBrand());
         cbCategoryModel.setSelectedItem(t.getCategory());
         txtSize.setText(t.getSizeProduct());
-        try {
-            txtCost.setText(new CostFormatter().formatCost(t.getCost()));
-        } catch (ParseException ex) {
-            showErrorMessage("Erro in read.");
-        }
+        txtCost.setText(costFormatter.formatCost(t.getCost()));
         txtColor.setText(t.getColor());
         txtNumStock.setText("" + t.getNumInStock());
         txtTeam.setText(t.getTeamName());
@@ -377,17 +380,18 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         showForm();
     }
 
-    public void prepareUpdate(Product t) throws ParseException {
+    @Override
+    public void prepareUpdate(Product t) {
         setVisibleAll();
         setEnabledAll();
         setEditableAll();
-        setEmptyTextAll();
+        setEmptyAll();
         btOk.setText("Update");
         btCancel.setText("Cancel");
         cbBrandModel.setSelectedItem(t.getBrand());
         cbCategoryModel.setSelectedItem(t.getCategory());
         txtSize.setText(t.getSizeProduct());
-        txtCost.setText(new CostFormatter().formatNumber(t.getCost()));
+        txtCost.setText(costFormatter.formatNumber(t.getCost()));
         txtColor.setText(t.getColor());
         txtNumStock.setText("" + t.getNumInStock());
         txtTeam.setText(t.getTeamName());
@@ -412,11 +416,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
 
     @Override
     public Product update(Product t) {
-        try {
-            prepareUpdate(t);
-        } catch (ParseException ex) {
-            showErrorMessage("Erro in update.");
-        }
+        prepareUpdate(t);
         showForm();
         if (isConfirmed) {
             return getObjectUpdated(t);
@@ -455,6 +455,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         return !fieldsAreEmpty();
     }
 
+    @Override
     public void initSetup() {
         setTxtModels();
     }

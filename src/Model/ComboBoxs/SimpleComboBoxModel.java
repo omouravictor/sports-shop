@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.AbstractListModel;
 import javax.swing.ComboBoxModel;
 
-public abstract class AbstractComboBoxModel<T> extends AbstractListModel implements ComboBoxModel {
+public class SimpleComboBoxModel<T> extends AbstractListModel implements ComboBoxModel {
 
     protected List<T> list = new ArrayList<>();
     protected T objectSelected;

@@ -48,7 +48,7 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
         return selectedObject;
     }
     
-    public double parseTxtCostToDouble(JFormattedTextField txt) {
+    public double parseTxtNumberToDouble(JFormattedTextField txt) {
         if (!txt.getText().isEmpty()) {
             String cost = txt.getText().replaceAll("\\.", "").replace(",", ".");
             return Double.parseDouble(cost);
@@ -56,7 +56,7 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
         return -1;
     }
 
-    public double parseTxtCostValueToDouble(JFormattedTextField txt) {
+    public double parseTxtCostToDouble(JFormattedTextField txt) {
         if (!txt.getText().isEmpty()) {
             String cost = txt.getText().replace("R$ ", "").replaceAll("\\.", "").replace(",", ".");
             return Double.parseDouble(cost);

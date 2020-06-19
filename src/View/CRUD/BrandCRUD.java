@@ -4,9 +4,8 @@ import Control.BrandControl;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
-import Model.Interfaces.ICRUDview;
 
-public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand> {
+public class BrandCRUD extends AbstractJDialog<Brand> {
 
     private BrandControl brandControl = new BrandControl();
     private TbBrandModel tbBrandModel = new TbBrandModel();
@@ -181,19 +180,35 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        create();
+        Brand newBrand = brandControl.create();
+        tbBrandModel.addObjectRow(newBrand);
+        tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        read();
+        if (rowIsSelected(tbBrand)) {
+            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
+            brandControl.read(brandSelected);
+            tbBrand.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        update();
+        if (rowIsSelected(tbBrand)) {
+            Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
+            Brand updatedBrand = brandControl.update(oldBrand);
+            tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
+            tbBrand.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        delete();
+        if (rowIsSelected(tbBrand)) {
+            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
+            brandControl.delete(brandSelected);
+            tbBrandModel.removeObjectRow(brandSelected);
+            tbBrand.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
@@ -246,40 +261,4 @@ public class BrandCRUD extends AbstractJDialog<Brand> implements ICRUDview<Brand
     private javax.swing.JTable tbBrand;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void create() {
-        Brand newBrand = brandControl.create();
-        tbBrandModel.addObjectRow(newBrand);
-        tbBrand.getSelectionModel().clearSelection();
-    }
-
-    @Override
-    public void read() {
-        if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.read(brandSelected);
-            tbBrand.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void update() {
-        if (rowIsSelected(tbBrand)) {
-            Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            Brand updatedBrand = brandControl.update(oldBrand);
-            tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
-            tbBrand.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void delete() {
-        if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.delete(brandSelected);
-            tbBrandModel.removeObjectRow(brandSelected);
-            tbBrand.getSelectionModel().clearSelection();
-        }
-    }
 }

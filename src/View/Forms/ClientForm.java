@@ -274,15 +274,18 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         });
     }
 
+    @Override
     public void initSetup() {
         setTxtModels();
     }
 
+    @Override
     public void setVisibleAll() {
         btOk.setVisible(true);
         btCancel.setVisible(true);
     }
 
+    @Override
     public void setEditableAll() {
         txtName.setEditable(true);
         txtCPF.setEditable(true);
@@ -296,7 +299,8 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         txtStateAddress.setEditable(true);
     }
 
-    public void setEmptyTextAll() {
+    @Override
+    public void setEmptyAll() {
         txtName.setText("");
         txtCPF.setText("");
         txtCellPhone.setText("");
@@ -309,10 +313,11 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         txtStateAddress.setText("");
     }
 
+    @Override
     public void prepareCreate() {
         setVisibleAll();
         setEditableAll();
-        setEmptyTextAll();
+        setEmptyAll();
         btOk.setText("Create");
         btCancel.setText("Cancel");
     }
@@ -343,6 +348,7 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         return null;
     }
 
+    @Override
     public void setNoEditableAll() {
         txtName.setEditable(false);
         txtCPF.setEditable(false);
@@ -356,6 +362,7 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         txtStateAddress.setEditable(false);
     }
 
+    @Override
     public void prepareRead() {
         btOk.setVisible(false);
         btCancel.setVisible(true);
@@ -379,6 +386,7 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         showForm();
     }
 
+    @Override
     public void prepareUpdate(Client t) {
         setVisibleAll();
         setEditableAll();
@@ -471,6 +479,16 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
     @Override
     public void showForm() {
         this.setVisible(true);
+    }
+    
+    @Override
+    public void setEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setNoEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

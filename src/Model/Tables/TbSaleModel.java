@@ -1,8 +1,6 @@
 package Model.Tables;
 
-import Model.Classes.CostFormatter;
 import Model.EntitiesClasses.Sale;
-import java.text.ParseException;
 import java.util.List;
 import javax.swing.JTable;
 
@@ -29,11 +27,7 @@ public class TbSaleModel extends AbstractTbModel<Sale> {
             case 3:
                 return list.get(rowIndex).getSaleDate();
             case 4: {
-                try {
-                    return new CostFormatter().formatCost(list.get(rowIndex).getSaleCost());
-                } catch (ParseException ex) {
-                    return "ERRO";
-                }
+                return costFormatter.formatCost(list.get(rowIndex).getSaleCost());
             }
         }
         return null;

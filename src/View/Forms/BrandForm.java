@@ -138,21 +138,34 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
         });
     }
 
+    @Override
     public void initSetup() {
         setTxtModels();
     }
     
+    @Override
     public void setVisibleAll(){
         btOk.setVisible(true);
         btCancel.setVisible(true);
     }
+    
+    @Override
+    public void setEmptyAll() {
+        txtName.setText("");
+    }
+    
+    @Override
+    public void setEditableAll() {
+        txtName.setEditable(true);
+    }
 
+    @Override
     public void prepareCreate() {
         setVisibleAll();
+        setEmptyAll();
+        setEditableAll();
         btOk.setText("Create");
         btCancel.setText("Cancel");
-        txtName.setEditable(true);
-        txtName.setText("");
     }
 
     @Override
@@ -170,12 +183,18 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
         }
         return null;
     }
+    
+    @Override
+    public void setNoEditableAll() {
+        txtName.setEditable(false);
+    }
 
+    @Override
     public void prepareRead() {
+        setNoEditableAll();
         btOk.setVisible(false);
         btCancel.setVisible(true);
         btCancel.setText("Close");
-        txtName.setEditable(false);
     }
 
     @Override
@@ -185,11 +204,12 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
         showForm();
     }
 
+    @Override
     public void prepareUpdate(Brand oldBrand) {
         setVisibleAll();
+        setEditableAll();
         btOk.setText("Update");
         btCancel.setText("Cancel");
-        txtName.setEditable(true);
         txtName.setText(oldBrand.getName());
     }
 
@@ -232,6 +252,16 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     @Override
     public void showForm() {
         this.setVisible(true);
+    }
+    
+    @Override
+    public void setEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void setNoEnabledAll() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;

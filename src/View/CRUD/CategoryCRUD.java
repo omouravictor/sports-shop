@@ -4,9 +4,8 @@ import Control.CategoryControl;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
-import Model.Interfaces.ICRUDview;
 
-public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview<Category> {
+public class CategoryCRUD extends AbstractJDialog<Category> {
 
     private CategoryControl categoryControl = new CategoryControl();
     private TbCategoryModel tbCategoryModel = new TbCategoryModel();
@@ -181,19 +180,35 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        create();
+        Category newCategory = categoryControl.create();
+        tbCategoryModel.addObjectRow(newCategory);
+        tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        read();
+        if (rowIsSelected(tbCategory)) {
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryControl.read(categorySelected);
+            tbCategory.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        update();
+        if (rowIsSelected(tbCategory)) {
+            Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            Category updatedCategory = categoryControl.update(oldCategory);
+            tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
+            tbCategory.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        delete();
+        if (rowIsSelected(tbCategory)) {
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryControl.delete(categorySelected);
+            tbCategoryModel.removeObjectRow(categorySelected);
+            tbCategory.getSelectionModel().clearSelection();
+        }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
@@ -246,40 +261,4 @@ public class CategoryCRUD extends AbstractJDialog<Category> implements ICRUDview
     private javax.swing.JTable tbCategory;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void create() {
-        Category newCategory = categoryControl.create();
-        tbCategoryModel.addObjectRow(newCategory);
-        tbCategory.getSelectionModel().clearSelection();
-    }
-
-    @Override
-    public void read() {
-        if (rowIsSelected(tbCategory)) {
-            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryControl.read(categorySelected);
-            tbCategory.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void update() {
-        if (rowIsSelected(tbCategory)) {
-            Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            Category updatedCategory = categoryControl.update(oldCategory);
-            tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
-            tbCategory.getSelectionModel().clearSelection();
-        }
-    }
-
-    @Override
-    public void delete() {
-        if (rowIsSelected(tbCategory)) {
-            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryControl.delete(categorySelected);
-            tbCategoryModel.removeObjectRow(categorySelected);
-            tbCategory.getSelectionModel().clearSelection();
-        }
-    }
 }

@@ -9,13 +9,21 @@ public class CostFormatter {
     public CostFormatter() {
     }
 
-    public String formatCost(double cost) throws ParseException {
+    public String formatCost(double cost) {
         NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("R$ #,###.00"));
-        return numFormatter.valueToString(cost);
+        try {
+            return numFormatter.valueToString(cost);
+        } catch (ParseException ex) {
+            return "ERRO";
+        }
     }
-    
-    public String formatNumber(double number) throws ParseException {
+
+    public String formatNumber(double number) {
         NumberFormatter numFormatter = new NumberFormatter(new DecimalFormat("#,###.00"));
-        return numFormatter.valueToString(number);
+        try {
+            return numFormatter.valueToString(number);
+        } catch (ParseException ex) {
+            return "ERRO";
+        }
     }
 }
