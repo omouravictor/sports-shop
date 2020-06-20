@@ -1,28 +1,26 @@
 package View.CRUD;
 
-import Control.ProductControl;
+import Control.ShirtControl;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;
-import Model.EntitiesClasses.Product;
-import Model.Tables.TbProductModel;
+import Model.Classes.Sleeves;
+import Model.EntitiesClasses.Shirt;
+import Model.Tables.TbShirtModel;
 
-public class ProductCRUD extends AbstractJDialog<Product> {
+public class ShirtCRUD extends AbstractJDialog<Shirt> {
 
-    private ProductControl productControl = new ProductControl();
-    private TbProductModel tbProductModel = new TbProductModel();
+    private ShirtControl shirtControl = new ShirtControl();
+    private TbShirtModel tbShirtModel = new TbShirtModel();
 
-    public ProductCRUD(java.awt.Frame parent, boolean modal) {
+    public ShirtCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Category c1 = new Category("Mug");
-        Category c2 = new Category("Shirt");
-        Category c3 = new Category("T-Shirt");
+        Category c1 = new Category("Shirt");
         Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
-        Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
+        Shirt p1 = new Shirt(c1, b1, "Barcelona", null, null, null, Sleeves.NoSleeves, "White", "300ml", 5, 5, 10);
         p1.setId(Long.parseLong("100"));
-        tbProductModel.addObjectRow(p1);
+        tbShirtModel.addObjectRow(p1);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,7 +33,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         labName = new javax.swing.JLabel();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
-        tbProduct = new javax.swing.JTable();
+        tbShirt = new javax.swing.JTable();
         panFooter = new javax.swing.JPanel();
         btCreate = new javax.swing.JButton();
         btRead = new javax.swing.JButton();
@@ -77,8 +75,8 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
         panTbSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Table"));
 
-        tbProduct.setModel(this.tbProductModel);
-        panGrid.setViewportView(tbProduct);
+        tbShirt.setModel(this.tbShirtModel);
+        panGrid.setViewportView(tbShirt);
 
         javax.swing.GroupLayout panTbSearchLayout = new javax.swing.GroupLayout(panTbSearch);
         panTbSearch.setLayout(panTbSearchLayout);
@@ -186,34 +184,34 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Product newProduct = productControl.create();
-        tbProductModel.addObjectRow(newProduct);
-        tbProduct.getSelectionModel().clearSelection();
+        Shirt newShirt = shirtControl.create();
+        tbShirtModel.addObjectRow(newShirt);
+        tbShirt.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
-        if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.read(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
+        if (rowIsSelected(tbShirt)) {
+            Shirt shirtSelected = getObjectSelectedInTb(tbShirt, tbShirtModel);
+            shirtControl.read(shirtSelected);
+            tbShirt.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
-        if (rowIsSelected(tbProduct)) {
-            Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
-            Product updatedProduct = productControl.update(oldProduct);
-            tbProductModel.updateObjectRow(oldProduct, updatedProduct);
-            tbProduct.getSelectionModel().clearSelection();
+        if (rowIsSelected(tbShirt)) {
+            Shirt oldShirt = getObjectSelectedInTb(tbShirt, tbShirtModel);
+            Shirt updatedShirt = shirtControl.update(oldShirt);
+            tbShirtModel.updateObjectRow(oldShirt, updatedShirt);
+            tbShirt.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-        if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.delete(productSelected);
-            tbProductModel.removeObjectRow(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
+        if (rowIsSelected(tbShirt)) {
+            Shirt shirtSelected = getObjectSelectedInTb(tbShirt, tbShirtModel);
+            shirtControl.delete(shirtSelected);
+            tbShirtModel.removeObjectRow(shirtSelected);
+            tbShirt.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 
@@ -230,17 +228,17 @@ public class ProductCRUD extends AbstractJDialog<Product> {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtCRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProductCRUD dialog = new ProductCRUD(new javax.swing.JFrame(), true);
+                ShirtCRUD dialog = new ShirtCRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -264,7 +262,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private javax.swing.JPanel panFooter;
     private javax.swing.JScrollPane panGrid;
     private javax.swing.JPanel panTbSearch;
-    private javax.swing.JTable tbProduct;
+    private javax.swing.JTable tbShirt;
     private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

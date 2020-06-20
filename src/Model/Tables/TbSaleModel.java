@@ -26,9 +26,8 @@ public class TbSaleModel extends AbstractTbModel<Sale> {
                 return list.get(rowIndex).getClient().getCpf();
             case 3:
                 return list.get(rowIndex).getSaleDate();
-            case 4: {
+            case 4:
                 return costFormatter.formatCost(list.get(rowIndex).getSaleCost());
-            }
         }
         return null;
     }

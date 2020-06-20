@@ -78,9 +78,6 @@ public class TbClientModel extends AbstractTbModel<Client> {
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);
             filterJtable.setRowSorter(tableRowSorter);
-        } else {
-            tableRowSorter.setRowFilter(RowFilter.regexFilter("", 2));
-            filterJtable.setRowSorter(tableRowSorter);
         }
     }
 }

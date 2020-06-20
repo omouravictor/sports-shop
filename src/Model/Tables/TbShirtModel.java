@@ -1,6 +1,6 @@
 package Model.Tables;
 
-import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -9,15 +9,16 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
-public class TbProductModel extends AbstractTbModel<Product> {
+public class TbShirtModel extends AbstractTbModel<Shirt> {
 
-    public TbProductModel() {
+    public TbShirtModel() {
         this.columnNames = new String[]{"Stock", "Cost", "Category",
-            "Brand", "Team", "Player", "Number", "Color", "Size", "Id"};
+            "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
+            "Color", "Size", "Id"};
     }
 
-    public TbProductModel(List<Product> productList, String[] columnNames) {
-        this.list = productList;
+    public TbShirtModel(List<Shirt> shirtList, String[] columnNames) {
+        this.list = shirtList;
         this.columnNames = columnNames;
     }
 
@@ -38,12 +39,16 @@ public class TbProductModel extends AbstractTbModel<Product> {
             case 5:
                 return list.get(rowIndex).getPlayerPresent();
             case 6:
-                return list.get(rowIndex).getNumberPresent();
+                return list.get(rowIndex).getPlayerNameOnShirt();
             case 7:
-                return list.get(rowIndex).getColor();
+                return list.get(rowIndex).getSleeves();
             case 8:
-                return list.get(rowIndex).getSizeProduct();
+                return list.get(rowIndex).getNumberPresent();
             case 9:
+                return list.get(rowIndex).getColor();
+            case 10:
+                return list.get(rowIndex).getSizeProduct();
+            case 11:
                 return list.get(rowIndex).getId();
         }
         return null;

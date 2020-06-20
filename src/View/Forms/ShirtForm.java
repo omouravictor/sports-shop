@@ -1,30 +1,35 @@
 package View.Forms;
 
 import Model.Classes.AbstractJDialog;
+import Model.Classes.CostFormatter;
+import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.ComboBoxs.SimpleComboBoxModel;
 import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 
 public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
-    private final SimpleComboBoxModel<Brand> brandComboBoxModel = new SimpleComboBoxModel();
+    private final SimpleComboBoxModel<Brand> cbBrandModel = new SimpleComboBoxModel();
+    private final CostFormatter costFormatter = new CostFormatter();
 
     public ShirtForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initSetup();
         Brand a = new Brand("Nike");
-        brandComboBoxModel.addObjectInCombo(a);
+        cbBrandModel.addObjectInCombo(a);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupSleeves = new javax.swing.ButtonGroup();
         labTitle = new javax.swing.JLabel();
         labNumberPresent = new javax.swing.JLabel();
         labBrand = new javax.swing.JLabel();
@@ -47,7 +52,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         rbLong = new javax.swing.JRadioButton();
         labSleeves = new javax.swing.JLabel();
         txtCost = new javax.swing.JFormattedTextField();
-        labCost1 = new javax.swing.JLabel();
+        labR$ = new javax.swing.JLabel();
         labColor = new javax.swing.JLabel();
         txtColor = new javax.swing.JTextField();
 
@@ -97,11 +102,15 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
             }
         });
 
+        cbBrand.setModel(this.cbBrandModel);
+
         labPlayerNameOnShirt.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labPlayerNameOnShirt.setText("PlayerNameOnShirt");
 
+        buttonGroupSleeves.add(rbShort);
         rbShort.setText("Short");
 
+        buttonGroupSleeves.add(rbLong);
         rbLong.setText("Long");
 
         labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -109,11 +118,11 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
         txtCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
 
-        labCost1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        labCost1.setText("R$");
+        labR$.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        labR$.setText("R$");
 
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labColor.setText("Color");
+        labColor.setText("Color*");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,7 +144,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labCost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labCost1))
+                                .addComponent(labR$))
                             .addComponent(labNumStock))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -158,30 +167,31 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                                     .addComponent(rbShort)
                                     .addComponent(rbLong))))
                         .addGap(89, 89, 89)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labPlayerNameOnShirt)
-                                    .addComponent(labNumberPresent))
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labPlayerPresent))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(76, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labPlayerNameOnShirt)
+                            .addComponent(labNumberPresent))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labColor)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labPlayerPresent))
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labColor))
+                        .addGap(54, 54, 54)))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +218,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                             .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labCost)
                             .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labCost1))
+                            .addComponent(labR$))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, Short.MAX_VALUE)
@@ -220,13 +230,12 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(labNumberPresent)
                                     .addComponent(txtNumberPresent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(rbShort))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(labColor)
-                                .addComponent(txtColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rbShort)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(219, 219, 219)
                         .addComponent(labSleeves)))
@@ -245,11 +254,13 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private void btOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkActionPerformed
         if (checkAll()) {
+            isConfirmed = true;
             this.dispose();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
+        isConfirmed = false;
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
@@ -284,28 +295,111 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         });
     }
 
-    public void setBrandComboBoxModel() {
-        cbBrand.setModel(brandComboBoxModel);
-    }
-
     @Override
     public void initSetup() {
         setTxtModels();
-        setBrandComboBoxModel();
     }
 
-    public double parseTxtCostTextToDouble() {
-        if (!txtCost.getText().isEmpty()) {
-            String text = txtCost.getText();
-            text.replaceAll("\\.", "").replace(",", ".");
-            return Double.parseDouble(text);
+    @Override
+    public void setVisibleAll() {
+        btOk.setVisible(true);
+        btCancel.setVisible(true);
+        labR$.setVisible(true);
+    }
+
+    @Override
+    public void setEnabledAll() {
+        cbBrand.setEnabled(true);
+        txtCost.setEnabled(true);
+        rbLong.setEnabled(true);
+        rbShort.setEnabled(true);
+    }
+
+    @Override
+    public void setNoEnabledAll() {
+        cbBrand.setEnabled(false);
+        txtCost.setEnabled(false);
+        rbLong.setEnabled(false);
+        rbShort.setEnabled(false);
+    }
+
+    @Override
+    public void setEditableAll() {
+        txtSize.setEditable(true);
+        txtColor.setEditable(true);
+        txtNumStock.setEditable(true);
+        txtTeam.setEditable(true);
+        txtPlayerPresent.setEditable(true);
+        txtPlayerNameOnShirt.setEditable(true);
+        txtNumberPresent.setEditable(true);
+    }
+
+    @Override
+    public void setNoEditableAll() {
+        txtSize.setEditable(false);
+        txtColor.setEditable(false);
+        txtNumStock.setEditable(false);
+        txtTeam.setEditable(false);
+        txtPlayerPresent.setEditable(false);
+        txtPlayerNameOnShirt.setEditable(false);
+        txtNumberPresent.setEditable(false);
+    }
+
+    @Override
+    public void setEmptyAll() {
+        cbBrand.setSelectedItem(null);
+        txtSize.setText("");
+        txtCost.setText("");
+        txtColor.setText("");
+        txtNumStock.setText("");
+        txtTeam.setText("");
+        txtPlayerPresent.setText("");
+        txtPlayerNameOnShirt.setText("");
+        txtNumberPresent.setText("");
+    }
+
+    @Override
+    public void prepareCreate() {
+        setVisibleAll();
+        setEnabledAll();
+        setEditableAll();
+        setEmptyAll();
+        btOk.setText("Create");
+        btCancel.setText("Cancel");
+    }
+
+    @Override
+    public Shirt getObjectCreated() {
+        Shirt newShirt = new Shirt();
+        newShirt.setCategory(new Category("Shirt"));
+        newShirt.setBrand((Brand) cbBrand.getSelectedItem());
+        newShirt.setSizeProduct(txtSize.getText());
+        newShirt.setColor(txtColor.getText());
+        newShirt.setCost(parseTxtCostToDouble(txtCost));
+        newShirt.setNumInStock(parseTxtTextToInt(txtNumStock));
+        newShirt.setNumberPresent(txtNumberPresent.getText());
+        newShirt.setPlayerPresent(txtPlayerPresent.getText());
+        newShirt.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
+        newShirt.setSleeves(getSleeveSelected());
+        newShirt.setTeamName(txtTeam.getText());
+        return newShirt;
+    }
+
+    public Sleeves getSleeveSelected() {
+        if (rbLong.isSelected()) {
+            return Sleeves.Long;
         }
-        return -1;
+        return Sleeves.Short;
     }
 
     @Override
     public Shirt create() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        prepareCreate();
+        showForm();
+        if (isConfirmed) {
+            return getObjectCreated();
+        }
+        return null;
     }
 
     @Override
@@ -332,7 +426,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public boolean fieldsAreEmpty() {
-        if (brandComboBoxModel.getSelectedItem() == null
+        if (cbBrandModel.getSelectedItem() == null
                 || txtNumStock.getText().isEmpty()
                 || txtColor.getText().isEmpty()
                 || txtTeam.getText().isEmpty()
@@ -360,7 +454,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     public boolean checkAll() {
         return !fieldsAreEmpty() && checkPlayerPresentAndPlayerNameOnShirt();
     }
-    
+
     @Override
     public void showForm() {
         this.setVisible(true);
@@ -368,15 +462,16 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btOk;
+    private javax.swing.ButtonGroup buttonGroupSleeves;
     private javax.swing.JComboBox<String> cbBrand;
     private javax.swing.JLabel labBrand;
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCost;
-    private javax.swing.JLabel labCost1;
     private javax.swing.JLabel labNumStock;
     private javax.swing.JLabel labNumberPresent;
     private javax.swing.JLabel labPlayerNameOnShirt;
     private javax.swing.JLabel labPlayerPresent;
+    private javax.swing.JLabel labR$;
     private javax.swing.JLabel labSize;
     private javax.swing.JLabel labSleeves;
     private javax.swing.JLabel labTeam;
@@ -394,21 +489,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public Shirt getObjectCreated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Shirt getObjectUpdated(Shirt oldT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void prepareCreate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void prepareRead() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -419,32 +499,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     }
 
     @Override
-    public void setVisibleAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setEnabledAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNoEnabledAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setEditableAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setNoEditableAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setEmptyAll() {
+    public Shirt getObjectUpdated(Shirt oldT) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

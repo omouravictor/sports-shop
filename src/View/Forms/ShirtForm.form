@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupSleeves">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="resizable" type="boolean" value="false"/>
@@ -41,7 +45,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labCost" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="labCost1" min="-2" max="-2" attributes="0"/>
+                              <Component id="labR$" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="labNumStock" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -76,40 +80,41 @@
                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labPlayerNameOnShirt" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labNumberPresent" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPlayerNameOnShirt" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <Component id="txtNumberPresent" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="txtColor" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labTeam" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="labPlayerPresent" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtTeam" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
-                                  <Component id="txtPlayerPresent" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labPlayerNameOnShirt" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labNumberPresent" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="76" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtPlayerNameOnShirt" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="txtNumberPresent" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labColor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labTeam" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="labPlayerPresent" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtTeam" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="txtPlayerPresent" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="133" pref="133" max="-2" attributes="0"/>
+                              <Component id="txtColor" min="-2" pref="51" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="labColor" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -140,7 +145,7 @@
                           <Component id="txtPlayerNameOnShirt" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="labCost" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtCost" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labCost1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labR$" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -158,15 +163,13 @@
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Component id="rbShort" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtColor" alignment="3" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="rbShort" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -291,6 +294,11 @@
     <Component class="javax.swing.JTextField" name="txtPlayerPresent">
     </Component>
     <Component class="javax.swing.JComboBox" name="cbBrand">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="this.cbBrandModel" type="code"/>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -309,11 +317,17 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbShort">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroupSleeves"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Short"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbLong">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroupSleeves"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Long"/>
       </Properties>
     </Component>
@@ -332,7 +346,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labCost1">
+    <Component class="javax.swing.JLabel" name="labR$">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="12" style="1"/>
@@ -345,7 +359,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dialog" size="11" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Color"/>
+        <Property name="text" type="java.lang.String" value="Color*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtColor">

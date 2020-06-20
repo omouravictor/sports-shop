@@ -14,7 +14,7 @@ import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 import Model.Tables.TbAddedProductModel;
 import Model.Tables.TbClientModel;
-import Model.Tables.TbProductModel;
+import Model.Tables.TbProductSearchModel;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
@@ -26,7 +26,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private boolean isConfirmed = false;
     private TbClientModel tbClientSearchModel = new TbClientModel();
     private TbClientModel tbAddedClientModel = new TbClientModel();
-    private TbProductModel tbProductSearchModel = new TbProductModel();
+    private TbProductSearchModel tbProductSearchModel = new TbProductSearchModel();
     private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();
 
@@ -720,6 +720,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btCancel.setVisible(true);
     }
 
+    public void setAlwaysNoEditable() {
+        txtCostByProduct.setEditable(false);
+        txtTotalCost.setEditable(false);
+    }
+
     @Override
     public void setEnabledAll() {
         spQuantity.setEnabled(true);
@@ -775,13 +780,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public void setEditableAll() {
         txtDate.setEditable(true);
-        txtTotalCost.setEditable(true);
     }
 
     @Override
     public void setNoEditableAll() {
         txtDate.setEditable(false);
-        txtTotalCost.setEditable(false);
     }
 
     @Override
@@ -915,6 +918,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     public void initSetup() {
         setTxtModels();
         setSpQuantityModel();
+        setAlwaysNoEditable();
         setTbAddedClientColumnSizes();
         setTbClientSearchColumnSizes();
         setTbAddedProductsColumnSizes();

@@ -15,7 +15,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private boolean isConfirmed = false;
     private final SimpleComboBoxModel<Category> cbCategoryModel = new SimpleComboBoxModel();
     private final SimpleComboBoxModel<Brand> cbBrandModel = new SimpleComboBoxModel();
-    private CostFormatter costFormatter = new CostFormatter();
+    private final CostFormatter costFormatter = new CostFormatter();
 
     public ProductForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
