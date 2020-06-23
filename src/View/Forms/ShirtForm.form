@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroupSleeves">
+    <Component class="javax.swing.ButtonGroup" name="btGroupSleeves">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -74,6 +74,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="rbShort" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="rbLong" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="rbNoSleeves" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -87,10 +88,7 @@
                           <Component id="labNumberPresent" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtPlayerNameOnShirt" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
-                          <Component id="txtNumberPresent" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="txtPlayerNameOnShirt" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -113,8 +111,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="133" max="-2" attributes="0"/>
+                      <Component id="txtNumberPresent" min="-2" pref="105" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="76" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -159,7 +161,7 @@
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="labNumberPresent" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNumberPresent" alignment="3" max="-2" attributes="0"/>
+                                  <Component id="txtNumberPresent" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -179,10 +181,18 @@
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="rbLong" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btOk" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="rbNoSleeves" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -289,8 +299,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNumberPresent">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtPlayerPresent">
     </Component>
     <Component class="javax.swing.JComboBox" name="cbBrand">
@@ -318,7 +326,7 @@
     <Component class="javax.swing.JRadioButton" name="rbShort">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroupSleeves"/>
+          <ComponentRef name="btGroupSleeves"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Short"/>
       </Properties>
@@ -326,7 +334,7 @@
     <Component class="javax.swing.JRadioButton" name="rbLong">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroupSleeves"/>
+          <ComponentRef name="btGroupSleeves"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Long"/>
       </Properties>
@@ -363,6 +371,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtColor">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="rbNoSleeves">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="btGroupSleeves"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="NoSleeves"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNumberPresent">
     </Component>
   </SubComponents>
 </Form>

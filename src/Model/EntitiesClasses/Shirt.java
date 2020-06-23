@@ -44,7 +44,7 @@ public class Shirt extends Product {
     }
 
     public void setPlayerNameOnShirt(String playerNameOnShirt) {
-        if (playerNameOnShirt != null) {
+        if (playerNameOnShirt != null && !playerNameOnShirt.isEmpty()) {
             this.playerNameOnShirt = playerNameOnShirt;
         }
     }

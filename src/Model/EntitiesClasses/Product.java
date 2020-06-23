@@ -108,7 +108,7 @@ public class Product {
     }
 
     public void setPlayerPresent(String playerPresentName) {
-        if (playerPresentName != null) {
+        if (playerPresentName != null && !playerPresentName.isEmpty()) {
             this.playerPresent = playerPresentName;
         }
     }
@@ -126,7 +126,7 @@ public class Product {
     }
 
     public void setNumberPresent(String numberPresent) {
-        if (numberPresent != null) {
+        if (numberPresent != null && !numberPresent.isEmpty()) {
             this.numberPresent = numberPresent;
         }
     }
