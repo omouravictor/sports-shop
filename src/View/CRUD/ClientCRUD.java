@@ -1,13 +1,13 @@
 package View.CRUD;
 
-import Control.ClientControl;
+import Control.ClientManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Client;
 import Model.Tables.TbClientModel;
 
 public class ClientCRUD extends AbstractJDialog<Client> {
 
-    private ClientControl clientControl = new ClientControl();
+    private ClientManager clientControl = new ClientManager();
     private TbClientModel tbClientModel = new TbClientModel();
 
     public ClientCRUD(java.awt.Frame parent, boolean modal) {

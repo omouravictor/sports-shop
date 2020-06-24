@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.ProductControl;
+import Control.ProductManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;
@@ -9,7 +9,7 @@ import Model.Tables.TbProductModel;
 
 public class ProductCRUD extends AbstractJDialog<Product> {
 
-    private ProductControl productControl = new ProductControl();
+    private ProductManager productControl = new ProductManager();
     private TbProductModel tbProductModel = new TbProductModel();
 
     public ProductCRUD(java.awt.Frame parent, boolean modal) {

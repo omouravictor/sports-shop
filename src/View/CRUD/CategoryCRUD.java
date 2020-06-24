@@ -1,22 +1,18 @@
 package View.CRUD;
 
-import Control.CategoryControl;
+import Control.CategoryManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
 
 public class CategoryCRUD extends AbstractJDialog<Category> {
 
-    private CategoryControl categoryControl = new CategoryControl();
+    private CategoryManager categoryManager = new CategoryManager();
     private TbCategoryModel tbCategoryModel = new TbCategoryModel();
 
     public CategoryCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Category a = new Category("Camisa");
-        Category b = new Category("Bermuda");
-        tbCategoryModel.addObjectRow(a);
-        tbCategoryModel.addObjectRow(b);
     }
 
     @SuppressWarnings("unchecked")
@@ -180,35 +176,48 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Category newCategory = categoryControl.create();
-        tbCategoryModel.addObjectRow(newCategory);
+        Object newCategory = categoryManager.create();
+        try {
+            tbCategoryModel.addObjectRow((Category) newCategory);
+        } catch (Exception e) {
+            showErrorMessage("Error on create brand.");
+        }
         tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbCategory)) {
-            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryControl.read(categorySelected);
+            Category brandSelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryManager.read(brandSelected);
             tbCategory.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbCategory)) {
-            Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            Category updatedCategory = categoryControl.update(oldCategory);
-            tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
-            tbCategory.getSelectionModel().clearSelection();
+            try {
+                Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+                Category updatedCategory = (Category) categoryManager.update(oldCategory);
+                tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
+            } catch (Exception e) {
+                showErrorMessage("Error on update brand.");
+            }
         }
+        tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbCategory)) {
-            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryControl.delete(categorySelected);
-            tbCategoryModel.removeObjectRow(categorySelected);
-            tbCategory.getSelectionModel().clearSelection();
+            try {
+                Category brandSelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+                if (categoryManager.delete(brandSelected)) {
+                    tbCategoryModel.removeObjectRow(brandSelected);
+                }
+            } catch (Exception e) {
+                showErrorMessage("Error on delete brand.");
+            }
         }
+        tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed

@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.ShirtControl;
+import Control.ShirtManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;
@@ -10,7 +10,7 @@ import Model.Tables.TbShirtModel;
 
 public class ShirtCRUD extends AbstractJDialog<Shirt> {
 
-    private ShirtControl shirtControl = new ShirtControl();
+    private ShirtManager shirtControl = new ShirtManager();
     private TbShirtModel tbShirtModel = new TbShirtModel();
 
     public ShirtCRUD(java.awt.Frame parent, boolean modal) {

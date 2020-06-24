@@ -3,11 +3,11 @@ package Control;
 import Model.EntitiesClasses.Product;
 import View.Forms.ProductForm;
 
-public class ProductControl {
+public class ProductManager {
 
     private ProductForm productForm = new ProductForm(null, true);
 
-    public ProductControl() {
+    public ProductManager() {
     }
 
     public Product create() {

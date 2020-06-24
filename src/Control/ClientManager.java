@@ -3,11 +3,11 @@ package Control;
 import Model.EntitiesClasses.Client;
 import View.Forms.ClientForm;
 
-public class ClientControl {
+public class ClientManager {
 
     private ClientForm clientForm = new ClientForm(null, true);
 
-    public ClientControl() {
+    public ClientManager() {
     }
 
     public Client create() {

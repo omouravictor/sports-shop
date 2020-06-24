@@ -1,22 +1,18 @@
 package View.CRUD;
 
-import Control.BrandControl;
+import Control.BrandManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
 
 public class BrandCRUD extends AbstractJDialog<Brand> {
 
-    private BrandControl brandControl = new BrandControl();
+    private BrandManager brandManager = new BrandManager();
     private TbBrandModel tbBrandModel = new TbBrandModel();
 
     public BrandCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Brand a = new Brand("Nike");
-        Brand b = new Brand("Adidas");
-        tbBrandModel.addObjectRow(a);
-        tbBrandModel.addObjectRow(b);
     }
 
     @SuppressWarnings("unchecked")
@@ -180,35 +176,48 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Brand newBrand = brandControl.create();
-        tbBrandModel.addObjectRow(newBrand);
+        Object newBrand = brandManager.create();
+        try {
+            tbBrandModel.addObjectRow((Brand) newBrand);
+        } catch (Exception e) {
+            showErrorMessage("Error on create brand.");
+        }
         tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbBrand)) {
             Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.read(brandSelected);
+            brandManager.read(brandSelected);
             tbBrand.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbBrand)) {
-            Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            Brand updatedBrand = brandControl.update(oldBrand);
-            tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
-            tbBrand.getSelectionModel().clearSelection();
+            try {
+                Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
+                Brand updatedBrand = (Brand) brandManager.update(oldBrand);
+                tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
+            } catch (Exception e) {
+                showErrorMessage("Error on update brand.");
+            }
         }
+        tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandControl.delete(brandSelected);
-            tbBrandModel.removeObjectRow(brandSelected);
-            tbBrand.getSelectionModel().clearSelection();
+            try {
+                Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
+                if (brandManager.delete(brandSelected)) {
+                    tbBrandModel.removeObjectRow(brandSelected);
+                }
+            } catch (Exception e) {
+                showErrorMessage("Error on delete brand.");
+            }
         }
+        tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed

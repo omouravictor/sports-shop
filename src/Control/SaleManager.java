@@ -3,11 +3,11 @@ package Control;
 import Model.EntitiesClasses.Sale;
 import View.Forms.SaleForm;
 
-public class SaleControl {
+public class SaleManager {
 
     private SaleForm saleForm = new SaleForm(null, true);
 
-    public SaleControl() {
+    public SaleManager() {
     }
 
     public Sale create() {

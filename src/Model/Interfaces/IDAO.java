@@ -4,13 +4,11 @@ import java.util.List;
 
 public interface IDAO {
 
-    public boolean createInBank(Object newT);
+    public Object createInBank(Object newT);
 
-    public boolean updateInBank(Object toUpdate);
+    public Object updateInBank(Object toUpdate);
 
     public boolean deleteInBank(Object toRemove);
 
-    public Object getFromBankById(Class classToLookFor, long id);
-
-    public List<Object> getAllFromBank(Class classToLookFor);
+    public List<Object> getAllFromBank(Class entityClassToLookFor);
 }

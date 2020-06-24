@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.SaleControl;
+import Control.SaleManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Client;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class SaleCRUD extends AbstractJDialog<Sale> {
 
-    private SaleControl saleControl = new SaleControl();
+    private SaleManager saleControl = new SaleManager();
     private TbSaleModel tbSaleModel = new TbSaleModel();
 
     public SaleCRUD(java.awt.Frame parent, boolean modal) {

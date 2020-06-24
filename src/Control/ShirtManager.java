@@ -3,11 +3,11 @@ package Control;
 import Model.EntitiesClasses.Shirt;
 import View.Forms.ShirtForm;
 
-public class ShirtControl {
+public class ShirtManager {
 
     private ShirtForm shirtForm = new ShirtForm(null, true);
 
-    public ShirtControl() {
+    public ShirtManager() {
     }
 
     public Shirt create() {
