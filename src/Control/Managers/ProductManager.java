@@ -1,4 +1,4 @@
-package Control;
+package Control.Managers;
 
 import Model.EntitiesClasses.Product;
 import View.Forms.ProductForm;

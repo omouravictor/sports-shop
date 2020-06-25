@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.BrandManager;
+import Control.Managers.BrandManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;

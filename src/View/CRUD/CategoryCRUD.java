@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.CategoryManager;
+import Control.Managers.CategoryManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;

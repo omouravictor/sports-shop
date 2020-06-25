@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.ClientManager;
+import Control.Managers.ClientManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Client;
 import Model.Tables.TbClientModel;

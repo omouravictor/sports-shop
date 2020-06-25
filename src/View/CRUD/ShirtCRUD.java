@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.ShirtManager;
+import Control.Managers.ShirtManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;

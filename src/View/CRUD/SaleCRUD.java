@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.SaleManager;
+import Control.Managers.SaleManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Client;

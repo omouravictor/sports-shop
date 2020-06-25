@@ -1,6 +1,6 @@
 package View.CRUD;
 
-import Control.ProductManager;
+import Control.Managers.ProductManager;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;

@@ -1,4 +1,4 @@
-package View.MainScreen;
+package View.Main;
 
 public class MainScreen extends javax.swing.JFrame {
 
