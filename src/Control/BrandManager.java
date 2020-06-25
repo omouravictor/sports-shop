@@ -2,8 +2,9 @@ package Control;
 
 import Model.EntitiesClasses.Brand;
 import View.Forms.BrandForm;
+import java.util.List;
 
-public class BrandManager extends AbstractManager {
+public class BrandManager extends AbstractManager<Brand> {
 
     private BrandForm brandForm = new BrandForm(null, true);
 
@@ -11,8 +12,8 @@ public class BrandManager extends AbstractManager {
     }
 
     @Override
-    public Object create() {
-        Object newBrand = brandForm.create();
+    public Brand create() {
+        Brand newBrand = brandForm.create();
         if (newBrand != null) {
             newBrand = dao.createInBank(newBrand);
             return newBrand;
@@ -21,13 +22,13 @@ public class BrandManager extends AbstractManager {
     }
 
     @Override
-    public void read(Object brand) {
-        brandForm.read((Brand) brand);
+    public void read(Brand brand) {
+        brandForm.read(brand);
     }
 
     @Override
-    public Object update(Object brand) {
-        Object updatedBrand = brandForm.update((Brand) brand);
+    public Brand update(Brand brand) {
+        Brand updatedBrand = brandForm.update(brand);
         if (updatedBrand != null) {
             updatedBrand = dao.updateInBank(updatedBrand);
             return updatedBrand;
@@ -36,7 +37,12 @@ public class BrandManager extends AbstractManager {
     }
 
     @Override
-    public boolean delete(Object brand) {
+    public boolean delete(Brand brand) {
         return dao.deleteInBank(brand);
+    }
+
+    @Override
+    public List<Brand> getAllFromBank() {
+        return dao.getAllFromBank(Brand.class);
     }
 }

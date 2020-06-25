@@ -50,7 +50,6 @@ public class TbClientModel extends AbstractTbModel<Client> {
         return null;
     }
 
-    @Override
     public void filter(JTable filterJtable, String[] viewFilters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
         if (viewFilters.length != 0) {

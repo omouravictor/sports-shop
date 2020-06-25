@@ -1,12 +1,11 @@
 package Control;
 
-import Model.Interfaces.IDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-public class DAO implements IDAO {
+public abstract class DAO<T> {
 
     protected EntityManagerFactory entityManagerFactory;
     protected EntityManager entityManager;
@@ -20,32 +19,29 @@ public class DAO implements IDAO {
         }
     }
 
-    @Override
-    public Object createInBank(Object toCreate) {
+    public T createInBank(T toCreate) {
         try {
             entityManager.getTransaction().begin();
             entityManager.persist(toCreate);
             entityManager.getTransaction().commit();
             return toCreate;
         } catch (Exception e) {
-            return "ERRO ON CREATE IN THE BANK.";
+            return null;
         }
     }
 
-    @Override
-    public Object updateInBank(Object toUpdate) {
+    public T updateInBank(T toUpdate) {
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(toUpdate);
             entityManager.getTransaction().commit();
             return toUpdate;
         } catch (Exception e) {
-            return "ERRO ON UPDATE IN THE BANK.";
+            return null;
         }
     }
 
-    @Override
-    public boolean deleteInBank(Object toDelete) {
+    public boolean deleteInBank(T toDelete) {
         try {
             entityManager.getTransaction().begin();
             entityManager.remove(toDelete);
@@ -55,18 +51,17 @@ public class DAO implements IDAO {
             return false;
         }
     }
-
-    @Override
-    public List<Object> getAllFromBank(Class classToLookFor) {
-        try {
-            javax.persistence.criteria.CriteriaQuery cq;
-            cq = entityManager.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(classToLookFor));
-            return entityManager.createQuery(cq).getResultList();
-        } catch (Exception e) {
-            return null;
+    
+    public List getAllFromBank(Class tClass) {
+            try {
+                javax.persistence.criteria.CriteriaQuery cq;
+                cq = entityManager.getCriteriaBuilder().createQuery();
+                cq.select(cq.from(tClass));
+                return entityManager.createQuery(cq).getResultList();
+            } catch (Exception e) {
+                return null;
+            }
         }
-    }
 
     public EntityManagerFactory getEntityManagerFactory() {
         return entityManagerFactory;

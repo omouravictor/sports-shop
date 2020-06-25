@@ -3,7 +3,6 @@ package Model.Tables;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
 import java.util.List;
-import javax.swing.JTable;
 
 public class TbAddedProductModel extends AbstractTbModel<Product> {
 
@@ -57,10 +56,5 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
                 return list.get(rowIndex).getId();
         }
         return null;
-    }
-
-    @Override
-    public void filter(JTable filterJtable, String[] filters) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

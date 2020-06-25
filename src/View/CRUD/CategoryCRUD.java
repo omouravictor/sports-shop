@@ -13,6 +13,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     public CategoryCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        tbCategoryModel.setList(categoryManager.getAllFromBank());
     }
 
     @SuppressWarnings("unchecked")
@@ -176,19 +177,19 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Object newCategory = categoryManager.create();
+        Category newCategory = categoryManager.create();
         try {
-            tbCategoryModel.addObjectRow((Category) newCategory);
+            tbCategoryModel.addObjectRow(newCategory);
         } catch (Exception e) {
-            showErrorMessage("Error on create brand.");
+            showErrorMessage("Error on create category.");
         }
         tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbCategory)) {
-            Category brandSelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryManager.read(brandSelected);
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            categoryManager.read(categorySelected);
             tbCategory.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
@@ -197,27 +198,29 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
         if (rowIsSelected(tbCategory)) {
             try {
                 Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-                Category updatedCategory = (Category) categoryManager.update(oldCategory);
+                Category updatedCategory = categoryManager.update(oldCategory);
                 tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
+                tbCategory.getSelectionModel().clearSelection();
             } catch (Exception e) {
-                showErrorMessage("Error on update brand.");
+                tbCategory.getSelectionModel().clearSelection();
+                showErrorMessage("Error on update category.");
             }
         }
-        tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbCategory)) {
             try {
-                Category brandSelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-                if (categoryManager.delete(brandSelected)) {
-                    tbCategoryModel.removeObjectRow(brandSelected);
+                Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+                if (categoryManager.delete(categorySelected)) {
+                    tbCategoryModel.removeObjectRow(categorySelected);
                 }
+                tbCategory.getSelectionModel().clearSelection();
             } catch (Exception e) {
-                showErrorMessage("Error on delete brand.");
+                tbCategory.getSelectionModel().clearSelection();
+                showErrorMessage("Error on delete category.");
             }
         }
-        tbCategory.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed

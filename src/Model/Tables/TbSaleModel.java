@@ -32,7 +32,6 @@ public class TbSaleModel extends AbstractTbModel<Sale> {
         return null;
     }
 
-    @Override
     public void filter(JTable filterJtable, String[] viewfilters) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

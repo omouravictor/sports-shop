@@ -2,8 +2,8 @@ package Control;
 
 import Model.Interfaces.IManagers;
 
-public abstract class AbstractManager implements IManagers {
+public abstract class AbstractManager<T> implements IManagers<T> {
 
-    protected DAO dao = new DAO();
+    protected DAO<T> dao = new DAO() {};
 
 }

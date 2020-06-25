@@ -26,7 +26,6 @@ public class TbCategoryModel extends AbstractTbModel<Category> {
         return null;
     }
 
-    @Override
     public void filter(JTable filterJtable, String[] viewfilters) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

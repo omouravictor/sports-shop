@@ -1,12 +1,16 @@
 package Model.Interfaces;
 
-public interface IManagers {
+import java.util.List;
 
-    public Object create();
+public interface IManagers<T> {
 
-    public void read(Object t);
+    public T create();
 
-    public Object update(Object t);
+    public void read(T t);
 
-    public boolean delete(Object toRemove);
+    public T update(T t);
+
+    public boolean delete(T toRemove);
+    
+    public List<T> getAllFromBank();
 }

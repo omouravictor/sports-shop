@@ -13,6 +13,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     public BrandCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        tbBrandModel.setList(brandManager.getAllFromBank());
     }
 
     @SuppressWarnings("unchecked")
@@ -176,9 +177,9 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Object newBrand = brandManager.create();
+        Brand newBrand = brandManager.create();
         try {
-            tbBrandModel.addObjectRow((Brand) newBrand);
+            tbBrandModel.addObjectRow(newBrand);
         } catch (Exception e) {
             showErrorMessage("Error on create brand.");
         }
@@ -197,13 +198,14 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         if (rowIsSelected(tbBrand)) {
             try {
                 Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
-                Brand updatedBrand = (Brand) brandManager.update(oldBrand);
+                Brand updatedBrand = brandManager.update(oldBrand);
                 tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
+                tbBrand.getSelectionModel().clearSelection();
             } catch (Exception e) {
+                tbBrand.getSelectionModel().clearSelection();
                 showErrorMessage("Error on update brand.");
             }
         }
-        tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
@@ -213,11 +215,12 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
                 if (brandManager.delete(brandSelected)) {
                     tbBrandModel.removeObjectRow(brandSelected);
                 }
+                tbBrand.getSelectionModel().clearSelection();
             } catch (Exception e) {
+                tbBrand.getSelectionModel().clearSelection();
                 showErrorMessage("Error on delete brand.");
             }
         }
-        tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed

@@ -26,7 +26,6 @@ public class TbBrandModel extends AbstractTbModel<Brand> {
         return null;
     }
 
-    @Override
     public void filter(JTable filterJtable, String[] viewfilters) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

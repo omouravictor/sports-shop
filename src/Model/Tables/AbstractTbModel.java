@@ -1,12 +1,11 @@
 package Model.Tables;
 
 import Model.Classes.CostFormatter;
-import Model.Interfaces.ITables;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public abstract class AbstractTbModel<T> extends AbstractTableModel implements ITables<T> {
+public abstract class AbstractTbModel<T> extends AbstractTableModel {
 
     protected List<T> list = new ArrayList<>();
     protected String[] columnNames = new String[]{};
@@ -27,7 +26,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         return columnNames.length;
     }
 
-    @Override
     public void addObjectRow(T t) {
         if (t != null) {
             list.add(t);
@@ -35,7 +33,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         }
     }
 
-    @Override
     public void addObjectRowS(List<T> tList) {
         if (tList != null) {
             list.addAll(tList);
@@ -43,7 +40,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         }
     }
 
-    @Override
     public void removeObjectRow(int rowIndex) {
         if (rowIndex > -1 && rowIndex < list.size()) {
             list.remove(rowIndex);
@@ -51,7 +47,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         }
     }
 
-    @Override
     public void removeObjectRow(T t) {
         if (t != null) {
             list.remove(t);
@@ -60,7 +55,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         }
     }
 
-    @Override
     public void updateObjectRow(T oldT, T updatedT) {
         if (oldT != null && updatedT != null) {
             int rowToUpdate = list.indexOf(oldT);
@@ -71,7 +65,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         }
     }
 
-    @Override
     public T getObjectByRow(int rowIndex) {
         if (rowIndex > -1 && rowIndex < list.size()) {
             return list.get(rowIndex);
@@ -79,7 +72,6 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
         return null;
     }
 
-    @Override
     public void clearList() {
         list.clear();
         this.fireTableRowsDeleted(0, 0);
@@ -91,6 +83,7 @@ public abstract class AbstractTbModel<T> extends AbstractTableModel implements I
 
     public void setList(List<T> tlist) {
         this.list = tlist;
+        this.fireTableRowsInserted(0, list.size());
     }
 
     public String[] getColumnNames() {
