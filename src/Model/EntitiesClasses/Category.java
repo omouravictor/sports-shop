@@ -21,6 +21,11 @@ public class Category {
 
     public Category() {
     }
+    
+    public Category(Category category) {
+        this.id = category.getId();
+        this.name = category.getName();
+    }
 
     public Category(String categoryName) {
         this.name = categoryName;

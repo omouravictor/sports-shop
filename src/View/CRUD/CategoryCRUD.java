@@ -4,8 +4,7 @@ import Control.Managers.CategoryManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class CategoryCRUD extends AbstractJDialog<Category> {
 
@@ -179,43 +178,39 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Category newCategory = null;
         try {
-            newCategory = categoryManager.create();
-        } catch (Exception ex) {
-            Logger.getLogger(CategoryCRUD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
+            Category newCategory = categoryManager.create();
             tbCategoryModel.addObjectRow(newCategory);
-        } catch (Exception e) {
-            showErrorMessage("Error on create category.");
+        } catch (Exception ex) {
+            showErrorMessage(ex.getMessage());
         }
-        tbCategory.getSelectionModel().clearSelection();
+        tbCategory.clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbCategory)) {
-            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
             try {
+                Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
                 categoryManager.read(categorySelected);
             } catch (Exception ex) {
-                Logger.getLogger(CategoryCRUD.class.getName()).log(Level.SEVERE, null, ex);
+                showErrorMessage(ex.getMessage());
             }
-            tbCategory.getSelectionModel().clearSelection();
+            tbCategory.clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbCategory)) {
+            Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
+            Category categoryOriginal = new Category(categorySelected);
             try {
-                Category oldCategory = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-                Category updatedCategory = categoryManager.update(oldCategory);
-                tbCategoryModel.updateObjectRow(oldCategory, updatedCategory);
-                tbCategory.getSelectionModel().clearSelection();
-            } catch (Exception e) {
-                tbCategory.getSelectionModel().clearSelection();
-                showErrorMessage("Error on update category.");
+                Category updatedCategory = categoryManager.update(categorySelected);
+                tbCategoryModel.updateObjectRow(categorySelected, updatedCategory);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+                tbCategoryModel.updateObjectRow(categorySelected, categoryOriginal);
             }
+            tbCategory.clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
@@ -223,18 +218,20 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
         if (rowIsSelected(tbCategory)) {
             try {
                 Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-                if (false) {
-                    tbCategoryModel.removeObjectRow(categorySelected);
+                int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
+                if (answer == 0) {
+                    categoryManager.delete(categorySelected);
+                    tbCategoryModel.removeObjectRow(tbCategory.getSelectedRow());
                 }
-                tbCategory.getSelectionModel().clearSelection();
-            } catch (Exception e) {
-                tbCategory.getSelectionModel().clearSelection();
-                showErrorMessage("Error on delete category.");
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
             }
+            tbCategory.clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
+        tbCategory.clearSelection();
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 

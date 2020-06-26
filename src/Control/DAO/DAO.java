@@ -52,7 +52,7 @@ public abstract class DAO<T> {
             cq.select(cq.from(tClass));
             return entityManager.createQuery(cq).getResultList();
         } catch (Exception ex) {
-            System.out.println("getALLFromBank() FAILED IN DAO CLASS");
+            System.out.println("getALLFromBank() FAILED IN DAO CLASS.");
             return null;
         }
     }

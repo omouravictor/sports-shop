@@ -13,6 +13,7 @@ public class CategoryManager extends AbstractManager<Category> {
 
     @Override
     public Category create() throws Exception {
+        // Sends the Exception to the view
         Category newCategory = categoryForm.create();
         if (newCategory != null) {
             newCategory = dao.createInBank(newCategory);
@@ -23,12 +24,14 @@ public class CategoryManager extends AbstractManager<Category> {
 
     @Override
     public void read(Category category) throws Exception {
+        // Sends the Exception to the view
         categoryForm.read(category);
     }
 
     @Override
-    public Category update(Category category) throws Exception {
-        Category updatedCategory = categoryForm.update(category);
+    public Category update(Category categorySelected) throws Exception {
+        // Sends the Exception to the view
+        Category updatedCategory = categoryForm.update(categorySelected);
         if (updatedCategory != null) {
             updatedCategory = dao.updateInBank(updatedCategory);
             return updatedCategory;
@@ -38,6 +41,7 @@ public class CategoryManager extends AbstractManager<Category> {
 
     @Override
     public void delete(Category category) throws Exception {
+        // Sends the Exception to the view
         dao.deleteInBank(category);
     }
 
