@@ -201,9 +201,9 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbBrand)) {
             try {
-                Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
-                Brand updatedBrand = brandManager.update(oldBrand);
-                tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
+                Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
+                Brand updatedBrand = brandManager.update(brandSelected);
+                tbBrandModel.updateObjectRow(brandSelected, updatedBrand);
             } catch (Exception ex) {
                 showErrorMessage(ex.getMessage());
             }

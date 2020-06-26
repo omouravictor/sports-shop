@@ -29,9 +29,9 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public Brand update(Brand brand) throws Exception {
+    public Brand update(Brand brandSelected) throws Exception {
         // Sends the Exception to the view
-        Brand updatedBrand = brandForm.update(brand);
+        Brand updatedBrand = brandForm.update(brandSelected);
         if (updatedBrand != null) {
             updatedBrand = dao.updateInBank(updatedBrand);
             return updatedBrand;

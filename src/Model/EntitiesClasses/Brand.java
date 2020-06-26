@@ -21,7 +21,7 @@ public class Brand {
 
     public Brand() {
     }
-
+    
     public Brand(String nameBrand) {
         this.name = nameBrand;
     }
