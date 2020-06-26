@@ -42,7 +42,7 @@ public class CategoryManager extends AbstractManager<Category> {
     }
 
     @Override
-    public List<Category> getAllFromBank() {
+    public List<Category> getAll() {
         return dao.getAllFromBank(Category.class);
     }
 }

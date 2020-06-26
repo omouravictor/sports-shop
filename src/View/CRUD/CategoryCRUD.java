@@ -15,7 +15,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     public CategoryCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tbCategoryModel.setList(categoryManager.getAllFromBank());
+        tbCategoryModel.setList(categoryManager.getAll());
     }
 
     @SuppressWarnings("unchecked")

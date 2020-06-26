@@ -46,7 +46,7 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public List<Brand> getAllFromBank() {
+    public List<Brand> getAll() {
         return dao.getAllFromBank(Brand.class);
     }
 }

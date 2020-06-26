@@ -13,7 +13,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     public BrandCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tbBrandModel.setList(brandManager.getAllFromBank());
+        tbBrandModel.setList(brandManager.getAll());
     }
 
     @SuppressWarnings("unchecked")
