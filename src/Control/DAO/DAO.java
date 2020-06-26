@@ -35,7 +35,7 @@ public abstract class DAO<T> {
         return toUpdate;
     }
 
-    public boolean deleteInBank(T toDelete) throws Exception {
+    public void deleteInBank(T toDelete) throws Exception {
         // Sends the Exception to the Managers
         entityManager.getTransaction().begin();
         if (!entityManager.contains(toDelete)) {
@@ -43,7 +43,6 @@ public abstract class DAO<T> {
         }
         entityManager.remove(toDelete);
         entityManager.getTransaction().commit();
-        return true;
     }
 
     public List<T> getAllFromBank(Class tClass) {

@@ -37,8 +37,8 @@ public class CategoryManager extends AbstractManager<Category> {
     }
 
     @Override
-    public boolean delete(Category category) throws Exception {
-        return dao.deleteInBank(category);
+    public void delete(Category category) throws Exception {
+        dao.deleteInBank(category);
     }
 
     @Override

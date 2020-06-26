@@ -4,6 +4,7 @@ import Control.Managers.BrandManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
+import javax.swing.JOptionPane;
 
 public class BrandCRUD extends AbstractJDialog<Brand> {
 
@@ -217,7 +218,9 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         if (rowIsSelected(tbBrand)) {
             try {
                 Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-                if (brandManager.delete(brandSelected)) {
+                int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
+                if (answer == 0) {
+                    brandManager.delete(brandSelected);
                     tbBrandModel.removeObjectRow(tbBrand.getSelectedRow());
                 }
             } catch (Exception ex) {

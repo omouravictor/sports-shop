@@ -223,7 +223,7 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
         if (rowIsSelected(tbCategory)) {
             try {
                 Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-                if (categoryManager.delete(categorySelected)) {
+                if (false) {
                     tbCategoryModel.removeObjectRow(categorySelected);
                 }
                 tbCategory.getSelectionModel().clearSelection();

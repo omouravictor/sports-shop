@@ -40,9 +40,9 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public boolean delete(Brand brand) throws Exception {
+    public void delete(Brand brand) throws Exception {
         // Sends the Exception to the view
-        return dao.deleteInBank(brand);
+        dao.deleteInBank(brand);
     }
 
     @Override
