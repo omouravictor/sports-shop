@@ -12,7 +12,8 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public Brand create() {
+    public Brand create() throws Exception {
+        // Sends the Exception to the view
         Brand newBrand = brandForm.create();
         if (newBrand != null) {
             newBrand = dao.createInBank(newBrand);
@@ -22,12 +23,14 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public void read(Brand brand) {
+    public void read(Brand brand) throws Exception {
+        // Sends the Exception to the view
         brandForm.read(brand);
     }
 
     @Override
-    public Brand update(Brand brand) {
+    public Brand update(Brand brand) throws Exception {
+        // Sends the Exception to the view
         Brand updatedBrand = brandForm.update(brand);
         if (updatedBrand != null) {
             updatedBrand = dao.updateInBank(updatedBrand);
@@ -37,7 +40,8 @@ public class BrandManager extends AbstractManager<Brand> {
     }
 
     @Override
-    public boolean delete(Brand brand) {
+    public boolean delete(Brand brand) throws Exception {
+        // Sends the Exception to the view
         return dao.deleteInBank(brand);
     }
 

@@ -177,19 +177,23 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Brand newBrand = brandManager.create();
         try {
+            Brand newBrand = brandManager.create();
             tbBrandModel.addObjectRow(newBrand);
-        } catch (Exception e) {
-            showErrorMessage("Error on create brand.");
+        } catch (Exception ex) {
+            showErrorMessage(ex.getMessage());
         }
         tbBrand.getSelectionModel().clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbBrand)) {
-            Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
-            brandManager.read(brandSelected);
+            try {
+                Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
+                brandManager.read(brandSelected);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+            }
             tbBrand.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
@@ -200,11 +204,10 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
                 Brand oldBrand = getObjectSelectedInTb(tbBrand, tbBrandModel);
                 Brand updatedBrand = brandManager.update(oldBrand);
                 tbBrandModel.updateObjectRow(oldBrand, updatedBrand);
-                tbBrand.getSelectionModel().clearSelection();
-            } catch (Exception e) {
-                tbBrand.getSelectionModel().clearSelection();
-                showErrorMessage("Error on update brand.");
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
             }
+            tbBrand.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
@@ -213,13 +216,12 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
             try {
                 Brand brandSelected = getObjectSelectedInTb(tbBrand, tbBrandModel);
                 if (brandManager.delete(brandSelected)) {
-                    tbBrandModel.removeObjectRow(brandSelected);
+                    tbBrandModel.removeObjectRow(tbBrand.getSelectedRow());
                 }
-                tbBrand.getSelectionModel().clearSelection();
-            } catch (Exception e) {
-                tbBrand.getSelectionModel().clearSelection();
-                showErrorMessage("Error on delete brand.");
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
             }
+            tbBrand.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 

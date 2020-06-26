@@ -6,13 +6,13 @@ import java.util.List;
 
 public class CategoryManager extends AbstractManager<Category> {
 
-    private  CategoryForm categoryForm = new  CategoryForm(null, true);
+    private CategoryForm categoryForm = new CategoryForm(null, true);
 
     public CategoryManager() {
     }
 
     @Override
-    public Category create() {
+    public Category create() throws Exception {
         Category newCategory = categoryForm.create();
         if (newCategory != null) {
             newCategory = dao.createInBank(newCategory);
@@ -22,12 +22,12 @@ public class CategoryManager extends AbstractManager<Category> {
     }
 
     @Override
-    public void read(Category category) {
+    public void read(Category category) throws Exception {
         categoryForm.read(category);
     }
 
     @Override
-    public Category update(Category category) {
+    public Category update(Category category) throws Exception {
         Category updatedCategory = categoryForm.update(category);
         if (updatedCategory != null) {
             updatedCategory = dao.updateInBank(updatedCategory);
@@ -37,7 +37,7 @@ public class CategoryManager extends AbstractManager<Category> {
     }
 
     @Override
-    public boolean delete(Category category) {
+    public boolean delete(Category category) throws Exception {
         return dao.deleteInBank(category);
     }
 
