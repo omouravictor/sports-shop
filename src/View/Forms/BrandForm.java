@@ -142,18 +142,18 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     public void initSetup() {
         setTxtModels();
     }
-    
+
     @Override
-    public void setVisibleAll(){
+    public void setVisibleAll() {
         btOk.setVisible(true);
         btCancel.setVisible(true);
     }
-    
+
     @Override
     public void setEmptyAll() {
         txtName.setText("");
     }
-    
+
     @Override
     public void setEditableAll() {
         txtName.setEditable(true);
@@ -183,7 +183,7 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
         }
         return null;
     }
-    
+
     @Override
     public void setNoEditableAll() {
         txtName.setEditable(false);
@@ -248,12 +248,12 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     public boolean checkAll() {
         return !fieldsAreEmpty();
     }
-    
+
     @Override
     public void showForm() {
         this.setVisible(true);
     }
-    
+
     @Override
     public void setEnabledAll() {
         throw new UnsupportedOperationException("Not supported yet.");

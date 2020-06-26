@@ -22,6 +22,11 @@ public class Brand {
     public Brand() {
     }
     
+    public Brand(Brand brand) {
+        this.id = brand.getId();
+        this.name = brand.getName();
+    }
+    
     public Brand(String nameBrand) {
         this.name = nameBrand;
     }
