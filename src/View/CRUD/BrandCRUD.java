@@ -183,7 +183,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         } catch (Exception ex) {
             showErrorMessage(ex.getMessage());
         }
-        tbBrand.getSelectionModel().clearSelection();
+        tbBrand.clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
@@ -194,7 +194,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
             } catch (Exception ex) {
                 showErrorMessage(ex.getMessage());
             }
-            tbBrand.getSelectionModel().clearSelection();
+            tbBrand.clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
@@ -207,7 +207,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
             } catch (Exception ex) {
                 showErrorMessage(ex.getMessage());
             }
-            tbBrand.getSelectionModel().clearSelection();
+            tbBrand.clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
@@ -221,11 +221,12 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
             } catch (Exception ex) {
                 showErrorMessage(ex.getMessage());
             }
-            tbBrand.getSelectionModel().clearSelection();
+            tbBrand.clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
+        tbBrand.clearSelection();
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 

@@ -4,6 +4,8 @@ import Control.Managers.CategoryManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CategoryCRUD extends AbstractJDialog<Category> {
 
@@ -177,7 +179,12 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Category newCategory = categoryManager.create();
+        Category newCategory = null;
+        try {
+            newCategory = categoryManager.create();
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             tbCategoryModel.addObjectRow(newCategory);
         } catch (Exception e) {
@@ -189,7 +196,11 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbCategory)) {
             Category categorySelected = getObjectSelectedInTb(tbCategory, tbCategoryModel);
-            categoryManager.read(categorySelected);
+            try {
+                categoryManager.read(categorySelected);
+            } catch (Exception ex) {
+                Logger.getLogger(CategoryCRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
             tbCategory.getSelectionModel().clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
