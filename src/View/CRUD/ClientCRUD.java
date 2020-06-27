@@ -4,18 +4,17 @@ import Control.Managers.ClientManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Client;
 import Model.Tables.TbClientModel;
+import javax.swing.JOptionPane;
 
 public class ClientCRUD extends AbstractJDialog<Client> {
 
-    private ClientManager clientControl = new ClientManager();
+    private ClientManager clientManager = new ClientManager();
     private TbClientModel tbClientModel = new TbClientModel();
 
     public ClientCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Client c = new Client("Victor", "127.338.636-14", "(31)98591-6080", "",
-                "35182-278", "Dinamarca", "238", "Ana Rita", "Timóteo", "MG");
-        tbClientModel.addObjectRow(c);
+        tbClientModel.setList(clientManager.getAll());
     }
 
     @SuppressWarnings("unchecked")
@@ -179,38 +178,60 @@ public class ClientCRUD extends AbstractJDialog<Client> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Client newClient = clientControl.create();
-        tbClientModel.addObjectRow(newClient);
-        tbClient.getSelectionModel().clearSelection();
+        try {
+            Client newClient = clientManager.create();
+            tbClientModel.addObjectRow(newClient);
+        } catch (Exception ex) {
+            showErrorMessage(ex.getMessage());
+        }
+        tbClient.clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbClient)) {
-            Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
-            clientControl.read(clientSelected);
-            tbClient.getSelectionModel().clearSelection();
+            try {
+                Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
+                clientManager.read(clientSelected);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+            }
+            tbClient.clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbClient)) {
-            Client oldClient = getObjectSelectedInTb(tbClient, tbClientModel);
-            Client updatedClient = clientControl.update(oldClient);
-            tbClientModel.updateObjectRow(oldClient, updatedClient);
-            tbClient.getSelectionModel().clearSelection();
+            Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
+            Client clientOriginal = new Client(clientSelected);
+            try {
+                Client updatedClient = clientManager.update(clientSelected);
+                tbClientModel.updateObjectRow(clientSelected, updatedClient);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+                tbClientModel.updateObjectRow(clientSelected, clientOriginal);
+            }
+            tbClient.clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbClient)) {
-            Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
-            clientControl.delete(clientSelected);
-            tbClientModel.removeObjectRow(clientSelected);
-            tbClient.getSelectionModel().clearSelection();
+            try {
+                Client clientSelected = getObjectSelectedInTb(tbClient, tbClientModel);
+                int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
+                if (answer == 0) {
+                    clientManager.delete(clientSelected);
+                    tbClientModel.removeObjectRow(tbClient.getSelectedRow());
+                }
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+            }
+            tbClient.clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
+        tbClient.clearSelection();
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 

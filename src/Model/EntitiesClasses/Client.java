@@ -19,7 +19,7 @@ public class Client {
     @Column(length = 100, nullable = false)
     private String name;
 
-    @Column(length = 11, nullable = false, unique = true)
+    @Column(length = 14, nullable = false, unique = true)
     private String CPF;
 
     @Column(length = 14, nullable = false)
@@ -47,6 +47,20 @@ public class Client {
     private String stateAddress;
 
     public Client() {
+    }
+    
+    public Client(Client client) {
+        this.id = client.getId();
+        this.name = client.getName();
+        this.CPF = client.getCpf();
+        this.cellPhone = client.getCellPhone();
+        this.email = client.getEmail();
+        this.zipCodeAddress = client.getZipCodeAddress();
+        this.streetAddress = client.getStreetAddress();
+        this.numberAddress = client.getNumberAddress();
+        this.neighborhoodAddress = client.getNeighborhoodAddress();
+        this.cityAddress = client.getCityAddress();
+        this.stateAddress = client.getStateAddress();
     }
 
     public Client(String name, String CPF, String cellPhone, String email,

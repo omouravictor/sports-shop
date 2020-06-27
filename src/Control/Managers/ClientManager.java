@@ -2,29 +2,51 @@ package Control.Managers;
 
 import Model.EntitiesClasses.Client;
 import View.Forms.ClientForm;
+import java.util.List;
 
-public class ClientManager {
+public class ClientManager extends AbstractManager<Client> {
 
     private ClientForm clientForm = new ClientForm(null, true);
 
     public ClientManager() {
     }
 
-    public Client create() {
+    @Override
+    public Client create() throws Exception {
+        // Sends the Exception to the view
         Client newClient = clientForm.create();
-        return newClient;
+        if (newClient != null) {
+            newClient = dao.createInBank(newClient);
+            return newClient;
+        }
+        return null;
     }
 
-    public void read(Client client) {
+    @Override
+    public void read(Client client) throws Exception {
+        // Sends the Exception to the view
         clientForm.read(client);
     }
 
-    public Client update(Client client) {
-        Client updatedClient = clientForm.update(client);
-        return updatedClient;
+    @Override
+    public Client update(Client clientSelected) throws Exception {
+        // Sends the Exception to the view
+        Client updatedClient = clientForm.update(clientSelected);
+        if (updatedClient != null) {
+            updatedClient = dao.updateInBank(updatedClient);
+            return updatedClient;
+        }
+        return null;
     }
 
-    public boolean delete(Client client) {
-        return client != null;
+    @Override
+    public void delete(Client client) throws Exception {
+        // Sends the Exception to the view
+        dao.deleteInBank(client);
+    }
+
+    @Override
+    public List<Client> getAll() {
+        return dao.getAllFromBank(Client.class);
     }
 }
