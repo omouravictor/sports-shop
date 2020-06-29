@@ -1,28 +1,26 @@
 package View.CRUD;
 
 import Control.Managers.ProductManager;
-import Model.EntitiesClasses.Brand;
-import Model.EntitiesClasses.Category;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Product;
 import Model.Tables.TbProductModel;
+import javax.swing.JOptionPane;
 
 public class ProductCRUD extends AbstractJDialog<Product> {
 
-    private ProductManager productControl = new ProductManager();
+    private ProductManager productManager;
     private TbProductModel tbProductModel = new TbProductModel();
-
+    
     public ProductCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Category c1 = new Category("Mug");
-        Category c2 = new Category("Shirt");
-        Category c3 = new Category("T-Shirt");
-        Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
-        Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
-        p1.setId(Long.parseLong("100"));
-        tbProductModel.addObjectRow(p1);
+    }
+
+    public ProductCRUD(java.awt.Frame parent, boolean modal, ProductManager productManager) {
+        super(parent, modal);
+        initComponents();
+        this.productManager = productManager;
+        tbProductModel.setList(productManager.getAllProducts());
     }
 
     @SuppressWarnings("unchecked")
@@ -186,38 +184,60 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
-        Product newProduct = productControl.create();
-        tbProductModel.addObjectRow(newProduct);
-        tbProduct.getSelectionModel().clearSelection();
+        try {
+            Product newProduct = productManager.create();
+            tbProductModel.addObjectRow(newProduct);
+        } catch (Exception ex) {
+            showErrorMessage(ex.getMessage());
+        }
+        tbProduct.clearSelection();
     }//GEN-LAST:event_btCreateActionPerformed
 
     private void btReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReadActionPerformed
         if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.read(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
+            try {
+                Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+                productManager.read(productSelected);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+            }
+            tbProduct.clearSelection();
         }
     }//GEN-LAST:event_btReadActionPerformed
 
     private void btUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUpdateActionPerformed
         if (rowIsSelected(tbProduct)) {
-            Product oldProduct = getObjectSelectedInTb(tbProduct, tbProductModel);
-            Product updatedProduct = productControl.update(oldProduct);
-            tbProductModel.updateObjectRow(oldProduct, updatedProduct);
-            tbProduct.getSelectionModel().clearSelection();
+            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+            Product productOriginal = new Product(productSelected);
+            try {
+                Product updatedProduct = productManager.update(productSelected);
+                tbProductModel.updateObjectRow(productSelected, updatedProduct);
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+                tbProductModel.updateObjectRow(productSelected, productOriginal);
+            }
+            tbProduct.clearSelection();
         }
     }//GEN-LAST:event_btUpdateActionPerformed
 
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbProduct)) {
-            Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
-            productControl.delete(productSelected);
-            tbProductModel.removeObjectRow(productSelected);
-            tbProduct.getSelectionModel().clearSelection();
+            try {
+                Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
+                int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
+                if (answer == 0) {
+                    productManager.delete(productSelected);
+                    tbProductModel.removeObjectRow(tbProduct.getSelectedRow());
+                }
+            } catch (Exception ex) {
+                showErrorMessage(ex.getMessage());
+            }
+            tbProduct.clearSelection();
         }
     }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCloseActionPerformed
+        tbProduct.clearSelection();
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 

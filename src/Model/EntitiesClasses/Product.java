@@ -55,6 +55,20 @@ public class Product {
 
     public Product() {
     }
+    
+    public Product(Product product) {
+        this.id = product.getId();
+        this.category = product.getCategory();
+        this.brand = product.getBrand();
+        this.teamName = product.getTeamName();
+        setPlayerPresent(product.getPlayerPresent());
+        setNumberPresent(product.getNumberPresent());
+        this.color = product.getColor();
+        this.sizeProduct = product.getSizeProduct();
+        setCost(product.getCost());
+        setQuantity(product.getQuantity());
+        setNumInStock(product.getNumInStock());
+    }
 
     public Product(Category category, Brand brand, String teamName,
             String playerPresentName, String numberPresent, String color,
