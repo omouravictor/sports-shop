@@ -24,14 +24,14 @@ public class MainControl {
     }
 
     public void showBrandCRUD() {
-        brandManager.showBrandCRUD();
+        brandManager.showCRUDscreen();
     }
     
     public void showCategoryCRUD() {
-        categoryManager.showCategoryCRUD();
+        categoryManager.showCRUDscreen();
     }
     
     public void showClientCRUD() {
-        clientManager.showClientCRUD();
+        clientManager.showCRUDscreen();
     }
 }

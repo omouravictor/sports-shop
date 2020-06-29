@@ -57,7 +57,8 @@ public class BrandManager extends AbstractManager<Brand> {
         return dao.getAllFromBank(Brand.class);
     }
 
-    public void showBrandCRUD() {
+    @Override
+    public void showCRUDscreen() {
         brandCRUD.setVisible(true);
     }
 }

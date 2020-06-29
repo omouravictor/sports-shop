@@ -56,8 +56,9 @@ public class CategoryManager extends AbstractManager<Category> {
     public List<Category> getAll() {
         return dao.getAllFromBank(Category.class);
     }
-
-    public void showCategoryCRUD() {
+    
+    @Override
+    public void showCRUDscreen() {
         categoryCRUD.setVisible(true);
     }
 }

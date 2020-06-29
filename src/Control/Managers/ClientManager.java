@@ -57,7 +57,8 @@ public class ClientManager extends AbstractManager<Client> {
         return dao.getAllFromBank(Client.class);
     }
 
-    public void showClientCRUD() {
+    @Override
+    public void showCRUDscreen() {
         clientCRUD.setVisible(true);
     }
 }
