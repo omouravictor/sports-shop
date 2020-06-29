@@ -56,12 +56,4 @@ public abstract class DAO<T> {
             return null;
         }
     }
-
-    public EntityManagerFactory getEntityManagerFactory() {
-        return entityManagerFactory;
-    }
-
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
 }
