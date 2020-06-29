@@ -22,12 +22,11 @@ public class MainView extends javax.swing.JFrame {
         menuItemCRUDcategory = new javax.swing.JMenuItem();
         menuClient = new javax.swing.JMenu();
         menuItemCRUDclient = new javax.swing.JMenuItem();
-        menuCategory2 = new javax.swing.JMenu();
-        menuItemCRUDcategory2 = new javax.swing.JMenuItem();
-        menuCategory3 = new javax.swing.JMenu();
-        menuItemCRUDcategory3 = new javax.swing.JMenuItem();
-        menuCategory4 = new javax.swing.JMenu();
-        menuItemCRUDcategory4 = new javax.swing.JMenuItem();
+        menuProduct = new javax.swing.JMenu();
+        menuItemCRUDproduct = new javax.swing.JMenuItem();
+        menuItemCRUDshirt = new javax.swing.JMenuItem();
+        menuSale = new javax.swing.JMenu();
+        menuItemCRUDsale = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SportsShop");
@@ -69,41 +68,32 @@ public class MainView extends javax.swing.JFrame {
 
         mainMenu.add(menuClient);
 
-        menuCategory2.setText("Category");
+        menuProduct.setText("Product");
 
-        menuItemCRUDcategory2.setText("CRUD");
-        menuItemCRUDcategory2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCRUDproduct.setText("CRUD Product");
+        menuItemCRUDproduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDcategory2ActionPerformed(evt);
+                menuItemCRUDproductActionPerformed(evt);
             }
         });
-        menuCategory2.add(menuItemCRUDcategory2);
+        menuProduct.add(menuItemCRUDproduct);
 
-        mainMenu.add(menuCategory2);
+        menuItemCRUDshirt.setText("CRUD Shirt");
+        menuProduct.add(menuItemCRUDshirt);
 
-        menuCategory3.setText("Category");
+        mainMenu.add(menuProduct);
 
-        menuItemCRUDcategory3.setText("CRUD");
-        menuItemCRUDcategory3.addActionListener(new java.awt.event.ActionListener() {
+        menuSale.setText("Sale");
+
+        menuItemCRUDsale.setText("CRUD");
+        menuItemCRUDsale.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDcategory3ActionPerformed(evt);
+                menuItemCRUDsaleActionPerformed(evt);
             }
         });
-        menuCategory3.add(menuItemCRUDcategory3);
+        menuSale.add(menuItemCRUDsale);
 
-        mainMenu.add(menuCategory3);
-
-        menuCategory4.setText("Category");
-
-        menuItemCRUDcategory4.setText("CRUD");
-        menuItemCRUDcategory4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDcategory4ActionPerformed(evt);
-            }
-        });
-        menuCategory4.add(menuItemCRUDcategory4);
-
-        mainMenu.add(menuCategory4);
+        mainMenu.add(menuSale);
 
         setJMenuBar(mainMenu);
 
@@ -134,17 +124,13 @@ public class MainView extends javax.swing.JFrame {
         mainControl.showClientCRUD();
     }//GEN-LAST:event_menuItemCRUDclientActionPerformed
 
-    private void menuItemCRUDcategory2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory2ActionPerformed
+    private void menuItemCRUDproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDproductActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCRUDcategory2ActionPerformed
+    }//GEN-LAST:event_menuItemCRUDproductActionPerformed
 
-    private void menuItemCRUDcategory3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory3ActionPerformed
+    private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCRUDcategory3ActionPerformed
-
-    private void menuItemCRUDcategory4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCRUDcategory4ActionPerformed
+    }//GEN-LAST:event_menuItemCRUDsaleActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -174,15 +160,14 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenu menuBrand;
     private javax.swing.JMenu menuCategory;
-    private javax.swing.JMenu menuCategory2;
-    private javax.swing.JMenu menuCategory3;
-    private javax.swing.JMenu menuCategory4;
     private javax.swing.JMenu menuClient;
     private javax.swing.JMenuItem menuItemCRUDbrand;
     private javax.swing.JMenuItem menuItemCRUDcategory;
-    private javax.swing.JMenuItem menuItemCRUDcategory2;
-    private javax.swing.JMenuItem menuItemCRUDcategory3;
-    private javax.swing.JMenuItem menuItemCRUDcategory4;
     private javax.swing.JMenuItem menuItemCRUDclient;
+    private javax.swing.JMenuItem menuItemCRUDproduct;
+    private javax.swing.JMenuItem menuItemCRUDsale;
+    private javax.swing.JMenuItem menuItemCRUDshirt;
+    private javax.swing.JMenu menuProduct;
+    private javax.swing.JMenu menuSale;
     // End of variables declaration//GEN-END:variables
 }

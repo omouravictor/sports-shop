@@ -14,7 +14,7 @@ public class BrandManager extends AbstractManager<Brand> {
 
     public BrandManager() {
         brandForm = new BrandForm(null, true);
-        model = new TbBrandModel(dao.getAllFromBank(Brand.class));
+        model = new TbBrandModel(getAll());
         brandCRUD = new BrandCRUD(null, true, this, model);
     }
 

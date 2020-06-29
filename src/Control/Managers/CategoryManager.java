@@ -14,7 +14,7 @@ public class CategoryManager extends AbstractManager<Category> {
 
     public CategoryManager() {
         categoryForm = new CategoryForm(null, true);
-        model = new TbCategoryModel(dao.getAllFromBank(Category.class));
+        model = new TbCategoryModel(getAll());
         categoryCRUD = new CategoryCRUD(null, true, this, model);
     }
 

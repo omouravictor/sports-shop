@@ -14,7 +14,7 @@ public class ClientManager extends AbstractManager<Client> {
 
     public ClientManager() {
         clientForm = new ClientForm(null, true);
-        model = new TbClientModel(dao.getAllFromBank(Client.class));
+        model = new TbClientModel(getAll());
         clientCRUD = new ClientCRUD(null, true, this, model);
     }
 
