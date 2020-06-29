@@ -1,15 +1,21 @@
 package Control.Managers;
 
 import Model.EntitiesClasses.Client;
+import Model.Tables.TbClientModel;
+import View.CRUD.ClientCRUD;
 import View.Forms.ClientForm;
 import java.util.List;
 
 public class ClientManager extends AbstractManager<Client> {
 
-    private ClientForm clientForm = new ClientForm(null, true);
-    private List<Client> allClient = dao.getAllFromBank(Client.class);
+    private ClientForm clientForm;
+    private TbClientModel model;
+    private ClientCRUD clientCRUD;
 
     public ClientManager() {
+        clientForm = new ClientForm(null, true);
+        model = new TbClientModel(dao.getAllFromBank(Client.class));
+        clientCRUD = new ClientCRUD(null, true, this, model);
     }
 
     @Override
@@ -49,5 +55,9 @@ public class ClientManager extends AbstractManager<Client> {
     @Override
     public List<Client> getAll() {
         return dao.getAllFromBank(Client.class);
+    }
+
+    public void showClientCRUD() {
+        clientCRUD.setVisible(true);
     }
 }

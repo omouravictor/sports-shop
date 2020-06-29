@@ -11,14 +11,10 @@ import javax.swing.table.TableStringConverter;
 
 public class TbClientModel extends AbstractTbModel<Client> {
 
-    public TbClientModel() {
+    public TbClientModel(List<Client> clientList) {
+        super(clientList);
         this.columnNames = new String[]{"Id", "Name", "CPF", "Phone", "Email",
             "ZipCode", "Street", "Number", "Neyghborhood", "City", "State"};
-    }
-
-    public TbClientModel(List<Client> clientList, String[] columnNames) {
-        this.list = clientList;
-        this.columnNames = columnNames;
     }
 
     @Override

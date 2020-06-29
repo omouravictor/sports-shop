@@ -8,13 +8,19 @@ import javax.swing.JOptionPane;
 
 public class ClientCRUD extends AbstractJDialog<Client> {
 
-    private ClientManager clientManager = new ClientManager();
-    private TbClientModel tbClientModel = new TbClientModel();
+    private ClientManager clientManager;
+    private TbClientModel tbClientModel;
 
     public ClientCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tbClientModel.setList(clientManager.getAll());
+    }
+
+    public ClientCRUD(java.awt.Frame parent, boolean modal, ClientManager clientManager, TbClientModel model) {
+        super(parent, modal);
+        this.clientManager = clientManager;
+        this.tbClientModel = model;
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")

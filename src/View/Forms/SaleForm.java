@@ -24,8 +24,8 @@ import javax.swing.event.TableModelListener;
 public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private boolean isConfirmed = false;
-    private TbClientModel tbClientSearchModel = new TbClientModel();
-    private TbClientModel tbAddedClientModel = new TbClientModel();
+    private TbClientModel tbClientSearchModel;
+    private TbClientModel tbAddedClientModel;
     private TbProductSearchModel tbProductSearchModel = new TbProductSearchModel();
     private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();

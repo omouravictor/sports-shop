@@ -20,6 +20,14 @@ public class MainView extends javax.swing.JFrame {
         menuItemCRUDbrand = new javax.swing.JMenuItem();
         menuCategory = new javax.swing.JMenu();
         menuItemCRUDcategory = new javax.swing.JMenuItem();
+        menuClient = new javax.swing.JMenu();
+        menuItemCRUDclient = new javax.swing.JMenuItem();
+        menuCategory2 = new javax.swing.JMenu();
+        menuItemCRUDcategory2 = new javax.swing.JMenuItem();
+        menuCategory3 = new javax.swing.JMenu();
+        menuItemCRUDcategory3 = new javax.swing.JMenuItem();
+        menuCategory4 = new javax.swing.JMenu();
+        menuItemCRUDcategory4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SportsShop");
@@ -49,6 +57,54 @@ public class MainView extends javax.swing.JFrame {
 
         mainMenu.add(menuCategory);
 
+        menuClient.setText("Client");
+
+        menuItemCRUDclient.setText("CRUD");
+        menuItemCRUDclient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDclientActionPerformed(evt);
+            }
+        });
+        menuClient.add(menuItemCRUDclient);
+
+        mainMenu.add(menuClient);
+
+        menuCategory2.setText("Category");
+
+        menuItemCRUDcategory2.setText("CRUD");
+        menuItemCRUDcategory2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDcategory2ActionPerformed(evt);
+            }
+        });
+        menuCategory2.add(menuItemCRUDcategory2);
+
+        mainMenu.add(menuCategory2);
+
+        menuCategory3.setText("Category");
+
+        menuItemCRUDcategory3.setText("CRUD");
+        menuItemCRUDcategory3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDcategory3ActionPerformed(evt);
+            }
+        });
+        menuCategory3.add(menuItemCRUDcategory3);
+
+        mainMenu.add(menuCategory3);
+
+        menuCategory4.setText("Category");
+
+        menuItemCRUDcategory4.setText("CRUD");
+        menuItemCRUDcategory4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDcategory4ActionPerformed(evt);
+            }
+        });
+        menuCategory4.add(menuItemCRUDcategory4);
+
+        mainMenu.add(menuCategory4);
+
         setJMenuBar(mainMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,6 +129,22 @@ public class MainView extends javax.swing.JFrame {
     private void menuItemCRUDcategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategoryActionPerformed
         mainControl.showCategoryCRUD();
     }//GEN-LAST:event_menuItemCRUDcategoryActionPerformed
+
+    private void menuItemCRUDclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDclientActionPerformed
+        mainControl.showClientCRUD();
+    }//GEN-LAST:event_menuItemCRUDclientActionPerformed
+
+    private void menuItemCRUDcategory2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemCRUDcategory2ActionPerformed
+
+    private void menuItemCRUDcategory3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemCRUDcategory3ActionPerformed
+
+    private void menuItemCRUDcategory4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategory4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemCRUDcategory4ActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -102,7 +174,15 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenu menuBrand;
     private javax.swing.JMenu menuCategory;
+    private javax.swing.JMenu menuCategory2;
+    private javax.swing.JMenu menuCategory3;
+    private javax.swing.JMenu menuCategory4;
+    private javax.swing.JMenu menuClient;
     private javax.swing.JMenuItem menuItemCRUDbrand;
     private javax.swing.JMenuItem menuItemCRUDcategory;
+    private javax.swing.JMenuItem menuItemCRUDcategory2;
+    private javax.swing.JMenuItem menuItemCRUDcategory3;
+    private javax.swing.JMenuItem menuItemCRUDcategory4;
+    private javax.swing.JMenuItem menuItemCRUDclient;
     // End of variables declaration//GEN-END:variables
 }
