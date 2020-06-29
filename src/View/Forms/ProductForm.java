@@ -14,8 +14,8 @@ import Model.Tables.TbCategoryModel;
 public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    private TbCategoryModel tbCategorySearchModel = new TbCategoryModel();
-    private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
+    private TbCategoryModel tbCategorySearchModel;
+    private TbCategoryModel tbAddedCategoryModel;
     private TbBrandModel tbBrandSearchModel;
     private TbBrandModel tbAddedBrandModel;
     private final CostFormatter costFormatter = new CostFormatter();

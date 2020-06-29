@@ -8,13 +8,19 @@ import javax.swing.JOptionPane;
 
 public class CategoryCRUD extends AbstractJDialog<Category> {
 
-    private CategoryManager categoryManager = new CategoryManager();
-    private TbCategoryModel tbCategoryModel = new TbCategoryModel();
+    private CategoryManager categoryManager;
+    private TbCategoryModel tbCategoryModel;
 
     public CategoryCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tbCategoryModel.setList(categoryManager.getAll());
+    }
+
+    public CategoryCRUD(java.awt.Frame parent, boolean modal, CategoryManager categoryManager, TbCategoryModel model) {
+        super(parent, modal);
+        this.categoryManager = categoryManager;
+        this.tbCategoryModel = model;
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")

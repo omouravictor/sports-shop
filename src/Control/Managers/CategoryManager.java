@@ -1,15 +1,21 @@
 package Control.Managers;
 
 import Model.EntitiesClasses.Category;
+import Model.Tables.TbCategoryModel;
+import View.CRUD.CategoryCRUD;
 import View.Forms.CategoryForm;
 import java.util.List;
 
 public class CategoryManager extends AbstractManager<Category> {
 
-    private CategoryForm categoryForm = new CategoryForm(null, true);
-    private List<Category> allCategories = dao.getAllFromBank(Category.class);
+    private CategoryForm categoryForm;
+    private TbCategoryModel model;
+    private CategoryCRUD categoryCRUD;
 
     public CategoryManager() {
+        categoryForm = new CategoryForm(null, true);
+        model = new TbCategoryModel(dao.getAllFromBank(Category.class));
+        categoryCRUD = new CategoryCRUD(null, true, this, model);
     }
 
     @Override
@@ -51,7 +57,7 @@ public class CategoryManager extends AbstractManager<Category> {
         return dao.getAllFromBank(Category.class);
     }
 
-    public List<Category> getAllCategories() {
-        return allCategories;
+    public void showCategoryCRUD() {
+        categoryCRUD.setVisible(true);
     }
 }

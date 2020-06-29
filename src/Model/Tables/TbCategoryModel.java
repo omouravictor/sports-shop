@@ -6,13 +6,9 @@ import javax.swing.JTable;
 
 public class TbCategoryModel extends AbstractTbModel<Category> {
 
-    public TbCategoryModel() {
+    public TbCategoryModel(List<Category> categoryList) {
+        super(categoryList);
         this.columnNames = new String[]{"Id", "Name"};
-    }
-
-    public TbCategoryModel(List<Category> categoryList, String[] columnNames) {
-        this.list = categoryList;
-        this.columnNames = columnNames;
     }
 
     @Override
