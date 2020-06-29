@@ -7,6 +7,7 @@ import java.util.List;
 public class ClientManager extends AbstractManager<Client> {
 
     private ClientForm clientForm = new ClientForm(null, true);
+    private List<Client> allClient = dao.getAllFromBank(Client.class);
 
     public ClientManager() {
     }

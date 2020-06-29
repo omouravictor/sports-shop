@@ -6,13 +6,9 @@ import javax.swing.JTable;
 
 public class TbBrandModel extends AbstractTbModel<Brand> {
 
-    public TbBrandModel() {
+    public TbBrandModel(List<Brand> brandList) {
+        super(brandList);
         this.columnNames = new String[]{"Id", "Name"};
-    }
-
-    public TbBrandModel(List<Brand> brandList, String[] columnNames) {
-        this.list = brandList;
-        this.columnNames = columnNames;
     }
 
     @Override

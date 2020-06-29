@@ -1,17 +1,23 @@
 package View.Main;
 
-public class MainScreen extends javax.swing.JFrame {
+import Control.Main.MainControl;
 
-    public MainScreen() {
+public class MainView extends javax.swing.JFrame {
+
+    private static MainControl mainControl;
+
+    public MainView(MainControl mainControl) {
+        MainView.mainControl = mainControl;
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         mainMenu = new javax.swing.JMenuBar();
         menuBrand = new javax.swing.JMenu();
-        menuItemCRUD = new javax.swing.JMenuItem();
+        menuCRUD = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SportsShop");
@@ -19,13 +25,13 @@ public class MainScreen extends javax.swing.JFrame {
 
         menuBrand.setText("Brand");
 
-        menuItemCRUD.setText("CRUD");
-        menuItemCRUD.addActionListener(new java.awt.event.ActionListener() {
+        menuCRUD.setText("CRUD");
+        menuCRUD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDActionPerformed(evt);
+                menuCRUDActionPerformed(evt);
             }
         });
-        menuBrand.add(menuItemCRUD);
+        menuBrand.add(menuCRUD);
 
         mainMenu.add(menuBrand);
 
@@ -46,8 +52,9 @@ public class MainScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuItemCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDActionPerformed
-    }//GEN-LAST:event_menuItemCRUDActionPerformed
+    private void menuCRUDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCRUDActionPerformed
+        mainControl.showBrandCRUD();
+    }//GEN-LAST:event_menuCRUDActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -58,17 +65,17 @@ public class MainScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainScreen().setVisible(true);
+                new MainView(mainControl).setVisible(true);
             }
         });
     }
@@ -76,6 +83,6 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar mainMenu;
     private javax.swing.JMenu menuBrand;
-    private javax.swing.JMenuItem menuItemCRUD;
+    private javax.swing.JMenuItem menuCRUD;
     // End of variables declaration//GEN-END:variables
 }

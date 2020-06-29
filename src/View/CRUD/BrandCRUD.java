@@ -8,13 +8,19 @@ import javax.swing.JOptionPane;
 
 public class BrandCRUD extends AbstractJDialog<Brand> {
 
-    private BrandManager brandManager = new BrandManager();
-    private TbBrandModel tbBrandModel = new TbBrandModel();
+    private BrandManager brandManager;
+    private TbBrandModel tbBrandModel;
 
     public BrandCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tbBrandModel.setList(brandManager.getAll());
+    }
+
+    public BrandCRUD(java.awt.Frame parent, boolean modal, BrandManager brandManager, TbBrandModel model) {
+        super(parent, modal);
+        this.brandManager = brandManager;
+        this.tbBrandModel = model;
+        initComponents();
     }
 
     @SuppressWarnings("unchecked")

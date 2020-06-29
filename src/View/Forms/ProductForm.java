@@ -16,8 +16,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private boolean isConfirmed = false;
     private TbCategoryModel tbCategorySearchModel = new TbCategoryModel();
     private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
-    private TbBrandModel tbBrandSearchModel = new TbBrandModel();
-    private TbBrandModel tbAddedBrandModel = new TbBrandModel();
+    private TbBrandModel tbBrandSearchModel;
+    private TbBrandModel tbAddedBrandModel;
     private final CostFormatter costFormatter = new CostFormatter();
 
     public ProductForm(java.awt.Frame parent, boolean modal) {
@@ -548,7 +548,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void initSetup() {
         setTxtModels();
     }
-
+    
     @Override
     public void showForm() {
         this.setVisible(true);

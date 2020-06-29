@@ -7,10 +7,22 @@ import javax.swing.table.AbstractTableModel;
 
 public abstract class AbstractTbModel<T> extends AbstractTableModel {
 
-    protected List<T> list = new ArrayList<>();
-    protected String[] columnNames = new String[]{};
-    protected CostFormatter costFormatter = new CostFormatter();
+    protected List<T> list;
+    protected String[] columnNames;
+    protected CostFormatter costFormatter;
+    
+    public AbstractTbModel() {
+        list = new ArrayList<>();
+        columnNames = new String[]{};
+        costFormatter = new CostFormatter();
+    }
 
+    public AbstractTbModel(List<T> tList) {
+        list = new ArrayList<>(tList);
+        columnNames = new String[]{};
+        costFormatter = new CostFormatter();
+    }
+    
     @Override
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];

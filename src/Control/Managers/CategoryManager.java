@@ -7,6 +7,7 @@ import java.util.List;
 public class CategoryManager extends AbstractManager<Category> {
 
     private CategoryForm categoryForm = new CategoryForm(null, true);
+    private List<Category> allCategories = dao.getAllFromBank(Category.class);
 
     public CategoryManager() {
     }
@@ -48,5 +49,9 @@ public class CategoryManager extends AbstractManager<Category> {
     @Override
     public List<Category> getAll() {
         return dao.getAllFromBank(Category.class);
+    }
+
+    public List<Category> getAllCategories() {
+        return allCategories;
     }
 }

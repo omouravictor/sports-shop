@@ -1,14 +1,21 @@
 package Control.Managers;
 
 import Model.EntitiesClasses.Brand;
+import Model.Tables.TbBrandModel;
+import View.CRUD.BrandCRUD;
 import View.Forms.BrandForm;
 import java.util.List;
 
 public class BrandManager extends AbstractManager<Brand> {
 
-    private BrandForm brandForm = new BrandForm(null, true);
+    private BrandForm brandForm;
+    private TbBrandModel model;
+    private BrandCRUD brandCRUD;
 
     public BrandManager() {
+        brandForm = new BrandForm(null, true);
+        model = new TbBrandModel(dao.getAllFromBank(Brand.class));
+        brandCRUD = new BrandCRUD(null, true, this, model);
     }
 
     @Override
@@ -48,5 +55,9 @@ public class BrandManager extends AbstractManager<Brand> {
     @Override
     public List<Brand> getAll() {
         return dao.getAllFromBank(Brand.class);
+    }
+
+    public void showBrandCRUD() {
+        brandCRUD.setVisible(true);
     }
 }

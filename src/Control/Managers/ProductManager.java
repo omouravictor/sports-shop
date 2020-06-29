@@ -1,19 +1,21 @@
 package Control.Managers;
 
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Product;
 import View.Forms.ProductForm;
 import java.util.List;
 
 public class ProductManager extends AbstractManager<Product> {
 
-    private ProductForm productForm = new ProductForm(null, true);
     private List<Product> allProducts = dao.getAllFromBank(Product.class);
-    private BrandManager brandManager;
-    private CategoryManager categoryManager;
+    private ProductForm productForm = new ProductForm(null, true);
+    private List<Category> allCategories;
+    private List<Brand> allBrands;
 
-    public ProductManager(BrandManager brandManager, CategoryManager categoryManager) {
-        this.brandManager = brandManager;
-        this.categoryManager = categoryManager;
+    public ProductManager(List<Category> allCategories, List<Brand> allBrands) {
+        this.allCategories = allCategories;
+        this.allBrands = allBrands;
     }
 
     @Override
