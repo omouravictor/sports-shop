@@ -4,6 +4,8 @@ import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import Model.EntitiesClasses.Brand;
+import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Product;
 import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
@@ -12,8 +14,10 @@ import Model.Tables.TbCategoryModel;
 public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    private TbBrandModel tbBrandSearchModel;
-    private TbCategoryModel tbCategorySearchModel;
+    // Apagar os news dos dois de baixo
+    private TbBrandModel tbBrandSearchModel = new TbBrandModel();
+    private TbCategoryModel tbCategorySearchModel = new TbCategoryModel();
+
     private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
     private final CostFormatter costFormatter = new CostFormatter();
@@ -25,6 +29,20 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         this.tbBrandSearchModel = tbBrandSearchModel;
         initComponents();
         initSetup();
+    }
+
+    public ProductForm(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
+        initComponents();
+        initSetup();
+        Brand b1 = new Brand("Nike");
+        Brand b2 = new Brand("Adidas");
+        Category c1 = new Category("Mug");
+        Category c2 = new Category("Shirt");
+        tbBrandSearchModel.addObjectRow(b1);
+        tbBrandSearchModel.addObjectRow(b2);
+        tbCategorySearchModel.addObjectRow(c1);
+        tbCategorySearchModel.addObjectRow(c2);
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +84,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtTeam = new javax.swing.JTextField();
         labTeam = new javax.swing.JLabel();
         labColor = new javax.swing.JLabel();
+        btCategorySearch = new javax.swing.JButton();
+        btBrandSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -101,8 +121,24 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         panGrid2.setViewportView(tbBrandSearch);
 
         btRemoveCategory.setText("Remove");
+        btRemoveCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveCategoryActionPerformed(evt);
+            }
+        });
 
         btAddCategory.setText("Add");
+        btAddCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddCategoryActionPerformed(evt);
+            }
+        });
+
+        txtCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoryActionPerformed(evt);
+            }
+        });
 
         labBrand.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labBrand.setText("Brand*");
@@ -113,9 +149,25 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         tbCategorySearch.setModel(this.tbCategorySearchModel);
         panGrid3.setViewportView(tbCategorySearch);
 
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrandActionPerformed(evt);
+            }
+        });
+
         btAddBrand.setText("Add");
+        btAddBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddBrandActionPerformed(evt);
+            }
+        });
 
         btRemoveBrand.setText("Remove");
+        btRemoveBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveBrandActionPerformed(evt);
+            }
+        });
 
         tbAddedCategory.setModel(this.tbAddedCategoryModel);
         panGrid4.setViewportView(tbAddedCategory);
@@ -149,6 +201,20 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color*");
 
+        btCategorySearch.setText("Search");
+        btCategorySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCategorySearchActionPerformed(evt);
+            }
+        });
+
+        btBrandSearch.setText("Search");
+        btBrandSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBrandSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
         panInputs.setLayout(panInputsLayout);
         panInputsLayout.setHorizontalGroup(
@@ -156,35 +222,6 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
             .addGroup(panInputsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panInputsLayout.createSequentialGroup()
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panInputsLayout.createSequentialGroup()
-                                .addComponent(btAddCategory)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btRemoveCategory)
-                                .addGap(18, 18, 18)
-                                .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(panInputsLayout.createSequentialGroup()
-                                    .addComponent(labCategory)
-                                    .addGap(9, 9, 9)
-                                    .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(28, 28, 28)
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panInputsLayout.createSequentialGroup()
-                                    .addComponent(labBrand)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panInputsLayout.createSequentialGroup()
-                                .addComponent(btAddBrand)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btRemoveBrand)
-                                .addGap(18, 18, 18)
-                                .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                        .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panInputsLayout.createSequentialGroup()
@@ -219,47 +256,83 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtPlayerPresent, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                                     .addComponent(txtTeam))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(btAddCategory)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btRemoveCategory)
+                                .addGap(34, 34, 34)
+                                .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(labCategory)
+                                .addGap(9, 9, 9)
+                                .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btCategorySearch))
+                            .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(btAddBrand)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btRemoveBrand)
+                                .addGap(18, 18, 18)
+                                .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(labBrand)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btBrandSearch)))
+                        .addContainerGap())))
         );
         panInputsLayout.setVerticalGroup(
             panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panInputsLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(24, 24, 24)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labBrand)
                             .addComponent(labCategory)
-                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btCategorySearch))
                         .addGap(18, 18, 18)
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btAddCategory)
                                 .addComponent(btRemoveCategory))
+                            .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labBrand)
+                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btBrandSearch))
+                        .addGap(18, 18, 18)
+                        .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btAddBrand)
                                 .addComponent(btRemoveBrand))
-                            .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(93, 93, 93))
-                    .addGroup(panInputsLayout.createSequentialGroup()
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labR$)
-                            .addComponent(labCost)
-                            .addComponent(labTeam)
-                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNumStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labPlayerPresent)
-                            .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labNumStock))))
+                            .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labR$)
+                    .addComponent(labCost)
+                    .addComponent(labTeam)
+                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labPlayerPresent)
+                    .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labNumStock))
                 .addGap(18, 18, 18)
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +343,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labSize))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,10 +355,9 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(710, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(0, 698, Short.MAX_VALUE))
+                    .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,9 +370,9 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -319,9 +391,50 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
-        isConfirmed = false;
-        this.dispose();
+        /*isConfirmed = false;
+        this.dispose();*/
+        showErrorMessage(tbCategorySearchModel.getObjectByRow(tbCategorySearch.getSelectedRow()).getName());
     }//GEN-LAST:event_btCancelActionPerformed
+
+    private void btAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCategoryActionPerformed
+        if (!categoryIsAdded()) {
+            int row = tbCategorySearch.getSelectedRow();
+            Category addedClient = tbCategorySearchModel.getObjectByRow(row);
+            tbAddedCategoryModel.addObjectRow(addedClient);
+        }
+    }//GEN-LAST:event_btAddCategoryActionPerformed
+
+    private void btRemoveCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveCategoryActionPerformed
+        tbAddedCategoryModel.removeObjectRow(0);
+    }//GEN-LAST:event_btRemoveCategoryActionPerformed
+
+    private void btAddBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddBrandActionPerformed
+        if (!brandIsAdded()) {
+            int row = tbBrandSearch.getSelectedRow();
+            Brand addedBrand = tbBrandSearchModel.getObjectByRow(row);
+            tbAddedBrandModel.addObjectRow(addedBrand);
+        }
+    }//GEN-LAST:event_btAddBrandActionPerformed
+
+    private void btRemoveBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveBrandActionPerformed
+        tbAddedBrandModel.removeObjectRow(0);
+    }//GEN-LAST:event_btRemoveBrandActionPerformed
+
+    private void btCategorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCategorySearchActionPerformed
+        filterTbCategorySearch();
+    }//GEN-LAST:event_btCategorySearchActionPerformed
+
+    private void btBrandSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBrandSearchActionPerformed
+        filterTbBrandSearch();
+    }//GEN-LAST:event_btBrandSearchActionPerformed
+
+    private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
+        filterTbCategorySearch();
+    }//GEN-LAST:event_txtCategoryActionPerformed
+
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+        filterTbBrandSearch();
+    }//GEN-LAST:event_txtBrandActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -342,7 +455,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true, null, null);
+                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -370,6 +483,14 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     @Override
+    public void setNoEnabledAll() {
+        tbBrandSearch.setEnabled(false);
+        tbAddedBrand.setEnabled(false);
+        tbCategorySearch.setEnabled(false);
+        tbAddedCategory.setEnabled(false);
+    }
+
+    @Override
     public void setEditableAll() {
         txtSize.setEditable(true);
         txtColor.setEditable(true);
@@ -380,7 +501,19 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     @Override
+    public void setNoEditableAll() {
+        txtSize.setEditable(false);
+        txtColor.setEditable(false);
+        txtNumStock.setEditable(false);
+        txtTeam.setEditable(false);
+        txtPlayerPresent.setEditable(false);
+        txtNumberPresent.setEditable(false);
+    }
+
+    @Override
     public void setEmptyAll() {
+        tbAddedCategoryModel.clearList();
+        tbAddedBrandModel.clearList();
         txtSize.setText("");
         txtCost.setText("");
         txtColor.setText("");
@@ -426,28 +559,12 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     @Override
-    public void setNoEnabledAll() {
-        tbBrandSearch.setEnabled(false);
-        tbAddedBrand.setEnabled(false);
-        tbCategorySearch.setEnabled(false);
-        tbAddedCategory.setEnabled(false);
-    }
-
-    @Override
-    public void setNoEditableAll() {
-        txtSize.setEditable(false);
-        txtColor.setEditable(false);
-        txtNumStock.setEditable(false);
-        txtTeam.setEditable(false);
-        txtPlayerPresent.setEditable(false);
-        txtNumberPresent.setEditable(false);
-    }
-
-    @Override
     public void prepareRead() {
         btOk.setVisible(false);
         labR$.setVisible(false);
         btCancel.setText("Close");
+        tbAddedCategoryModel.clearList();
+        tbAddedBrandModel.clearList();
         setNoEditableAll();
         setNoEnabledAll();
     }
@@ -553,6 +670,32 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         this.setVisible(true);
     }
 
+    public void filterTbCategorySearch() {
+        if (!categoryFilterIsEmpty()) {
+            String filter = txtCategory.getText();
+            tbCategorySearchModel.filter(tbCategorySearch, filter);
+        } else {
+            tbCategorySearch.setRowSorter(null);
+        }
+    }
+
+    public void filterTbBrandSearch() {
+        if (!brandFilterIsEmpty()) {
+            String filter = txtBrand.getText();
+            tbBrandSearchModel.filter(tbBrandSearch, filter);
+        } else {
+            tbBrandSearch.setRowSorter(null);
+        }
+    }
+
+    public boolean brandFilterIsEmpty() {
+        return txtBrand.getText().isEmpty();
+    }
+
+    public boolean categoryFilterIsEmpty() {
+        return txtCategory.getText().isEmpty();
+    }
+
     public boolean brandIsAdded() {
         return tbAddedBrand.getRowCount() != 0;
     }
@@ -563,7 +706,9 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddBrand;
     private javax.swing.JButton btAddCategory;
+    private javax.swing.JButton btBrandSearch;
     private javax.swing.JButton btCancel;
+    private javax.swing.JButton btCategorySearch;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btRemoveBrand;
     private javax.swing.JButton btRemoveCategory;
