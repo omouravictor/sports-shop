@@ -12,7 +12,7 @@ public interface IManagers<T> {
 
     public void delete(T toRemove) throws Exception; // Sends the Exception to the view
 
-    public List<T> getAll(Class classToGetAll);
+    public List<T> getAll(Class tClass);
 
     public void showCRUDscreen();
 }

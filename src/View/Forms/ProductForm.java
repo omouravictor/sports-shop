@@ -4,8 +4,6 @@ import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.EntitiesClasses.Brand;
-import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Product;
 import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
@@ -14,20 +12,19 @@ import Model.Tables.TbCategoryModel;
 public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    private TbCategoryModel tbCategorySearchModel;
-    private TbCategoryModel tbAddedCategoryModel;
     private TbBrandModel tbBrandSearchModel;
-    private TbBrandModel tbAddedBrandModel;
+    private TbCategoryModel tbCategorySearchModel;
+    private TbBrandModel tbAddedBrandModel = new TbBrandModel();
+    private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
-    public ProductForm(java.awt.Frame parent, boolean modal) {
+    public ProductForm(java.awt.Frame parent, boolean modal,
+            TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
         super(parent, modal);
+        this.tbCategorySearchModel = tbCategorySearchModel;
+        this.tbBrandSearchModel = tbBrandSearchModel;
         initComponents();
         initSetup();
-        Category c1 = new Category("Shirt");
-        Category c2 = new Category("Mug");
-        Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
     }
 
     @SuppressWarnings("unchecked")
@@ -345,7 +342,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true);
+                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true, null, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -517,6 +514,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
+        txtCategory.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtBrand.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtSize.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtColor.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtTeam.setDocument(new TxtModelsTypes(TxtTypes.String));
@@ -548,12 +547,12 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void initSetup() {
         setTxtModels();
     }
-    
+
     @Override
     public void showForm() {
         this.setVisible(true);
     }
-    
+
     public boolean brandIsAdded() {
         return tbAddedBrand.getRowCount() != 0;
     }

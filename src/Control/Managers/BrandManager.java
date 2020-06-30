@@ -49,4 +49,8 @@ public class BrandManager extends AbstractManager<Brand> {
     public void showCRUDscreen() {
         brandCRUD.setVisible(true);
     }
+
+    public TbBrandModel getModel() {
+        return model;
+    }
 }

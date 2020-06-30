@@ -20,7 +20,7 @@ public abstract class AbstractManager<T> implements IManagers<T> {
     }
     
     @Override
-    public List<T> getAll(Class classToGetAll) {
-        return dao.getAllFromBank(classToGetAll);
+    public List<T> getAll(Class tClass) {
+        return dao.getAllFromBank(tClass);
     }
 }

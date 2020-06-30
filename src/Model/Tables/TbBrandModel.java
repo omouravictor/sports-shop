@@ -5,6 +5,10 @@ import java.util.List;
 import javax.swing.JTable;
 
 public class TbBrandModel extends AbstractTbModel<Brand> {
+    
+    public TbBrandModel() {
+        this.columnNames = new String[]{"Id", "Name"};
+    }
 
     public TbBrandModel(List<Brand> brandList) {
         super(brandList);

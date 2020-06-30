@@ -11,14 +11,10 @@ import javax.swing.table.TableStringConverter;
 
 public class TbProductModel extends AbstractTbModel<Product> {
 
-    public TbProductModel() {
+    public TbProductModel(List<Product> productList) {
+        super(productList);
         this.columnNames = new String[]{"Stock", "Cost", "Category",
             "Brand", "Team", "Player", "Number", "Color", "Size", "Id"};
-    }
-
-    public TbProductModel(List<Product> productList, String[] columnNames) {
-        this.list = productList;
-        this.columnNames = columnNames;
     }
 
     @Override

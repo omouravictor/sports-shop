@@ -125,7 +125,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemCRUDclientActionPerformed
 
     private void menuItemCRUDproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDproductActionPerformed
-        // TODO add your handling code here:
+        mainControl.showProductCRUD();
     }//GEN-LAST:event_menuItemCRUDproductActionPerformed
 
     private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed

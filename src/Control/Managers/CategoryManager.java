@@ -49,4 +49,8 @@ public class CategoryManager extends AbstractManager<Category> {
     public void showCRUDscreen() {
         categoryCRUD.setVisible(true);
     }
+
+    public TbCategoryModel getModel() {
+        return model;
+    }
 }
