@@ -4,7 +4,6 @@ import Model.EntitiesClasses.Client;
 import Model.Tables.TbClientModel;
 import View.CRUD.ClientCRUD;
 import View.Forms.ClientForm;
-import java.util.List;
 
 public class ClientManager extends AbstractManager<Client> {
 
@@ -14,7 +13,7 @@ public class ClientManager extends AbstractManager<Client> {
 
     public ClientManager() {
         clientForm = new ClientForm(null, true);
-        model = new TbClientModel(getAll());
+        model = new TbClientModel(getAll(Client.class));
         clientCRUD = new ClientCRUD(null, true, this, model);
     }
 
@@ -44,17 +43,6 @@ public class ClientManager extends AbstractManager<Client> {
             return updatedClient;
         }
         return null;
-    }
-
-    @Override
-    public void delete(Client client) throws Exception {
-        // Sends the Exception to the view
-        dao.deleteInBank(client);
-    }
-
-    @Override
-    public List<Client> getAll() {
-        return dao.getAllFromBank(Client.class);
     }
 
     @Override

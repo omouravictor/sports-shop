@@ -4,7 +4,6 @@ import Model.EntitiesClasses.Category;
 import Model.Tables.TbCategoryModel;
 import View.CRUD.CategoryCRUD;
 import View.Forms.CategoryForm;
-import java.util.List;
 
 public class CategoryManager extends AbstractManager<Category> {
 
@@ -14,7 +13,7 @@ public class CategoryManager extends AbstractManager<Category> {
 
     public CategoryManager() {
         categoryForm = new CategoryForm(null, true);
-        model = new TbCategoryModel(getAll());
+        model = new TbCategoryModel(getAll(Category.class));
         categoryCRUD = new CategoryCRUD(null, true, this, model);
     }
 
@@ -44,17 +43,6 @@ public class CategoryManager extends AbstractManager<Category> {
             return updatedCategory;
         }
         return null;
-    }
-
-    @Override
-    public void delete(Category category) throws Exception {
-        // Sends the Exception to the view
-        dao.deleteInBank(category);
-    }
-
-    @Override
-    public List<Category> getAll() {
-        return dao.getAllFromBank(Category.class);
     }
     
     @Override

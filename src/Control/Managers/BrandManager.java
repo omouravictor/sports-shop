@@ -4,7 +4,6 @@ import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
 import View.CRUD.BrandCRUD;
 import View.Forms.BrandForm;
-import java.util.List;
 
 public class BrandManager extends AbstractManager<Brand> {
 
@@ -14,7 +13,7 @@ public class BrandManager extends AbstractManager<Brand> {
 
     public BrandManager() {
         brandForm = new BrandForm(null, true);
-        model = new TbBrandModel(getAll());
+        model = new TbBrandModel(getAll(Brand.class));
         brandCRUD = new BrandCRUD(null, true, this, model);
     }
 
@@ -44,17 +43,6 @@ public class BrandManager extends AbstractManager<Brand> {
             return updatedBrand;
         }
         return null;
-    }
-
-    @Override
-    public void delete(Brand brand) throws Exception {
-        // Sends the Exception to the view
-        dao.deleteInBank(brand);
-    }
-
-    @Override
-    public List<Brand> getAll() {
-        return dao.getAllFromBank(Brand.class);
     }
 
     @Override
