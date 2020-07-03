@@ -17,10 +17,12 @@ public class TbProductSearchModel extends AbstractTbModel<Product> {
             "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
             "Color", "Size", "Id"};
     }
-
-    public TbProductSearchModel(List<Product> productList, String[] columnNames) {
-        this.list = productList;
-        this.columnNames = columnNames;
+    
+    public TbProductSearchModel(List<Product> productList) {
+        super(productList);
+        this.columnNames = new String[]{"Stock", "Cost", "Category",
+            "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
+            "Color", "Size", "Id"};
     }
 
     @Override

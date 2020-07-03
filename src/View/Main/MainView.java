@@ -91,6 +91,11 @@ public class MainView extends javax.swing.JFrame {
         menuSale.setText("Sale");
 
         menuItemCRUDsale.setText("CRUD");
+        menuItemCRUDsale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDsaleActionPerformed(evt);
+            }
+        });
         menuSale.add(menuItemCRUDsale);
 
         mainMenu.add(menuSale);
@@ -131,6 +136,10 @@ public class MainView extends javax.swing.JFrame {
     private void menuItemCRUDshirtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDshirtActionPerformed
         mainControl.showShirtCRUD();
     }//GEN-LAST:event_menuItemCRUDshirtActionPerformed
+
+    private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed
+        mainControl.showSaleCRUD();
+    }//GEN-LAST:event_menuItemCRUDsaleActionPerformed
 
     public static void main(String args[]) {
         try {

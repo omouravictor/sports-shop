@@ -49,4 +49,8 @@ public class ClientManager extends AbstractManager<Client> {
     public void showCRUDscreen() {
         clientCRUD.setVisible(true);
     }
+    
+    public TbClientModel getModel() {
+        return model;
+    }
 }

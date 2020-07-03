@@ -26,11 +26,19 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private boolean isConfirmed = false;
     // Apagar os news dos dois de baixo
     private TbClientModel tbClientSearchModel = new TbClientModel();
-    private TbClientModel tbAddedClientModel = new TbClientModel();
-    
     private TbProductSearchModel tbProductSearchModel = new TbProductSearchModel();
+
+    private TbClientModel tbAddedClientModel = new TbClientModel();
     private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();
+
+    public SaleForm(java.awt.Frame parent, boolean modal, TbClientModel tbClientSearchModel, TbProductSearchModel tbProductSearchModel) {
+        super(parent, modal);
+        this.tbClientSearchModel = tbClientSearchModel;
+        this.tbProductSearchModel = tbProductSearchModel;
+        initComponents();
+        initSetup();
+    }
 
     public SaleForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

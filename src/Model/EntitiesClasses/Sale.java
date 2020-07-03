@@ -41,6 +41,13 @@ public class Sale {
     public Sale() {
     }
 
+    public Sale(Sale sale) {
+        this.client = sale.getClient();
+        this.productList = sale.getProductList();
+        this.saleDate = sale.getSaleDate();
+        this.setSaleCost(calcSaleCost());
+    }
+    
     public Sale(Client client, List<Product> productList, String saleDate) {
         this.client = client;
         this.productList = productList;
