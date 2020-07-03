@@ -5,24 +5,36 @@ import Model.Classes.CostFormatter;
 import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.ComboBoxs.SimpleComboBoxModel;
 import Model.EntitiesClasses.Brand;
 import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
+import Model.Tables.TbBrandModel;
 
 public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
-    private final SimpleComboBoxModel<Brand> cbBrandModel = new SimpleComboBoxModel();
+    // Apagar o new do de baixo
+    private TbBrandModel tbBrandSearchModel = new TbBrandModel();
+    
+    private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private final CostFormatter costFormatter = new CostFormatter();
+
+    public ShirtForm(java.awt.Frame parent, boolean modal, TbBrandModel tbBrandSearchModel) {
+        super(parent, modal);
+        this.tbBrandSearchModel = tbBrandSearchModel;
+        initComponents();
+        initSetup();
+    }
 
     public ShirtForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initSetup();
-        Brand a = new Brand("Nike");
-        cbBrandModel.addObjectInCombo(a);
+        Brand b1 = new Brand("Nike");
+        Brand b2 = new Brand("Adidas");
+        tbBrandSearchModel.addObjectRow(b1);
+        tbBrandSearchModel.addObjectRow(b2);
     }
 
     @SuppressWarnings("unchecked")
@@ -31,58 +43,48 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
         btGroupSleeves = new javax.swing.ButtonGroup();
         labTitle = new javax.swing.JLabel();
-        labNumberPresent = new javax.swing.JLabel();
-        labBrand = new javax.swing.JLabel();
-        labCost = new javax.swing.JLabel();
-        labNumStock = new javax.swing.JLabel();
-        labTeam = new javax.swing.JLabel();
-        labPlayerPresent = new javax.swing.JLabel();
-        labSize = new javax.swing.JLabel();
-        txtNumStock = new javax.swing.JTextField();
-        txtSize = new javax.swing.JTextField();
         btOk = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
-        txtPlayerPresent = new javax.swing.JTextField();
-        cbBrand = new javax.swing.JComboBox<>();
-        txtTeam = new javax.swing.JTextField();
+        panInputs = new javax.swing.JPanel();
+        panGrid2 = new javax.swing.JScrollPane();
+        tbBrandSearch = new javax.swing.JTable();
+        labBrand = new javax.swing.JLabel();
+        txtBrand = new javax.swing.JTextField();
+        btAddBrand = new javax.swing.JButton();
+        btRemoveBrand = new javax.swing.JButton();
+        panGrid5 = new javax.swing.JScrollPane();
+        tbAddedBrand = new javax.swing.JTable();
+        txtSize = new javax.swing.JTextField();
         txtPlayerNameOnShirt = new javax.swing.JTextField();
-        labPlayerNameOnShirt = new javax.swing.JLabel();
-        rbShort = new javax.swing.JRadioButton();
-        rbLong = new javax.swing.JRadioButton();
-        labSleeves = new javax.swing.JLabel();
+        labCost = new javax.swing.JLabel();
         txtCost = new javax.swing.JFormattedTextField();
-        labR$ = new javax.swing.JLabel();
-        labColor = new javax.swing.JLabel();
+        labNumberPresent = new javax.swing.JLabel();
+        labSize = new javax.swing.JLabel();
         txtColor = new javax.swing.JTextField();
-        rbNoSleeves = new javax.swing.JRadioButton();
+        txtNumStock = new javax.swing.JTextField();
+        labNumStock = new javax.swing.JLabel();
         txtNumberPresent = new javax.swing.JTextField();
+        labPlayerNameOnShirt = new javax.swing.JLabel();
+        labR$ = new javax.swing.JLabel();
+        txtTeam = new javax.swing.JTextField();
+        labTeam = new javax.swing.JLabel();
+        labColor = new javax.swing.JLabel();
+        btBrandSearch = new javax.swing.JButton();
+        labPlayerPresent = new javax.swing.JLabel();
+        txtPlayerPresent = new javax.swing.JTextField();
+        rbLong = new javax.swing.JRadioButton();
+        rbShort = new javax.swing.JRadioButton();
+        labSleeves = new javax.swing.JLabel();
+        rbNoSleeves = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labTitle.setText("Shirt");
-
-        labNumberPresent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labNumberPresent.setText("Number Present");
-
-        labBrand.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labBrand.setText("Brand*");
-
-        labCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCost.setText("Cost*");
-
-        labNumStock.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labNumStock.setText("NumStock*");
-
-        labTeam.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labTeam.setText("Team*");
-
-        labPlayerPresent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labPlayerPresent.setText("PlayerPresent");
-
-        labSize.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labSize.setText("Size*");
+        labTitle.setToolTipText("");
+        labTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btOk.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         btOk.setText("Ok");
@@ -103,160 +105,246 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
             }
         });
 
-        cbBrand.setModel(this.cbBrandModel);
+        panInputs.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Tables"));
 
-        labPlayerNameOnShirt.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labPlayerNameOnShirt.setText("PlayerNameOnShirt");
+        tbBrandSearch.setModel(this.tbBrandSearchModel);
+        panGrid2.setViewportView(tbBrandSearch);
 
-        btGroupSleeves.add(rbShort);
-        rbShort.setText("Short");
+        labBrand.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labBrand.setText("Brand*");
 
-        btGroupSleeves.add(rbLong);
-        rbLong.setText("Long");
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrandActionPerformed(evt);
+            }
+        });
 
-        labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labSleeves.setText("Sleeves*");
+        btAddBrand.setText("Add");
+        btAddBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAddBrandActionPerformed(evt);
+            }
+        });
+
+        btRemoveBrand.setText("Remove");
+        btRemoveBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoveBrandActionPerformed(evt);
+            }
+        });
+
+        tbAddedBrand.setModel(this.tbAddedBrandModel);
+        panGrid5.setViewportView(tbAddedBrand);
+
+        labCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCost.setText("Cost*");
 
         txtCost.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+
+        labNumberPresent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labNumberPresent.setText("Number Present");
+
+        labSize.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labSize.setText("Size*");
+
+        labNumStock.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labNumStock.setText("NumStock*");
+
+        labPlayerNameOnShirt.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labPlayerNameOnShirt.setText("Player Name on shirt");
 
         labR$.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         labR$.setText("R$");
 
+        labTeam.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labTeam.setText("Team*");
+
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color*");
 
+        btBrandSearch.setText("Search");
+        btBrandSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBrandSearchActionPerformed(evt);
+            }
+        });
+
+        labPlayerPresent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labPlayerPresent.setText("Player Present");
+
+        btGroupSleeves.add(rbLong);
+        rbLong.setText("Long");
+
+        btGroupSleeves.add(rbShort);
+        rbShort.setText("Short");
+
+        labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labSleeves.setText("Sleeves*");
+
         btGroupSleeves.add(rbNoSleeves);
         rbNoSleeves.setText("NoSleeves");
+
+        javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
+        panInputs.setLayout(panInputsLayout);
+        panInputsLayout.setHorizontalGroup(
+            panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panInputsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panInputsLayout.createSequentialGroup()
+                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labNumStock)
+                                .addComponent(labCost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addComponent(labR$)
+                            .addGap(2, 2, 2)
+                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtNumStock, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                                .addComponent(txtCost)))
+                        .addGroup(panInputsLayout.createSequentialGroup()
+                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labColor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labSize, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(45, 45, 45)
+                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTeam)
+                                .addComponent(txtSize)
+                                .addComponent(txtColor, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE))))
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addComponent(btAddBrand)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemoveBrand))
+                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addComponent(labBrand)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btBrandSearch)))
+                .addGap(28, 28, 28)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labNumberPresent)
+                                    .addComponent(labPlayerNameOnShirt)
+                                    .addComponent(labPlayerPresent))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addComponent(labSleeves)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbLong)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rbShort)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbNoSleeves)
+                        .addContainerGap())))
+        );
+        panInputsLayout.setVerticalGroup(
+            panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panInputsLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labBrand)
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btBrandSearch))
+                .addGap(18, 18, 18)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btAddBrand)
+                    .addComponent(btRemoveBrand))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panInputsLayout.createSequentialGroup()
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labR$)
+                                    .addComponent(labCost)
+                                    .addComponent(labPlayerPresent))
+                                .addGap(18, 18, 18)
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtNumStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(labNumStock))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(labColor)))
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addComponent(labPlayerNameOnShirt)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(labNumberPresent))))
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtNumberPresent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labSize))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
+                        .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbLong)
+                            .addComponent(rbShort)
+                            .addComponent(labSleeves)
+                            .addComponent(rbNoSleeves))
+                        .addGap(1, 1, 1)))
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labTeam)
+                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(527, Short.MAX_VALUE)
                 .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancel)
-                .addGap(20, 20, 20))
+                .addGap(17, 17, 17))
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panInputs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labSize, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labCost, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labR$))
-                            .addComponent(labNumStock))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtNumStock, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(82, 82, 82))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(49, 49, 49))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labSleeves)
-                                .addGap(27, 27, 27)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rbShort)
-                                    .addComponent(rbLong)
-                                    .addComponent(rbNoSleeves))))
-                        .addGap(89, 89, 89)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labPlayerNameOnShirt)
-                            .addComponent(labNumberPresent))
-                        .addGap(27, 27, 27)
-                        .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labPlayerPresent))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labColor))
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                        .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labTitle)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labBrand)
-                            .addComponent(cbBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labTeam)
-                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPlayerPresent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labPlayerPresent)
-                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labSize))
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labPlayerNameOnShirt)
-                            .addComponent(txtPlayerNameOnShirt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labCost)
-                            .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labR$))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtNumStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labNumStock)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(labNumberPresent)
-                                    .addComponent(txtNumberPresent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labColor)
-                                .addComponent(txtColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(rbShort)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(labSleeves)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rbLong)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btCancel)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbNoSleeves)))
-                .addGap(20, 20, 20))
+                .addGap(18, 18, 18)
+                .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancel))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -272,9 +360,28 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         isConfirmed = false;
-        btGroupSleeves.clearSelection();
         this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
+
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+        filterTbBrandSearch();
+    }//GEN-LAST:event_txtBrandActionPerformed
+
+    private void btAddBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddBrandActionPerformed
+        if (!brandIsAdded()) {
+            int row = tbBrandSearch.getSelectedRow();
+            Brand addedBrand = tbBrandSearchModel.getObjectByRow(row);
+            tbAddedBrandModel.addObjectRow(addedBrand);
+        }
+    }//GEN-LAST:event_btAddBrandActionPerformed
+
+    private void btRemoveBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveBrandActionPerformed
+        tbAddedBrandModel.removeObjectRow(0);
+    }//GEN-LAST:event_btRemoveBrandActionPerformed
+
+    private void btBrandSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBrandSearchActionPerformed
+        filterTbBrandSearch();
+    }//GEN-LAST:event_btBrandSearchActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -321,7 +428,8 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public void setEnabledAll() {
-        cbBrand.setEnabled(true);
+        tbBrandSearch.setEnabled(true);
+        tbAddedBrand.setEnabled(true);
         txtCost.setEnabled(true);
         rbLong.setEnabled(true);
         rbShort.setEnabled(true);
@@ -330,7 +438,8 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public void setNoEnabledAll() {
-        cbBrand.setEnabled(false);
+        tbBrandSearch.setEnabled(false);
+        tbAddedBrand.setEnabled(false);
         txtCost.setEnabled(false);
         rbLong.setEnabled(false);
         rbShort.setEnabled(false);
@@ -361,7 +470,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public void setEmptyAll() {
-        cbBrand.setSelectedItem(null);
+        tbAddedBrandModel.clearList();
         txtSize.setText("");
         txtCost.setText("");
         txtColor.setText("");
@@ -386,7 +495,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     public Shirt getObjectCreated() {
         Shirt newShirt = new Shirt();
         newShirt.setCategory(new Category("Shirt"));
-        newShirt.setBrand((Brand) cbBrand.getSelectedItem());
+        newShirt.setBrand(tbAddedBrandModel.getObjectByRow(0));
         newShirt.setSizeProduct(txtSize.getText());
         newShirt.setColor(txtColor.getText());
         newShirt.setCost(parseTxtCostToDouble(txtCost));
@@ -426,6 +535,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         btOk.setVisible(false);
         labR$.setVisible(false);
         btCancel.setText("Close");
+        tbAddedBrandModel.clearList();
         setNoEditableAll();
         setNoEnabledAll();
     }
@@ -447,7 +557,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     @Override
     public void read(Shirt t) {
         prepareRead();
-        cbBrandModel.setSelectedItem(t.getBrand());
+        tbAddedBrandModel.addObjectRow(t.getBrand());
         txtSize.setText(t.getSizeProduct());
         txtCost.setText(costFormatter.formatCost(t.getCost()));
         txtColor.setText(t.getColor());
@@ -468,7 +578,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         setEmptyAll();
         btOk.setText("Update");
         btCancel.setText("Cancel");
-        cbBrandModel.setSelectedItem(t.getBrand());
+        tbAddedBrandModel.addObjectRow(t.getBrand());
         txtSize.setText(t.getSizeProduct());
         txtCost.setText(costFormatter.formatNumber(t.getCost()));
         txtColor.setText(t.getColor());
@@ -483,7 +593,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     @Override
     public Shirt getObjectUpdated(Shirt oldT) {
         Shirt updatedProduct = oldT;
-        updatedProduct.setBrand((Brand) cbBrand.getSelectedItem());
+        updatedProduct.setBrand(tbAddedBrandModel.getObjectByRow(0));
         updatedProduct.setSizeProduct(txtSize.getText());
         updatedProduct.setColor(txtColor.getText());
         updatedProduct.setCost(parseTxtCostToDouble(txtCost));
@@ -513,20 +623,17 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         txtSize.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtColor.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtTeam.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtPlayerNameOnShirt.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.String));
         txtNumStock.setDocument(new TxtModelsTypes(TxtTypes.Integer));
         txtNumberPresent.setDocument(new TxtModelsTypes(TxtTypes.Integer));
     }
 
     @Override
     public boolean fieldsAreEmpty() {
-        if (cbBrandModel.getSelectedItem() == null
-                || txtNumStock.getText().isEmpty()
-                || txtColor.getText().isEmpty()
-                || txtTeam.getText().isEmpty()
-                || txtSize.getText().isEmpty()
-                || "".equals(txtCost.getText())
+        if (!brandIsAdded() || txtNumStock.getText().isEmpty()
+                || txtColor.getText().isEmpty() || txtTeam.getText().isEmpty()
+                || txtSize.getText().isEmpty() || "".equals(txtCost.getText())
                 || (!rbLong.isSelected() && !rbShort.isSelected()
                 && !rbNoSleeves.isSelected())) {
             showErrorMessage("Fill all the required fields.");
@@ -536,7 +643,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     }
 
     public boolean checkPlayerPresentAndPlayerNameOnShirt() {
-        if (txtPlayerPresent.getText().isEmpty()
+        if (txtPlayerNameOnShirt.getText().isEmpty()
                 && !txtPlayerNameOnShirt.getText().isEmpty()) {
             showErrorMessage("The field 'PlayerPresent' can not be empty when "
                     + "the field 'PlayerNameOnShirt' is filled, fill the field "
@@ -544,6 +651,19 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
             return false;
         }
         return true;
+    }
+    
+    public boolean brandIsAdded() {
+        return tbAddedBrand.getRowCount() != 0;
+    }
+    
+    public void filterTbBrandSearch() {
+        if (!txtBrand.getText().isEmpty()) {
+            String filter = txtBrand.getText();
+            tbBrandSearchModel.filter(tbBrandSearch, filter);
+        } else {
+            tbBrandSearch.setRowSorter(null);
+        }
     }
 
     @Override
@@ -556,10 +676,12 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         this.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAddBrand;
+    private javax.swing.JButton btBrandSearch;
     private javax.swing.JButton btCancel;
     private javax.swing.ButtonGroup btGroupSleeves;
     private javax.swing.JButton btOk;
-    private javax.swing.JComboBox<String> cbBrand;
+    private javax.swing.JButton btRemoveBrand;
     private javax.swing.JLabel labBrand;
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCost;
@@ -572,9 +694,15 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     private javax.swing.JLabel labSleeves;
     private javax.swing.JLabel labTeam;
     private javax.swing.JLabel labTitle;
+    private javax.swing.JScrollPane panGrid2;
+    private javax.swing.JScrollPane panGrid5;
+    private javax.swing.JPanel panInputs;
     private javax.swing.JRadioButton rbLong;
     private javax.swing.JRadioButton rbNoSleeves;
     private javax.swing.JRadioButton rbShort;
+    private javax.swing.JTable tbAddedBrand;
+    private javax.swing.JTable tbBrandSearch;
+    private javax.swing.JTextField txtBrand;
     private javax.swing.JTextField txtColor;
     private javax.swing.JFormattedTextField txtCost;
     private javax.swing.JTextField txtNumStock;

@@ -66,6 +66,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="CRUD Shirt"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCRUDshirtActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -78,9 +81,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="CRUD"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCRUDsaleActionPerformed"/>
-              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

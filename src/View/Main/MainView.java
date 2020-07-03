@@ -79,6 +79,11 @@ public class MainView extends javax.swing.JFrame {
         menuProduct.add(menuItemCRUDproduct);
 
         menuItemCRUDshirt.setText("CRUD Shirt");
+        menuItemCRUDshirt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCRUDshirtActionPerformed(evt);
+            }
+        });
         menuProduct.add(menuItemCRUDshirt);
 
         mainMenu.add(menuProduct);
@@ -86,11 +91,6 @@ public class MainView extends javax.swing.JFrame {
         menuSale.setText("Sale");
 
         menuItemCRUDsale.setText("CRUD");
-        menuItemCRUDsale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDsaleActionPerformed(evt);
-            }
-        });
         menuSale.add(menuItemCRUDsale);
 
         mainMenu.add(menuSale);
@@ -128,9 +128,9 @@ public class MainView extends javax.swing.JFrame {
         mainControl.showProductCRUD();
     }//GEN-LAST:event_menuItemCRUDproductActionPerformed
 
-    private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuItemCRUDsaleActionPerformed
+    private void menuItemCRUDshirtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDshirtActionPerformed
+        mainControl.showShirtCRUD();
+    }//GEN-LAST:event_menuItemCRUDshirtActionPerformed
 
     public static void main(String args[]) {
         try {

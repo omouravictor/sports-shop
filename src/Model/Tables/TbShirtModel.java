@@ -11,15 +11,11 @@ import javax.swing.table.TableStringConverter;
 
 public class TbShirtModel extends AbstractTbModel<Shirt> {
 
-    public TbShirtModel() {
+    public TbShirtModel(List<Shirt> shirtList) {
+        super(shirtList);
         this.columnNames = new String[]{"Stock", "Cost", "Category",
             "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
             "Color", "Size", "Id"};
-    }
-
-    public TbShirtModel(List<Shirt> shirtList, String[] columnNames) {
-        this.list = shirtList;
-        this.columnNames = columnNames;
     }
 
     @Override

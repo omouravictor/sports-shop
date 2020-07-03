@@ -391,9 +391,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
-        /*isConfirmed = false;
-        this.dispose();*/
-        showErrorMessage(tbCategorySearchModel.getObjectByRow(tbCategorySearch.getSelectedRow()).getName());
+        isConfirmed = false;
+        this.dispose();
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCategoryActionPerformed
@@ -671,7 +670,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     public void filterTbCategorySearch() {
-        if (!categoryFilterIsEmpty()) {
+        if (!txtCategory.getText().isEmpty()) {
             String filter = txtCategory.getText();
             tbCategorySearchModel.filter(tbCategorySearch, filter);
         } else {
@@ -680,20 +679,12 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     public void filterTbBrandSearch() {
-        if (!brandFilterIsEmpty()) {
+        if (!txtBrand.getText().isEmpty()) {
             String filter = txtBrand.getText();
             tbBrandSearchModel.filter(tbBrandSearch, filter);
         } else {
             tbBrandSearch.setRowSorter(null);
         }
-    }
-
-    public boolean brandFilterIsEmpty() {
-        return txtBrand.getText().isEmpty();
-    }
-
-    public boolean categoryFilterIsEmpty() {
-        return txtCategory.getText().isEmpty();
     }
 
     public boolean brandIsAdded() {

@@ -20,6 +20,22 @@ public class Shirt extends Product {
 
     public Shirt() {
     }
+    
+    public Shirt(Shirt shirt) {
+        this.setId(shirt.getId());
+        this.setCategory(shirt.getCategory());
+        this.setBrand(shirt.getBrand());
+        this.setTeamName(shirt.getTeamName());
+        this.setPlayerPresent(shirt.getPlayerPresent());
+        setPlayerNameOnShirt(shirt.getPlayerNameOnShirt());
+        this.setNumberPresent(shirt.getNumberPresent());
+        this.sleeves = shirt.getSleeves();
+        this.setColor(shirt.getColor());
+        this.setSizeProduct(shirt.getSizeProduct());
+        this.setCost(shirt.getCost());
+        this.setQuantity(shirt.getQuantity());
+        this.setNumInStock(shirt.getNumInStock());
+    }
 
     public Shirt(Category category, Brand brand, String teamName,
             String playerPresentName, String playerNameOnShirt,
