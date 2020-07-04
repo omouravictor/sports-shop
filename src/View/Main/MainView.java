@@ -24,7 +24,6 @@ public class MainView extends javax.swing.JFrame {
         menuItemCRUDclient = new javax.swing.JMenuItem();
         menuProduct = new javax.swing.JMenu();
         menuItemCRUDproduct = new javax.swing.JMenuItem();
-        menuItemCRUDshirt = new javax.swing.JMenuItem();
         menuSale = new javax.swing.JMenu();
         menuItemCRUDsale = new javax.swing.JMenuItem();
 
@@ -78,14 +77,6 @@ public class MainView extends javax.swing.JFrame {
         });
         menuProduct.add(menuItemCRUDproduct);
 
-        menuItemCRUDshirt.setText("CRUD Shirt");
-        menuItemCRUDshirt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDshirtActionPerformed(evt);
-            }
-        });
-        menuProduct.add(menuItemCRUDshirt);
-
         mainMenu.add(menuProduct);
 
         menuSale.setText("Sale");
@@ -133,10 +124,6 @@ public class MainView extends javax.swing.JFrame {
         mainControl.showProductCRUD();
     }//GEN-LAST:event_menuItemCRUDproductActionPerformed
 
-    private void menuItemCRUDshirtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDshirtActionPerformed
-        mainControl.showShirtCRUD();
-    }//GEN-LAST:event_menuItemCRUDshirtActionPerformed
-
     private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed
         mainControl.showSaleCRUD();
     }//GEN-LAST:event_menuItemCRUDsaleActionPerformed
@@ -175,7 +162,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCRUDclient;
     private javax.swing.JMenuItem menuItemCRUDproduct;
     private javax.swing.JMenuItem menuItemCRUDsale;
-    private javax.swing.JMenuItem menuItemCRUDshirt;
     private javax.swing.JMenu menuProduct;
     private javax.swing.JMenu menuSale;
     // End of variables declaration//GEN-END:variables

@@ -5,7 +5,6 @@ import Control.Managers.CategoryManager;
 import Control.Managers.ClientManager;
 import Control.Managers.ProductManager;
 import Control.Managers.SaleManager;
-import Control.Managers.ShirtManager;
 import View.Main.MainView;
 
 public class MainControl {
@@ -14,7 +13,6 @@ public class MainControl {
     private CategoryManager categoryManager;
     private ClientManager clientManager;
     private ProductManager productManager;
-    private ShirtManager shirtManager;
     private SaleManager saleManager;
     private MainView mainView;
 
@@ -23,7 +21,6 @@ public class MainControl {
         categoryManager = new CategoryManager();
         clientManager = new ClientManager();
         productManager = new ProductManager(categoryManager.getModel(), brandManager.getModel());
-        shirtManager = new ShirtManager(brandManager.getModel());
         saleManager = new SaleManager(clientManager.getModel(), productManager.getModel());
         mainView = new MainView(this);
     }
@@ -46,10 +43,6 @@ public class MainControl {
     
     public void showProductCRUD() {
         productManager.showCRUDscreen();
-    }
-    
-    public void showShirtCRUD() {
-        shirtManager.showCRUDscreen();
     }
     
     public void showSaleCRUD() {
