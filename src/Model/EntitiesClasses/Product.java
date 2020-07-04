@@ -23,7 +23,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
+    // Optional because category of "Shirt" always gonna be SHIRT
     private Category category;
 
     @ManyToOne(optional = false)

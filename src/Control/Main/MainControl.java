@@ -24,7 +24,7 @@ public class MainControl {
         clientManager = new ClientManager();
         productManager = new ProductManager(categoryManager.getModel(), brandManager.getModel());
         shirtManager = new ShirtManager(brandManager.getModel());
-        saleManager = new SaleManager(clientManager.getModel(), productManager.getModel2());
+        saleManager = new SaleManager(clientManager.getModel(), productManager.getModel());
         mainView = new MainView(this);
     }
 

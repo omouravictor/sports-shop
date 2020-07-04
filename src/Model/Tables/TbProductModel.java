@@ -1,6 +1,7 @@
 package Model.Tables;
 
 import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -10,11 +11,18 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 public class TbProductModel extends AbstractTbModel<Product> {
+    
+    public TbProductModel() {
+        this.columnNames = new String[]{"Stock", "Cost", "Category",
+            "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
+            "Color", "Size", "Id"};
+    }
 
     public TbProductModel(List<Product> productList) {
         super(productList);
         this.columnNames = new String[]{"Stock", "Cost", "Category",
-            "Brand", "Team", "Player", "Number", "Color", "Size", "Id"};
+            "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
+            "Color", "Size", "Id"};
     }
 
     @Override
@@ -26,6 +34,9 @@ public class TbProductModel extends AbstractTbModel<Product> {
             case 1:
                 return costFormatter.formatCost(list.get(rowIndex).getCost());
             case 2:
+                if (list.get(rowIndex) instanceof Shirt) {
+                    return "Shirt";
+                }
                 return list.get(rowIndex).getCategory().getName();
             case 3:
                 return list.get(rowIndex).getBrand().getName();
@@ -34,12 +45,24 @@ public class TbProductModel extends AbstractTbModel<Product> {
             case 5:
                 return list.get(rowIndex).getPlayerPresent();
             case 6:
-                return list.get(rowIndex).getNumberPresent();
+                if (list.get(rowIndex) instanceof Shirt) {
+                    Shirt shirt = (Shirt) list.get(rowIndex);
+                    return shirt.getPlayerNameOnShirt();
+                }
+                return "------";
             case 7:
-                return list.get(rowIndex).getColor();
+                if (list.get(rowIndex) instanceof Shirt) {
+                    Shirt shirt = (Shirt) list.get(rowIndex);
+                    return shirt.getSleeves();
+                }
+                return "------";
             case 8:
-                return list.get(rowIndex).getSizeProduct();
+                return list.get(rowIndex).getNumberPresent();
             case 9:
+                return list.get(rowIndex).getColor();
+            case 10:
+                return list.get(rowIndex).getSizeProduct();
+            case 11:
                 return list.get(rowIndex).getId();
         }
         return null;

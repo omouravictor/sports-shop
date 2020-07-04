@@ -27,7 +27,7 @@ public class TbShirtModel extends AbstractTbModel<Shirt> {
             case 1:
                 return costFormatter.formatCost(list.get(rowIndex).getCost());
             case 2:
-                return list.get(rowIndex).getCategory().getName();
+                return "Shirt";
             case 3:
                 return list.get(rowIndex).getBrand().getName();
             case 4:

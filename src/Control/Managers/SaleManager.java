@@ -2,7 +2,7 @@ package Control.Managers;
 
 import Model.EntitiesClasses.Sale;
 import Model.Tables.TbClientModel;
-import Model.Tables.TbProductSearchModel;
+import Model.Tables.TbProductModel;
 import Model.Tables.TbSaleModel;
 import View.CRUD.SaleCRUD;
 import View.Forms.SaleForm;
@@ -13,7 +13,7 @@ public class SaleManager extends AbstractManager<Sale> {
     private TbSaleModel model;
     private SaleCRUD saleCRUD;
 
-    public SaleManager(TbClientModel tbClientSearchModel, TbProductSearchModel tbProductSearchModel) {
+    public SaleManager(TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
         saleForm = new SaleForm(null, true, tbClientSearchModel, tbProductSearchModel);
         model = new TbSaleModel(getAll(Sale.class));
         saleCRUD = new SaleCRUD(null, true, this, model);

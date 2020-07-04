@@ -27,6 +27,9 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
             case 2:
                 return costFormatter.formatCost(list.get(rowIndex).getCost());
             case 3:
+                if (list.get(rowIndex) instanceof Shirt) {
+                    return "Shirt";
+                }
                 return list.get(rowIndex).getCategory().getName();
             case 4:
                 return list.get(rowIndex).getBrand().getName();

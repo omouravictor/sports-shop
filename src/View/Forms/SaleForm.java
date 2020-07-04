@@ -14,7 +14,7 @@ import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 import Model.Tables.TbAddedProductModel;
 import Model.Tables.TbClientModel;
-import Model.Tables.TbProductSearchModel;
+import Model.Tables.TbProductModel;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
@@ -26,13 +26,13 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private boolean isConfirmed = false;
     // Apagar os news dos dois de baixo
     private TbClientModel tbClientSearchModel = new TbClientModel();
-    private TbProductSearchModel tbProductSearchModel = new TbProductSearchModel();
+    private TbProductModel tbProductSearchModel = new TbProductModel();
 
     private TbClientModel tbAddedClientModel = new TbClientModel();
     private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();
 
-    public SaleForm(java.awt.Frame parent, boolean modal, TbClientModel tbClientSearchModel, TbProductSearchModel tbProductSearchModel) {
+    public SaleForm(java.awt.Frame parent, boolean modal, TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
         super(parent, modal);
         this.tbClientSearchModel = tbClientSearchModel;
         this.tbProductSearchModel = tbProductSearchModel;

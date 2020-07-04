@@ -6,7 +6,6 @@ import Model.Classes.Sleeves;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Brand;
-import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
@@ -357,7 +356,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
             this.dispose();
             clearAllFilters();
             clearAllSelectedRows();
-            rbGroupSleeves.clearSelection();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
@@ -366,7 +364,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         this.dispose();
         clearAllFilters();
         clearAllSelectedRows();
-        rbGroupSleeves.clearSelection();
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
@@ -494,6 +491,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         txtPlayerPresent.setText("");
         txtPlayerNameOnShirt.setText("");
         txtNumberPresent.setText("");
+        rbGroupSleeves.clearSelection();
     }
 
     @Override
@@ -509,7 +507,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     @Override
     public Shirt getObjectCreated() {
         Shirt newShirt = new Shirt();
-        newShirt.setCategory(new Category("Shirt"));
         newShirt.setBrand(tbAddedBrandModel.getObjectByRow(0));
         newShirt.setSizeProduct(txtSize.getText());
         newShirt.setColor(txtColor.getText());
@@ -519,7 +516,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         newShirt.setPlayerPresent(txtPlayerPresent.getText());
         newShirt.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
         newShirt.setSleeves(getSleeveSelected());
-        //rbGroupSleeves.clearSelection();
+        rbGroupSleeves.clearSelection();
         newShirt.setTeamName(txtTeam.getText());
         return newShirt;
     }
@@ -617,7 +614,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
         updatedProduct.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
         updatedProduct.setSleeves(getSleeveSelected());
-        //rbGroupSleeves.clearSelection();
+        rbGroupSleeves.clearSelection();
         updatedProduct.setNumberPresent(txtNumberPresent.getText());
         return updatedProduct;
     }
