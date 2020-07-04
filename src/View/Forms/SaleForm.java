@@ -2,7 +2,7 @@ package View.Forms;
 
 import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
-import Model.Classes.Sleeves;
+import Model.Classes.SleeveTypes;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Brand;
@@ -51,11 +51,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Brand b2 = new Brand("Adidas");
         Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
         p1.setId(Long.parseLong("100"));
-        Shirt p2 = new Shirt(c2, b1, "Barcelona", "Leonel Messi", "Messi", "10", Sleeves.Short, "Azul", "M", 15, 0, 50);
+        Shirt p2 = new Shirt(c2, b1, "Barcelona", "Leonel Messi", "Messi", "10", SleeveTypes.Short, "Azul", "M", 15, 0, 50);
         p2.setId(Long.parseLong("200"));
-        Shirt p3 = new Shirt(c2, b2, "Real Madrid", "Cristiano Ronaldo", "C. Ronaldo", "7", Sleeves.Long, "White", "G", 10, 0, 50);
+        Shirt p3 = new Shirt(c2, b2, "Real Madrid", "Cristiano Ronaldo", "C. Ronaldo", "7", SleeveTypes.Long, "White", "G", 10, 0, 50);
         p3.setId(Long.parseLong("300"));
-        Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, Sleeves.NoSleeves, "Blue", "P", 5, 0, 50);
+        Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, SleeveTypes.NoSleeves, "Blue", "P", 5, 0, 50);
         p4.setId(Long.parseLong("400"));
         tbProductSearchModel.addObjectRow(p1);
         tbProductSearchModel.addObjectRow(p2);

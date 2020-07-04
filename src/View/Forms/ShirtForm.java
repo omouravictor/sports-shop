@@ -2,7 +2,7 @@ package View.Forms;
 
 import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
-import Model.Classes.Sleeves;
+import Model.Classes.SleeveTypes;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Brand;
@@ -521,13 +521,13 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         return newShirt;
     }
 
-    public Sleeves getSleeveSelected() {
+    public SleeveTypes getSleeveSelected() {
         if (rbLong.isSelected()) {
-            return Sleeves.Long;
+            return SleeveTypes.Long;
         } else if (rbShort.isSelected()) {
-            return Sleeves.Short;
+            return SleeveTypes.Short;
         } else if (rbNoSleeves.isSelected()) {
-            return Sleeves.NoSleeves;
+            return SleeveTypes.NoSleeves;
         }
         return null;
     }

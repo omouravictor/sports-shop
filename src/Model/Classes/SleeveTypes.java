@@ -1,6 +1,6 @@
 package Model.Classes;
 
-public enum Sleeves {
+public enum SleeveTypes {
     Long,
     Short,
     NoSleeves;

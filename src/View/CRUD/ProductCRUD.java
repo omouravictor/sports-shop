@@ -10,6 +10,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
     private ProductManager productManager;
     private TbProductModel tbProductModel;
+    private final String[] productTypes = {"Common", "Shirt"};
 
     public ProductCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -185,8 +186,12 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
         try {
-            Product newProduct = productManager.create();
-            tbProductModel.addObjectRow(newProduct);
+            String answer = (String) JOptionPane.showInputDialog(null,
+                    "Choose a type below to be created", null, 3, null, productTypes, null);
+            if (answer.equals("Common")) {
+                Product newProduct = productManager.create();
+                tbProductModel.addObjectRow(newProduct);
+            }
         } catch (Exception ex) {
             showErrorMessage(ex.getMessage());
         }
@@ -223,9 +228,9 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbProduct)) {
             try {
-                Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
                 int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
                 if (answer == 0) {
+                    Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
                     productManager.delete(productSelected);
                     tbProductModel.removeObjectRow(tbProduct.getSelectedRow());
                 }

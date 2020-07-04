@@ -1,6 +1,6 @@
 package Model.EntitiesClasses;
 
-import Model.Classes.Sleeves;
+import Model.Classes.SleeveTypes;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ public class Shirt extends Product {
     private String playerNameOnShirt = "------";
 
     @Enumerated(EnumType.STRING)
-    private Sleeves sleeves;
+    private SleeveTypes sleeves;
 
     public Shirt() {
     }
@@ -39,7 +39,7 @@ public class Shirt extends Product {
 
     public Shirt(Category category, Brand brand, String teamName,
             String playerPresentName, String playerNameOnShirt,
-            String numberPresent, Sleeves sleeves, String color,
+            String numberPresent, SleeveTypes sleeves, String color,
             String sizeProduct, double cost, int quantity, int numInStock) {
         this.setCategory(category);
         this.setBrand(brand);
@@ -65,11 +65,11 @@ public class Shirt extends Product {
         }
     }
 
-    public Sleeves getSleeves() {
+    public SleeveTypes getSleeves() {
         return sleeves;
     }
 
-    public void setSleeves(Sleeves sleeves) {
+    public void setSleeves(SleeveTypes sleeves) {
         this.sleeves = sleeves;
     }
 }
