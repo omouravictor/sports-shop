@@ -1,6 +1,7 @@
 package Control.Managers;
 
 import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbBrandModel;
 import Model.Tables.TbCategoryModel;
 import Model.Tables.TbProductModel;
@@ -22,13 +23,20 @@ public class ProductManager extends AbstractManager<Product> {
         productCRUD = new ProductCRUD(null, true, this, model);
     }
 
-    @Override
-    public Product create() throws Exception {
+    public Product create(int parameter) throws Exception {
         // Sends the Exception to the view
-        Product newProduct = productForm.create();
-        if (newProduct != null) {
-            newProduct = dao.createInBank(newProduct);
-            return newProduct;
+        if (parameter == 0) {
+            Product newProduct = productForm.create();
+            if (newProduct != null) {
+                newProduct = dao.createInBank(newProduct);
+                return newProduct;
+            }
+        } else if (parameter == 1) {
+            Shirt newShirt = shirtForm.create();
+            if (newShirt != null) {
+                newShirt = (Shirt) dao.createInBank(newShirt);
+                return newShirt;
+            }
         }
         return null;
     }
@@ -36,16 +44,28 @@ public class ProductManager extends AbstractManager<Product> {
     @Override
     public void read(Product product) throws Exception {
         // Sends the Exception to the view
-        productForm.read(product);
+        if (product instanceof Shirt) {
+            shirtForm.read((Shirt) product);
+        } else {
+            productForm.read(product);
+        }
     }
 
     @Override
-    public Product update(Product productSelected) throws Exception {
+    public Product update(Product product) throws Exception {
         // Sends the Exception to the view
-        Product updatedProduct = productForm.update(productSelected);
-        if (updatedProduct != null) {
-            updatedProduct = dao.updateInBank(updatedProduct);
-            return updatedProduct;
+        if (product instanceof Shirt) {
+            Shirt updatedShirt = (Shirt) shirtForm.update((Shirt) product);
+            if (updatedShirt != null) {
+                updatedShirt = (Shirt) dao.updateInBank(updatedShirt);
+                return updatedShirt;
+            }
+        } else {
+            Product updatedProduct = productForm.update(product);
+            if (updatedProduct != null) {
+                updatedProduct = dao.updateInBank(updatedProduct);
+                return updatedProduct;
+            }
         }
         return null;
     }
@@ -57,5 +77,10 @@ public class ProductManager extends AbstractManager<Product> {
 
     public TbProductModel getModel() {
         return model;
+    }
+
+    @Override
+    public Product create() throws Exception {
+        return null;
     }
 }

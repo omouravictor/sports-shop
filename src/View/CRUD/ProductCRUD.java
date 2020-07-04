@@ -3,6 +3,7 @@ package View.CRUD;
 import Control.Managers.ProductManager;
 import Model.Classes.AbstractJDialog;
 import Model.EntitiesClasses.Product;
+import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbProductModel;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,8 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         initComponents();
     }
 
-    public ProductCRUD(java.awt.Frame parent, boolean modal, ProductManager productManager, TbProductModel model) {
+    public ProductCRUD(java.awt.Frame parent, boolean modal,
+            ProductManager productManager, TbProductModel model) {
         super(parent, modal);
         this.productManager = productManager;
         this.tbProductModel = model;
@@ -187,10 +189,14 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
         try {
             String answer = (String) JOptionPane.showInputDialog(null,
-                    "Choose a type below to be created", null, 3, null, productTypes, null);
+                    "Choose a type below to be created", null, 3, null,
+                    productTypes, null);
             if (answer.equals("Common")) {
-                Product newProduct = productManager.create();
+                Product newProduct = productManager.create(0);
                 tbProductModel.addObjectRow(newProduct);
+            } else if (answer.equals("Shirt")) {
+                Shirt newShirt = (Shirt) productManager.create(1);
+                tbProductModel.addObjectRow(newShirt);
             }
         } catch (Exception ex) {
             showErrorMessage(ex.getMessage());
@@ -228,7 +234,8 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
         if (rowIsSelected(tbProduct)) {
             try {
-                int answer = JOptionPane.showConfirmDialog(null, "Are you sure?", null, 0, 2);
+                int answer = JOptionPane.showConfirmDialog(null,
+                        "Are you sure?", null, 0, 2);
                 if (answer == 0) {
                     Product productSelected = getObjectSelectedInTb(tbProduct, tbProductModel);
                     productManager.delete(productSelected);
