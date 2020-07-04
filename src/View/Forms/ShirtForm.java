@@ -16,7 +16,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     private boolean isConfirmed = false;
     // Apagar o new do de baixo
     private TbBrandModel tbBrandSearchModel = new TbBrandModel();
-    
+
     private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
@@ -41,7 +41,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btGroupSleeves = new javax.swing.ButtonGroup();
+        rbGroupSleeves = new javax.swing.ButtonGroup();
         labTitle = new javax.swing.JLabel();
         btOk = new javax.swing.JButton();
         btCancel = new javax.swing.JButton();
@@ -172,16 +172,16 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         labPlayerPresent.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labPlayerPresent.setText("Player Present");
 
-        btGroupSleeves.add(rbLong);
+        rbGroupSleeves.add(rbLong);
         rbLong.setText("Long");
 
-        btGroupSleeves.add(rbShort);
+        rbGroupSleeves.add(rbShort);
         rbShort.setText("Short");
 
         labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labSleeves.setText("Sleeves*");
 
-        btGroupSleeves.add(rbNoSleeves);
+        rbGroupSleeves.add(rbNoSleeves);
         rbNoSleeves.setText("NoSleeves");
 
         javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
@@ -244,7 +244,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                         .addComponent(labSleeves)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbLong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addComponent(rbShort)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(rbNoSleeves)
@@ -319,8 +319,8 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(527, Short.MAX_VALUE)
-                .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancel)
                 .addGap(17, 17, 17))
@@ -355,12 +355,18 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         if (checkAll()) {
             isConfirmed = true;
             this.dispose();
+            clearAllFilters();
+            clearAllSelectedRows();
+            rbGroupSleeves.clearSelection();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         isConfirmed = false;
         this.dispose();
+        clearAllFilters();
+        clearAllSelectedRows();
+        rbGroupSleeves.clearSelection();
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
@@ -430,24 +436,31 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     public void setEnabledAll() {
         tbBrandSearch.setEnabled(true);
         tbAddedBrand.setEnabled(true);
-        txtCost.setEnabled(true);
+        btBrandSearch.setEnabled(true);
+        btAddBrand.setEnabled(true);
+        btRemoveBrand.setEnabled(true);
         rbLong.setEnabled(true);
         rbShort.setEnabled(true);
         rbNoSleeves.setEnabled(true);
+        txtCost.setEnabled(true);
     }
 
     @Override
     public void setNoEnabledAll() {
         tbBrandSearch.setEnabled(false);
         tbAddedBrand.setEnabled(false);
-        txtCost.setEnabled(false);
+        btBrandSearch.setEnabled(false);
+        btAddBrand.setEnabled(false);
+        btRemoveBrand.setEnabled(false);
         rbLong.setEnabled(false);
         rbShort.setEnabled(false);
         rbNoSleeves.setEnabled(false);
+        txtCost.setEnabled(false);
     }
 
     @Override
     public void setEditableAll() {
+        txtBrand.setEditable(true);
         txtSize.setEditable(true);
         txtColor.setEditable(true);
         txtNumStock.setEditable(true);
@@ -459,6 +472,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     @Override
     public void setNoEditableAll() {
+        txtBrand.setEditable(false);
         txtSize.setEditable(false);
         txtColor.setEditable(false);
         txtNumStock.setEditable(false);
@@ -471,6 +485,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     @Override
     public void setEmptyAll() {
         tbAddedBrandModel.clearList();
+        txtBrand.setText("");
         txtSize.setText("");
         txtCost.setText("");
         txtColor.setText("");
@@ -504,7 +519,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         newShirt.setPlayerPresent(txtPlayerPresent.getText());
         newShirt.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
         newShirt.setSleeves(getSleeveSelected());
-        btGroupSleeves.clearSelection();
+        //rbGroupSleeves.clearSelection();
         newShirt.setTeamName(txtTeam.getText());
         return newShirt;
     }
@@ -602,7 +617,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
         updatedProduct.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
         updatedProduct.setSleeves(getSleeveSelected());
-        btGroupSleeves.clearSelection();
+        //rbGroupSleeves.clearSelection();
         updatedProduct.setNumberPresent(txtNumberPresent.getText());
         return updatedProduct;
     }
@@ -652,11 +667,11 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         }
         return true;
     }
-    
+
     public boolean brandIsAdded() {
         return tbAddedBrand.getRowCount() != 0;
     }
-    
+
     public void filterTbBrandSearch() {
         if (!txtBrand.getText().isEmpty()) {
             String filter = txtBrand.getText();
@@ -664,6 +679,14 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         } else {
             tbBrandSearch.setRowSorter(null);
         }
+    }
+    
+    public void clearAllSelectedRows() {
+        tbBrandSearch.getSelectionModel().clearSelection();
+    }
+
+    public void clearAllFilters() {
+        tbBrandSearch.setRowSorter(null);
     }
 
     @Override
@@ -679,7 +702,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     private javax.swing.JButton btAddBrand;
     private javax.swing.JButton btBrandSearch;
     private javax.swing.JButton btCancel;
-    private javax.swing.ButtonGroup btGroupSleeves;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btRemoveBrand;
     private javax.swing.JLabel labBrand;
@@ -697,6 +719,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     private javax.swing.JScrollPane panGrid2;
     private javax.swing.JScrollPane panGrid5;
     private javax.swing.JPanel panInputs;
+    private javax.swing.ButtonGroup rbGroupSleeves;
     private javax.swing.JRadioButton rbLong;
     private javax.swing.JRadioButton rbNoSleeves;
     private javax.swing.JRadioButton rbShort;

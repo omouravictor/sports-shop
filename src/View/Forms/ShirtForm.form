@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="btGroupSleeves">
+    <Component class="javax.swing.ButtonGroup" name="rbGroupSleeves">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -29,8 +29,8 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="527" max="32767" attributes="0"/>
-              <Component id="btOk" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btOk" min="-2" pref="79" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btCancel" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
@@ -196,7 +196,7 @@
                           <Component id="labSleeves" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="rbLong" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="8" max="32767" attributes="0"/>
                           <Component id="rbShort" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="rbNoSleeves" min="-2" max="-2" attributes="0"/>
@@ -456,7 +456,7 @@
         <Component class="javax.swing.JRadioButton" name="rbLong">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btGroupSleeves"/>
+              <ComponentRef name="rbGroupSleeves"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Long"/>
           </Properties>
@@ -464,7 +464,7 @@
         <Component class="javax.swing.JRadioButton" name="rbShort">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btGroupSleeves"/>
+              <ComponentRef name="rbGroupSleeves"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Short"/>
           </Properties>
@@ -480,7 +480,7 @@
         <Component class="javax.swing.JRadioButton" name="rbNoSleeves">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="btGroupSleeves"/>
+              <ComponentRef name="rbGroupSleeves"/>
             </Property>
             <Property name="text" type="java.lang.String" value="NoSleeves"/>
           </Properties>

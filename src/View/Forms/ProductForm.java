@@ -67,8 +67,6 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         btRemoveBrand = new javax.swing.JButton();
         panGrid4 = new javax.swing.JScrollPane();
         tbAddedCategory = new javax.swing.JTable();
-        panGrid5 = new javax.swing.JScrollPane();
-        tbAddedBrand = new javax.swing.JTable();
         txtSize = new javax.swing.JTextField();
         txtPlayerPresent = new javax.swing.JTextField();
         labCost = new javax.swing.JLabel();
@@ -86,6 +84,10 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         labColor = new javax.swing.JLabel();
         btCategorySearch = new javax.swing.JButton();
         btBrandSearch = new javax.swing.JButton();
+        labCategorySelected = new javax.swing.JLabel();
+        labBrandSelected = new javax.swing.JLabel();
+        panGrid6 = new javax.swing.JScrollPane();
+        tbAddedBrand = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -141,10 +143,10 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         });
 
         labBrand.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labBrand.setText("Brand*");
+        labBrand.setText("Brand");
 
         labCategory.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCategory.setText("Category*");
+        labCategory.setText("Category");
 
         tbCategorySearch.setModel(this.tbCategorySearchModel);
         panGrid3.setViewportView(tbCategorySearch);
@@ -171,9 +173,6 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
 
         tbAddedCategory.setModel(this.tbAddedCategoryModel);
         panGrid4.setViewportView(tbAddedCategory);
-
-        tbAddedBrand.setModel(this.tbAddedBrandModel);
-        panGrid5.setViewportView(tbAddedBrand);
 
         labCost.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labCost.setText("Cost*");
@@ -214,6 +213,15 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 btBrandSearchActionPerformed(evt);
             }
         });
+
+        labCategorySelected.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCategorySelected.setText("Category Selected*");
+
+        labBrandSelected.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labBrandSelected.setText("Brand Selected*");
+
+        tbAddedBrand.setModel(this.tbAddedBrandModel);
+        panGrid6.setViewportView(tbAddedBrand);
 
         javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
         panInputs.setLayout(panInputsLayout);
@@ -263,8 +271,14 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                                 .addComponent(btAddCategory)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btRemoveCategory)
-                                .addGap(34, 34, 34)
-                                .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addGap(34, 34, 34)
+                                        .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addComponent(labCategorySelected)
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(panInputsLayout.createSequentialGroup()
                                 .addComponent(labCategory)
                                 .addGap(9, 9, 9)
@@ -275,19 +289,27 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                         .addGap(37, 37, 37)
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panInputsLayout.createSequentialGroup()
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addComponent(labBrand)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btBrandSearch)))
+                                .addContainerGap())
+                            .addGroup(panInputsLayout.createSequentialGroup()
                                 .addComponent(btAddBrand)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btRemoveBrand)
-                                .addGap(18, 18, 18)
-                                .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panInputsLayout.createSequentialGroup()
-                                .addComponent(labBrand)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btBrandSearch)))
-                        .addContainerGap())))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
+                                        .addComponent(labBrandSelected)
+                                        .addGap(65, 65, 65))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
+                                        .addComponent(panGrid6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap())))))))
         );
         panInputsLayout.setVerticalGroup(
             panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,12 +323,17 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                             .addComponent(btCategorySearch))
                         .addGap(18, 18, 18)
                         .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btAddCategory)
-                                .addComponent(btRemoveCategory))
-                            .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btAddCategory)
+                                    .addComponent(btRemoveCategory)))
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(labCategorySelected)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labBrand)
@@ -319,8 +346,11 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                             .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btAddBrand)
                                 .addComponent(btRemoveBrand))
-                            .addComponent(panGrid5, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addComponent(labBrandSelected)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panGrid6, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labR$)
@@ -360,7 +390,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancel)
                 .addGap(17, 17, 17))
@@ -371,8 +401,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addContainerGap()
                 .addComponent(labTitle)
                 .addGap(18, 18, 18)
-                .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(panInputs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancel))
@@ -387,12 +417,16 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         if (checkAll()) {
             isConfirmed = true;
             this.dispose();
+            clearAllFilters();
+            clearAllSelectedRows();
         }
     }//GEN-LAST:event_btOkActionPerformed
 
     private void btCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelActionPerformed
         isConfirmed = false;
         this.dispose();
+        clearAllFilters();
+        clearAllSelectedRows();
     }//GEN-LAST:event_btCancelActionPerformed
 
     private void btAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCategoryActionPerformed
@@ -479,6 +513,13 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         tbAddedBrand.setEnabled(true);
         tbCategorySearch.setEnabled(true);
         tbAddedCategory.setEnabled(true);
+        btBrandSearch.setEnabled(true);
+        btCategorySearch.setEnabled(true);
+        btAddBrand.setEnabled(true);
+        btAddCategory.setEnabled(true);
+        btRemoveBrand.setEnabled(true);
+        btRemoveCategory.setEnabled(true);
+        txtCost.setEnabled(true);
     }
 
     @Override
@@ -487,6 +528,13 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         tbAddedBrand.setEnabled(false);
         tbCategorySearch.setEnabled(false);
         tbAddedCategory.setEnabled(false);
+        btBrandSearch.setEnabled(false);
+        btCategorySearch.setEnabled(false);
+        btAddBrand.setEnabled(false);
+        btAddCategory.setEnabled(false);
+        btRemoveBrand.setEnabled(false);
+        btRemoveCategory.setEnabled(false);
+        txtCost.setEnabled(false);
     }
 
     @Override
@@ -497,6 +545,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtTeam.setEditable(true);
         txtPlayerPresent.setEditable(true);
         txtNumberPresent.setEditable(true);
+        txtCategory.setEditable(true);
+        txtBrand.setEditable(true);
     }
 
     @Override
@@ -507,6 +557,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         txtTeam.setEditable(false);
         txtPlayerPresent.setEditable(false);
         txtNumberPresent.setEditable(false);
+        txtCategory.setEditable(false);
+        txtBrand.setEditable(false);
     }
 
     @Override
@@ -687,6 +739,16 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         }
     }
 
+    public void clearAllSelectedRows() {
+        tbBrandSearch.getSelectionModel().clearSelection();
+        tbCategorySearch.getSelectionModel().clearSelection();
+    }
+
+    public void clearAllFilters() {
+        tbBrandSearch.setRowSorter(null);
+        tbCategorySearch.setRowSorter(null);
+    }
+
     public boolean brandIsAdded() {
         return tbAddedBrand.getRowCount() != 0;
     }
@@ -704,7 +766,9 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private javax.swing.JButton btRemoveBrand;
     private javax.swing.JButton btRemoveCategory;
     private javax.swing.JLabel labBrand;
+    private javax.swing.JLabel labBrandSelected;
     private javax.swing.JLabel labCategory;
+    private javax.swing.JLabel labCategorySelected;
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCost;
     private javax.swing.JLabel labNumStock;
@@ -717,7 +781,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private javax.swing.JScrollPane panGrid2;
     private javax.swing.JScrollPane panGrid3;
     private javax.swing.JScrollPane panGrid4;
-    private javax.swing.JScrollPane panGrid5;
+    private javax.swing.JScrollPane panGrid6;
     private javax.swing.JPanel panInputs;
     private javax.swing.JTable tbAddedBrand;
     private javax.swing.JTable tbAddedCategory;
