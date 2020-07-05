@@ -11,7 +11,7 @@ import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
 import Model.Tables.TbCategoryModel;
 
-public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
+public class CommonForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
     private TbBrandModel tbBrandSearchModel;
@@ -20,7 +20,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
-    public ProductForm(java.awt.Frame parent, boolean modal,
+    public CommonForm(java.awt.Frame parent, boolean modal,
             TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
         super(parent, modal);
         this.tbCategorySearchModel = tbCategorySearchModel;
@@ -29,7 +29,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         initSetup();
     }
 
-    public ProductForm(java.awt.Frame parent, boolean modal) {
+    public CommonForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initSetup();
@@ -376,7 +376,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 698, Short.MAX_VALUE))
-                    .addComponent(panInputs, javax.swing.GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE))
+                    .addComponent(panInputs, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -468,17 +468,17 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true);
+                CommonForm dialog = new CommonForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -555,6 +555,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void setEmptyAll() {
         tbAddedCategoryModel.clearList();
         tbAddedBrandModel.clearList();
+        txtCategory.setText("");
+        txtBrand.setText("");
         txtSize.setText("");
         txtCost.setText("");
         txtColor.setText("");

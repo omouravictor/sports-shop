@@ -6,18 +6,18 @@ import Model.Tables.TbBrandModel;
 import Model.Tables.TbCategoryModel;
 import Model.Tables.TbProductModel;
 import View.CRUD.ProductCRUD;
-import View.Forms.ProductForm;
+import View.Forms.CommonForm;
 import View.Forms.ShirtForm;
 
 public class ProductManager extends AbstractManager<Product> {
 
-    private ProductForm productForm;
+    private CommonForm commonForm;
     private ShirtForm shirtForm;
     private TbProductModel model;
     private ProductCRUD productCRUD;
 
     public ProductManager(TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
-        productForm = new ProductForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
+        commonForm = new CommonForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
         shirtForm = new ShirtForm(null, true, tbBrandSearchModel);
         model = new TbProductModel(getAll(Product.class));
         productCRUD = new ProductCRUD(null, true, this, model);
@@ -26,7 +26,7 @@ public class ProductManager extends AbstractManager<Product> {
     public Product create(int parameter) throws Exception {
         // Sends the Exception to the view
         if (parameter == 0) {
-            Product newProduct = productForm.create();
+            Product newProduct = commonForm.create();
             if (newProduct != null) {
                 newProduct = dao.createInBank(newProduct);
                 return newProduct;
@@ -47,7 +47,7 @@ public class ProductManager extends AbstractManager<Product> {
         if (product instanceof Shirt) {
             shirtForm.read((Shirt) product);
         } else {
-            productForm.read(product);
+            commonForm.read(product);
         }
     }
 
@@ -61,7 +61,7 @@ public class ProductManager extends AbstractManager<Product> {
                 return updatedShirt;
             }
         } else {
-            Product updatedProduct = productForm.update(product);
+            Product updatedProduct = commonForm.update(product);
             if (updatedProduct != null) {
                 updatedProduct = dao.updateInBank(updatedProduct);
                 return updatedProduct;
