@@ -34,7 +34,8 @@ public class TbClientModel extends AbstractTbModel<Client> {
             case 3:
                 return list.get(rowIndex).getCellPhone();
             case 4:
-                if (list.get(rowIndex).getEmail() == null) {
+                if (list.get(rowIndex).getEmail() == null
+                        || list.get(rowIndex).getEmail().isEmpty()) {
                     return "------";
                 }
                 return list.get(rowIndex).getEmail();

@@ -30,10 +30,18 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
             case 5:
                 return list.get(rowIndex).getTeamName();
             case 6:
+                if (list.get(rowIndex).getPlayerPresent() == null
+                        || list.get(rowIndex).getPlayerPresent().isEmpty()) {
+                    return "------";
+                }
                 return list.get(rowIndex).getPlayerPresent();
             case 7:
                 if (list.get(rowIndex) instanceof Shirt) {
                     Shirt shirt = (Shirt) list.get(rowIndex);
+                    if (shirt.getPlayerNameOnShirt() == null
+                            || shirt.getPlayerNameOnShirt().isEmpty()) {
+                        return "------";
+                    }
                     return shirt.getPlayerNameOnShirt();
                 }
                 return "------";
@@ -44,6 +52,10 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
                 }
                 return "------";
             case 9:
+                if (list.get(rowIndex).getNumberPresent() == null
+                        || list.get(rowIndex).getNumberPresent().isEmpty()) {
+                    return "------";
+                }
                 return list.get(rowIndex).getNumberPresent();
             case 10:
                 return list.get(rowIndex).getColor();
