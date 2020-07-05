@@ -11,7 +11,7 @@ import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
 import Model.Tables.TbCategoryModel;
 
-public class CommonForm extends AbstractJDialog<Product> implements IForms<Product> {
+public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
     private TbBrandModel tbBrandSearchModel;
@@ -20,7 +20,7 @@ public class CommonForm extends AbstractJDialog<Product> implements IForms<Produ
     private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
-    public CommonForm(java.awt.Frame parent, boolean modal,
+    public ProductForm(java.awt.Frame parent, boolean modal,
             TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
         super(parent, modal);
         this.tbCategorySearchModel = tbCategorySearchModel;
@@ -29,7 +29,7 @@ public class CommonForm extends AbstractJDialog<Product> implements IForms<Produ
         initSetup();
     }
 
-    public CommonForm(java.awt.Frame parent, boolean modal) {
+    public ProductForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initSetup();
@@ -468,17 +468,17 @@ public class CommonForm extends AbstractJDialog<Product> implements IForms<Produ
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CommonForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProductForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CommonForm dialog = new CommonForm(new javax.swing.JFrame(), true);
+                ProductForm dialog = new ProductForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

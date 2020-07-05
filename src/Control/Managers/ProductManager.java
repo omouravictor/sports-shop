@@ -6,18 +6,18 @@ import Model.Tables.TbBrandModel;
 import Model.Tables.TbCategoryModel;
 import Model.Tables.TbProductModel;
 import View.CRUD.ProductCRUD;
-import View.Forms.CommonForm;
+import View.Forms.ProductForm;
 import View.Forms.ShirtForm;
 
 public class ProductManager extends AbstractManager<Product> {
 
-    private CommonForm commonForm;
+    private ProductForm commonForm;
     private ShirtForm shirtForm;
     private TbProductModel model;
     private ProductCRUD productCRUD;
 
     public ProductManager(TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
-        commonForm = new CommonForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
+        commonForm = new ProductForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
         shirtForm = new ShirtForm(null, true, tbBrandSearchModel);
         model = new TbProductModel(getAll(Product.class));
         productCRUD = new ProductCRUD(null, true, this, model);
