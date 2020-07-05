@@ -11,7 +11,6 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
     private ProductManager productManager;
     private TbProductModel tbProductModel;
-    private final String[] productTypes = {"Common", "Shirt"};
 
     public ProductCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -188,15 +187,17 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
     private void btCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCreateActionPerformed
         try {
-            String answer = (String) JOptionPane.showInputDialog(null,
+            Object answer = JOptionPane.showInputDialog(null,
                     "Choose a type below to be created", null, 3, null,
-                    productTypes, null);
-            if (answer.equals("Common")) {
-                Product newProduct = productManager.create(0);
-                tbProductModel.addObjectRow(newProduct);
-            } else if (answer.equals("Shirt")) {
-                Shirt newShirt = (Shirt) productManager.create(1);
-                tbProductModel.addObjectRow(newShirt);
+                    new String[]{"Common","Shirt"}, null);
+            if (answer != null) {
+                if (answer.equals("Common")) {
+                    Product newProduct = productManager.create(0);
+                    tbProductModel.addObjectRow(newProduct);
+                } else if (answer.equals("Shirt")) {
+                    Shirt newShirt = (Shirt) productManager.create(1);
+                    tbProductModel.addObjectRow(newShirt);
+                }
             }
         } catch (Exception ex) {
             showErrorMessage(ex.getMessage());
