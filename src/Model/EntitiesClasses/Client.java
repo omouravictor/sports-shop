@@ -26,7 +26,7 @@ public class Client {
     private String cellPhone;
 
     @Column(length = 100, nullable = true, unique = true)
-    private String email = "------";
+    private String email;
 
     @Column(length = 9, nullable = false)
     private String zipCodeAddress;

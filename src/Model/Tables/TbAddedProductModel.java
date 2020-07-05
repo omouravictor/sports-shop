@@ -2,7 +2,6 @@ package Model.Tables;
 
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
-import java.util.List;
 
 public class TbAddedProductModel extends AbstractTbModel<Product> {
 
@@ -10,11 +9,6 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
         this.columnNames = new String[]{"QTD", "Stock", "Cost", "Category",
             "Brand", "Team", "Player", "ShirtName", "Sleeves", "Number",
             "Color", "Size", "Id"};
-    }
-
-    public TbAddedProductModel(List<Product> productList, String[] columnNames) {
-        this.list = productList;
-        this.columnNames = columnNames;
     }
 
     @Override

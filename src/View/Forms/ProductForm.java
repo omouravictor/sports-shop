@@ -14,10 +14,8 @@ import Model.Tables.TbCategoryModel;
 public class ProductForm extends AbstractJDialog<Product> implements IForms<Product> {
 
     private boolean isConfirmed = false;
-    // Apagar os news dos dois de baixo
-    private TbBrandModel tbBrandSearchModel = new TbBrandModel();
-    private TbCategoryModel tbCategorySearchModel = new TbCategoryModel();
-
+    private TbBrandModel tbBrandSearchModel;
+    private TbCategoryModel tbCategorySearchModel;
     private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private TbCategoryModel tbAddedCategoryModel = new TbCategoryModel();
     private final CostFormatter costFormatter = new CostFormatter();
@@ -35,14 +33,6 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         super(parent, modal);
         initComponents();
         initSetup();
-        Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
-        Category c1 = new Category("Mug");
-        Category c2 = new Category("Shirt");
-        tbBrandSearchModel.addObjectRow(b1);
-        tbBrandSearchModel.addObjectRow(b2);
-        tbCategorySearchModel.addObjectRow(c1);
-        tbCategorySearchModel.addObjectRow(c2);
     }
 
     @SuppressWarnings("unchecked")

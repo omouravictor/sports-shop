@@ -34,10 +34,10 @@ public class Product {
     private String teamName;
 
     @Column(length = 100, nullable = true)
-    private String playerPresent = "------";
+    private String playerPresent;
 
     @Column(length = 100, nullable = true)
-    private String numberPresent = "------";
+    private String numberPresent;
 
     @Column(length = 100, nullable = false)
     private String sizeProduct;

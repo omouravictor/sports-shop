@@ -16,7 +16,8 @@ public class ClientCRUD extends AbstractJDialog<Client> {
         initComponents();
     }
 
-    public ClientCRUD(java.awt.Frame parent, boolean modal, ClientManager clientManager, TbClientModel model) {
+    public ClientCRUD(java.awt.Frame parent, boolean modal,
+            ClientManager clientManager, TbClientModel model) {
         super(parent, modal);
         this.clientManager = clientManager;
         this.tbClientModel = model;

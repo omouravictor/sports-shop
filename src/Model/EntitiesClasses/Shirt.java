@@ -13,7 +13,7 @@ import javax.persistence.Enumerated;
 public class Shirt extends Product {
 
     @Column(length = 100, nullable = true)
-    private String playerNameOnShirt = "------";
+    private String playerNameOnShirt;
 
     @Enumerated(EnumType.STRING)
     private SleeveTypes sleeves;

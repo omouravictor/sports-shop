@@ -16,7 +16,8 @@ public class CategoryCRUD extends AbstractJDialog<Category> {
         initComponents();
     }
 
-    public CategoryCRUD(java.awt.Frame parent, boolean modal, CategoryManager categoryManager, TbCategoryModel model) {
+    public CategoryCRUD(java.awt.Frame parent, boolean modal,
+            CategoryManager categoryManager, TbCategoryModel model) {
         super(parent, modal);
         this.categoryManager = categoryManager;
         this.tbCategoryModel = model;

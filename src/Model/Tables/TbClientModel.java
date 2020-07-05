@@ -15,7 +15,7 @@ public class TbClientModel extends AbstractTbModel<Client> {
         this.columnNames = new String[]{"Id", "Name", "CPF", "Phone", "Email",
             "ZipCode", "Street", "Number", "Neyghborhood", "City", "State"};
     }
-    
+
     public TbClientModel(List<Client> clientList) {
         super(clientList);
         this.columnNames = new String[]{"Id", "Name", "CPF", "Phone", "Email",
@@ -34,6 +34,9 @@ public class TbClientModel extends AbstractTbModel<Client> {
             case 3:
                 return list.get(rowIndex).getCellPhone();
             case 4:
+                if (list.get(rowIndex).getEmail() == null) {
+                    return "------";
+                }
                 return list.get(rowIndex).getEmail();
             case 5:
                 return list.get(rowIndex).getZipCodeAddress();

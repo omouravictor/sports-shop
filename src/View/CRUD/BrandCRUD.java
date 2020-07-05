@@ -16,7 +16,8 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         initComponents();
     }
 
-    public BrandCRUD(java.awt.Frame parent, boolean modal, BrandManager brandManager, TbBrandModel model) {
+    public BrandCRUD(java.awt.Frame parent, boolean modal,
+            BrandManager brandManager, TbBrandModel model) {
         super(parent, modal);
         this.brandManager = brandManager;
         this.tbBrandModel = model;

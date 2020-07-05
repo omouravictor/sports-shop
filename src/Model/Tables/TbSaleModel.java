@@ -8,7 +8,8 @@ public class TbSaleModel extends AbstractTbModel<Sale> {
 
     public TbSaleModel(List<Sale> saleList) {
         super(saleList);
-        this.columnNames = new String[]{"Id", "Client Name", "Client CPF", "Date", "Cost"};
+        this.columnNames = new String[]{"Id", "Client Name", "Client CPF",
+            "Date", "Cost"};
     }
 
     @Override

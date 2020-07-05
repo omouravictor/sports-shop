@@ -13,9 +13,7 @@ import Model.Tables.TbBrandModel;
 public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
-    // Apagar o new do de baixo
-    private TbBrandModel tbBrandSearchModel = new TbBrandModel();
-
+    private TbBrandModel tbBrandSearchModel;
     private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
@@ -30,10 +28,6 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
         super(parent, modal);
         initComponents();
         initSetup();
-        Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
-        tbBrandSearchModel.addObjectRow(b1);
-        tbBrandSearchModel.addObjectRow(b2);
     }
 
     @SuppressWarnings("unchecked")

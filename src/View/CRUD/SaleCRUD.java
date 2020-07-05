@@ -16,7 +16,8 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         initComponents();
     }
 
-    public SaleCRUD(java.awt.Frame parent, boolean modal, SaleManager saleManager, TbSaleModel model) {
+    public SaleCRUD(java.awt.Frame parent, boolean modal,
+            SaleManager saleManager, TbSaleModel model) {
         super(parent, modal);
         this.saleManager = saleManager;
         this.tbSaleModel = model;

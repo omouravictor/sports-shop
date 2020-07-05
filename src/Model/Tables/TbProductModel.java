@@ -11,12 +11,6 @@ import javax.swing.table.TableRowSorter;
 import javax.swing.table.TableStringConverter;
 
 public class TbProductModel extends AbstractTbModel<Product> {
-    
-    public TbProductModel() {
-        this.columnNames = new String[]{"Stock", "Cost", "Category",
-            "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
-            "Color", "Size", "Id"};
-    }
 
     public TbProductModel(List<Product> productList) {
         super(productList);
@@ -43,10 +37,16 @@ public class TbProductModel extends AbstractTbModel<Product> {
             case 4:
                 return list.get(rowIndex).getTeamName();
             case 5:
+                if (list.get(rowIndex).getPlayerPresent() == null) {
+                    return "------";
+                }
                 return list.get(rowIndex).getPlayerPresent();
             case 6:
                 if (list.get(rowIndex) instanceof Shirt) {
                     Shirt shirt = (Shirt) list.get(rowIndex);
+                    if (shirt.getPlayerNameOnShirt() == null) {
+                        return "------";
+                    }
                     return shirt.getPlayerNameOnShirt();
                 }
                 return "------";
@@ -57,6 +57,9 @@ public class TbProductModel extends AbstractTbModel<Product> {
                 }
                 return "------";
             case 8:
+                if (list.get(rowIndex).getNumberPresent() == null) {
+                    return "------";
+                }
                 return list.get(rowIndex).getNumberPresent();
             case 9:
                 return list.get(rowIndex).getColor();

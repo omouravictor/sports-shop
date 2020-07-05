@@ -2,15 +2,11 @@ package View.Forms;
 
 import Model.Classes.AbstractJDialog;
 import Model.Classes.CostFormatter;
-import Model.Classes.SleeveTypes;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
-import Model.EntitiesClasses.Brand;
-import Model.EntitiesClasses.Category;
 import Model.EntitiesClasses.Client;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
-import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 import Model.Tables.TbAddedProductModel;
 import Model.Tables.TbClientModel;
@@ -24,15 +20,14 @@ import javax.swing.event.TableModelListener;
 public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private boolean isConfirmed = false;
-    // Apagar os news dos dois de baixo
-    private TbClientModel tbClientSearchModel = new TbClientModel();
-    private TbProductModel tbProductSearchModel = new TbProductModel();
-
+    private TbClientModel tbClientSearchModel;
+    private TbProductModel tbProductSearchModel;
     private TbClientModel tbAddedClientModel = new TbClientModel();
     private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();
 
-    public SaleForm(java.awt.Frame parent, boolean modal, TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
+    public SaleForm(java.awt.Frame parent, boolean modal,
+            TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
         super(parent, modal);
         this.tbClientSearchModel = tbClientSearchModel;
         this.tbProductSearchModel = tbProductSearchModel;
@@ -44,29 +39,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         super(parent, modal);
         initComponents();
         initSetup();
-        Category c1 = new Category("Mug");
-        Category c2 = new Category("Shirt");
-        Category c3 = new Category("T-Shirt");
-        Brand b1 = new Brand("Nike");
-        Brand b2 = new Brand("Adidas");
-        Product p1 = new Product(c1, b1, "Barcelona", "Dyballa", null, "White", "300ml", 20, 0, 10);
-        p1.setId(Long.parseLong("100"));
-        Shirt p2 = new Shirt(c2, b1, "Barcelona", "Leonel Messi", "Messi", "10", SleeveTypes.Short, "Azul", "M", 15, 0, 50);
-        p2.setId(Long.parseLong("200"));
-        Shirt p3 = new Shirt(c2, b2, "Real Madrid", "Cristiano Ronaldo", "C. Ronaldo", "7", SleeveTypes.Long, "White", "G", 10, 0, 50);
-        p3.setId(Long.parseLong("300"));
-        Shirt p4 = new Shirt(c3, b2, "Chelsea", null, null, null, SleeveTypes.NoSleeves, "Blue", "P", 5, 0, 50);
-        p4.setId(Long.parseLong("400"));
-        tbProductSearchModel.addObjectRow(p1);
-        tbProductSearchModel.addObjectRow(p2);
-        tbProductSearchModel.addObjectRow(p3);
-        tbProductSearchModel.addObjectRow(p4);
-        Client cli1 = new Client("Victor Gabriel Siqueira Moura", "12733863614", "(31)98591-6080", "victorgabriel.moura@hotmail.com", "35182-278", "Dinamarca", "238", "Ana rita", "Timóteo", "MG");
-        Client cli2 = new Client("Maria de Lourdes Marcelino", "sdvsvsvds", "(31)98727-3572", "victorgabriel.moura@hotmail.com", "35182-278", "Honduras", "238", "Ana rita", "Timóteo", "SP");
-        Client cli3 = new Client("Gleison Francis Siqueira Moura", "dsvsvds", "(31)98503-9135", "victorgabriel.moura@hotmail.com", "35182-278", "Portugal", "238", "Ana rita", "Timóteo", "RJ");
-        tbClientSearchModel.addObjectRow(cli1);
-        tbClientSearchModel.addObjectRow(cli2);
-        tbClientSearchModel.addObjectRow(cli3);
     }
 
     @SuppressWarnings("unchecked")
