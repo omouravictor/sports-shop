@@ -115,7 +115,7 @@ public class Client {
     }
 
     public void setEmail(String email) {
-        if (email != null) {
+        if (email != null && !email.isEmpty()) {
             this.email = email;
         }
     }
