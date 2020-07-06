@@ -10,21 +10,21 @@ import Model.EntitiesClasses.Shirt;
 import Model.Interfaces.IForms;
 import Model.Tables.TbBrandModel;
 
-public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
+public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private boolean isConfirmed = false;
     private TbBrandModel tbBrandSearchModel;
     private TbBrandModel tbAddedBrandModel = new TbBrandModel();
     private final CostFormatter costFormatter = new CostFormatter();
 
-    public ShirtForm(java.awt.Frame parent, boolean modal, TbBrandModel tbBrandSearchModel) {
+    public ShirtsForm(java.awt.Frame parent, boolean modal, TbBrandModel tbBrandSearchModel) {
         super(parent, modal);
         this.tbBrandSearchModel = tbBrandSearchModel;
         initComponents();
         initSetup();
     }
 
-    public ShirtForm(java.awt.Frame parent, boolean modal) {
+    public ShirtsForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         initSetup();
@@ -75,7 +75,7 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
         labTitle.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labTitle.setText("Shirt");
+        labTitle.setText("Shirt's");
         labTitle.setToolTipText("");
         labTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
@@ -366,8 +366,11 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
 
     private void btAddBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddBrandActionPerformed
         if (!brandIsAdded()) {
-            int row = tbBrandSearch.getSelectedRow();
-            Brand addedBrand = tbBrandSearchModel.getObjectByRow(row);
+            int rowSelected = tbBrandSearch.getSelectedRow();
+            if (tbBrandSearch.getRowSorter() != null) {
+                rowSelected = tbBrandSearch.getRowSorter().convertRowIndexToModel(rowSelected);
+            }
+            Brand addedBrand = tbBrandSearchModel.getObjectByRow(rowSelected);
             tbAddedBrandModel.addObjectRow(addedBrand);
         }
     }//GEN-LAST:event_btAddBrandActionPerformed
@@ -389,17 +392,17 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShirtForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShirtForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShirtForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShirtForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShirtsForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ShirtForm dialog = new ShirtForm(new javax.swing.JFrame(), true);
+                ShirtsForm dialog = new ShirtsForm(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -666,12 +669,12 @@ public class ShirtForm extends AbstractJDialog<Shirt> implements IForms<Shirt> {
     public void filterTbBrandSearch() {
         if (!txtBrand.getText().isEmpty()) {
             String filter = txtBrand.getText();
-            tbBrandSearchModel.filter(tbBrandSearch, filter);
+            tbBrandSearch.setRowSorter(tbBrandSearchModel.getRowSorter(filter));
         } else {
             tbBrandSearch.setRowSorter(null);
         }
     }
-    
+
     public void clearAllSelectedRows() {
         tbBrandSearch.getSelectionModel().clearSelection();
     }

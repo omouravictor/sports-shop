@@ -421,8 +421,11 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
 
     private void btAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddCategoryActionPerformed
         if (!categoryIsAdded()) {
-            int row = tbCategorySearch.getSelectedRow();
-            Category addedClient = tbCategorySearchModel.getObjectByRow(row);
+            int rowSelected = tbCategorySearch.getSelectedRow();
+            if (tbCategorySearch.getRowSorter() != null) {
+                rowSelected = tbCategorySearch.getRowSorter().convertRowIndexToModel(rowSelected);
+            }
+            Category addedClient = tbCategorySearchModel.getObjectByRow(rowSelected);
             tbAddedCategoryModel.addObjectRow(addedClient);
         }
     }//GEN-LAST:event_btAddCategoryActionPerformed
@@ -433,8 +436,11 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
 
     private void btAddBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddBrandActionPerformed
         if (!brandIsAdded()) {
-            int row = tbBrandSearch.getSelectedRow();
-            Brand addedBrand = tbBrandSearchModel.getObjectByRow(row);
+            int rowSelected = tbBrandSearch.getSelectedRow();
+            if (tbBrandSearch.getRowSorter() != null) {
+                rowSelected = tbBrandSearch.getRowSorter().convertRowIndexToModel(rowSelected);
+            }
+            Brand addedBrand = tbBrandSearchModel.getObjectByRow(rowSelected);
             tbAddedBrandModel.addObjectRow(addedBrand);
         }
     }//GEN-LAST:event_btAddBrandActionPerformed
@@ -716,7 +722,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void filterTbCategorySearch() {
         if (!txtCategory.getText().isEmpty()) {
             String filter = txtCategory.getText();
-            tbCategorySearchModel.filter(tbCategorySearch, filter);
+            tbCategorySearch.setRowSorter(tbCategorySearchModel.getRowSorter(filter));
         } else {
             tbCategorySearch.setRowSorter(null);
         }
@@ -725,7 +731,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void filterTbBrandSearch() {
         if (!txtBrand.getText().isEmpty()) {
             String filter = txtBrand.getText();
-            tbBrandSearchModel.filter(tbBrandSearch, filter);
+            tbBrandSearch.setRowSorter(tbBrandSearchModel.getRowSorter(filter));
         } else {
             tbBrandSearch.setRowSorter(null);
         }

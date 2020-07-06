@@ -1,10 +1,10 @@
 package Model.Tables;
 
+import Model.Classes.SleeveTypes;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -29,6 +29,10 @@ public class TbProductModel extends AbstractTbModel<Product> {
                 return costFormatter.formatCost(list.get(rowIndex).getCost());
             case 2:
                 if (list.get(rowIndex) instanceof Shirt) {
+                    Shirt shirt = (Shirt) list.get(rowIndex);
+                    if (shirt.getSleeves().equals(SleeveTypes.NoSleeves)) {
+                        return "T-Shirt";
+                    }
                     return "Shirt";
                 }
                 return list.get(rowIndex).getCategory().getName();
@@ -74,9 +78,9 @@ public class TbProductModel extends AbstractTbModel<Product> {
         return null;
     }
 
-    public void filter(JTable filterJtable, String[] viewFilters) {
+    public TableRowSorter getRowSorter(String[] filters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
-        if (viewFilters.length != 0) {
+        if (filters.length != 0) {
             tableRowSorter.setStringConverter(new TableStringConverter() {
                 @Override
                 /* This function change all elements of the list to lower case,
@@ -92,15 +96,15 @@ public class TbProductModel extends AbstractTbModel<Product> {
             //viewFilters must to be on the same sequence of this model columns
             int column = 2;
             List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
-            for (String viewFilter : viewFilters) {
-                if (!viewFilter.isEmpty()) {
-                    filterTypes.add(RowFilter.regexFilter(viewFilter.toLowerCase(), column));
+            for (String filter : filters) {
+                if (!filter.isEmpty()) {
+                    filterTypes.add(RowFilter.regexFilter(filter.toLowerCase(), column));
                 }
                 column++;
             }
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);
-            filterJtable.setRowSorter(tableRowSorter);
         }
+        return null;
     }
 }

@@ -3,7 +3,6 @@ package Model.Tables;
 import Model.EntitiesClasses.Client;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -55,9 +54,9 @@ public class TbClientModel extends AbstractTbModel<Client> {
         return null;
     }
 
-    public void filter(JTable filterJtable, String[] viewFilters) {
+    public TableRowSorter getRowSorter(String[] filters) {
         TableRowSorter tableRowSorter = new TableRowSorter(this);
-        if (viewFilters.length != 0) {
+        if (filters.length != 0) {
             tableRowSorter.setStringConverter(new TableStringConverter() {
                 @Override
                 /* This function change all elements of the list to lower case,
@@ -66,22 +65,22 @@ public class TbClientModel extends AbstractTbModel<Client> {
                     try {
                         return model.getValueAt(row, column).toString().toLowerCase();
                     } catch (NullPointerException e) {
-                        return null;
+                        return "ERRO";
                     }
                 }
             });
             //viewFilters must to be on the same sequence of this model columns
             int column = 1;
             List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
-            for (String viewFilter : viewFilters) {
-                if (!viewFilter.isEmpty()) {
-                    filterTypes.add(RowFilter.regexFilter(viewFilter.toLowerCase(), column));
+            for (String filter : filters) {
+                if (!filter.isEmpty()) {
+                    filterTypes.add(RowFilter.regexFilter(filter.toLowerCase(), column));
                 }
                 column++;
             }
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);
-            filterJtable.setRowSorter(tableRowSorter);
         }
+        return null;
     }
 }

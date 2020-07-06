@@ -604,8 +604,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private void btAddClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddClientActionPerformed
         if (!clientIsAdded()) {
-            int row = tbClientSearch.getSelectedRow();
-            Client addedClient = tbClientSearchModel.getObjectByRow(row);
+            int rowSelected = tbClientSearch.getSelectedRow();
+            if (tbClientSearch.getRowSorter() != null) {
+                rowSelected = tbClientSearch.getRowSorter().convertRowIndexToModel(rowSelected);
+            }
+            Client addedClient = tbClientSearchModel.getObjectByRow(rowSelected);
             tbAddedClientModel.addObjectRow(addedClient);
         }
     }//GEN-LAST:event_btAddClientActionPerformed
@@ -927,7 +930,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 txtSleeves.getText(), txtNumber.getText(), txtColor.getText(),
                 txtSize.getText(), txtID.getText()
             };
-            tbProductSearchModel.filter(tbProductSearch, filters);
+            tbProductSearch.setRowSorter(tbProductSearchModel.getRowSorter(filters));
             resetCostAndQtdByProduct();
         } else {
             tbProductSearch.setRowSorter(null);
@@ -942,7 +945,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     public void filterTbClientSearch() {
         if (!clientFiltersAreEmpty()) {
             String[] filters = {txtName.getText(), txtCPF.getText()};
-            tbClientSearchModel.filter(tbClientSearch, filters);
+            tbClientSearch.setRowSorter(tbClientSearchModel.getRowSorter(filters));
         } else {
             tbClientSearch.setRowSorter(null);
         }
@@ -973,8 +976,11 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }
 
     public Product getProductSelectedInTbSearchProduct() {
-        int row = tbProductSearch.getSelectedRow();
-        Product selectedProduct = tbProductSearchModel.getObjectByRow(row);
+        int rowSelected = tbProductSearch.getSelectedRow();
+        if (tbProductSearch.getRowSorter() != null) {
+            rowSelected = tbProductSearch.getRowSorter().convertRowIndexToModel(rowSelected);
+        }
+        Product selectedProduct = tbProductSearchModel.getObjectByRow(rowSelected);
         return selectedProduct;
     }
 

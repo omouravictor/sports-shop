@@ -7,18 +7,18 @@ import Model.Tables.TbCategoryModel;
 import Model.Tables.TbProductModel;
 import View.CRUD.ProductCRUD;
 import View.Forms.ProductForm;
-import View.Forms.ShirtForm;
+import View.Forms.ShirtsForm;
 
 public class ProductManager extends AbstractManager<Product> {
 
     private ProductForm commonForm;
-    private ShirtForm shirtForm;
+    private ShirtsForm shirtForm;
     private TbProductModel model;
     private ProductCRUD productCRUD;
 
     public ProductManager(TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
         commonForm = new ProductForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
-        shirtForm = new ShirtForm(null, true, tbBrandSearchModel);
+        shirtForm = new ShirtsForm(null, true, tbBrandSearchModel);
         model = new TbProductModel(getAll(Product.class));
         productCRUD = new ProductCRUD(null, true, this, model);
     }
