@@ -597,9 +597,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             if (tbAddedProductModel.getList().contains(selectedProduct)) {
-                Product newProduct = selectedProduct;
-                newProduct.setQuantity(qtd + selectedProduct.getQuantity());
-                tbAddedProductModel.updateObjectRow(selectedProduct, newProduct);
+                selectedProduct.setQuantity(qtd + selectedProduct.getQuantity());
+                tbAddedProductModel.updateObjectRow(selectedProduct, selectedProduct);
             } else {
                 selectedProduct.setQuantity(qtd);
                 tbAddedProductModel.addObjectRow(selectedProduct);
