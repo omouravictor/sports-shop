@@ -741,6 +741,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btRemoveClient.setEnabled(true);
         btRemoveProduct.setEnabled(true);
         btProductSearch.setEnabled(true);
+        btClearFilters.setEnabled(true);
         txtCostByProduct.setEnabled(true);
         txtName.setEnabled(true);
         txtCPF.setEnabled(true);
@@ -767,6 +768,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btRemoveClient.setEnabled(false);
         btRemoveProduct.setEnabled(false);
         btProductSearch.setEnabled(false);
+        btClearFilters.setEnabled(false);
         txtCostByProduct.setEnabled(false);
         txtName.setEnabled(false);
         txtCPF.setEnabled(false);
