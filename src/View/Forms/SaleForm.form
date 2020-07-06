@@ -51,7 +51,10 @@
                               </Group>
                               <Component id="jScrollPane1" alignment="1" min="-2" pref="586" max="-2" attributes="0"/>
                               <Component id="txtID" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="btProductSearch" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btClearFilters" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btProductSearch" alignment="1" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -231,39 +234,37 @@
                       <Component id="txtID" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="txtColor" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtTeam" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtShirtName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btClearFilters" alignment="3" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Component id="btProductSearch" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSleeves" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labTeam" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtSize" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="btProductSearch" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -697,6 +698,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="R$ 0,00"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btClearFilters">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clear"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btClearFiltersActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
