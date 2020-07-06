@@ -1,13 +1,13 @@
 package View.Main;
 
-import Control.Main.MainControl;
+import Control.Main.SportsShop;
 
-public class MainView extends javax.swing.JFrame {
+public class MainScreen extends javax.swing.JFrame {
 
-    private static MainControl mainControl;
+    private static SportsShop mainControl;
 
-    public MainView(MainControl mainControl) {
-        MainView.mainControl = mainControl;
+    public MainScreen(SportsShop mainControl) {
+        MainScreen.mainControl = mainControl;
         initComponents();
     }
 
@@ -137,17 +137,17 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView(mainControl).setVisible(true);
+                new MainScreen(mainControl).setVisible(true);
             }
         });
     }

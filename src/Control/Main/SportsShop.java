@@ -5,24 +5,24 @@ import Control.Managers.CategoryManager;
 import Control.Managers.ClientManager;
 import Control.Managers.ProductManager;
 import Control.Managers.SaleManager;
-import View.Main.MainView;
+import View.Main.MainScreen;
 
-public class MainControl {
+public class SportsShop {
 
     private BrandManager brandManager;
     private CategoryManager categoryManager;
     private ClientManager clientManager;
     private ProductManager productManager;
     private SaleManager saleManager;
-    private MainView mainView;
+    private MainScreen mainView;
 
-    public MainControl() {
+    public SportsShop() {
         brandManager = new BrandManager();
         categoryManager = new CategoryManager();
         clientManager = new ClientManager();
         productManager = new ProductManager(categoryManager.getModel(), brandManager.getModel());
         saleManager = new SaleManager(clientManager.getModel(), productManager.getModel());
-        mainView = new MainView(this);
+        mainView = new MainScreen(this);
     }
 
     public void start() {
