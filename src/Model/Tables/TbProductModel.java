@@ -19,6 +19,12 @@ public class TbProductModel extends AbstractTbModel<Product> {
             "Color", "Size", "Id"};
     }
 
+    public TbProductModel() {
+        this.columnNames = new String[]{"Stock", "Cost", "Category",
+            "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
+            "Color", "Size", "Id"};
+    }
+
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 
@@ -79,8 +85,8 @@ public class TbProductModel extends AbstractTbModel<Product> {
     }
 
     public TableRowSorter getRowSorter(String[] filters) {
-        TableRowSorter tableRowSorter = new TableRowSorter(this);
         if (filters.length != 0) {
+            TableRowSorter tableRowSorter = new TableRowSorter(this);
             tableRowSorter.setStringConverter(new TableStringConverter() {
                 @Override
                 /* This function change all elements of the list to lower case,
@@ -104,6 +110,7 @@ public class TbProductModel extends AbstractTbModel<Product> {
             }
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);
+            return tableRowSorter;
         }
         return null;
     }

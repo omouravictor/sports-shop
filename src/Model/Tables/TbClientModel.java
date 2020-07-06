@@ -55,8 +55,8 @@ public class TbClientModel extends AbstractTbModel<Client> {
     }
 
     public TableRowSorter getRowSorter(String[] filters) {
-        TableRowSorter tableRowSorter = new TableRowSorter(this);
         if (filters.length != 0) {
+            TableRowSorter tableRowSorter = new TableRowSorter(this);
             tableRowSorter.setStringConverter(new TableStringConverter() {
                 @Override
                 /* This function change all elements of the list to lower case,
@@ -80,6 +80,7 @@ public class TbClientModel extends AbstractTbModel<Client> {
             }
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);
+            return tableRowSorter;
         }
         return null;
     }
