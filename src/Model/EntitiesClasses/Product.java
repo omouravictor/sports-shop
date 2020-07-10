@@ -1,5 +1,9 @@
 package Model.EntitiesClasses;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -10,12 +14,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Entity
+@Entity(name = "Product")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Product_Inheritance", discriminatorType = DiscriminatorType.STRING)
-@Table(name = "tbProduct")
+@Table(name = "product")
 
 public class Product {
 
@@ -48,15 +54,22 @@ public class Product {
     @Column(nullable = false)
     private double cost = 0;
 
-    @Column(nullable = false)
-    private int quantity = 0;
+    @Transient
+    private int quantity;
 
     @Column(nullable = false)
     private int numInStock = 0;
 
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<SaleProduct> sales = new ArrayList<>();
+
     public Product() {
     }
-    
+
     public Product(Product product) {
         this.id = product.getId();
         this.category = product.getCategory();
@@ -67,13 +80,12 @@ public class Product {
         this.color = product.getColor();
         this.sizeProduct = product.getSizeProduct();
         setCost(product.getCost());
-        setQuantity(product.getQuantity());
         setNumInStock(product.getNumInStock());
     }
 
     public Product(Category category, Brand brand, String teamName,
             String playerPresentName, String numberPresent, String color,
-            String sizeProduct, double cost, int quantity, int numInStock) {
+            String sizeProduct, double cost, int numInStock) {
         this.category = category;
         this.brand = brand;
         this.teamName = teamName;
@@ -82,8 +94,43 @@ public class Product {
         this.color = color;
         this.sizeProduct = sizeProduct;
         setCost(cost);
-        setQuantity(quantity);
         setNumInStock(numInStock);
+    }
+
+    public List<SaleProduct> getSales() {
+        return sales;
+    }
+
+    public void setSales(List<SaleProduct> sales) {
+        this.sales = sales;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Product pro = (Product) o;
+        return Objects.equals(category, pro.category)
+                && Objects.equals(brand, pro.brand)
+                && Objects.equals(teamName, pro.teamName)
+                && Objects.equals(playerPresent, pro.playerPresent)
+                && Objects.equals(numberPresent, pro.numberPresent)
+                && Objects.equals(sizeProduct, pro.sizeProduct)
+                && Objects.equals(color, pro.color)
+                && Objects.equals(cost, pro.cost)
+                && Objects.equals(numInStock, pro.numInStock);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(category, brand, teamName, playerPresent,
+                numberPresent, sizeProduct, color, cost, numInStock);
     }
 
     public Long getId() {

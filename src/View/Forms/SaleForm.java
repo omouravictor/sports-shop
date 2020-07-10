@@ -829,7 +829,9 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        newSale.addAllProducts(tbAddedProductModel.getList());
+        for (Product pro : tbAddedProductModel.getList()) {
+            newSale.addProduct(pro);
+        }
         newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }
@@ -859,7 +861,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         prepareRead();
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
-        tbAddedProductModel.addObjectRowS(t.getProductList());
+        tbAddedProductModel.addObjectRowS(t.getProducts());
         txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
         showForm();
     }

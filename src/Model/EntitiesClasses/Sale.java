@@ -1,20 +1,21 @@
 package Model.EntitiesClasses;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "tbSale")
+@Entity(name = "Sale")
+@Table(name = "sale")
 
 public class Sale {
 
@@ -25,11 +26,12 @@ public class Sale {
     @ManyToOne(optional = false)
     private Client client;
 
-    @ManyToMany
-    @JoinTable(name = "Sales_Products",
-            joinColumns = @JoinColumn(name = "Sale_id"),
-            inverseJoinColumns = @JoinColumn(name = "Product_id"))
-    private List<Product> productList = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "sale",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<SaleProduct> products = new ArrayList<>();
 
     @Column(length = 10)
     private String saleDate;
@@ -42,23 +44,62 @@ public class Sale {
 
     public Sale(Sale sale) {
         this.client = sale.getClient();
-        this.productList = sale.getProductList();
+        this.products = sale.getProducts();
         this.saleDate = sale.getSaleDate();
         this.setSaleCost(calcSaleCost());
     }
-    
-    public Sale(Client client, List<Product> productList, String saleDate) {
+
+    public Sale(Client client, List<SaleProduct> products, String saleDate) {
         this.client = client;
-        this.productList = productList;
+        this.products = products;
         this.saleDate = saleDate;
         this.setSaleCost(calcSaleCost());
     }
 
+    public void addProduct(Product pro) {
+        SaleProduct salePro = new SaleProduct(this, pro);
+        products.add(salePro);
+        pro.getSales().add(salePro);
+    }
+
+    public void removeProduct(Product pro) {
+        for (Iterator<SaleProduct> iterator = products.iterator();
+                iterator.hasNext();) {
+            SaleProduct salePro = iterator.next();
+            if (salePro.getSale().equals(this)
+                    && salePro.getProduct().equals(pro)) {
+                iterator.remove();
+                salePro.getProduct().getSales().remove(salePro);
+                salePro.setSale(null);
+                salePro.setProduct(null);
+            }
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Sale sale = (Sale) o;
+        return Objects.equals(client, sale.client)
+                && Objects.equals(saleDate, sale.saleDate)
+                && Objects.equals(saleCost, sale.saleCost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(client, saleDate, saleCost);
+    }
+
     public double calcSaleCost() {
-        if (!productList.isEmpty()) {
+        if (!products.isEmpty()) {
             double total = 0;
-            for (int i = 0; i < productList.size(); i++) {
-                total += productList.get(i).getQuantity() * productList.get(i).getCost();
+            for (int i = 0; i < products.size(); i++) {
+                total += products.get(i).getQtd() * products.get(i).getProduct().getCost();
             }
             return total;
         }
@@ -81,12 +122,8 @@ public class Sale {
         this.client = saleClient;
     }
 
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void addAllProducts(List<Product> productList) {
-        this.productList.addAll(productList);
+    public List<SaleProduct> getProducts() {
+        return products;
     }
 
     public String getSaleDate() {
