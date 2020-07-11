@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbsale")
@@ -38,6 +39,9 @@ public class Sale {
             orphanRemoval = true
     )
     private List<SaleProductTb> dataSaleProductTb = new ArrayList<>();
+    
+    @Transient
+    private List<Product> productList = new ArrayList<>();
 
     public Sale() {
     }
@@ -121,6 +125,15 @@ public class Sale {
         return dataSaleProductTb;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList.clear();
+        this.productList.addAll(productList);
+    }
+    
     public String getSaleDate() {
         return saleDate;
     }

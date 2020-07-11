@@ -23,7 +23,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private TbClientModel tbClientSearchModel;
     private TbProductModel tbProductSearchModel;
     private TbClientModel tbAddedClientModel = new TbClientModel();
-    private TbAddedProductModel tbAddedProductModel = new TbAddedProductModel();
+    private TbAddedProductModel tbAddedProductsModel = new TbAddedProductModel();
     private CostFormatter costFormatter = new CostFormatter();
 
     public SaleForm(java.awt.Frame parent, boolean modal,
@@ -197,7 +197,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             }
         });
 
-        tbAddedProducts.setModel(this.tbAddedProductModel);
+        tbAddedProducts.setModel(this.tbAddedProductsModel);
         jScrollPane4.setViewportView(tbAddedProducts);
 
         labAddedProducts.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -509,11 +509,9 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                             .addComponent(labBrand)
                             .addComponent(labColor))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btClearFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btClearFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -596,12 +594,12 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         if (rowIsSelected(tbProductSearch)) {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
-            if (tbAddedProductModel.getList().contains(selectedProduct)) {
+            if (tbAddedProductsModel.getList().contains(selectedProduct)) {
                 selectedProduct.setQtdSale(qtd + selectedProduct.getQtdSale());
-                tbAddedProductModel.updateObjectRow(selectedProduct, selectedProduct);
+                tbAddedProductsModel.updateObjectRow(selectedProduct, selectedProduct);
             } else {
                 selectedProduct.setQtdSale(qtd);
-                tbAddedProductModel.addObjectRow(selectedProduct);
+                tbAddedProductsModel.addObjectRow(selectedProduct);
             }
         }
     }//GEN-LAST:event_btAddProductActionPerformed
@@ -624,7 +622,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private void btRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveProductActionPerformed
         if (productsAreAdded()) {
             int row = tbAddedProducts.getSelectedRow();
-            tbAddedProductModel.removeObjectRow(row);
+            tbAddedProductsModel.removeObjectRow(row);
         }
     }//GEN-LAST:event_btRemoveProductActionPerformed
 
@@ -798,7 +796,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public void setEmptyAll() {
         tbAddedClientModel.clearList();
-        tbAddedProductModel.clearList();
+        tbAddedProductsModel.clearList();
         txtName.setText("");
         txtCPF.setText("");
         txtDate.setText("");
@@ -829,7 +827,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        newSale.addProducts(tbAddedProductModel.getList());
+        newSale.addProducts(tbAddedProductsModel.getList());
         newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }
@@ -849,7 +847,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btOk.setVisible(false);
         btCancel.setText("Close");
         tbAddedClientModel.clearList();
-        tbAddedProductModel.clearList();
+        tbAddedProductsModel.clearList();
         setNoEditableAll();
         setNoEnabledAll();
     }
@@ -859,7 +857,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         prepareRead();
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
-        tbAddedProductModel.addObjectRowS(t.getProducts());
+        tbAddedProductsModel.addObjectRowS(t.getProducts());
         txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
         showForm();
     }
@@ -874,7 +872,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btCancel.setText("Cancel");
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
-        tbAddedProductModel.addObjectRowS(t.getProducts());
+        tbAddedProductsModel.addObjectRowS(t.getProducts());
         txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
     }
 
@@ -883,8 +881,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale updatedSale = oldT;
         updatedSale.setClient(tbAddedClientModel.getObjectByRow(0));
         updatedSale.setSaleDate(txtDate.getText());
-        updatedSale.getProducts().clear();
-        updatedSale.addProducts(tbAddedProductModel.getList());
+        updatedSale.addProducts(tbAddedProductsModel.getList());
         updatedSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return updatedSale;
     }
@@ -982,7 +979,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 updateTotalCostValue();
             }
         };
-        tbAddedProductModel.addTableModelListener(listener);
+        tbAddedProductsModel.addTableModelListener(listener);
     }
 
     public void setSpQuantityModel() {
@@ -1007,6 +1004,12 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         return selectedProduct;
     }
 
+    public Product getProductSelectedInTbAddedProducts() {
+        int rowSelected = tbAddedProducts.getSelectedRow();
+        Product selectedProduct = tbAddedProductsModel.getObjectByRow(rowSelected);
+        return selectedProduct;
+    }
+
     public int getSpQuantity() {
         int qtd = Integer.parseInt(spQuantity.getValue().toString());
         return qtd;
@@ -1027,7 +1030,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     public void updateTotalCostValue() {
         if (productsAreAdded()) {
-            List<Product> addedProducts = tbAddedProductModel.getList();
+            List<Product> addedProducts = tbAddedProductsModel.getList();
             double totalCost = 0;
             for (int i = 0; i < addedProducts.size(); i++) {
                 double productCost = addedProducts.get(i).getCost();
