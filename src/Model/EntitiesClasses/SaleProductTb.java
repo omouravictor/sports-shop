@@ -9,12 +9,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-@Entity(name = "SaleProduct")
-@Table(name = "sale_product")
-public class SaleProduct {
+@Entity
+@Table(name = "tbsaleproduct")
+public class SaleProductTb {
 
     @EmbeddedId
-    private SaleProductId id;
+    private SaleProductEmbeddable id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("saleId")
@@ -24,24 +24,24 @@ public class SaleProduct {
     @MapsId("productId")
     private Product product;
 
-    @Column(name = "qtd")
+    @Column(nullable = false)
     private int qtd;
 
-    public SaleProduct() {
+    public SaleProductTb() {
     }
 
-    public SaleProduct(Sale sale, Product product) {
+    public SaleProductTb(Sale sale, Product product) {
         this.sale = sale;
         this.product = product;
-        this.qtd = product.getQuantity();
-        this.id = new SaleProductId(sale.getId(), product.getId());
+        this.qtd = product.getQtdSale();
+        this.id = new SaleProductEmbeddable(sale.getId(), product.getId());
     }
 
-    public SaleProductId getId() {
+    public SaleProductEmbeddable getId() {
         return id;
     }
 
-    public void setId(SaleProductId id) {
+    public void setId(SaleProductEmbeddable id) {
         this.id = id;
     }
 
@@ -79,7 +79,7 @@ public class SaleProduct {
             return false;
         }
 
-        SaleProduct that = (SaleProduct) o;
+        SaleProductTb that = (SaleProductTb) o;
         return Objects.equals(sale, that.sale)
                 && Objects.equals(product, that.product);
     }

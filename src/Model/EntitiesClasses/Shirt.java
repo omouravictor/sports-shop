@@ -33,14 +33,14 @@ public class Shirt extends Product {
         this.setColor(shirt.getColor());
         this.setSizeProduct(shirt.getSizeProduct());
         this.setCost(shirt.getCost());
-        this.setQuantity(shirt.getQuantity());
+        this.setQtdSale(shirt.getQtdSale());
         this.setNumInStock(shirt.getNumInStock());
     }
 
     public Shirt(Category category, Brand brand, String teamName,
             String playerPresentName, String playerNameOnShirt,
             String numberPresent, SleeveTypes sleeves, String color,
-            String sizeProduct, double cost, int quantity, int numInStock) {
+            String sizeProduct, double cost, int qtdSale, int numInStock) {
         this.setCategory(category);
         this.setBrand(brand);
         this.setTeamName(teamName);
@@ -51,7 +51,7 @@ public class Shirt extends Product {
         this.setColor(color);
         this.setSizeProduct(sizeProduct);
         this.setCost(cost);
-        this.setQuantity(quantity);
+        this.setQtdSale(qtdSale);
         this.setNumInStock(numInStock);
     }
 

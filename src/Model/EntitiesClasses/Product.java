@@ -18,10 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-@Entity(name = "Product")
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "Product_Inheritance", discriminatorType = DiscriminatorType.STRING)
-@Table(name = "product")
+@Table(name = "tbproduct")
 
 public class Product {
 
@@ -52,20 +52,20 @@ public class Product {
     private String color;
 
     @Column(nullable = false)
-    private double cost = 0;
-
-    @Transient
-    private int quantity;
+    private double cost;
 
     @Column(nullable = false)
-    private int numInStock = 0;
+    private int numInStock;
 
     @OneToMany(
             mappedBy = "product",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<SaleProduct> sales = new ArrayList<>();
+    private List<SaleProductTb> dataSaleProductTb = new ArrayList<>();
+
+    @Transient
+    private int qtdSale;
 
     public Product() {
     }
@@ -75,12 +75,13 @@ public class Product {
         this.category = product.getCategory();
         this.brand = product.getBrand();
         this.teamName = product.getTeamName();
-        setPlayerPresent(product.getPlayerPresent());
-        setNumberPresent(product.getNumberPresent());
+        this.playerPresent = product.getPlayerPresent();
+        this.numberPresent = product.getNumberPresent();
         this.color = product.getColor();
         this.sizeProduct = product.getSizeProduct();
-        setCost(product.getCost());
-        setNumInStock(product.getNumInStock());
+        this.cost = product.getCost();
+        this.numInStock = product.getNumInStock();
+        this.dataSaleProductTb = product.getDataSaleProductTb();
     }
 
     public Product(Category category, Brand brand, String teamName,
@@ -89,20 +90,12 @@ public class Product {
         this.category = category;
         this.brand = brand;
         this.teamName = teamName;
-        setPlayerPresent(playerPresentName);
-        setNumberPresent(numberPresent);
+        this.playerPresent = playerPresentName;
+        this.numberPresent = numberPresent;
         this.color = color;
         this.sizeProduct = sizeProduct;
-        setCost(cost);
-        setNumInStock(numInStock);
-    }
-
-    public List<SaleProduct> getSales() {
-        return sales;
-    }
-
-    public void setSales(List<SaleProduct> sales) {
-        this.sales = sales;
+        this.cost = cost;
+        this.numInStock = numInStock;
     }
 
     @Override
@@ -198,19 +191,19 @@ public class Product {
     }
 
     public void setCost(double cost) {
-        if (cost >= 0) {
-            this.cost = cost;
-        }
+        this.cost = cost;
+    }
+    
+    public List<SaleProductTb> getDataSaleProductTb() {
+        return dataSaleProductTb;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQtdSale() {
+        return qtdSale;
     }
 
-    public void setQuantity(int quantity) {
-        if (quantity >= 0) {
-            this.quantity = quantity;
-        }
+    public void setQtdSale(int qtdSale) {
+        this.qtdSale = qtdSale;
     }
 
     public int getNumInStock() {
@@ -218,9 +211,7 @@ public class Product {
     }
 
     public void setNumInStock(int numInStock) {
-        if (numInStock >= 0) {
-            this.numInStock = numInStock;
-        }
+        this.numInStock = numInStock;
     }
 
     public String getColor() {

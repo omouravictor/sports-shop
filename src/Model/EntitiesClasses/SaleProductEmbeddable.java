@@ -6,18 +6,18 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class SaleProductId implements Serializable {
+public class SaleProductEmbeddable implements Serializable {
 
-    @Column(name = "sale_id")
+    @Column
     private Long saleId;
 
-    @Column(name = "product_id")
+    @Column
     private Long productId;
 
-    public SaleProductId() {
+    public SaleProductEmbeddable() {
     }
 
-    public SaleProductId(Long saleId, Long productId) {
+    public SaleProductEmbeddable(Long saleId, Long productId) {
         this.saleId = saleId;
         this.productId = productId;
     }
@@ -32,7 +32,7 @@ public class SaleProductId implements Serializable {
             return false;
         }
 
-        SaleProductId that = (SaleProductId) o;
+        SaleProductEmbeddable that = (SaleProductEmbeddable) o;
         return Objects.equals(saleId, that.saleId)
                 && Objects.equals(productId, that.productId);
     }

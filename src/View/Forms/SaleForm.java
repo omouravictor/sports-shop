@@ -597,10 +597,10 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             if (tbAddedProductModel.getList().contains(selectedProduct)) {
-                selectedProduct.setQuantity(qtd + selectedProduct.getQuantity());
+                selectedProduct.setQtdSale(qtd + selectedProduct.getQtdSale());
                 tbAddedProductModel.updateObjectRow(selectedProduct, selectedProduct);
             } else {
-                selectedProduct.setQuantity(qtd);
+                selectedProduct.setQtdSale(qtd);
                 tbAddedProductModel.addObjectRow(selectedProduct);
             }
         }
@@ -829,9 +829,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        for (Product pro : tbAddedProductModel.getList()) {
-            newSale.addProduct(pro);
-        }
+        newSale.addProducts(tbAddedProductModel.getList());
         newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }
@@ -876,7 +874,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btCancel.setText("Cancel");
         txtDate.setText(t.getSaleDate());
         tbAddedClientModel.addObjectRow(t.getClient());
-        tbAddedProductModel.addObjectRowS(t.getProductList());
+        tbAddedProductModel.addObjectRowS(t.getProducts());
         txtTotalCost.setText(costFormatter.formatCost(t.getSaleCost()));
     }
 
@@ -885,8 +883,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale updatedSale = oldT;
         updatedSale.setClient(tbAddedClientModel.getObjectByRow(0));
         updatedSale.setSaleDate(txtDate.getText());
-        updatedSale.getProductList().clear();
-        updatedSale.addAllProducts(tbAddedProductModel.getList());
+        updatedSale.getProducts().clear();
+        updatedSale.addProducts(tbAddedProductModel.getList());
         updatedSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return updatedSale;
     }
@@ -1033,7 +1031,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             double totalCost = 0;
             for (int i = 0; i < addedProducts.size(); i++) {
                 double productCost = addedProducts.get(i).getCost();
-                int productQtd = addedProducts.get(i).getQuantity();
+                int productQtd = addedProducts.get(i).getQtdSale();
                 totalCost += productCost * productQtd;
             }
             txtTotalCost.setText(costFormatter.formatCost(totalCost));

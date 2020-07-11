@@ -8,7 +8,7 @@
     <class>Model.EntitiesClasses.Sale</class>
     <class>Model.EntitiesClasses.Client</class>
     <class>Model.EntitiesClasses.Product</class>
-    <class>Model.EntitiesClasses.SaleProduct</class>
+    <class>Model.EntitiesClasses.SaleProductTb</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lojaesportivabank?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

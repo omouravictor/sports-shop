@@ -15,7 +15,7 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getQuantity();
+                return list.get(rowIndex).getQtdSale();
             case 1:
                 return list.get(rowIndex).getNumInStock();
             case 2:
