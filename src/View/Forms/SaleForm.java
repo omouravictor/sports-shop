@@ -1043,6 +1043,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     public void clearAllSelectedRows() {
         tbClientSearch.getSelectionModel().clearSelection();
         tbProductSearch.getSelectionModel().clearSelection();
+        tbAddedClient.getSelectionModel().clearSelection();
+        tbAddedProducts.getSelectionModel().clearSelection();
     }
 
     @Override

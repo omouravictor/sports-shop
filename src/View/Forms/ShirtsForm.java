@@ -677,6 +677,7 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
 
     public void clearAllSelectedRows() {
         tbBrandSearch.getSelectionModel().clearSelection();
+        tbAddedBrand.getSelectionModel().clearSelection();
     }
 
     public void clearAllFilters() {

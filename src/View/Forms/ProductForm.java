@@ -740,6 +740,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     public void clearAllSelectedRows() {
         tbBrandSearch.getSelectionModel().clearSelection();
         tbCategorySearch.getSelectionModel().clearSelection();
+        tbAddedBrand.getSelectionModel().clearSelection();
+        tbAddedCategory.getSelectionModel().clearSelection();
     }
 
     public void clearAllFilters() {
