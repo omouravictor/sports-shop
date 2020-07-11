@@ -1,7 +1,6 @@
 package Model.EntitiesClasses;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbsale")
@@ -39,9 +37,6 @@ public class Sale {
             orphanRemoval = true
     )
     private List<SaleProductTb> dataSaleProductTb = new ArrayList<>();
-    
-    @Transient
-    private List<Product> productList = new ArrayList<>();
 
     public Sale() {
     }
@@ -64,26 +59,12 @@ public class Sale {
 
     public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
-        for(SaleProductTb dataSalePro : dataSaleProductTb){
+        for (SaleProductTb dataSalePro : dataSaleProductTb) {
             Product pro = dataSalePro.getProduct();
             pro.setQtdSale(dataSalePro.getQtd());
             products.add(pro);
         }
         return products;
-    }
-
-    public void removeProduct(Product pro) {
-        for (Iterator<SaleProductTb> iterator = dataSaleProductTb.iterator();
-                iterator.hasNext();) {
-            SaleProductTb dataSalePro = iterator.next();
-            if (dataSalePro.getSale().equals(this)
-                    && dataSalePro.getProduct().equals(pro)) {
-                iterator.remove();
-                dataSalePro.getProduct().getDataSaleProductTb().remove(dataSalePro);
-                dataSalePro.setSale(null);
-                dataSalePro.setProduct(null);
-            }
-        }
     }
 
     @Override
@@ -125,15 +106,6 @@ public class Sale {
         return dataSaleProductTb;
     }
 
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList.clear();
-        this.productList.addAll(productList);
-    }
-    
     public String getSaleDate() {
         return saleDate;
     }

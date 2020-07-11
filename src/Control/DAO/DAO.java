@@ -44,7 +44,7 @@ public abstract class DAO<T> {
         entityManager.remove(toDelete);
         entityManager.getTransaction().commit();
     }
-
+    
     public List<T> getAllFromBank(Class tClass) {
         try {
             javax.persistence.criteria.CriteriaQuery cq;
