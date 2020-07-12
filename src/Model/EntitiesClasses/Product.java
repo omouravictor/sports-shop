@@ -59,12 +59,8 @@ public class Product {
     @Column(nullable = false)
     private int numInStock;
 
-    @OneToMany(
-            mappedBy = "product",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<SaleProductTb> dataSaleProductTb = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<SaleProduct> saleProducts = new ArrayList<>();
 
     @Transient
     private int qtdSale;
@@ -83,7 +79,7 @@ public class Product {
         this.sizeProduct = product.getSizeProduct();
         this.cost = product.getCost();
         this.numInStock = product.getNumInStock();
-        this.dataSaleProductTb = product.getDataSaleProductTb();
+        this.saleProducts = product.getSaleProducts();
     }
 
     public Product(Category category, Brand brand, String teamName,
@@ -196,8 +192,8 @@ public class Product {
         this.cost = cost;
     }
     
-    public List<SaleProductTb> getDataSaleProductTb() {
-        return dataSaleProductTb;
+    public List<SaleProduct> getSaleProducts() {
+        return saleProducts;
     }
 
     public int getQtdSale() {

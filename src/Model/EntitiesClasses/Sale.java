@@ -25,18 +25,14 @@ public class Sale {
     @ManyToOne(optional = false)
     private Client client;
 
-    @Column(length = 10)
+    @Column(nullable = false, length = 10)
     private String saleDate;
 
     @Column(nullable = false)
     private double saleCost;
 
-    @OneToMany(
-            mappedBy = "sale",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<SaleProductTb> dataSaleProductTb = new ArrayList<>();
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    private List<SaleProduct> saleProducts = new ArrayList<>();
 
     public Sale() {
     }
@@ -46,20 +42,20 @@ public class Sale {
         this.client = sale.getClient();
         this.saleDate = sale.getSaleDate();
         this.saleCost = sale.getSaleCost();
-        this.dataSaleProductTb = sale.getDataSaleProductTb();
+        this.saleProducts = sale.getSaleProducts();
     }
 
     public void addProducts(List<Product> products) {
         for (Product pro : products) {
-            SaleProductTb dataSalePro = new SaleProductTb(this, pro);
-            dataSaleProductTb.add(dataSalePro);
-            pro.getDataSaleProductTb().add(dataSalePro);
+            SaleProduct dataSalePro = new SaleProduct(this, pro);
+            saleProducts.add(dataSalePro);
+            pro.getSaleProducts().add(dataSalePro);
         }
     }
 
     public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
-        for (SaleProductTb dataSalePro : dataSaleProductTb) {
+        for (SaleProduct dataSalePro : saleProducts) {
             Product pro = dataSalePro.getProduct();
             pro.setQtdSale(dataSalePro.getQtd());
             products.add(pro);
@@ -102,8 +98,8 @@ public class Sale {
         this.client = saleClient;
     }
 
-    public List<SaleProductTb> getDataSaleProductTb() {
-        return dataSaleProductTb;
+    public List<SaleProduct> getSaleProducts() {
+        return saleProducts;
     }
 
     public String getSaleDate() {

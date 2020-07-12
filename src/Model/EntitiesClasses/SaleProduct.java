@@ -4,44 +4,42 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbsaleproduct")
-public class SaleProductTb {
+public class SaleProduct {
 
     @EmbeddedId
-    private SaleProductEmbeddable id;
+    private SaleProductId id = new SaleProductId();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("saleId")
     private Sale sale;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @MapsId("productId")
     private Product product;
 
     @Column(nullable = false)
     private int qtd;
 
-    public SaleProductTb() {
+    public SaleProduct() {
     }
 
-    public SaleProductTb(Sale sale, Product product) {
+    public SaleProduct(Sale sale, Product product) {
         this.sale = sale;
         this.product = product;
         this.qtd = product.getQtdSale();
-        this.id = new SaleProductEmbeddable(sale.getId(), product.getId());
     }
 
-    public SaleProductEmbeddable getId() {
+    public SaleProductId getId() {
         return id;
     }
 
-    public void setId(SaleProductEmbeddable id) {
+    public void setId(SaleProductId id) {
         this.id = id;
     }
 
@@ -79,7 +77,7 @@ public class SaleProductTb {
             return false;
         }
 
-        SaleProductTb that = (SaleProductTb) o;
+        SaleProduct that = (SaleProduct) o;
         return Objects.equals(sale, that.sale)
                 && Objects.equals(product, that.product);
     }
