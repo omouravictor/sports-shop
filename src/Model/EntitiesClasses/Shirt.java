@@ -33,7 +33,6 @@ public class Shirt extends Product {
         this.setColor(shirt.getColor());
         this.setSizeProduct(shirt.getSizeProduct());
         this.setCost(shirt.getCost());
-        this.setQtdSale(shirt.getQtdSale());
         this.setNumInStock(shirt.getNumInStock());
     }
 
@@ -51,7 +50,6 @@ public class Shirt extends Product {
         this.setColor(color);
         this.setSizeProduct(sizeProduct);
         this.setCost(cost);
-        this.setQtdSale(qtdSale);
         this.setNumInStock(numInStock);
     }
 

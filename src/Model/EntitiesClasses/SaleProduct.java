@@ -32,7 +32,7 @@ public class SaleProduct {
     public SaleProduct(Sale sale, Product product) {
         this.sale = sale;
         this.product = product;
-        this.qtd = product.getQtdSale();
+        this.qtd = product.getQtdTransient();
     }
 
     public SaleProductId getId() {

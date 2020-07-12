@@ -63,7 +63,7 @@ public class Product {
     private List<SaleProduct> saleProducts = new ArrayList<>();
 
     @Transient
-    private int qtdSale;
+    private int qtdTransient;
 
     public Product() {
     }
@@ -196,12 +196,12 @@ public class Product {
         return saleProducts;
     }
 
-    public int getQtdSale() {
-        return qtdSale;
+    public int getQtdTransient() {
+        return qtdTransient;
     }
 
-    public void setQtdSale(int qtdSale) {
-        this.qtdSale = qtdSale;
+    public void setQtdTransient(int qtdTransient) {
+        this.qtdTransient = qtdTransient;
     }
 
     public int getNumInStock() {

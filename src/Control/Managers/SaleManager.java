@@ -1,6 +1,8 @@
 package Control.Managers;
 
+import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
+import Model.EntitiesClasses.SaleProduct;
 import Model.Tables.TbClientModel;
 import Model.Tables.TbProductModel;
 import Model.Tables.TbSaleModel;
@@ -24,6 +26,11 @@ public class SaleManager extends AbstractManager<Sale> {
         // Sends the Exception to the view
         Sale newSale = saleForm.create();
         if (newSale != null) {
+            for (Product proSale : newSale.getProductsTransient()) {
+                SaleProduct dataSalePro = new SaleProduct(newSale, proSale);
+                newSale.getSaleProducts().add(dataSalePro);
+                proSale.getSaleProducts().add(dataSalePro);
+            }
             newSale = dao.createInBank(newSale);
             return newSale;
         }

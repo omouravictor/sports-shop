@@ -595,10 +595,10 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
             if (tbAddedProductsModel.getList().contains(selectedProduct)) {
-                selectedProduct.setQtdSale(qtd + selectedProduct.getQtdSale());
+                selectedProduct.setQtdTransient(qtd + selectedProduct.getQtdTransient());
                 tbAddedProductsModel.updateObjectRow(selectedProduct, selectedProduct);
             } else {
-                selectedProduct.setQtdSale(qtd);
+                selectedProduct.setQtdTransient(qtd);
                 tbAddedProductsModel.addObjectRow(selectedProduct);
             }
         }
@@ -827,7 +827,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        newSale.addProducts(tbAddedProductsModel.getList());
+        newSale.setProductsTransient(tbAddedProductsModel.getList());
         newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }
@@ -881,7 +881,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale updatedSale = oldT;
         updatedSale.setClient(tbAddedClientModel.getObjectByRow(0));
         updatedSale.setSaleDate(txtDate.getText());
-        updatedSale.addProducts(tbAddedProductsModel.getList());
+        updatedSale.setProductsTransient(tbAddedProductsModel.getList());
         updatedSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return updatedSale;
     }
@@ -1034,7 +1034,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             double totalCost = 0;
             for (int i = 0; i < addedProducts.size(); i++) {
                 double productCost = addedProducts.get(i).getCost();
-                int productQtd = addedProducts.get(i).getQtdSale();
+                int productQtd = addedProducts.get(i).getQtdTransient();
                 totalCost += productCost * productQtd;
             }
             txtTotalCost.setText(costFormatter.formatCost(totalCost));
