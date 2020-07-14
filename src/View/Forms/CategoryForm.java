@@ -144,18 +144,18 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
     public void initSetup() {
         setTxtModels();
     }
-    
+
     @Override
-    public void setVisibleAll(){
+    public void setVisibleAll() {
         btOk.setVisible(true);
         btCancel.setVisible(true);
     }
-    
+
     @Override
     public void setEmptyAll() {
         txtName.setText("");
     }
-    
+
     @Override
     public void setEditableAll() {
         txtName.setEditable(true);
@@ -172,8 +172,7 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
 
     @Override
     public Category getObjectCreated() {
-        Category brand = new Category(txtName.getText());
-        return brand;
+        return new Category(txtName.getText());
     }
 
     @Override
@@ -185,7 +184,7 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
         }
         return null;
     }
-    
+
     @Override
     public void setNoEditableAll() {
         txtName.setEditable(false);
@@ -207,29 +206,28 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
     }
 
     @Override
-    public void prepareUpdate(Category oldCategory) {
+    public void prepareUpdate(Category category) {
         setVisibleAll();
         setEditableAll();
         btOk.setText("Update");
         btCancel.setText("Cancel");
-        txtName.setText(oldCategory.getName());
+        txtName.setText(category.getName());
     }
 
     @Override
-    public Category update(Category oldCategory) {
-        prepareUpdate(oldCategory);
+    public Category update(Category category) {
+        prepareUpdate(category);
         showForm();
         if (isConfirmed) {
-            return getObjectUpdated(oldCategory);
+            return getObjectUpdated(category);
         }
         return null;
     }
 
     @Override
-    public Category getObjectUpdated(Category oldCategory) {
-        Category updatedCategory = oldCategory;
-        updatedCategory.setName(txtName.getText());
-        return updatedCategory;
+    public Category getObjectUpdated(Category category) {
+        category.setName(txtName.getText());
+        return category;
     }
 
     @Override
@@ -250,12 +248,12 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
     public boolean checkAll() {
         return !fieldsAreEmpty();
     }
-    
+
     @Override
     public void showForm() {
         this.setVisible(true);
     }
-    
+
     @Override
     public void setEnabledAll() {
         throw new UnsupportedOperationException("Not supported yet.");

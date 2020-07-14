@@ -35,16 +35,16 @@ public class CategoryManager extends AbstractManager<Category> {
     }
 
     @Override
-    public Category update(Category categorySelected) throws Exception {
+    public Category update(Category category) throws Exception {
         // Sends the Exception to the view
-        Category updatedCategory = categoryForm.update(categorySelected);
-        if (updatedCategory != null) {
-            updatedCategory = dao.updateInBank(updatedCategory);
-            return updatedCategory;
+        category = categoryForm.update(category);
+        if (category != null) {
+            category = dao.updateInBank(category);
+            return category;
         }
         return null;
     }
-    
+
     @Override
     public void showCRUDscreen() {
         categoryCRUD.setVisible(true);

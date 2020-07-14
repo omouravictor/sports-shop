@@ -175,8 +175,7 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
 
     @Override
     public Brand getObjectCreated() {
-        Brand brand = new Brand(txtName.getText());
-        return brand;
+        return new Brand(txtName.getText());
     }
 
     @Override
@@ -210,29 +209,28 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
     }
 
     @Override
-    public void prepareUpdate(Brand oldBrand) {
+    public void prepareUpdate(Brand brand) {
         setVisibleAll();
         setEditableAll();
         btOk.setText("Update");
         btCancel.setText("Cancel");
-        txtName.setText(oldBrand.getName());
+        txtName.setText(brand.getName());
     }
 
     @Override
-    public Brand update(Brand oldBrand) {
-        prepareUpdate(oldBrand);
+    public Brand update(Brand brand) {
+        prepareUpdate(brand);
         showForm();
         if (isConfirmed) {
-            return getObjectUpdated(oldBrand);
+            return getObjectUpdated(brand);
         }
         return null;
     }
 
     @Override
-    public Brand getObjectUpdated(Brand oldBrand) {
-        Brand updatedBrand = oldBrand;
-        updatedBrand.setName(txtName.getText());
-        return updatedBrand;
+    public Brand getObjectUpdated(Brand brand) {
+        brand.setName(txtName.getText());
+        return brand;
     }
 
     @Override

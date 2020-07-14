@@ -653,18 +653,17 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     }
 
     @Override
-    public Product getObjectUpdated(Product oldT) {
-        Product updatedProduct = oldT;
-        updatedProduct.setBrand(tbAddedBrandModel.getObjectByRow(0));
-        updatedProduct.setCategory(tbAddedCategoryModel.getObjectByRow(0));
-        updatedProduct.setSizeProduct(txtSize.getText());
-        updatedProduct.setColor(txtColor.getText());
-        updatedProduct.setCost(parseTxtCostToDouble(txtCost));
-        updatedProduct.setNumInStock(parseTxtTextToInt(txtNumStock));
-        updatedProduct.setNumberPresent(txtNumberPresent.getText());
-        updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
-        updatedProduct.setTeamName(txtTeam.getText());
-        return updatedProduct;
+    public Product getObjectUpdated(Product product) {
+        product.setBrand(tbAddedBrandModel.getObjectByRow(0));
+        product.setCategory(tbAddedCategoryModel.getObjectByRow(0));
+        product.setSizeProduct(txtSize.getText());
+        product.setColor(txtColor.getText());
+        product.setCost(parseTxtCostToDouble(txtCost));
+        product.setNumInStock(parseTxtTextToInt(txtNumStock));
+        product.setNumberPresent(txtNumberPresent.getText());
+        product.setPlayerPresent(txtPlayerPresent.getText());
+        product.setTeamName(txtTeam.getText());
+        return product;
     }
 
     @Override

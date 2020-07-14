@@ -35,12 +35,12 @@ public class ClientManager extends AbstractManager<Client> {
     }
 
     @Override
-    public Client update(Client clientSelected) throws Exception {
+    public Client update(Client client) throws Exception {
         // Sends the Exception to the view
-        Client updatedClient = clientForm.update(clientSelected);
-        if (updatedClient != null) {
-            updatedClient = dao.updateInBank(updatedClient);
-            return updatedClient;
+        client = clientForm.update(client);
+        if (client != null) {
+            client = dao.updateInBank(client);
+            return client;
         }
         return null;
     }
@@ -49,7 +49,7 @@ public class ClientManager extends AbstractManager<Client> {
     public void showCRUDscreen() {
         clientCRUD.setVisible(true);
     }
-    
+
     public TbClientModel getModel() {
         return model;
     }

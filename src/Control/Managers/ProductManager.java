@@ -55,16 +55,16 @@ public class ProductManager extends AbstractManager<Product> {
     public Product update(Product product) throws Exception {
         // Sends the Exception to the view
         if (product instanceof Shirt) {
-            Shirt updatedShirt = (Shirt) shirtForm.update((Shirt) product);
-            if (updatedShirt != null) {
-                updatedShirt = (Shirt) dao.updateInBank(updatedShirt);
-                return updatedShirt;
+            product = (Shirt) shirtForm.update((Shirt) product);
+            if (product != null) {
+                product = (Shirt) dao.updateInBank(product);
+                return product;
             }
         } else {
-            Product updatedProduct = commonForm.update(product);
-            if (updatedProduct != null) {
-                updatedProduct = dao.updateInBank(updatedProduct);
-                return updatedProduct;
+            product = commonForm.update(product);
+            if (product != null) {
+                product = dao.updateInBank(product);
+                return product;
             }
         }
         return null;

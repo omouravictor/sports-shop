@@ -600,20 +600,19 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
     }
 
     @Override
-    public Shirt getObjectUpdated(Shirt oldT) {
-        Shirt updatedProduct = oldT;
-        updatedProduct.setBrand(tbAddedBrandModel.getObjectByRow(0));
-        updatedProduct.setSizeProduct(txtSize.getText());
-        updatedProduct.setColor(txtColor.getText());
-        updatedProduct.setCost(parseTxtCostToDouble(txtCost));
-        updatedProduct.setNumInStock(parseTxtTextToInt(txtNumStock));
-        updatedProduct.setTeamName(txtTeam.getText());
-        updatedProduct.setPlayerPresent(txtPlayerPresent.getText());
-        updatedProduct.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
-        updatedProduct.setSleeves(getSleeveSelected());
+    public Shirt getObjectUpdated(Shirt shirt) {
+        shirt.setBrand(tbAddedBrandModel.getObjectByRow(0));
+        shirt.setSizeProduct(txtSize.getText());
+        shirt.setColor(txtColor.getText());
+        shirt.setCost(parseTxtCostToDouble(txtCost));
+        shirt.setNumInStock(parseTxtTextToInt(txtNumStock));
+        shirt.setTeamName(txtTeam.getText());
+        shirt.setPlayerPresent(txtPlayerPresent.getText());
+        shirt.setPlayerNameOnShirt(txtPlayerNameOnShirt.getText());
+        shirt.setSleeves(getSleeveSelected());
         rbGroupSleeves.clearSelection();
-        updatedProduct.setNumberPresent(txtNumberPresent.getText());
-        return updatedProduct;
+        shirt.setNumberPresent(txtNumberPresent.getText());
+        return shirt;
     }
 
     @Override

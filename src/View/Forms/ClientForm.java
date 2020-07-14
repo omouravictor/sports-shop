@@ -286,7 +286,7 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         txtNeighborhood.setEditable(true);
         txtCity.setEditable(true);
     }
-    
+
     @Override
     public void setNoEditableAll() {
         txtName.setEditable(false);
@@ -393,21 +393,20 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
         btOk.setText("Update");
         btCancel.setText("Cancel");
     }
-    
+
     @Override
-    public Client getObjectUpdated(Client oldT) {
-        Client updatedClient = oldT;
-        updatedClient.setName(txtName.getText());
-        updatedClient.setCpf(txtCPF.getText());
-        updatedClient.setCellPhone(txtCellPhone.getText());
-        updatedClient.setEmail(txtEmail.getText());
-        updatedClient.setZipCodeAddress(txtZipCode.getText());
-        updatedClient.setStreetAddress(txtStreet.getText());
-        updatedClient.setNumberAddress(txtNumber.getText());
-        updatedClient.setNeighborhoodAddress(txtNeighborhood.getText());
-        updatedClient.setCityAddress(txtCity.getText());
-        updatedClient.setStateAddress(cbState.getSelectedItem().toString());
-        return updatedClient;
+    public Client getObjectUpdated(Client client) {
+        client.setName(txtName.getText());
+        client.setCpf(txtCPF.getText());
+        client.setCellPhone(txtCellPhone.getText());
+        client.setEmail(txtEmail.getText());
+        client.setZipCodeAddress(txtZipCode.getText());
+        client.setStreetAddress(txtStreet.getText());
+        client.setNumberAddress(txtNumber.getText());
+        client.setNeighborhoodAddress(txtNeighborhood.getText());
+        client.setCityAddress(txtCity.getText());
+        client.setStateAddress(cbState.getSelectedItem().toString());
+        return client;
     }
 
     @Override
@@ -469,7 +468,7 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
     public void showForm() {
         this.setVisible(true);
     }
-    
+
     @Override
     public void setEnabledAll() {
         cbState.setEnabled(true);
