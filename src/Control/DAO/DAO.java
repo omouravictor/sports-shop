@@ -56,4 +56,8 @@ public abstract class DAO<T> {
             return null;
         }
     }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }

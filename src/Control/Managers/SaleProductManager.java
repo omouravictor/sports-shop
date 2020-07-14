@@ -23,6 +23,7 @@ public class SaleProductManager {
 
     public void updateSaleProduct(Sale sale) throws Exception {
         // Sends the Exception to the SaleManager
+        dao.getEntityManager().clear();
         for (int i = 0; i < sale.getSaleProducts().size(); i++) {
             dao.deleteInBank(sale.getSaleProducts().get(i));
         }
