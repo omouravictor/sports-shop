@@ -32,7 +32,7 @@ public class Sale {
     @Column(nullable = false)
     private double saleCost;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sale", cascade = {CascadeType.ALL})
     private List<SaleProduct> saleProducts = new ArrayList<>();
 
     @Transient

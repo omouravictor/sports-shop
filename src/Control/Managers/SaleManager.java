@@ -11,11 +11,14 @@ import View.Forms.SaleForm;
 
 public class SaleManager extends AbstractManager<Sale> {
 
+    private SaleProductManager saleProManager;
     private SaleForm saleForm;
     private TbSaleModel model;
     private SaleCRUD saleCRUD;
 
-    public SaleManager(TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
+    public SaleManager(SaleProductManager saleProManager,
+            TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
+        this.saleProManager = saleProManager;
         saleForm = new SaleForm(null, true, tbClientSearchModel, tbProductSearchModel);
         model = new TbSaleModel(getAll(Sale.class));
         saleCRUD = new SaleCRUD(null, true, this, model);
@@ -25,11 +28,10 @@ public class SaleManager extends AbstractManager<Sale> {
     public Sale create() throws Exception {
         // Sends the Exception to the view
         Sale newSale = saleForm.create();
-        if (newSale != null) {
-            for (Product proSale : newSale.getProductsTransient()) {
-                SaleProduct dataSalePro = new SaleProduct(newSale, proSale);
-                newSale.getSaleProducts().add(dataSalePro);
-                proSale.getSaleProducts().add(dataSalePro);
+        if (newSale != null && newSale.getProductsTransient() != null) {
+            for (Product product : newSale.getProductsTransient()) {
+                SaleProduct salePro = saleProManager.create(newSale, product);
+                newSale.getSaleProducts().add(salePro);
             }
             newSale = dao.createInBank(newSale);
             return newSale;

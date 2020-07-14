@@ -1,9 +1,6 @@
 package Model.EntitiesClasses;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -15,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -59,9 +55,6 @@ public class Product {
     @Column(nullable = false)
     private int numInStock;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<SaleProduct> saleProducts = new ArrayList<>();
-
     @Transient
     private int qtdTransient;
 
@@ -79,7 +72,6 @@ public class Product {
         this.sizeProduct = product.getSizeProduct();
         this.cost = product.getCost();
         this.numInStock = product.getNumInStock();
-        this.saleProducts = product.getSaleProducts();
     }
 
     public Product(Category category, Brand brand, String teamName,
@@ -192,10 +184,6 @@ public class Product {
         this.cost = cost;
     }
     
-    public List<SaleProduct> getSaleProducts() {
-        return saleProducts;
-    }
-
     public int getQtdTransient() {
         return qtdTransient;
     }
