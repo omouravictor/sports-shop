@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SportsShop mc = new SportsShop();
-        mc.start();
+        SportsShop ss = new SportsShop();
+        ss.start();
     }
 }
