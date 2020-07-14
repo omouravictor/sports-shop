@@ -14,9 +14,18 @@ public class SaleProductManager {
         };
     }
 
-    public SaleProduct create(Sale newSale, Product proSale) throws Exception {
+    public void create(Sale sale) throws Exception {
         // Sends the Exception to the SaleManager
-        SaleProduct dataSalePro = new SaleProduct(newSale, proSale);
-        return dataSalePro;
+        for (Product product : sale.getProductsTransient()) {
+            SaleProduct salePro = new SaleProduct(sale, product);
+            sale.getSaleProducts().add(salePro);
+        }
+    }
+
+    public void delete(Sale sale) throws Exception {
+        // Sends the Exception to the SaleManager
+        for (SaleProduct salePro : sale.getSaleProducts()) {
+            dao.deleteInBank(salePro);
+        }
     }
 }
