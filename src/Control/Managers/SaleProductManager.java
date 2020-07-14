@@ -14,18 +14,23 @@ public class SaleProductManager {
         };
     }
 
-    public void create(Sale sale) throws Exception {
+    public void addSaleProduct(Sale sale) throws Exception {
         // Sends the Exception to the SaleManager
-        for (Product product : sale.getProductsTransient()) {
-            SaleProduct salePro = new SaleProduct(sale, product);
-            sale.getSaleProducts().add(salePro);
+        for (Product proTran : sale.getProductsTransient()) {
+            sale.getSaleProducts().add(new SaleProduct(sale, proTran));
         }
     }
 
-    public void delete(Sale sale) throws Exception {
+    public void updateSaleProduct(Sale sale) throws Exception {
         // Sends the Exception to the SaleManager
-        for (SaleProduct salePro : sale.getSaleProducts()) {
-            dao.deleteInBank(salePro);
+        for (int i = 0; i < sale.getSaleProducts().size(); i++) {
+            dao.deleteInBank(sale.getSaleProducts().get(i));
+        }
+        sale.getSaleProducts().clear();
+        for (Product proTran : sale.getProductsTransient()) {
+            SaleProduct salePro = new SaleProduct(sale, proTran);
+            SaleProduct saleProBank = dao.createInBank(salePro);
+            sale.getSaleProducts().add(saleProBank);
         }
     }
 }

@@ -14,7 +14,7 @@ public class SportsShop {
     private CategoryManager categoryManager;
     private ClientManager clientManager;
     private ProductManager productManager;
-    private SaleProductManager saleProManager;
+    private SaleProductManager saleProductManager;
     private SaleManager saleManager;
     private MainScreen mainView;
 
@@ -22,9 +22,11 @@ public class SportsShop {
         brandManager = new BrandManager();
         categoryManager = new CategoryManager();
         clientManager = new ClientManager();
-        productManager = new ProductManager(categoryManager.getModel(), brandManager.getModel());
-        saleProManager = new SaleProductManager();
-        saleManager = new SaleManager(saleProManager, clientManager.getModel(), productManager.getModel());
+        productManager = new ProductManager(categoryManager.getModel(),
+                brandManager.getModel());
+        saleProductManager = new SaleProductManager();
+        saleManager = new SaleManager(saleProductManager,
+                clientManager.getModel(), productManager.getModel());
         mainView = new MainScreen(this);
     }
 

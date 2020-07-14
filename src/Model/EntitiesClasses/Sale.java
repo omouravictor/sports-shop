@@ -32,13 +32,17 @@ public class Sale {
     @Column(nullable = false)
     private double saleCost;
 
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
-    private List<SaleProduct> saleProducts = new ArrayList<>();
+    @OneToMany(mappedBy = "sale", cascade = {
+        CascadeType.PERSIST, CascadeType.REMOVE
+    })
+    private List<SaleProduct> saleProducts;
 
     @Transient
-    private List<Product> productsTransient = new ArrayList<>();
-    
+    private List<Product> productsTransient;
+
     public Sale() {
+        saleProducts = new ArrayList<>();
+        productsTransient = new ArrayList<>();
     }
 
     public Sale(Sale sale) {

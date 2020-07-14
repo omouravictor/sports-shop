@@ -9,15 +9,17 @@ import View.Forms.SaleForm;
 
 public class SaleManager extends AbstractManager<Sale> {
 
-    private SaleProductManager saleProManager;
+    private SaleProductManager saleProductManager;
     private SaleForm saleForm;
     private TbSaleModel model;
     private SaleCRUD saleCRUD;
 
-    public SaleManager(SaleProductManager saleProManager,
-            TbClientModel tbClientSearchModel, TbProductModel tbProductSearchModel) {
-        this.saleProManager = saleProManager;
-        saleForm = new SaleForm(null, true, tbClientSearchModel, tbProductSearchModel);
+    public SaleManager(SaleProductManager saleProductManager,
+            TbClientModel tbClientSearchModel,
+            TbProductModel tbProductSearchModel) {
+        this.saleProductManager = saleProductManager;
+        saleForm = new SaleForm(null, true, tbClientSearchModel,
+                tbProductSearchModel);
         model = new TbSaleModel(getAll(Sale.class));
         saleCRUD = new SaleCRUD(null, true, this, model);
     }
@@ -27,7 +29,7 @@ public class SaleManager extends AbstractManager<Sale> {
         // Sends the Exception to the view
         Sale newSale = saleForm.create();
         if (newSale != null && newSale.getProductsTransient() != null) {
-            saleProManager.create(newSale);
+            saleProductManager.addSaleProduct(newSale);
             newSale = dao.createInBank(newSale);
             return newSale;
         }
@@ -41,12 +43,11 @@ public class SaleManager extends AbstractManager<Sale> {
     }
 
     @Override
-    public Sale update(Sale sale) throws Exception {
+    public Sale update(Sale oldSale) throws Exception {
         // Sends the Exception to the view
-        Sale updatedSale = saleForm.update(sale);
+        Sale updatedSale = saleForm.update(oldSale);
         if (updatedSale != null && updatedSale.getProductsTransient() != null) {
-            saleProManager.delete(sale);
-            saleProManager.create(updatedSale);
+            saleProductManager.updateSaleProduct(oldSale);
             updatedSale = dao.updateInBank(updatedSale);
             return updatedSale;
         }
