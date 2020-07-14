@@ -19,12 +19,6 @@ public class TbProductModel extends AbstractTbModel<Product> {
             "Color", "Size", "Id"};
     }
 
-    public TbProductModel() {
-        this.columnNames = new String[]{"Stock", "Cost", "Category",
-            "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
-            "Color", "Size", "Id"};
-    }
-
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
 

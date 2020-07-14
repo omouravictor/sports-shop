@@ -43,13 +43,13 @@ public class SaleManager extends AbstractManager<Sale> {
     }
 
     @Override
-    public Sale update(Sale oldSale) throws Exception {
+    public Sale update(Sale sale) throws Exception {
         // Sends the Exception to the view
-        Sale updatedSale = saleForm.update(oldSale);
-        if (updatedSale != null && updatedSale.getProductsTransient() != null) {
-            saleProductManager.updateSaleProduct(updatedSale);
-            updatedSale = dao.updateInBank(updatedSale);
-            return updatedSale;
+        sale = saleForm.update(sale);
+        if (sale != null && sale.getProductsTransient() != null) {
+            saleProductManager.updateSaleProduct(sale);
+            sale = dao.updateInBank(sale);
+            return sale;
         }
         return null;
     }

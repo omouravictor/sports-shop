@@ -877,13 +877,12 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }
 
     @Override
-    public Sale getObjectUpdated(Sale oldT) {
-        Sale updatedSale = oldT;
-        updatedSale.setClient(tbAddedClientModel.getObjectByRow(0));
-        updatedSale.setSaleDate(txtDate.getText());
-        updatedSale.setProductsTransient(tbAddedProductsModel.getList());
-        updatedSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
-        return updatedSale;
+    public Sale getObjectUpdated(Sale sale) {
+        sale.setClient(tbAddedClientModel.getObjectByRow(0));
+        sale.setSaleDate(txtDate.getText());
+        sale.setProductsTransient(tbAddedProductsModel.getList());
+        sale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
+        return sale;
     }
 
     @Override

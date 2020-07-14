@@ -1,5 +1,6 @@
 package Model.Tables;
 
+import Model.Classes.SleeveTypes;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
 
@@ -22,6 +23,10 @@ public class TbAddedProductModel extends AbstractTbModel<Product> {
                 return costFormatter.formatCost(list.get(rowIndex).getCost());
             case 3:
                 if (list.get(rowIndex) instanceof Shirt) {
+                    Shirt shirt = (Shirt) list.get(rowIndex);
+                    if (shirt.getSleeves().equals(SleeveTypes.NoSleeves)) {
+                        return "T-Shirt";
+                    }
                     return "Shirt";
                 }
                 return list.get(rowIndex).getCategory().getName();

@@ -30,8 +30,7 @@ public class SaleProductManager {
         sale.getSaleProducts().clear();
         for (Product proTran : sale.getProductsTransient()) {
             SaleProduct salePro = new SaleProduct(sale, proTran);
-            SaleProduct saleProBank = dao.createInBank(salePro);
-            sale.getSaleProducts().add(saleProBank);
+            sale.getSaleProducts().add(dao.createInBank(salePro));
         }
     }
 }
