@@ -49,7 +49,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search"));
+        panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Filters"));
 
         btClear.setText("Clear");
         btClear.addActionListener(new java.awt.event.ActionListener() {

@@ -29,6 +29,10 @@ public class TxtModelsTypes extends PlainDocument {
                     this.txtType = txtType;
                     this.maxCharacters = 14;
                     break;
+                case ID:
+                    this.txtType = txtType;
+                    this.maxCharacters = 19;
+                    break;
             }
         }
     }
@@ -52,12 +56,17 @@ public class TxtModelsTypes extends PlainDocument {
                     break;
                 case STATE:
                     if (txtTextQtd <= maxCharacters) {
-                        super.insertString(i, txtText, as);
+                        super.insertString(i, txtText.replaceAll("[^a-z | ^A-Z]", ""), as);
                     }
                     break;
                 case CPF:
                     if (txtTextQtd <= maxCharacters) {
                         super.insertString(i, txtText.replaceAll("[^0-9 | . | -]", ""), as);
+                    }
+                    break;
+                case ID:
+                    if (txtTextQtd <= maxCharacters) {
+                        super.insertString(i, txtText.replaceAll("[^0-9]", ""), as);
                     }
                     break;
             }

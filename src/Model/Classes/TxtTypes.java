@@ -4,5 +4,6 @@ public enum TxtTypes {
     INTEGER,
     STRING,
     STATE,
-    CPF;
+    CPF,
+    ID;
 }

@@ -2,6 +2,8 @@ package View.CRUD;
 
 import Control.Managers.SaleManager;
 import Model.Classes.AbstractJDialog;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Sale;
 import Model.Tables.TbSaleModel;
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
     public SaleCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initSetup();
     }
 
     public SaleCRUD(java.awt.Frame parent, boolean modal,
@@ -22,6 +25,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         this.saleManager = saleManager;
         this.tbSaleModel = model;
         initComponents();
+        initSetup();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,8 +34,15 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
 
         panFilter = new javax.swing.JPanel();
         btSearch = new javax.swing.JButton();
-        txtName = new javax.swing.JTextField();
-        labName = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        labID = new javax.swing.JLabel();
+        labDate = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
+        labClientName = new javax.swing.JLabel();
+        txtClientName = new javax.swing.JTextField();
+        labClientCPF = new javax.swing.JLabel();
+        txtClientCpf = new javax.swing.JTextField();
+        btClear = new javax.swing.JButton();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbSale = new javax.swing.JTable();
@@ -44,34 +55,101 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search"));
+        panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Filters"));
 
         btSearch.setText("Search");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
 
-        labName.setText("Name");
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+
+        labID.setText("ID");
+
+        labDate.setText("Date");
+
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
+            }
+        });
+
+        labClientName.setText("Client Name");
+
+        txtClientName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClientNameActionPerformed(evt);
+            }
+        });
+
+        labClientCPF.setText("Client CPF");
+
+        txtClientCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClientCpfActionPerformed(evt);
+            }
+        });
+
+        btClear.setText("Clear");
+        btClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panFilterLayout = new javax.swing.GroupLayout(panFilter);
         panFilter.setLayout(panFilterLayout);
         panFilterLayout.setHorizontalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFilterLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labName)
-                .addGap(28, 28, 28)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btSearch)
-                .addGap(124, 124, 124))
+            .addGroup(panFilterLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addComponent(labID)
+                        .addGap(31, 31, 31)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addComponent(labDate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labClientCPF)
+                    .addComponent(labClientName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtClientName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtClientCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btClear, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panFilterLayout.setVerticalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFilterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSearch)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labName))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labID)
+                    .addComponent(txtClientName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labClientName)
+                    .addComponent(btSearch))
+                .addGap(6, 6, 6)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labDate)
+                    .addComponent(txtClientCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labClientCPF)
+                    .addComponent(btClear))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         panTbSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Table"));
@@ -85,14 +163,14 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTbSearchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                .addComponent(panGrid)
                 .addContainerGap())
         );
         panTbSearchLayout.setVerticalGroup(
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTbSearchLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
         );
 
@@ -172,12 +250,12 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(panFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(panFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panTbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -242,6 +320,30 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        filterTbSale();
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        filterTbSale();
+    }//GEN-LAST:event_txtDateActionPerformed
+
+    private void txtClientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClientNameActionPerformed
+        filterTbSale();
+    }//GEN-LAST:event_txtClientNameActionPerformed
+
+    private void txtClientCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClientCpfActionPerformed
+        filterTbSale();
+    }//GEN-LAST:event_txtClientCpfActionPerformed
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        filterTbSale();
+    }//GEN-LAST:event_btSearchActionPerformed
+
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        clearSaleFilters();
+    }//GEN-LAST:event_btClearActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -273,19 +375,56 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         });
     }
 
+    public void initSetup() {
+        txtID.setDocument(new TxtModelsTypes(TxtTypes.ID));
+        txtDate.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtClientName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtClientCpf.setDocument(new TxtModelsTypes(TxtTypes.CPF));
+    }
+
+    public void clearSaleFilters() {
+        txtID.setText("");
+        txtDate.setText("");
+        txtClientName.setText("");
+        txtClientCpf.setText("");
+        tbSale.setRowSorter(null);
+    }
+
+    public boolean saleFiltersAreEmpty() {
+        return txtID.getText().isEmpty() && txtDate.getText().isEmpty()
+                && txtClientName.getText().isEmpty() && txtClientCpf.getText().isEmpty();
+    }
+
+    public void filterTbSale() {
+        if (!saleFiltersAreEmpty()) {
+            String[] filters = {txtID.getText(), txtDate.getText(),
+                txtClientName.getText(), txtClientCpf.getText()};
+            tbSale.setRowSorter(tbSaleModel.getRowSorter(filters));
+        } else {
+            tbSale.setRowSorter(null);
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btClear;
     private javax.swing.JButton btClose;
     private javax.swing.JButton btCreate;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btRead;
     private javax.swing.JButton btSearch;
     private javax.swing.JButton btUpdate;
-    private javax.swing.JLabel labName;
+    private javax.swing.JLabel labClientCPF;
+    private javax.swing.JLabel labClientName;
+    private javax.swing.JLabel labDate;
+    private javax.swing.JLabel labID;
     private javax.swing.JPanel panFilter;
     private javax.swing.JPanel panFooter;
     private javax.swing.JScrollPane panGrid;
     private javax.swing.JPanel panTbSearch;
     private javax.swing.JTable tbSale;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtClientCpf;
+    private javax.swing.JTextField txtClientName;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }
