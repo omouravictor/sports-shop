@@ -628,13 +628,13 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtSize.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtColor.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtPlayerNameOnShirt.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtNumStock.setDocument(new TxtModelsTypes(TxtTypes.Integer));
-        txtNumberPresent.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtSize.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtColor.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtPlayerNameOnShirt.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtPlayerPresent.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtNumStock.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
+        txtNumberPresent.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
     }
 
     @Override

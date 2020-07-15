@@ -69,14 +69,23 @@ public class TbClientModel extends AbstractTbModel<Client> {
                     }
                 }
             });
-            //viewFilters must to be on the same sequence of this model columns
             int column = 1;
             List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
             for (String filter : filters) {
                 if (!filter.isEmpty()) {
                     filterTypes.add(RowFilter.regexFilter(filter.toLowerCase(), column));
                 }
-                column++;
+                switch (column) {
+                    case 2:
+                        column = 6;
+                        break;
+                    case 6:
+                        column = 8;
+                        break;
+                    default:
+                        column++;
+                        break;
+                }
             }
             RowFilter<Object, Object> rowFilters = RowFilter.andFilter(filterTypes);
             tableRowSorter.setRowFilter(rowFilters);

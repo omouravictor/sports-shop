@@ -1,7 +1,8 @@
 package Model.Classes;
 
 public enum TxtTypes {
-    Integer,
-    String,
+    INTEGER,
+    STRING,
+    STATE,
     CPF;
 }

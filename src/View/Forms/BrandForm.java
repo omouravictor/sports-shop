@@ -235,7 +235,7 @@ public class BrandForm extends AbstractJDialog<Brand> implements IForms<Brand> {
 
     @Override
     public void setTxtModels() {
-        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
     }
 
     @Override

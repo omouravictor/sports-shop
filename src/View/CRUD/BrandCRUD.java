@@ -2,6 +2,8 @@ package View.CRUD;
 
 import Control.Managers.BrandManager;
 import Model.Classes.AbstractJDialog;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Brand;
 import Model.Tables.TbBrandModel;
 import javax.swing.JOptionPane;
@@ -14,6 +16,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     public BrandCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initSetup();
     }
 
     public BrandCRUD(java.awt.Frame parent, boolean modal,
@@ -22,6 +25,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         this.brandManager = brandManager;
         this.tbBrandModel = model;
         initComponents();
+        initSetup();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,9 +33,10 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     private void initComponents() {
 
         panFilter = new javax.swing.JPanel();
-        btSearch = new javax.swing.JButton();
+        btClear = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         labName = new javax.swing.JLabel();
+        btSearch = new javax.swing.JButton();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbBrand = new javax.swing.JTable();
@@ -46,31 +51,52 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
 
         panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search"));
 
-        btSearch.setText("Search");
+        btClear.setText("Clear");
+        btClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearActionPerformed(evt);
+            }
+        });
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         labName.setText("Name");
+
+        btSearch.setText("Search");
+        btSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panFilterLayout = new javax.swing.GroupLayout(panFilter);
         panFilter.setLayout(panFilterLayout);
         panFilterLayout.setHorizontalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFilterLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addComponent(labName)
                 .addGap(28, 28, 28)
                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addComponent(btClear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btSearch)
-                .addGap(124, 124, 124))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panFilterLayout.setVerticalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panFilterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSearch)
+                    .addComponent(btClear)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labName))
+                    .addComponent(labName)
+                    .addComponent(btSearch))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -242,6 +268,31 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        txtName.setText("");
+        tbBrand.setRowSorter(null);
+    }//GEN-LAST:event_btClearActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        filterTbBrand();
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSearchActionPerformed
+        filterTbBrand();
+    }//GEN-LAST:event_btSearchActionPerformed
+
+    public void initSetup() {
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+    }
+    
+    public void filterTbBrand() {
+        if (!txtName.getText().isEmpty()) {
+            tbBrand.setRowSorter(tbBrandModel.getRowSorter(txtName.getText()));
+        } else {
+            tbBrand.setRowSorter(null);
+        }
+    }
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -274,6 +325,7 @@ public class BrandCRUD extends AbstractJDialog<Brand> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btClear;
     private javax.swing.JButton btClose;
     private javax.swing.JButton btCreate;
     private javax.swing.JButton btDelete;

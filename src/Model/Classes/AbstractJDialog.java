@@ -44,10 +44,13 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
 
     public T getObjectSelectedInTb(JTable tbToLookFor, AbstractTbModel tbModelToLookFor) {
         int row = tbToLookFor.getSelectedRow();
+        if (tbToLookFor.getRowSorter() != null) {
+            row = tbToLookFor.getRowSorter().convertRowIndexToModel(row);
+        }
         T selectedObject = (T) tbModelToLookFor.getObjectByRow(row);
         return selectedObject;
     }
-    
+
     public double parseTxtNumberToDouble(JFormattedTextField txt) {
         if (!txt.getText().isEmpty()) {
             String cost = txt.getText().replaceAll("\\.", "").replace(",", ".");
@@ -63,7 +66,7 @@ public abstract class AbstractJDialog<T> extends javax.swing.JDialog {
         }
         return -1;
     }
-    
+
     public int parseTxtTextToInt(JTextField txt) {
         if (!txt.getText().isEmpty()) {
             int numStock = Integer.parseInt(txt.getText());

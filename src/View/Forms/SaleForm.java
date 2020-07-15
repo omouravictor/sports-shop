@@ -92,13 +92,12 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtSize = new javax.swing.JTextField();
         labNumber = new javax.swing.JLabel();
         labColor = new javax.swing.JLabel();
-        labID = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         labCPF = new javax.swing.JLabel();
         txtCPF = new javax.swing.JTextField();
         txtTotalCost = new javax.swing.JFormattedTextField();
         txtCostByProduct = new javax.swing.JFormattedTextField();
-        btClearFilters = new javax.swing.JButton();
+        btClearProductSearch = new javax.swing.JButton();
+        btClearClientSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -305,17 +304,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         labColor.setText("Color");
 
-        labID.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labID.setText("ID");
-
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
-
         labCPF.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        labCPF.setText("CPF (Just Numbers)");
+        labCPF.setText("CPF");
 
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,10 +317,17 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
         txtCostByProduct.setText("R$ 0,00");
 
-        btClearFilters.setText("Clear");
-        btClearFilters.addActionListener(new java.awt.event.ActionListener() {
+        btClearProductSearch.setText("Clear");
+        btClearProductSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btClearFiltersActionPerformed(evt);
+                btClearProductSearchActionPerformed(evt);
+            }
+        });
+
+        btClearClientSearch.setText("Clear");
+        btClearClientSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearClientSearchActionPerformed(evt);
             }
         });
 
@@ -359,26 +356,28 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btClearFilters, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btClearProductSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btProductSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labTitle)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(labName)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(labCPF)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btClientSearch))
+                                        .addGap(28, 28, 28)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCPF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btClientSearch)
+                                    .addComponent(btClearClientSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -417,12 +416,9 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(labID))))
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(labQuantity)
@@ -461,16 +457,16 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 .addComponent(labTitle)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btClientSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labName)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(12, 12, 12)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labCPF)
-                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labName)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btClientSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labCPF)
+                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btClearClientSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labDate)
                         .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -496,9 +492,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labNumber)
-                        .addComponent(labID)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(labNumber)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -511,7 +505,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btClearFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(btClearProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -666,26 +660,17 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         filterTbProductSearch();
     }//GEN-LAST:event_txtSizeActionPerformed
 
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        filterTbProductSearch();
-    }//GEN-LAST:event_txtIDActionPerformed
-
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         filterTbClientSearch();
     }//GEN-LAST:event_txtCPFActionPerformed
 
-    private void btClearFiltersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearFiltersActionPerformed
-        txtCategory.setText("");
-        txtBrand.setText("");
-        txtTeam.setText("");
-        txtPlayer.setText("");
-        txtShirtName.setText("");
-        txtSleeves.setText("");
-        txtNumber.setText("");
-        txtColor.setText("");
-        txtSize.setText("");
-        txtID.setText("");
-    }//GEN-LAST:event_btClearFiltersActionPerformed
+    private void btClearProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearProductSearchActionPerformed
+        clearProductFilters();
+    }//GEN-LAST:event_btClearProductSearchActionPerformed
+
+    private void btClearClientSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearClientSearchActionPerformed
+        clearClientFilters();
+    }//GEN-LAST:event_btClearClientSearchActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -718,6 +703,25 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         });
     }
 
+    public void clearClientFilters() {
+        txtName.setText("");
+        txtCPF.setText("");
+        tbClientSearch.setRowSorter(null);
+    }
+
+    public void clearProductFilters() {
+        txtCategory.setText("");
+        txtBrand.setText("");
+        txtTeam.setText("");
+        txtPlayer.setText("");
+        txtShirtName.setText("");
+        txtSleeves.setText("");
+        txtNumber.setText("");
+        txtColor.setText("");
+        txtSize.setText("");
+        tbProductSearch.setRowSorter(null);
+    }
+
     @Override
     public void setVisibleAll() {
         btOk.setVisible(true);
@@ -738,7 +742,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btRemoveClient.setEnabled(true);
         btRemoveProduct.setEnabled(true);
         btProductSearch.setEnabled(true);
-        btClearFilters.setEnabled(true);
+        btClearProductSearch.setEnabled(true);
         txtCostByProduct.setEnabled(true);
         txtName.setEnabled(true);
         txtCPF.setEnabled(true);
@@ -751,7 +755,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtNumber.setEnabled(true);
         txtColor.setEnabled(true);
         txtSize.setEnabled(true);
-        txtID.setEnabled(true);
         tbClientSearch.setEnabled(true);
         tbProductSearch.setEnabled(true);
     }
@@ -765,7 +768,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btRemoveClient.setEnabled(false);
         btRemoveProduct.setEnabled(false);
         btProductSearch.setEnabled(false);
-        btClearFilters.setEnabled(false);
+        btClearProductSearch.setEnabled(false);
         txtCostByProduct.setEnabled(false);
         txtName.setEnabled(false);
         txtCPF.setEnabled(false);
@@ -778,7 +781,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtNumber.setEnabled(false);
         txtColor.setEnabled(false);
         txtSize.setEnabled(false);
-        txtID.setEnabled(false);
         tbClientSearch.setEnabled(false);
         tbProductSearch.setEnabled(false);
     }
@@ -809,7 +811,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtNumber.setText("");
         txtColor.setText("");
         txtSize.setText("");
-        txtID.setText("");
     }
 
     @Override
@@ -898,8 +899,17 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
         txtCPF.setDocument(new TxtModelsTypes(TxtTypes.CPF));
-        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtCategory.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtBrand.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtPlayer.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtShirtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
+        txtSleeves.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtColor.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtSize.setDocument(new TxtModelsTypes(TxtTypes.STRING));
     }
 
     @Override
@@ -935,7 +945,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
                 && txtTeam.getText().isEmpty() && txtPlayer.getText().isEmpty()
                 && txtShirtName.getText().isEmpty() && txtSleeves.getText().isEmpty()
                 && txtNumber.getText().isEmpty() && txtColor.getText().isEmpty()
-                && txtSize.getText().isEmpty() && txtID.getText().isEmpty();
+                && txtSize.getText().isEmpty();
     }
 
     public boolean clientFiltersAreEmpty() {
@@ -947,8 +957,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
             String[] filters = {txtCategory.getText(), txtBrand.getText(),
                 txtTeam.getText(), txtPlayer.getText(), txtShirtName.getText(),
                 txtSleeves.getText(), txtNumber.getText(), txtColor.getText(),
-                txtSize.getText(), txtID.getText()
-            };
+                txtSize.getText()};
             tbProductSearch.setRowSorter(tbProductSearchModel.getRowSorter(filters));
             resetCostAndQtdByProduct();
         } else {
@@ -1129,7 +1138,8 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private javax.swing.JButton btAddClient;
     private javax.swing.JButton btAddProduct;
     private javax.swing.JButton btCancel;
-    private javax.swing.JButton btClearFilters;
+    private javax.swing.JButton btClearClientSearch;
+    private javax.swing.JButton btClearProductSearch;
     private javax.swing.JButton btClientSearch;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btProductSearch;
@@ -1148,7 +1158,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private javax.swing.JLabel labColor;
     private javax.swing.JLabel labCostByProduct;
     private javax.swing.JLabel labDate;
-    private javax.swing.JLabel labID;
     private javax.swing.JLabel labName;
     private javax.swing.JLabel labNumber;
     private javax.swing.JLabel labPlayer;
@@ -1171,7 +1180,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     private javax.swing.JTextField txtColor;
     private javax.swing.JFormattedTextField txtCostByProduct;
     private javax.swing.JFormattedTextField txtDate;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNumber;
     private javax.swing.JTextField txtPlayer;

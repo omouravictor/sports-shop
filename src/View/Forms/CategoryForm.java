@@ -232,7 +232,7 @@ public class CategoryForm extends AbstractJDialog<Category> implements IForms<Ca
 
     @Override
     public void setTxtModels() {
-        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
     }
 
     @Override

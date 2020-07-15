@@ -12,18 +12,22 @@ public class TxtModelsTypes extends PlainDocument {
     public TxtModelsTypes(TxtTypes txtType) {
         if (txtType != null) {
             switch (txtType) {
-                case Integer:
+                case INTEGER:
                     this.txtType = txtType;
                     this.maxCharacters = 9;
                     // A integer number supports 10 algarisms
                     break;
-                case String:
+                case STRING:
                     this.txtType = txtType;
                     this.maxCharacters = 100;
                     break;
+                case STATE:
+                    this.txtType = txtType;
+                    this.maxCharacters = 2;
+                    break;
                 case CPF:
                     this.txtType = txtType;
-                    this.maxCharacters = 11;
+                    this.maxCharacters = 14;
                     break;
             }
         }
@@ -35,20 +39,25 @@ public class TxtModelsTypes extends PlainDocument {
         // getLength() returns the quantity of the hidden characters
         if (txtType != null) {
             switch (txtType) {
-                case Integer:
+                case INTEGER:
                     if (txtTextQtd <= maxCharacters) {
                         super.insertString(i, txtText.replaceAll("[^0-9]", ""), as);
                         // [^0-9 |^a-z | ^A-Z] sintaxe
                     }
                     break;
-                case String:
+                case STRING:
+                    if (txtTextQtd <= maxCharacters) {
+                        super.insertString(i, txtText, as);
+                    }
+                    break;
+                case STATE:
                     if (txtTextQtd <= maxCharacters) {
                         super.insertString(i, txtText, as);
                     }
                     break;
                 case CPF:
                     if (txtTextQtd <= maxCharacters) {
-                        super.insertString(i, txtText.replaceAll("[^0-9]", ""), as);
+                        super.insertString(i, txtText.replaceAll("[^0-9 | . | -]", ""), as);
                     }
                     break;
             }

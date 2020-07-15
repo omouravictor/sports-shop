@@ -422,12 +422,12 @@ public class ClientForm extends AbstractJDialog<Client> implements IForms<Client
     @Override
     public void setTxtModels() {
         // When the txt already has a Mask, it doesn't needs a txtModel
-        txtName.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtEmail.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtStreet.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtCity.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtNeighborhood.setDocument(new TxtModelsTypes(TxtTypes.String));
-        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.Integer));
+        txtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtEmail.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtStreet.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtCity.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtNeighborhood.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
     }
 
     @Override
