@@ -2,6 +2,8 @@ package View.CRUD;
 
 import Control.Managers.ProductManager;
 import Model.Classes.AbstractJDialog;
+import Model.Classes.TxtModelsTypes;
+import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbProductModel;
@@ -15,6 +17,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     public ProductCRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        initSetup();
     }
 
     public ProductCRUD(java.awt.Frame parent, boolean modal,
@@ -23,6 +26,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         this.productManager = productManager;
         this.tbProductModel = model;
         initComponents();
+        initSetup();
     }
 
     @SuppressWarnings("unchecked")
@@ -30,9 +34,26 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private void initComponents() {
 
         panFilter = new javax.swing.JPanel();
-        btSearch = new javax.swing.JButton();
-        txtName = new javax.swing.JTextField();
-        labName = new javax.swing.JLabel();
+        labCategory = new javax.swing.JLabel();
+        txtCategory = new javax.swing.JTextField();
+        labBrand = new javax.swing.JLabel();
+        txtBrand = new javax.swing.JTextField();
+        labTeam = new javax.swing.JLabel();
+        txtTeam = new javax.swing.JTextField();
+        labSleeves = new javax.swing.JLabel();
+        labShirtName = new javax.swing.JLabel();
+        labPlayer = new javax.swing.JLabel();
+        txtPlayer = new javax.swing.JTextField();
+        txtShirtName = new javax.swing.JTextField();
+        txtSleeves = new javax.swing.JTextField();
+        labNumber = new javax.swing.JLabel();
+        txtNumber = new javax.swing.JTextField();
+        labColor = new javax.swing.JLabel();
+        txtColor = new javax.swing.JTextField();
+        labSize = new javax.swing.JLabel();
+        txtSize = new javax.swing.JTextField();
+        btClearProductSearch = new javax.swing.JButton();
+        btProductSearch = new javax.swing.JButton();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbProduct = new javax.swing.JTable();
@@ -47,32 +68,187 @@ public class ProductCRUD extends AbstractJDialog<Product> {
 
         panFilter.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search"));
 
-        btSearch.setText("Search");
+        labCategory.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labCategory.setText("Category");
 
-        labName.setText("Name");
+        txtCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoryActionPerformed(evt);
+            }
+        });
+
+        labBrand.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labBrand.setText("Brand");
+
+        txtBrand.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBrandActionPerformed(evt);
+            }
+        });
+
+        labTeam.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labTeam.setText("Team");
+
+        txtTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeamActionPerformed(evt);
+            }
+        });
+
+        labSleeves.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labSleeves.setText("Sleeves");
+
+        labShirtName.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labShirtName.setText("ShirtName");
+
+        labPlayer.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labPlayer.setText("Player");
+
+        txtPlayer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPlayerActionPerformed(evt);
+            }
+        });
+
+        txtShirtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtShirtNameActionPerformed(evt);
+            }
+        });
+
+        txtSleeves.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSleevesActionPerformed(evt);
+            }
+        });
+
+        labNumber.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labNumber.setText("Number");
+
+        txtNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumberActionPerformed(evt);
+            }
+        });
+
+        labColor.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labColor.setText("Color");
+
+        txtColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtColorActionPerformed(evt);
+            }
+        });
+
+        labSize.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labSize.setText("Size");
+
+        txtSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSizeActionPerformed(evt);
+            }
+        });
+
+        btClearProductSearch.setText("Clear");
+        btClearProductSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearProductSearchActionPerformed(evt);
+            }
+        });
+
+        btProductSearch.setText("Search");
+        btProductSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProductSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panFilterLayout = new javax.swing.GroupLayout(panFilter);
         panFilter.setLayout(panFilterLayout);
         panFilterLayout.setHorizontalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFilterLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labName)
-                .addGap(28, 28, 28)
-                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btSearch)
-                .addGap(124, 124, 124))
+            .addGroup(panFilterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addComponent(labTeam)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addComponent(labCategory)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addComponent(labBrand)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labPlayer)
+                    .addComponent(labShirtName)
+                    .addComponent(labSleeves))
+                .addGap(8, 8, 8)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labColor)
+                    .addComponent(labNumber)
+                    .addComponent(labSize))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btClearProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btProductSearch))))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
         panFilterLayout.setVerticalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panFilterLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSearch)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labName))
-                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panFilterLayout.createSequentialGroup()
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(labCategory)
+                                .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labPlayer))
+                            .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labNumber)))
+                        .addGap(20, 20, 20)
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labShirtName)
+                            .addComponent(txtShirtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labBrand)
+                            .addComponent(labColor)
+                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 20, Short.MAX_VALUE)
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labSleeves)
+                            .addComponent(txtSleeves, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labTeam)
+                            .addComponent(labSize)))
+                    .addGroup(panFilterLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panFilterLayout.createSequentialGroup()
+                                .addComponent(btProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btClearProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(32, 32, 32))
         );
 
         panTbSearch.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Search Table"));
@@ -86,7 +262,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTbSearchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                .addComponent(panGrid)
                 .addContainerGap())
         );
         panTbSearchLayout.setVerticalGroup(
@@ -173,10 +349,10 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(panFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(panTbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
                 .addComponent(panFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -189,7 +365,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         try {
             Object answer = JOptionPane.showInputDialog(null,
                     "Choose a type below to be created", null, 3, null,
-                    new String[]{"Common","Shirt's"}, null);
+                    new String[]{"Common", "Shirt's"}, null);
             if (answer != null) {
                 if (answer.equals("Common")) {
                     Product newProduct = productManager.create(0);
@@ -254,6 +430,95 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         this.dispose();
     }//GEN-LAST:event_btCloseActionPerformed
 
+    private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtCategoryActionPerformed
+
+    private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtBrandActionPerformed
+
+    private void txtTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeamActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtTeamActionPerformed
+
+    private void txtPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayerActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtPlayerActionPerformed
+
+    private void txtShirtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtShirtNameActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtShirtNameActionPerformed
+
+    private void txtSleevesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSleevesActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtSleevesActionPerformed
+
+    private void txtNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumberActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtNumberActionPerformed
+
+    private void txtColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtColorActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtColorActionPerformed
+
+    private void txtSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSizeActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtSizeActionPerformed
+
+    private void btClearProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearProductSearchActionPerformed
+        clearProductFilters();
+    }//GEN-LAST:event_btClearProductSearchActionPerformed
+
+    private void btProductSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProductSearchActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_btProductSearchActionPerformed
+
+    public void initSetup() {
+        txtCategory.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtBrand.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtTeam.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtPlayer.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtShirtName.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtSleeves.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtNumber.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
+        txtColor.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtSize.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+    }
+
+    public void clearProductFilters() {
+        txtCategory.setText("");
+        txtBrand.setText("");
+        txtTeam.setText("");
+        txtPlayer.setText("");
+        txtShirtName.setText("");
+        txtSleeves.setText("");
+        txtNumber.setText("");
+        txtColor.setText("");
+        txtSize.setText("");
+        tbProduct.setRowSorter(null);
+    }
+
+    public boolean productFiltersAreEmpty() {
+        return txtCategory.getText().isEmpty() && txtBrand.getText().isEmpty()
+                && txtTeam.getText().isEmpty() && txtPlayer.getText().isEmpty()
+                && txtShirtName.getText().isEmpty() && txtSleeves.getText().isEmpty()
+                && txtNumber.getText().isEmpty() && txtColor.getText().isEmpty()
+                && txtSize.getText().isEmpty();
+    }
+
+    public void filterTbProduct() {
+        if (!productFiltersAreEmpty()) {
+            String[] filters = {txtCategory.getText(), txtBrand.getText(),
+                txtTeam.getText(), txtPlayer.getText(), txtShirtName.getText(),
+                txtSleeves.getText(), txtNumber.getText(), txtColor.getText(),
+                txtSize.getText()};
+            tbProduct.setRowSorter(tbProductModel.getRowSorter(filters));
+        } else {
+            tbProduct.setRowSorter(null);
+        }
+    }
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -286,18 +551,35 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btClearProductSearch;
     private javax.swing.JButton btClose;
     private javax.swing.JButton btCreate;
     private javax.swing.JButton btDelete;
+    private javax.swing.JButton btProductSearch;
     private javax.swing.JButton btRead;
-    private javax.swing.JButton btSearch;
     private javax.swing.JButton btUpdate;
-    private javax.swing.JLabel labName;
+    private javax.swing.JLabel labBrand;
+    private javax.swing.JLabel labCategory;
+    private javax.swing.JLabel labColor;
+    private javax.swing.JLabel labNumber;
+    private javax.swing.JLabel labPlayer;
+    private javax.swing.JLabel labShirtName;
+    private javax.swing.JLabel labSize;
+    private javax.swing.JLabel labSleeves;
+    private javax.swing.JLabel labTeam;
     private javax.swing.JPanel panFilter;
     private javax.swing.JPanel panFooter;
     private javax.swing.JScrollPane panGrid;
     private javax.swing.JPanel panTbSearch;
     private javax.swing.JTable tbProduct;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextField txtCategory;
+    private javax.swing.JTextField txtColor;
+    private javax.swing.JTextField txtNumber;
+    private javax.swing.JTextField txtPlayer;
+    private javax.swing.JTextField txtShirtName;
+    private javax.swing.JTextField txtSize;
+    private javax.swing.JTextField txtSleeves;
+    private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
 }

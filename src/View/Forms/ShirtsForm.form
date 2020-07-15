@@ -136,9 +136,9 @@
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Component id="labR$" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtNumStock" alignment="1" pref="104" max="32767" attributes="0"/>
-                                  <Component id="txtCost" alignment="1" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtNumStock" max="32767" attributes="0"/>
+                                  <Component id="txtCost" pref="104" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -149,9 +149,12 @@
                               </Group>
                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtTeam" max="32767" attributes="0"/>
                                   <Component id="txtSize" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtColor" alignment="0" pref="104" max="32767" attributes="0"/>
+                                  <Component id="txtColor" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtTeam" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
