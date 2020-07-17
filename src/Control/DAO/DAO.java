@@ -29,6 +29,7 @@ public abstract class DAO<T> {
 
     public T updateInBank(T toUpdate) throws Exception {
         // Sends the Exception to the Managers
+        entityManager.clear();
         entityManager.getTransaction().begin();
         entityManager.merge(toUpdate);
         entityManager.getTransaction().commit();
@@ -37,6 +38,7 @@ public abstract class DAO<T> {
 
     public void deleteInBank(T toDelete) throws Exception {
         // Sends the Exception to the Managers
+        entityManager.clear();
         entityManager.getTransaction().begin();
         if (!entityManager.contains(toDelete)) {
             toDelete = entityManager.merge(toDelete);
