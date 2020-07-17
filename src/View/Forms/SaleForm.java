@@ -757,6 +757,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtSize.setEnabled(true);
         tbClientSearch.setEnabled(true);
         tbProductSearch.setEnabled(true);
+        tbAddedProducts.setEnabled(true);
     }
 
     @Override
@@ -783,6 +784,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtSize.setEnabled(false);
         tbClientSearch.setEnabled(false);
         tbProductSearch.setEnabled(false);
+        tbAddedProducts.setEnabled(false);
     }
 
     @Override
@@ -863,12 +865,32 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         showForm();
     }
 
+    public void setNoEnabledUpdate() {
+        txtCategory.setEnabled(false);
+        txtBrand.setEnabled(false);
+        txtTeam.setEnabled(false);
+        txtPlayer.setEnabled(false);
+        txtShirtName.setEnabled(false);
+        txtSleeves.setEnabled(false);
+        txtNumber.setEnabled(false);
+        txtColor.setEnabled(false);
+        txtSize.setEnabled(false);
+        tbProductSearch.setEnabled(false);
+        tbAddedProducts.setEnabled(false);
+        btRemoveProduct.setEnabled(false);
+        btAddProduct.setEnabled(false);
+        spQuantity.setEnabled(false);
+        btProductSearch.setEnabled(false);
+        btClearProductSearch.setEnabled(false);
+    }
+
     @Override
     public void prepareUpdate(Sale t) {
         setVisibleAll();
         setEnabledAll();
         setEditableAll();
         setEmptyAll();
+        setNoEnabledUpdate();
         btOk.setText("Update");
         btCancel.setText("Cancel");
         txtDate.setText(t.getSaleDate());
@@ -881,8 +903,6 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     public Sale getObjectUpdated(Sale sale) {
         sale.setClient(tbAddedClientModel.getObjectByRow(0));
         sale.setSaleDate(txtDate.getText());
-        sale.setProductsTransient(tbAddedProductsModel.getList());
-        sale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return sale;
     }
 

@@ -14,9 +14,9 @@ public class TbProductModel extends AbstractTbModel<Product> {
 
     public TbProductModel(List<Product> productList) {
         super(productList);
-        this.columnNames = new String[]{"Stock", "Cost", "Category",
+        this.columnNames = new String[]{"ID", "Stock", "Cost", "Category",
             "Brand", "Team", "Player Present", "ShirtName", "ShirtSleeves", "Number",
-            "Color", "Size", "Id"};
+            "Color", "Size"};
     }
 
     @Override
@@ -24,10 +24,12 @@ public class TbProductModel extends AbstractTbModel<Product> {
 
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getNumInStock();
+                return list.get(rowIndex).getId();
             case 1:
-                return costFormatter.formatCost(list.get(rowIndex).getCost());
+                return list.get(rowIndex).getNumInStock();
             case 2:
+                return costFormatter.formatCost(list.get(rowIndex).getCost());
+            case 3:
                 if (list.get(rowIndex) instanceof Shirt) {
                     Shirt shirt = (Shirt) list.get(rowIndex);
                     if (shirt.getSleeves().equals(SleeveTypes.NoSleeves)) {
@@ -36,17 +38,17 @@ public class TbProductModel extends AbstractTbModel<Product> {
                     return "Shirt";
                 }
                 return list.get(rowIndex).getCategory().getName();
-            case 3:
-                return list.get(rowIndex).getBrand().getName();
             case 4:
-                return list.get(rowIndex).getTeamName();
+                return list.get(rowIndex).getBrand().getName();
             case 5:
+                return list.get(rowIndex).getTeamName();
+            case 6:
                 if (list.get(rowIndex).getPlayerPresent() == null
                         || list.get(rowIndex).getPlayerPresent().isEmpty()) {
                     return "------";
                 }
                 return list.get(rowIndex).getPlayerPresent();
-            case 6:
+            case 7:
                 if (list.get(rowIndex) instanceof Shirt) {
                     Shirt shirt = (Shirt) list.get(rowIndex);
                     if (shirt.getPlayerNameOnShirt() == null
@@ -56,24 +58,22 @@ public class TbProductModel extends AbstractTbModel<Product> {
                     return shirt.getPlayerNameOnShirt();
                 }
                 return "------";
-            case 7:
+            case 8:
                 if (list.get(rowIndex) instanceof Shirt) {
                     Shirt shirt = (Shirt) list.get(rowIndex);
                     return shirt.getSleeves();
                 }
                 return "------";
-            case 8:
+            case 9:
                 if (list.get(rowIndex).getNumberPresent() == null
                         || list.get(rowIndex).getNumberPresent().isEmpty()) {
                     return "------";
                 }
                 return list.get(rowIndex).getNumberPresent();
-            case 9:
-                return list.get(rowIndex).getColor();
             case 10:
-                return list.get(rowIndex).getSizeProduct();
+                return list.get(rowIndex).getColor();
             case 11:
-                return list.get(rowIndex).getId();
+                return list.get(rowIndex).getSizeProduct();
         }
         return null;
     }
@@ -94,7 +94,7 @@ public class TbProductModel extends AbstractTbModel<Product> {
                 }
             });
             //viewFilters must to be on the same sequence of this model columns
-            int column = 2;
+            int column = 3;
             List<RowFilter<Object, Object>> filterTypes = new ArrayList<>();
             for (String filter : filters) {
                 if (!filter.isEmpty()) {

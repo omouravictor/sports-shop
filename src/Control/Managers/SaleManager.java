@@ -44,8 +44,7 @@ public class SaleManager extends AbstractManager<Sale> {
     public Sale update(Sale sale) throws Exception {
         // Sends the Exception to the view
         sale = saleForm.update(sale);
-        if (sale != null && sale.getProductsTransient() != null) {
-            saleProductManager.updateSaleProduct(sale);
+        if (sale != null) {
             sale = dao.updateInBank(sale);
             return sale;
         }
