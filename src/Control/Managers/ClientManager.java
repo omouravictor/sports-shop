@@ -8,13 +8,13 @@ import View.Forms.ClientForm;
 public class ClientManager extends AbstractManager<Client> {
 
     private ClientForm clientForm;
-    private TbClientModel model;
+    private TbClientModel tbClientModel;
     private ClientCRUD clientCRUD;
 
     public ClientManager() {
         clientForm = new ClientForm(null, true);
-        model = new TbClientModel(getAll(Client.class));
-        clientCRUD = new ClientCRUD(null, true, this, model);
+        tbClientModel = new TbClientModel(getAll(Client.class));
+        clientCRUD = new ClientCRUD(null, true, this, tbClientModel);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class ClientManager extends AbstractManager<Client> {
         clientCRUD.setVisible(true);
     }
 
-    public TbClientModel getModel() {
-        return model;
+    public TbClientModel getTbClientModel() {
+        return tbClientModel;
     }
 }

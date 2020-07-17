@@ -8,13 +8,13 @@ import View.Forms.CategoryForm;
 public class CategoryManager extends AbstractManager<Category> {
 
     private CategoryForm categoryForm;
-    private TbCategoryModel model;
+    private TbCategoryModel tbCategoryModel;
     private CategoryCRUD categoryCRUD;
 
     public CategoryManager() {
         categoryForm = new CategoryForm(null, true);
-        model = new TbCategoryModel(getAll(Category.class));
-        categoryCRUD = new CategoryCRUD(null, true, this, model);
+        tbCategoryModel = new TbCategoryModel(getAll(Category.class));
+        categoryCRUD = new CategoryCRUD(null, true, this, tbCategoryModel);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class CategoryManager extends AbstractManager<Category> {
         categoryCRUD.setVisible(true);
     }
 
-    public TbCategoryModel getModel() {
-        return model;
+    public TbCategoryModel getTbCategoryModel() {
+        return tbCategoryModel;
     }
 }

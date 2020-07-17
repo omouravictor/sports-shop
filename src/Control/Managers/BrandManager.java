@@ -8,13 +8,13 @@ import View.Forms.BrandForm;
 public class BrandManager extends AbstractManager<Brand> {
 
     private BrandForm brandForm;
-    private TbBrandModel model;
+    private TbBrandModel tbBrandModel;
     private BrandCRUD brandCRUD;
 
     public BrandManager() {
         brandForm = new BrandForm(null, true);
-        model = new TbBrandModel(getAll(Brand.class));
-        brandCRUD = new BrandCRUD(null, true, this, model);
+        tbBrandModel = new TbBrandModel(getAll(Brand.class));
+        brandCRUD = new BrandCRUD(null, true, this, tbBrandModel);
     }
 
     @Override
@@ -50,7 +50,7 @@ public class BrandManager extends AbstractManager<Brand> {
         brandCRUD.setVisible(true);
     }
 
-    public TbBrandModel getModel() {
-        return model;
+    public TbBrandModel getTbBrandModel() {
+        return tbBrandModel;
     }
 }

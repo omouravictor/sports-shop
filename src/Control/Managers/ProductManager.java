@@ -2,8 +2,6 @@ package Control.Managers;
 
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Shirt;
-import Model.Tables.TbBrandModel;
-import Model.Tables.TbCategoryModel;
 import Model.Tables.TbProductModel;
 import View.CRUD.ProductCRUD;
 import View.Forms.ProductForm;
@@ -13,14 +11,15 @@ public class ProductManager extends AbstractManager<Product> {
 
     private ProductForm commonForm;
     private ShirtsForm shirtForm;
-    private TbProductModel model;
+    private TbProductModel tbProductModel;
     private ProductCRUD productCRUD;
 
-    public ProductManager(TbCategoryModel tbCategorySearchModel, TbBrandModel tbBrandSearchModel) {
-        commonForm = new ProductForm(null, true, tbCategorySearchModel, tbBrandSearchModel);
-        shirtForm = new ShirtsForm(null, true, tbBrandSearchModel);
-        model = new TbProductModel(getAll(Product.class));
-        productCRUD = new ProductCRUD(null, true, this, model);
+    public ProductManager(CategoryManager categoryManager, BrandManager brandManager) {
+        commonForm = new ProductForm(null, true,
+                categoryManager.getTbCategoryModel(), brandManager.getTbBrandModel());
+        shirtForm = new ShirtsForm(null, true, brandManager.getTbBrandModel());
+        tbProductModel = new TbProductModel(getAll(Product.class));
+        productCRUD = new ProductCRUD(null, true, this, tbProductModel);
     }
 
     public Product create(int parameter) throws Exception {
@@ -75,12 +74,12 @@ public class ProductManager extends AbstractManager<Product> {
         productCRUD.setVisible(true);
     }
 
-    public TbProductModel getModel() {
-        return model;
+    public TbProductModel getTbProductModel() {
+        return tbProductModel;
     }
 
     @Override
     public Product create() throws Exception {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

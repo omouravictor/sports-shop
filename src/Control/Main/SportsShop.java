@@ -22,11 +22,9 @@ public class SportsShop {
         brandManager = new BrandManager();
         categoryManager = new CategoryManager();
         clientManager = new ClientManager();
-        productManager = new ProductManager(categoryManager.getModel(),
-                brandManager.getModel());
+        productManager = new ProductManager(categoryManager, brandManager);
         saleProductManager = new SaleProductManager();
-        saleManager = new SaleManager(saleProductManager,
-                clientManager.getModel(), productManager.getModel());
+        saleManager = new SaleManager(productManager, saleProductManager, clientManager);
         mainView = new MainScreen(this);
     }
 

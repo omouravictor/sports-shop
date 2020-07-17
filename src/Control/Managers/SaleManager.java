@@ -1,27 +1,27 @@
 package Control.Managers;
 
 import Model.EntitiesClasses.Sale;
-import Model.Tables.TbClientModel;
-import Model.Tables.TbProductModel;
 import Model.Tables.TbSaleModel;
 import View.CRUD.SaleCRUD;
 import View.Forms.SaleForm;
 
 public class SaleManager extends AbstractManager<Sale> {
 
+    private ProductManager productManager;
     private SaleProductManager saleProductManager;
+    private TbSaleModel tbSaleModel;
     private SaleForm saleForm;
-    private TbSaleModel model;
     private SaleCRUD saleCRUD;
 
-    public SaleManager(SaleProductManager saleProductManager,
-            TbClientModel tbClientSearchModel,
-            TbProductModel tbProductSearchModel) {
+    public SaleManager(ProductManager productManager,
+            SaleProductManager saleProductManager,
+            ClientManager clientManager) {
+        this.productManager = productManager;
         this.saleProductManager = saleProductManager;
-        saleForm = new SaleForm(null, true, tbClientSearchModel,
-                tbProductSearchModel);
-        model = new TbSaleModel(getAll(Sale.class));
-        saleCRUD = new SaleCRUD(null, true, this, model);
+        saleForm = new SaleForm(null, true, clientManager.getTbClientModel(),
+                productManager.getTbProductModel());
+        tbSaleModel = new TbSaleModel(getAll(Sale.class));
+        saleCRUD = new SaleCRUD(null, true, this, tbSaleModel);
     }
 
     @Override
