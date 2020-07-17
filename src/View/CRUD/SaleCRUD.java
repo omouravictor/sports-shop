@@ -46,6 +46,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbSale = new javax.swing.JTable();
+        btRefresh = new javax.swing.JButton();
         panFooter = new javax.swing.JPanel();
         btCreate = new javax.swing.JButton();
         btRead = new javax.swing.JButton();
@@ -157,21 +158,34 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         tbSale.setModel(this.tbSaleModel);
         panGrid.setViewportView(tbSale);
 
+        btRefresh.setText("Refresh");
+        btRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panTbSearchLayout = new javax.swing.GroupLayout(panTbSearch);
         panTbSearch.setLayout(panTbSearchLayout);
         panTbSearchLayout.setHorizontalGroup(
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTbSearchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panGrid)
+                .addGroup(panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panGrid)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTbSearchLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btRefresh)))
                 .addContainerGap())
         );
         panTbSearchLayout.setVerticalGroup(
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panTbSearchLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTbSearchLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(btRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         btCreate.setText("Create");
@@ -344,6 +358,10 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         clearSaleFilters();
     }//GEN-LAST:event_btClearActionPerformed
 
+    private void btRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshActionPerformed
+        tbSaleModel.setList(saleManager.getAll(Sale.class));
+    }//GEN-LAST:event_btRefreshActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -411,6 +429,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
     private javax.swing.JButton btCreate;
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btRead;
+    private javax.swing.JButton btRefresh;
     private javax.swing.JButton btSearch;
     private javax.swing.JButton btUpdate;
     private javax.swing.JLabel labClientCPF;

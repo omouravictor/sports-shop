@@ -21,6 +21,7 @@ public abstract class DAO<T> {
 
     public T createInBank(T toCreate) throws Exception {
         // Sends the Exception to the Managers
+        entityManager.clear();
         entityManager.getTransaction().begin();
         entityManager.persist(toCreate);
         entityManager.getTransaction().commit();
@@ -49,6 +50,7 @@ public abstract class DAO<T> {
 
     public List<T> getAllFromBank(Class tClass) {
         try {
+            entityManager.clear();
             javax.persistence.criteria.CriteriaQuery cq;
             cq = entityManager.getCriteriaBuilder().createQuery();
             cq.select(cq.from(tClass));

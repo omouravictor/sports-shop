@@ -57,6 +57,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbProduct = new javax.swing.JTable();
+        btRefresh = new javax.swing.JButton();
         panFooter = new javax.swing.JPanel();
         btCreate = new javax.swing.JButton();
         btRead = new javax.swing.JButton();
@@ -256,21 +257,34 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         tbProduct.setModel(this.tbProductModel);
         panGrid.setViewportView(tbProduct);
 
+        btRefresh.setText("Refresh");
+        btRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRefreshActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panTbSearchLayout = new javax.swing.GroupLayout(panTbSearch);
         panTbSearch.setLayout(panTbSearchLayout);
         panTbSearchLayout.setHorizontalGroup(
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panTbSearchLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panGrid)
+                .addGroup(panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 723, Short.MAX_VALUE)
+                    .addGroup(panTbSearchLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btRefresh)))
                 .addContainerGap())
         );
         panTbSearchLayout.setVerticalGroup(
             panTbSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panTbSearchLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panTbSearchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addComponent(panGrid, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btCreate.setText("Create");
@@ -353,7 +367,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
                 .addComponent(panFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panTbSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -475,6 +489,10 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         filterTbProduct();
     }//GEN-LAST:event_btProductSearchActionPerformed
 
+    private void btRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshActionPerformed
+        tbProductModel.setList(productManager.getAll(Product.class));
+    }//GEN-LAST:event_btRefreshActionPerformed
+
     public void initSetup() {
         txtCategory.setDocument(new TxtModelsTypes(TxtTypes.STRING));
         txtBrand.setDocument(new TxtModelsTypes(TxtTypes.STRING));
@@ -558,6 +576,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private javax.swing.JButton btDelete;
     private javax.swing.JButton btProductSearch;
     private javax.swing.JButton btRead;
+    private javax.swing.JButton btRefresh;
     private javax.swing.JButton btUpdate;
     private javax.swing.JLabel labBrand;
     private javax.swing.JLabel labCategory;
