@@ -39,8 +39,8 @@ public class Sale {
     private List<Product> productsTransient;
 
     public Sale() {
-        saleProducts = new ArrayList<>();
-        productsTransient = new ArrayList<>();
+        this.saleProducts = new ArrayList<>();
+        this.productsTransient = new ArrayList<>();
     }
 
     public Sale(Sale sale) {
@@ -48,7 +48,9 @@ public class Sale {
         this.client = sale.getClient();
         this.saleDate = sale.getSaleDate();
         this.saleCost = sale.getSaleCost();
-        this.saleProducts = sale.getSaleProducts();
+        this.saleProducts = new ArrayList<>();
+        this.setSaleProducts(sale.getSaleProducts());
+        this.productsTransient = new ArrayList<>();
     }
 
     public List<Product> getProductsTransient() {
@@ -107,6 +109,11 @@ public class Sale {
 
     public List<SaleProduct> getSaleProducts() {
         return saleProducts;
+    }
+
+    public void setSaleProducts(List<SaleProduct> saleProducts) {
+        this.saleProducts.clear();
+        this.saleProducts.addAll(saleProducts);
     }
 
     public String getSaleDate() {
