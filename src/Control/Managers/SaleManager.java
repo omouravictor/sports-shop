@@ -7,7 +7,6 @@ import View.Forms.SaleForm;
 
 public class SaleManager extends AbstractManager<Sale> {
 
-    private ProductManager productManager;
     private SaleProductManager saleProductManager;
     private TbSaleModel tbSaleModel;
     private SaleForm saleForm;
@@ -16,7 +15,6 @@ public class SaleManager extends AbstractManager<Sale> {
     public SaleManager(ProductManager productManager,
             SaleProductManager saleProductManager,
             ClientManager clientManager) {
-        this.productManager = productManager;
         this.saleProductManager = saleProductManager;
         saleForm = new SaleForm(null, true, clientManager.getTbClientModel(),
                 productManager.getTbProductModel());
