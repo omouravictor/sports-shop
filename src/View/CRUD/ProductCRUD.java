@@ -54,6 +54,8 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         txtSize = new javax.swing.JTextField();
         btClearProductSearch = new javax.swing.JButton();
         btProductSearch = new javax.swing.JButton();
+        labStock = new javax.swing.JLabel();
+        txtStock = new javax.swing.JTextField();
         panTbSearch = new javax.swing.JPanel();
         panGrid = new javax.swing.JScrollPane();
         tbProduct = new javax.swing.JTable();
@@ -164,6 +166,15 @@ public class ProductCRUD extends AbstractJDialog<Product> {
             }
         });
 
+        labStock.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        labStock.setText("Stock");
+
+        txtStock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtStockActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panFilterLayout = new javax.swing.GroupLayout(panFilter);
         panFilter.setLayout(panFilterLayout);
         panFilterLayout.setHorizontalGroup(
@@ -200,16 +211,18 @@ public class ProductCRUD extends AbstractJDialog<Product> {
                     .addComponent(labSize))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panFilterLayout.createSequentialGroup()
-                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSize, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btClearProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btProductSearch))))
-                .addContainerGap(144, Short.MAX_VALUE))
+                        .addComponent(labStock)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btClearProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btProductSearch))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         panFilterLayout.setVerticalGroup(
             panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,6 +235,9 @@ public class ProductCRUD extends AbstractJDialog<Product> {
                                 .addComponent(labCategory)
                                 .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(labPlayer))
+                            .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labStock))
                             .addGroup(panFilterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -493,6 +509,10 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         tbProductModel.setList(productManager.getAll(Product.class));
     }//GEN-LAST:event_btRefreshActionPerformed
 
+    private void txtStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStockActionPerformed
+        filterTbProduct();
+    }//GEN-LAST:event_txtStockActionPerformed
+
     public void initSetup() {
         txtCategory.setDocument(new TxtModelsTypes(TxtTypes.STRING));
         txtBrand.setDocument(new TxtModelsTypes(TxtTypes.STRING));
@@ -503,6 +523,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         txtNumber.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
         txtColor.setDocument(new TxtModelsTypes(TxtTypes.STRING));
         txtSize.setDocument(new TxtModelsTypes(TxtTypes.STRING));
+        txtStock.setDocument(new TxtModelsTypes(TxtTypes.INTEGER));
     }
 
     public void clearProductFilters() {
@@ -515,6 +536,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         txtNumber.setText("");
         txtColor.setText("");
         txtSize.setText("");
+        txtStock.setText("");
         tbProduct.setRowSorter(null);
     }
 
@@ -523,12 +545,12 @@ public class ProductCRUD extends AbstractJDialog<Product> {
                 && txtTeam.getText().isEmpty() && txtPlayer.getText().isEmpty()
                 && txtShirtName.getText().isEmpty() && txtSleeves.getText().isEmpty()
                 && txtNumber.getText().isEmpty() && txtColor.getText().isEmpty()
-                && txtSize.getText().isEmpty();
+                && txtSize.getText().isEmpty() && txtStock.getText().isEmpty();
     }
 
     public void filterTbProduct() {
         if (!productFiltersAreEmpty()) {
-            String[] filters = {txtCategory.getText(), txtBrand.getText(),
+            String[] filters = {txtStock.getText(), txtCategory.getText(), txtBrand.getText(),
                 txtTeam.getText(), txtPlayer.getText(), txtShirtName.getText(),
                 txtSleeves.getText(), txtNumber.getText(), txtColor.getText(),
                 txtSize.getText()};
@@ -586,6 +608,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private javax.swing.JLabel labShirtName;
     private javax.swing.JLabel labSize;
     private javax.swing.JLabel labSleeves;
+    private javax.swing.JLabel labStock;
     private javax.swing.JLabel labTeam;
     private javax.swing.JPanel panFilter;
     private javax.swing.JPanel panFooter;
@@ -600,6 +623,7 @@ public class ProductCRUD extends AbstractJDialog<Product> {
     private javax.swing.JTextField txtShirtName;
     private javax.swing.JTextField txtSize;
     private javax.swing.JTextField txtSleeves;
+    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTeam;
     // End of variables declaration//GEN-END:variables
 }

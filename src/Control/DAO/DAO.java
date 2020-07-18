@@ -7,54 +7,54 @@ import javax.persistence.Persistence;
 
 public abstract class DAO<T> {
 
-    protected EntityManagerFactory entityManagerFactory;
-    protected EntityManager entityManager;
+    protected EntityManagerFactory emFactory;
+    protected EntityManager em;
 
     public DAO() {
         try {
-            entityManagerFactory = Persistence.createEntityManagerFactory("LojaEsportivaPU");
-            entityManager = entityManagerFactory.createEntityManager();
+            emFactory = Persistence.createEntityManagerFactory("LojaEsportivaPU");
+            em = emFactory.createEntityManager();
         } catch (Exception e) {
             System.out.println("NO CONECTION WITH BANK.");
         }
     }
 
-    public T createInBank(T toCreate) throws Exception {
+    public T createInBank(T t) throws Exception {
         // Sends the Exception to the Managers
-        entityManager.clear();
-        entityManager.getTransaction().begin();
-        entityManager.persist(toCreate);
-        entityManager.getTransaction().commit();
-        return toCreate;
+        em.clear();
+        em.getTransaction().begin();
+        em.persist(t);
+        em.getTransaction().commit();
+        return t;
     }
 
-    public T updateInBank(T toUpdate) throws Exception {
+    public T updateInBank(T t) throws Exception {
         // Sends the Exception to the Managers
-        entityManager.clear();
-        entityManager.getTransaction().begin();
-        entityManager.merge(toUpdate);
-        entityManager.getTransaction().commit();
-        return toUpdate;
+        em.clear();
+        em.getTransaction().begin();
+        em.merge(t);
+        em.getTransaction().commit();
+        return t;
     }
 
-    public void deleteInBank(T toDelete) throws Exception {
+    public void deleteInBank(T t) throws Exception {
         // Sends the Exception to the Managers
-        entityManager.clear();
-        entityManager.getTransaction().begin();
-        if (!entityManager.contains(toDelete)) {
-            toDelete = entityManager.merge(toDelete);
+        em.clear();
+        em.getTransaction().begin();
+        if (!em.contains(t)) {
+            t = em.merge(t);
         }
-        entityManager.remove(toDelete);
-        entityManager.getTransaction().commit();
+        em.remove(t);
+        em.getTransaction().commit();
     }
 
     public List<T> getAllFromBank(Class tClass) {
         try {
-            entityManager.clear();
+            em.clear();
             javax.persistence.criteria.CriteriaQuery cq;
-            cq = entityManager.getCriteriaBuilder().createQuery();
+            cq = em.getCriteriaBuilder().createQuery();
             cq.select(cq.from(tClass));
-            return entityManager.createQuery(cq).getResultList();
+            return em.createQuery(cq).getResultList();
         } catch (Exception ex) {
             System.out.println("getALLFromBank() FAILED IN DAO CLASS.");
             return null;
@@ -62,6 +62,6 @@ public abstract class DAO<T> {
     }
 
     public EntityManager getEntityManager() {
-        return entityManager;
+        return em;
     }
 }
