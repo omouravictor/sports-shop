@@ -7,6 +7,7 @@ import Model.Classes.TxtTypes;
 import Model.EntitiesClasses.Client;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
+import Model.EntitiesClasses.SaleProduct;
 import Model.Interfaces.IForms;
 import Model.Tables.TbAddedProductModel;
 import Model.Tables.TbClientModel;
@@ -830,7 +831,9 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
-        newSale.setProductsTransient(tbAddedProductsModel.getList());
+        for (Product proTran : tbAddedProductsModel.getList()) {
+            newSale.getSaleProducts().add(new SaleProduct(newSale, proTran));
+        }
         newSale.setSaleCost(parseTxtCostToDouble(txtTotalCost));
         return newSale;
     }

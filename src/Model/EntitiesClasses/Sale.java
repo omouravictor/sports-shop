@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbsale")
@@ -35,12 +34,8 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<SaleProduct> saleProducts;
 
-    @Transient
-    private List<Product> productsTransient;
-
     public Sale() {
         this.saleProducts = new ArrayList<>();
-        this.productsTransient = new ArrayList<>();
     }
 
     public Sale(Sale sale) {
@@ -50,16 +45,6 @@ public class Sale {
         this.saleCost = sale.getSaleCost();
         this.saleProducts = new ArrayList<>();
         this.setSaleProducts(sale.getSaleProducts());
-        this.productsTransient = new ArrayList<>();
-    }
-
-    public List<Product> getProductsTransient() {
-        return productsTransient;
-    }
-
-    public void setProductsTransient(List<Product> productsTransient) {
-        this.productsTransient.clear();
-        this.productsTransient.addAll(productsTransient);
     }
 
     public List<Product> getProducts() {

@@ -5,7 +5,6 @@ import Control.Managers.CategoryManager;
 import Control.Managers.ClientManager;
 import Control.Managers.ProductManager;
 import Control.Managers.SaleManager;
-import Control.Managers.SaleProductManager;
 import View.Main.MainScreen;
 
 public class SportsShop {
@@ -14,7 +13,6 @@ public class SportsShop {
     private CategoryManager categoryManager;
     private ClientManager clientManager;
     private ProductManager productManager;
-    private SaleProductManager saleProductManager;
     private SaleManager saleManager;
     private MainScreen mainView;
 
@@ -23,8 +21,7 @@ public class SportsShop {
         categoryManager = new CategoryManager();
         clientManager = new ClientManager();
         productManager = new ProductManager(categoryManager, brandManager);
-        saleProductManager = new SaleProductManager();
-        saleManager = new SaleManager(productManager, saleProductManager, clientManager);
+        saleManager = new SaleManager(productManager, clientManager);
         mainView = new MainScreen(this);
     }
 
