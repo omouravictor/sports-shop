@@ -28,7 +28,7 @@ public class SaleManager extends AbstractManager<Sale> {
         Sale newSale = saleForm.create();
         if (newSale != null) {
             newSale = dao.createInBank(newSale);
-            for (Product product : newSale.getProducts()) {
+            for (Product product : newSale.getProductsTransient()) {
                 int numInStock = product.getNumInStock();
                 int qtdTransient = product.getQtdTransient();
                 product.setNumInStock(numInStock - qtdTransient);

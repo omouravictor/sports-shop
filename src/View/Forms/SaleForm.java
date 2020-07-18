@@ -831,6 +831,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         Sale newSale = new Sale();
         newSale.setClient(tbAddedClientModel.getObjectByRow(0));
         newSale.setSaleDate(txtDate.getText());
+        newSale.setProductsTransient(tbAddedProductsModel.getList());
         for (Product proTran : tbAddedProductsModel.getList()) {
             newSale.getSaleProducts().add(new SaleProduct(newSale, proTran));
         }
