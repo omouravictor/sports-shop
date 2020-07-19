@@ -771,6 +771,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         spQuantity.setEnabled(true);
         btAddClient.setEnabled(true);
         btAddProduct.setEnabled(true);
+        btClearClientSearch.setEnabled(true);
         btClientSearch.setEnabled(true);
         btRemoveClient.setEnabled(true);
         btRemoveProduct.setEnabled(true);
@@ -789,6 +790,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtColor.setEnabled(true);
         txtSize.setEnabled(true);
         txtStock.setEnabled(true);
+        tbAddedClient.setEnabled(true);
         tbClientSearch.setEnabled(true);
         tbProductSearch.setEnabled(true);
         tbAddedProducts.setEnabled(true);
@@ -800,6 +802,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         btAddClient.setEnabled(false);
         btAddProduct.setEnabled(false);
         btClientSearch.setEnabled(false);
+        btClearClientSearch.setEnabled(false);
         btRemoveClient.setEnabled(false);
         btRemoveProduct.setEnabled(false);
         btProductSearch.setEnabled(false);
@@ -817,6 +820,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         txtColor.setEnabled(false);
         txtSize.setEnabled(false);
         txtStock.setEnabled(false);
+        tbAddedClient.setEnabled(false);
         tbClientSearch.setEnabled(false);
         tbProductSearch.setEnabled(false);
         tbAddedProducts.setEnabled(false);
@@ -1080,8 +1084,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }
 
     public int getSpQuantity() {
-        int qtd = Integer.parseInt(spQuantity.getValue().toString());
-        return qtd;
+        return Integer.parseInt(spQuantity.getValue().toString());
     }
 
     public void updateCostByProductValue() {
