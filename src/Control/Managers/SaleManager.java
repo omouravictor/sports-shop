@@ -19,7 +19,7 @@ public class SaleManager extends AbstractManager<Sale> {
         saleForm = new SaleForm(null, true, clientManager.getTbClientModel(),
                 productManager.getTbProductModel());
         tbSaleModel = new TbSaleModel(getAll(Sale.class));
-        saleCRUD = new SaleCRUD(null, true, this, tbSaleModel);
+        saleCRUD = new SaleCRUD(null, true, this, productManager, tbSaleModel);
     }
 
     @Override

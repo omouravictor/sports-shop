@@ -1,9 +1,11 @@
 package View.CRUD;
 
+import Control.Managers.ProductManager;
 import Control.Managers.SaleManager;
 import Model.Classes.AbstractJDialog;
 import Model.Classes.TxtModelsTypes;
 import Model.Classes.TxtTypes;
+import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
 import Model.Tables.TbSaleModel;
 import javax.swing.JOptionPane;
@@ -11,6 +13,7 @@ import javax.swing.JOptionPane;
 public class SaleCRUD extends AbstractJDialog<Sale> {
 
     private SaleManager saleManager;
+    private ProductManager productManager;
     private TbSaleModel tbSaleModel;
 
     public SaleCRUD(java.awt.Frame parent, boolean modal) {
@@ -19,10 +22,11 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
         initSetup();
     }
 
-    public SaleCRUD(java.awt.Frame parent, boolean modal,
-            SaleManager saleManager, TbSaleModel model) {
+    public SaleCRUD(java.awt.Frame parent, boolean modal, SaleManager saleManager,
+            ProductManager productManager, TbSaleModel model) {
         super(parent, modal);
         this.saleManager = saleManager;
+        this.productManager = productManager;
         this.tbSaleModel = model;
         initComponents();
         initSetup();
@@ -360,6 +364,7 @@ public class SaleCRUD extends AbstractJDialog<Sale> {
 
     private void btRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefreshActionPerformed
         tbSaleModel.setList(saleManager.getAll(Sale.class));
+        productManager.getTbProductModel().setList(productManager.getAll(Product.class));
     }//GEN-LAST:event_btRefreshActionPerformed
 
     public static void main(String args[]) {
