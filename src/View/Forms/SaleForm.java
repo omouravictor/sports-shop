@@ -613,12 +613,14 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
         if (rowIsSelected(tbProductSearch)) {
             Product selectedProduct = getProductSelectedInTbSearchProduct();
             int qtd = getSpQuantity();
-            if (tbAddedProductsModel.getList().contains(selectedProduct)) {
-                selectedProduct.setQtdTransient(qtd + selectedProduct.getQtdTransient());
-                tbAddedProductsModel.updateObjectRow(selectedProduct, selectedProduct);
-            } else {
-                selectedProduct.setQtdTransient(qtd);
-                tbAddedProductsModel.addObjectRow(selectedProduct);
+            if (qtd + selectedProduct.getQtdTransient() <= selectedProduct.getNumInStock()) {
+                if (tbAddedProductsModel.getList().contains(selectedProduct)) {
+                    selectedProduct.setQtdTransient(qtd + selectedProduct.getQtdTransient());
+                    tbAddedProductsModel.updateObjectRow(selectedProduct, selectedProduct);
+                } else {
+                    selectedProduct.setQtdTransient(qtd);
+                    tbAddedProductsModel.addObjectRow(selectedProduct);
+                }
             }
         }
     }//GEN-LAST:event_btAddProductActionPerformed
@@ -640,8 +642,9 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
     private void btRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveProductActionPerformed
         if (productsAreAdded()) {
-            int row = tbAddedProducts.getSelectedRow();
-            tbAddedProductsModel.removeObjectRow(row);
+            Product productSelected = getProductSelectedInTbAddedProducts();
+            productSelected.setQtdTransient(0);
+            tbAddedProductsModel.removeObjectRow(productSelected);
         }
     }//GEN-LAST:event_btRemoveProductActionPerformed
 

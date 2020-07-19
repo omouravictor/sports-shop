@@ -62,9 +62,7 @@ public class SaleManager extends AbstractManager<Sale> {
         dao.deleteInBank(sale);
         for (SaleProduct salePro : sale.getSaleProducts()) {
             Product product = salePro.getProduct();
-            int numInStock = product.getNumInStock();
-            int qtd = salePro.getQtd();
-            product.setNumInStock(numInStock + qtd);
+            product.setNumInStock(product.getNumInStock() + salePro.getQtd());
             productManager.updateProductStock(product);
         }
     }
