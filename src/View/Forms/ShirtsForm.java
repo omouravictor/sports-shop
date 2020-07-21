@@ -69,6 +69,7 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
         rbShort = new javax.swing.JRadioButton();
         labSleeves = new javax.swing.JLabel();
         rbNoSleeves = new javax.swing.JRadioButton();
+        btClear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -177,13 +178,20 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
         rbGroupSleeves.add(rbNoSleeves);
         rbNoSleeves.setText("NoSleeves");
 
+        btClear.setText("Clear");
+        btClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
         panInputs.setLayout(panInputsLayout);
         panInputsLayout.setHorizontalGroup(
             panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panInputsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(panInputsLayout.createSequentialGroup()
                             .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,14 +219,16 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
                         .addComponent(btAddBrand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btRemoveBrand))
-                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addComponent(labBrand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btClear)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btBrandSearch)))
-                .addGap(28, 28, 28)
+                        .addComponent(btBrandSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +262,8 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labBrand)
                     .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btBrandSearch))
+                    .addComponent(btBrandSearch)
+                    .addComponent(btClear))
                 .addGap(18, 18, 18)
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,6 +395,11 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
     private void btBrandSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBrandSearchActionPerformed
         filterTbBrandSearch();
     }//GEN-LAST:event_btBrandSearchActionPerformed
+
+    private void btClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearActionPerformed
+        txtBrand.setText("");
+        tbBrandSearch.setRowSorter(null);
+    }//GEN-LAST:event_btClearActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -698,6 +714,7 @@ public class ShirtsForm extends AbstractJDialog<Shirt> implements IForms<Shirt> 
     private javax.swing.JButton btAddBrand;
     private javax.swing.JButton btBrandSearch;
     private javax.swing.JButton btCancel;
+    private javax.swing.JButton btClear;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btRemoveBrand;
     private javax.swing.JLabel labBrand;

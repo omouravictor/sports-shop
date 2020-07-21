@@ -126,7 +126,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -163,16 +163,18 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btRemoveBrand" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="panGrid2" alignment="0" min="-2" pref="352" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labBrand" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="txtBrand" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Component id="txtBrand" min="-2" pref="153" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btClear" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btBrandSearch" min="-2" max="-2" attributes="0"/>
+                          <Component id="btBrandSearch" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="panGrid2" min="-2" pref="362" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -217,6 +219,7 @@
                       <Component id="labBrand" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btBrandSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btClear" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -487,6 +490,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="NoSleeves"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btClear">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Clear"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btClearActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

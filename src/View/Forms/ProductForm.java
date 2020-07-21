@@ -78,6 +78,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         labBrandSelected = new javax.swing.JLabel();
         panGrid6 = new javax.swing.JScrollPane();
         tbAddedBrand = new javax.swing.JTable();
+        btClearCategorySearch = new javax.swing.JButton();
+        btClearBrandSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -213,6 +215,20 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
         tbAddedBrand.setModel(this.tbAddedBrandModel);
         panGrid6.setViewportView(tbAddedBrand);
 
+        btClearCategorySearch.setText("Clear");
+        btClearCategorySearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearCategorySearchActionPerformed(evt);
+            }
+        });
+
+        btClearBrandSearch.setText("Clear");
+        btClearBrandSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btClearBrandSearchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panInputsLayout = new javax.swing.GroupLayout(panInputs);
         panInputs.setLayout(panInputsLayout);
         panInputsLayout.setHorizontalGroup(
@@ -240,7 +256,7 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtSize)
                                     .addComponent(txtColor, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(181, 181, 181)
+                        .addGap(45, 45, 45)
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panInputsLayout.createSequentialGroup()
                                 .addComponent(labNumberPresent)
@@ -252,8 +268,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                                     .addComponent(labTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(36, 36, 36)
                                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtPlayerPresent, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(txtTeam))))
+                                    .addComponent(txtPlayerPresent)
+                                    .addComponent(txtTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,41 +281,45 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                                     .addGroup(panInputsLayout.createSequentialGroup()
                                         .addGap(34, 34, 34)
                                         .addComponent(panGrid4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                    .addGroup(panInputsLayout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(labCategorySelected)
-                                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addGap(55, 55, 55))))
                             .addGroup(panInputsLayout.createSequentialGroup()
                                 .addComponent(labCategory)
-                                .addGap(9, 9, 9)
-                                .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCategory)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btClearCategorySearch)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btCategorySearch))
-                            .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
+                            .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panInputsLayout.createSequentialGroup()
-                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panInputsLayout.createSequentialGroup()
-                                        .addComponent(labBrand)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btBrandSearch)))
-                                .addContainerGap())
                             .addGroup(panInputsLayout.createSequentialGroup()
                                 .addComponent(btAddBrand)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btRemoveBrand)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(46, 46, 46)
                                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
                                         .addComponent(labBrandSelected)
                                         .addGap(65, 65, 65))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panInputsLayout.createSequentialGroup()
                                         .addComponent(panGrid6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap())))))))
+                                        .addContainerGap())))
+                            .addGroup(panInputsLayout.createSequentialGroup()
+                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addGroup(panInputsLayout.createSequentialGroup()
+                                        .addComponent(labBrand)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btClearBrandSearch)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(btBrandSearch)))
+                                .addContainerGap())))))
         );
         panInputsLayout.setVerticalGroup(
             panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,17 +328,16 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panInputsLayout.createSequentialGroup()
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btCategorySearch)
+                            .addComponent(btClearCategorySearch)
                             .addComponent(txtCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labCategory)
-                            .addComponent(btCategorySearch))
+                            .addComponent(labCategory))
                         .addGap(18, 18, 18)
                         .addComponent(panGrid3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panInputsLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btAddCategory)
-                                    .addComponent(btRemoveCategory)))
+                            .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btAddCategory)
+                                .addComponent(btRemoveCategory))
                             .addGroup(panInputsLayout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(labCategorySelected)
@@ -328,7 +347,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                         .addGroup(panInputsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labBrand)
                             .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btBrandSearch))
+                            .addComponent(btBrandSearch)
+                            .addComponent(btClearBrandSearch))
                         .addGap(18, 18, 18)
                         .addComponent(panGrid2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -375,8 +395,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 698, Short.MAX_VALUE))
-                    .addComponent(panInputs, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE))
+                        .addGap(0, 755, Short.MAX_VALUE))
+                    .addComponent(panInputs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -464,6 +484,16 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private void txtBrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBrandActionPerformed
         filterTbBrandSearch();
     }//GEN-LAST:event_txtBrandActionPerformed
+
+    private void btClearCategorySearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearCategorySearchActionPerformed
+        txtCategory.setText("");
+        tbCategorySearch.setRowSorter(null);
+    }//GEN-LAST:event_btClearCategorySearchActionPerformed
+
+    private void btClearBrandSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btClearBrandSearchActionPerformed
+        txtBrand.setText("");
+        tbBrandSearch.setRowSorter(null);
+    }//GEN-LAST:event_btClearBrandSearchActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -761,6 +791,8 @@ public class ProductForm extends AbstractJDialog<Product> implements IForms<Prod
     private javax.swing.JButton btBrandSearch;
     private javax.swing.JButton btCancel;
     private javax.swing.JButton btCategorySearch;
+    private javax.swing.JButton btClearBrandSearch;
+    private javax.swing.JButton btClearCategorySearch;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btRemoveBrand;
     private javax.swing.JButton btRemoveCategory;
