@@ -61,9 +61,9 @@ public class SaleManager extends AbstractManager<Sale> {
         for (SaleProduct salePro : sale.getSaleProducts()) {
             Product product = salePro.getProduct();
             product.setNumInStock(product.getNumInStock() + salePro.getQtd());
-            product = productManager.updateProduct(product);
-            productManager.getTbProductModel().updateObjectRow(product, product);
+            productManager.updateProduct(product);
         }
+        productManager.getTbProductModel().setList(productManager.getAll(Product.class));
     }
 
     @Override
