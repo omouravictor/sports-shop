@@ -1,6 +1,5 @@
 package Model.EntitiesClasses;
 
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -86,34 +85,6 @@ public class Product {
         this.sizeProduct = sizeProduct;
         this.cost = cost;
         this.numInStock = numInStock;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        Product pro = (Product) o;
-        return Objects.equals(category, pro.category)
-                && Objects.equals(brand, pro.brand)
-                && Objects.equals(teamName, pro.teamName)
-                && Objects.equals(playerPresent, pro.playerPresent)
-                && Objects.equals(numberPresent, pro.numberPresent)
-                && Objects.equals(sizeProduct, pro.sizeProduct)
-                && Objects.equals(color, pro.color)
-                && Objects.equals(cost, pro.cost)
-                && Objects.equals(numInStock, pro.numInStock);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(category, brand, teamName, playerPresent,
-                numberPresent, sizeProduct, color, cost, numInStock);
     }
 
     public Long getId() {

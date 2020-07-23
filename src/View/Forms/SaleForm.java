@@ -20,7 +20,7 @@ import javax.swing.event.TableModelListener;
 
 public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
 
-    private boolean isConfirmed = false;
+    private boolean isConfirmed;
     private TbClientModel tbClientSearchModel;
     private TbProductModel tbProductSearchModel;
     private TbClientModel tbAddedClientModel = new TbClientModel();
@@ -881,6 +881,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public Sale create() {
         prepareCreate();
+        isConfirmed = false;
         showForm();
         if (isConfirmed) {
             return getObjectCreated();
@@ -953,6 +954,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     @Override
     public Sale update(Sale t) {
         prepareUpdate(t);
+        isConfirmed = false;
         showForm();
         if (isConfirmed) {
             return getObjectUpdated(t);

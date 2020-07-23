@@ -2,7 +2,6 @@ package Model.EntitiesClasses;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,25 +69,6 @@ public class Sale {
     public void setProductsTransient(List<Product> productsTransient) {
         this.productsTransient.clear();
         this.productsTransient.addAll(productsTransient);
-    }
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Sale sale = (Sale) o;
-        return Objects.equals(client, sale.client)
-                && Objects.equals(saleDate, sale.saleDate)
-                && Objects.equals(saleCost, sale.saleCost);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(client, saleDate, saleCost);
     }
     
     public void setId(Long id) {
