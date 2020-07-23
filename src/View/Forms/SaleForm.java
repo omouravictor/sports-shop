@@ -641,7 +641,7 @@ public class SaleForm extends AbstractJDialog<Sale> implements IForms<Sale> {
     }//GEN-LAST:event_btAddClientActionPerformed
 
     private void btRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoveProductActionPerformed
-        if (productsAreAdded()) {
+        if (rowIsSelected(tbAddedProducts)) {
             Product productSelected = getProductSelectedInTbAddedProducts();
             productSelected.setQtdTransient(0);
             tbAddedProductsModel.removeObjectRow(productSelected);
