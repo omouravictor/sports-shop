@@ -3,7 +3,6 @@ package Control.Managers;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
 import Model.EntitiesClasses.SaleProduct;
-import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbSaleModel;
 import View.CRUD.SaleCRUD;
 import View.Forms.SaleForm;
@@ -63,7 +62,7 @@ public class SaleManager extends AbstractManager<Sale> {
             Product product = salePro.getProduct();
             product.setNumInStock(product.getNumInStock() + salePro.getQtd());
             product = productManager.updateProduct(product);
-            productManager.getTbProductModel().updateObjectRow(product, product);
+            //productManager.getTbProductModel().updateObjectRow(product, product);
         }
     }
 
