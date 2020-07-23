@@ -66,8 +66,8 @@ public class Product {
         this.category = product.getCategory();
         this.brand = product.getBrand();
         this.teamName = product.getTeamName();
-        this.playerPresent = product.getPlayerPresent();
-        this.numberPresent = product.getNumberPresent();
+        setPlayerPresent(product.getPlayerPresent());
+        setNumberPresent(product.getNumberPresent());
         this.color = product.getColor();
         this.sizeProduct = product.getSizeProduct();
         this.cost = product.getCost();
@@ -80,8 +80,8 @@ public class Product {
         this.category = category;
         this.brand = brand;
         this.teamName = teamName;
-        this.playerPresent = playerPresentName;
-        this.numberPresent = numberPresent;
+        setPlayerPresent(playerPresentName);
+        setNumberPresent(numberPresent);
         this.color = color;
         this.sizeProduct = sizeProduct;
         this.cost = cost;
@@ -183,7 +183,7 @@ public class Product {
     public void setCost(double cost) {
         this.cost = cost;
     }
-    
+
     public int getQtdTransient() {
         return qtdTransient;
     }

@@ -3,6 +3,7 @@ package Control.Managers;
 import Model.EntitiesClasses.Product;
 import Model.EntitiesClasses.Sale;
 import Model.EntitiesClasses.SaleProduct;
+import Model.EntitiesClasses.Shirt;
 import Model.Tables.TbSaleModel;
 import View.CRUD.SaleCRUD;
 import View.Forms.SaleForm;
@@ -19,7 +20,7 @@ public class SaleManager extends AbstractManager<Sale> {
         saleForm = new SaleForm(null, true, clientManager.getTbClientModel(),
                 productManager.getTbProductModel());
         tbSaleModel = new TbSaleModel(getAll(Sale.class));
-        saleCRUD = new SaleCRUD(null, true, this, productManager, tbSaleModel);
+        saleCRUD = new SaleCRUD(null, true, this, tbSaleModel);
     }
 
     @Override
@@ -29,10 +30,8 @@ public class SaleManager extends AbstractManager<Sale> {
         if (newSale != null) {
             newSale = dao.createInBank(newSale);
             for (Product product : newSale.getProductsTransient()) {
-                int numInStock = product.getNumInStock();
-                int qtdTransient = product.getQtdTransient();
-                product.setNumInStock(numInStock - qtdTransient);
-                productManager.updateProductStock(product);
+                product.setNumInStock(product.getNumInStock() - product.getQtdTransient());
+                productManager.updateProduct(product);
             }
             return newSale;
         }
@@ -63,7 +62,8 @@ public class SaleManager extends AbstractManager<Sale> {
         for (SaleProduct salePro : sale.getSaleProducts()) {
             Product product = salePro.getProduct();
             product.setNumInStock(product.getNumInStock() + salePro.getQtd());
-            productManager.updateProductStock(product);
+            product = productManager.updateProduct(product);
+            productManager.getTbProductModel().updateObjectRow(product, product);
         }
     }
 

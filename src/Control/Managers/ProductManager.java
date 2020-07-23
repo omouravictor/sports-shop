@@ -74,9 +74,9 @@ public class ProductManager extends AbstractManager<Product> {
         productCRUD.setVisible(true);
     }
 
-    public void updateProductStock(Product product) throws Exception {
+    public Product updateProduct(Product product) throws Exception {
         // Sends the Exception to the view
-        dao.updateInBank(product);
+        return dao.updateInBank(product);
     }
 
     public TbProductModel getTbProductModel() {
