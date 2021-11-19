@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="LojaEsportivaPU" transaction-type="RESOURCE_LOCAL">
+  <persistence-unit name="SportsShopPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Model.EntitiesClasses.Brand</class>
     <class>Model.EntitiesClasses.Category</class>
-    <class>Model.EntitiesClasses.Shirt</class>
-    <class>Model.EntitiesClasses.Sale</class>
     <class>Model.EntitiesClasses.Client</class>
     <class>Model.EntitiesClasses.Product</class>
+    <class>Model.EntitiesClasses.Sale</class>
     <class>Model.EntitiesClasses.SaleProduct</class>
+    <class>Model.EntitiesClasses.Shirt</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/lojaesportivabank?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sportsshop?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
-      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
