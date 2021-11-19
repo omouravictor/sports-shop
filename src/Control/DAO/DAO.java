@@ -12,10 +12,11 @@ public abstract class DAO<T> {
 
     public DAO() {
         try {
-            emFactory = Persistence.createEntityManagerFactory("LojaEsportivaPU");
+            emFactory = Persistence.createEntityManagerFactory("SportsShopPU");
             em = emFactory.createEntityManager();
         } catch (Exception e) {
-            System.out.println("NO CONECTION WITH BANK.");
+            System.out.println("SEM CONEXÃO COM O BANCO DE DADOS.");
+            System.exit(0);
         }
     }
 
@@ -49,16 +50,11 @@ public abstract class DAO<T> {
     }
 
     public List<T> getAllFromBank(Class tClass) {
-        try {
-            em.clear();
-            javax.persistence.criteria.CriteriaQuery cq;
-            cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(tClass));
-            return em.createQuery(cq).getResultList();
-        } catch (Exception ex) {
-            System.out.println("getALLFromBank() FAILED IN DAO CLASS.");
-            return null;
-        }
+        em.clear();
+        javax.persistence.criteria.CriteriaQuery cq;
+        cq = em.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(tClass));
+        return em.createQuery(cq).getResultList();
     }
 
     public EntityManager getEntityManager() {
