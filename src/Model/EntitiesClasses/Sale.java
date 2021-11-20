@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 public class Sale {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     
     @ManyToOne(optional = false)

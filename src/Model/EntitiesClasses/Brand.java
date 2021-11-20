@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class Brand {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(length = 100, nullable = false, unique = true)
@@ -21,12 +21,12 @@ public class Brand {
 
     public Brand() {
     }
-    
+
     public Brand(Brand brand) {
         this.id = brand.getId();
         this.name = brand.getName();
     }
-    
+
     public Brand(String nameBrand) {
         this.name = nameBrand;
     }
@@ -49,6 +49,6 @@ public class Brand {
 
     @Override
     public String toString() {
-        return name; //Used to print the name in the combo box
+        return name;
     }
 }
