@@ -1,6 +1,6 @@
 # SportsShop
 
-<p>
+<p align="center">
   <img src="https://github.com/omouravictor/omouravictor/blob/main/assets/sports-shop/sports-shop.png" alt="Sports shop">
 </p>
 
