@@ -8,7 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Entity
-@DiscriminatorValue("Shirt's")
+@DiscriminatorValue("Shirt")
 
 public class Shirt extends Product {
 

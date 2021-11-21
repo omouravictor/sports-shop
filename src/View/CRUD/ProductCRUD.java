@@ -396,12 +396,12 @@ public class ProductCRUD extends AbstractJDialog<Product> {
         try {
             Object answer = JOptionPane.showInputDialog(null,
                     "Choose a type below to be created", null, 3, null,
-                    new String[]{"Common", "Shirt's"}, null);
+                    new String[]{"Common", "Shirt"}, null);
             if (answer != null) {
                 if (answer.equals("Common")) {
                     Product newProduct = productManager.create(0);
                     tbProductModel.addObjectRow(newProduct);
-                } else if (answer.equals("Shirt's")) {
+                } else if (answer.equals("Shirt")) {
                     Shirt newShirt = (Shirt) productManager.create(1);
                     tbProductModel.addObjectRow(newShirt);
                 }
