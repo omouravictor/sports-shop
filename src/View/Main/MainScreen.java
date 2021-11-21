@@ -15,117 +15,110 @@ public class MainScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainMenu = new javax.swing.JMenuBar();
-        menuBrand = new javax.swing.JMenu();
-        menuItemCRUDbrand = new javax.swing.JMenuItem();
-        menuCategory = new javax.swing.JMenu();
-        menuItemCRUDcategory = new javax.swing.JMenuItem();
-        menuClient = new javax.swing.JMenu();
-        menuItemCRUDclient = new javax.swing.JMenuItem();
-        menuProduct = new javax.swing.JMenu();
-        menuItemCRUDproduct = new javax.swing.JMenuItem();
-        menuSale = new javax.swing.JMenu();
-        menuItemCRUDsale = new javax.swing.JMenuItem();
+        brandButton = new javax.swing.JButton();
+        categoryButton = new javax.swing.JButton();
+        clientButton = new javax.swing.JButton();
+        productButton = new javax.swing.JButton();
+        saleButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SportsShop");
+        setAutoRequestFocus(false);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        menuBrand.setText("Brand");
-
-        menuItemCRUDbrand.setText("CRUD");
-        menuItemCRUDbrand.addActionListener(new java.awt.event.ActionListener() {
+        brandButton.setText("MARCAS");
+        brandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDbrandActionPerformed(evt);
+                brandButtonActionPerformed(evt);
             }
         });
-        menuBrand.add(menuItemCRUDbrand);
 
-        mainMenu.add(menuBrand);
-
-        menuCategory.setText("Category");
-
-        menuItemCRUDcategory.setText("CRUD");
-        menuItemCRUDcategory.addActionListener(new java.awt.event.ActionListener() {
+        categoryButton.setText("CATEGORIA");
+        categoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDcategoryActionPerformed(evt);
+                categoryButtonActionPerformed(evt);
             }
         });
-        menuCategory.add(menuItemCRUDcategory);
 
-        mainMenu.add(menuCategory);
-
-        menuClient.setText("Client");
-
-        menuItemCRUDclient.setText("CRUD");
-        menuItemCRUDclient.addActionListener(new java.awt.event.ActionListener() {
+        clientButton.setText("CLIENTE");
+        clientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDclientActionPerformed(evt);
+                clientButtonActionPerformed(evt);
             }
         });
-        menuClient.add(menuItemCRUDclient);
 
-        mainMenu.add(menuClient);
-
-        menuProduct.setText("Product");
-
-        menuItemCRUDproduct.setText("CRUD Product");
-        menuItemCRUDproduct.addActionListener(new java.awt.event.ActionListener() {
+        productButton.setText("PRODUTO");
+        productButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDproductActionPerformed(evt);
+                productButtonActionPerformed(evt);
             }
         });
-        menuProduct.add(menuItemCRUDproduct);
 
-        mainMenu.add(menuProduct);
-
-        menuSale.setText("Sale");
-
-        menuItemCRUDsale.setText("CRUD");
-        menuItemCRUDsale.addActionListener(new java.awt.event.ActionListener() {
+        saleButton.setText("PEDIDO");
+        saleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCRUDsaleActionPerformed(evt);
+                saleButtonActionPerformed(evt);
             }
         });
-        menuSale.add(menuItemCRUDsale);
-
-        mainMenu.add(menuSale);
-
-        setJMenuBar(mainMenu);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(brandButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(categoryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(productButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(saleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(clientButton, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(productButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuItemCRUDbrandActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDbrandActionPerformed
+    private void brandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brandButtonActionPerformed
         mainControl.showBrandCRUD();
-    }//GEN-LAST:event_menuItemCRUDbrandActionPerformed
+    }//GEN-LAST:event_brandButtonActionPerformed
 
-    private void menuItemCRUDcategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDcategoryActionPerformed
+    private void categoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryButtonActionPerformed
         mainControl.showCategoryCRUD();
-    }//GEN-LAST:event_menuItemCRUDcategoryActionPerformed
+    }//GEN-LAST:event_categoryButtonActionPerformed
 
-    private void menuItemCRUDclientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDclientActionPerformed
+    private void clientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientButtonActionPerformed
         mainControl.showClientCRUD();
-    }//GEN-LAST:event_menuItemCRUDclientActionPerformed
+    }//GEN-LAST:event_clientButtonActionPerformed
 
-    private void menuItemCRUDproductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDproductActionPerformed
+    private void productButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productButtonActionPerformed
         mainControl.showProductCRUD();
-    }//GEN-LAST:event_menuItemCRUDproductActionPerformed
+    }//GEN-LAST:event_productButtonActionPerformed
 
-    private void menuItemCRUDsaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCRUDsaleActionPerformed
+    private void saleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saleButtonActionPerformed
         mainControl.showSaleCRUD();
-    }//GEN-LAST:event_menuItemCRUDsaleActionPerformed
+    }//GEN-LAST:event_saleButtonActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -152,16 +145,10 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar mainMenu;
-    private javax.swing.JMenu menuBrand;
-    private javax.swing.JMenu menuCategory;
-    private javax.swing.JMenu menuClient;
-    private javax.swing.JMenuItem menuItemCRUDbrand;
-    private javax.swing.JMenuItem menuItemCRUDcategory;
-    private javax.swing.JMenuItem menuItemCRUDclient;
-    private javax.swing.JMenuItem menuItemCRUDproduct;
-    private javax.swing.JMenuItem menuItemCRUDsale;
-    private javax.swing.JMenu menuProduct;
-    private javax.swing.JMenu menuSale;
+    private javax.swing.JButton brandButton;
+    private javax.swing.JButton categoryButton;
+    private javax.swing.JButton clientButton;
+    private javax.swing.JButton productButton;
+    private javax.swing.JButton saleButton;
     // End of variables declaration//GEN-END:variables
 }
