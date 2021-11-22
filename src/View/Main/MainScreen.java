@@ -26,35 +26,35 @@ public class MainScreen extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        brandButton.setText("MARCAS");
+        brandButton.setText("BRAND");
         brandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 brandButtonActionPerformed(evt);
             }
         });
 
-        categoryButton.setText("CATEGORIA");
+        categoryButton.setText("CATEGORY");
         categoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryButtonActionPerformed(evt);
             }
         });
 
-        clientButton.setText("CLIENTE");
+        clientButton.setText("CLIENT");
         clientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientButtonActionPerformed(evt);
             }
         });
 
-        productButton.setText("PRODUTO");
+        productButton.setText("PRODUCT");
         productButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productButtonActionPerformed(evt);
             }
         });
 
-        saleButton.setText("PEDIDO");
+        saleButton.setText("SALE");
         saleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saleButtonActionPerformed(evt);

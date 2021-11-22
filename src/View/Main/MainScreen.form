@@ -71,7 +71,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="brandButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MARCAS"/>
+        <Property name="text" type="java.lang.String" value="BRAND"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="brandButtonActionPerformed"/>
@@ -79,7 +79,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="categoryButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CATEGORIA"/>
+        <Property name="text" type="java.lang.String" value="CATEGORY"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryButtonActionPerformed"/>
@@ -87,7 +87,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="clientButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CLIENTE"/>
+        <Property name="text" type="java.lang.String" value="CLIENT"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientButtonActionPerformed"/>
@@ -95,7 +95,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="productButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PRODUTO"/>
+        <Property name="text" type="java.lang.String" value="PRODUCT"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productButtonActionPerformed"/>
@@ -103,7 +103,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="saleButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="PEDIDO"/>
+        <Property name="text" type="java.lang.String" value="SALE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saleButtonActionPerformed"/>
