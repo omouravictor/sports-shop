@@ -13,11 +13,11 @@ you just need access "dist" folder and execute the SportsShop.jar file.
 
 - Java
 
-# Database:
+# Database
 
 - MySQL
 
-# Architecture:
+# Architecture
 
 - MVC
 
