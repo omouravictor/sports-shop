@@ -5,6 +5,7 @@ import Control.Managers.CategoryManager;
 import Control.Managers.ClientManager;
 import Control.Managers.ProductManager;
 import Control.Managers.SaleManager;
+import View.Main.LoginScreen;
 import View.Main.MainScreen;
 
 public class SportsShop {
@@ -15,6 +16,7 @@ public class SportsShop {
     private ProductManager productManager;
     private SaleManager saleManager;
     private MainScreen mainView;
+    private LoginScreen loginView;
 
     public SportsShop() {
         brandManager = new BrandManager();
@@ -23,10 +25,11 @@ public class SportsShop {
         productManager = new ProductManager(categoryManager, brandManager);
         saleManager = new SaleManager(productManager, clientManager);
         mainView = new MainScreen(this);
+        loginView = new LoginScreen(mainView);
     }
 
     public void start() {
-        mainView.setVisible(true);
+        loginView.setVisible(true);
     }
 
     public void showBrandCRUD() {
