@@ -1,7 +1,7 @@
 # SportsShop
 
 <p>
-  <img src="https://github.com/omouravictor/omouravictor/blob/main/assets/sports-shop/sports-shop.png" alt="Sports shop">
+  <img src="https://github.com/omouravictor/omouravictor/blob/main/assets/sports-shop/login.png" alt="Login Sports shop">
 </p>
 
-A simple management system made for a sporting goods store.
+A management system made for a sporting goods store.
