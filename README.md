@@ -23,4 +23,4 @@ you just need access "dist" folder and execute the SportsShop.jar file.
 
 # Framework
 
-- EclipseLink.
+- EclipseLink
