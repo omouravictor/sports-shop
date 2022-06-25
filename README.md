@@ -21,6 +21,6 @@ you just need access "dist" folder and execute the SportsShop.jar file.
 
 - MVC
 
-# Framework
+# Persistence Service
 
 - EclipseLink
