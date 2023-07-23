@@ -1,7 +1,7 @@
 # SportsShop
 
 <p>
-  <img src="https://github.com/omouravictor/git-hub-assets/blob/main/assets/sports-shop/login.png" alt="Login Sports shop">
+  <img src="images/login.png" alt="Login Sports shop">
 </p>
 
 # How to run SportsShop
